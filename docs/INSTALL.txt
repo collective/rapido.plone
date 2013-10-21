@@ -1,0 +1,17 @@
+rapido.plone Installation
+-------------------------
+
+To install rapido.plone using zc.buildout and the plone.recipe.zope2instance
+recipe to manage your project, you can do this:
+
+* Add ``rapido.plone`` to the list of eggs to install, e.g.:
+
+    [buildout]
+    ...
+    eggs =
+        ...
+        rapido.plone
+       
+* Re-run buildout, e.g. with:
+
+    $ ./bin/buildout
