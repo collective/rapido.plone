@@ -1,0 +1,13 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    >
+     
+    <browser:page
+        name="OpenForm"
+        for="rapido.core.interfaces.IFormable"
+        permission="zope.Public"
+        class=".overrides.views.OpenForm"
+        />
+
+</configure>

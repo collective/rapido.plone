@@ -11,9 +11,9 @@ from plone.directives import dexterity, form
 from plone.namedfile.field import NamedImage, NamedFile
 from plone.namedfile.field import NamedBlobImage, NamedBlobFile
 from plone.namedfile.interfaces import IImageScaleTraversable
-
 from plone.app.textfield import RichText
 
+from rapido.core.interfaces import IFormable
 
 from rapido.plone import MessageFactory as _
 
@@ -25,12 +25,17 @@ class IForm(form.Schema, IImageScaleTraversable):
     Form
     """
 
-    # If you want a schema-defined interface, delete the model.load
-    # line below and delete the matching file in the models sub-directory.
-    # If you want a model-based interface, edit
-    # models/form.xml to define the content type.
-
-    form.model("models/form.xml")
+    id = schema.TextLine(
+        title=_("Id"),
+        required=True
+        )
+    
+    html = RichText(
+            title=_("Layout"),
+            default_mime_type='text/html',
+            output_mime_type='text/html',
+            required=False,
+        )
 
 
 # Custom content-type class; objects created for this content type will
@@ -39,7 +44,7 @@ class IForm(form.Schema, IImageScaleTraversable):
 # in separate view classes.
 
 class Form(Container):
-    grok.implements(IForm)
+    grok.implements(IForm, IFormable)
 
     # Add your class methods and properties here
 

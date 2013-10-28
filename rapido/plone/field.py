@@ -17,21 +17,26 @@ from plone.app.textfield import RichText
 
 from rapido.plone import MessageFactory as _
 
-
-# Interface class; used to define content-type schema.
+field_types = SimpleVocabulary([
+    SimpleTerm(value=u'TEXT', title=_(u'Text')),
+    SimpleTerm(value=u'NUMBER', title=_(u'Number')),
+])
 
 class IField(form.Schema, IImageScaleTraversable):
     """
     Field
     """
 
-    # If you want a schema-defined interface, delete the model.load
-    # line below and delete the matching file in the models sub-directory.
-    # If you want a model-based interface, edit
-    # models/field.xml to define the content type.
+    id = schema.TextLine(
+        title=_("Id"),
+        required=True
+        )
 
-    form.model("models/field.xml")
-
+    type = schema.Choice(
+            title=_(u"Type"),
+            vocabulary=field_types,
+            required=True,
+        )
 
 # Custom content-type class; objects created for this content type will
 # be instances of this class. Use this class to add content-type specific
