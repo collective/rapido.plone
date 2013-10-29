@@ -14,7 +14,7 @@ from plone.namedfile.interfaces import IImageScaleTraversable
 
 from plone.app.textfield import RichText
 
-
+from rapido.core.interfaces import IDatabasable
 from rapido.plone import MessageFactory as _
 
 
@@ -39,7 +39,7 @@ class IDatabase(form.Schema, IImageScaleTraversable):
 # in separate view classes.
 
 class Database(Container):
-    grok.implements(IDatabase)
+    grok.implements(IDatabase, IDatabasable)
 
     # Add your class methods and properties here
 

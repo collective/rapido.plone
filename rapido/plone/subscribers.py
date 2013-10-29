@@ -2,7 +2,7 @@ from five import grok
 from zope.lifecycleevent.interfaces import IObjectAddedEvent,\
     IObjectModifiedEvent
 
-from rapido.core.interfaces import IFormable, IForm
+from rapido.core.interfaces import IFormable, IForm, IDatabasable, IStorage
 from rapido.plone.field import IField
 
 @grok.subscribe(IFormable, IObjectAddedEvent)
@@ -18,3 +18,8 @@ def update_field(obj, event=None):
     form.set_field(obj.id, {
         'type': obj.type
     })
+
+@grok.subscribe(IDatabasable, IObjectAddedEvent)
+def initialize_storage(obj, event=None):
+    storage = IStorage(obj)
+    storage.initialize()
