@@ -9,3 +9,7 @@ class OpenForm(core.OpenForm):
 class DocumentView(core.DocumentView):
 
     template = ViewPageTemplateFile('templates/opendocument.pt')
+
+class AllDocumentsView(core.AllDocumentsView):
+
+    template = ViewPageTemplateFile('templates/documents.pt')

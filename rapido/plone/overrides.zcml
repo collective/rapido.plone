@@ -17,4 +17,10 @@
         class=".overrides.views.DocumentView"
         />
 
+    <browser:page
+        name="documents"
+        for="rapido.core.interfaces.IDatabasable"
+        permission="zope.Public"
+        class=".overrides.views.AllDocumentsView"
+        />
 </configure>
