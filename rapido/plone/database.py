@@ -41,7 +41,9 @@ class IDatabase(form.Schema, IImageScaleTraversable):
 class Database(Container):
     grok.implements(IDatabase, IDatabasable)
 
-    # Add your class methods and properties here
+    @property
+    def uid(self):
+        return self.UID()
 
 
 # View class
