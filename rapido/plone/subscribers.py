@@ -1,9 +1,11 @@
 from five import grok
 from zope.lifecycleevent.interfaces import IObjectAddedEvent,\
     IObjectModifiedEvent
+from Products.statusmessages.interfaces import IStatusMessage
 
 from rapido.core.interfaces import IFormable, IForm, IDatabasable, IStorage
 from rapido.plone.field import IField
+from rapido.core.events import ICompilationErrorEvent, IExecutionErrorEvent
 
 @grok.subscribe(IFormable, IObjectAddedEvent)
 @grok.subscribe(IFormable, IObjectModifiedEvent)
@@ -23,3 +25,24 @@ def update_field(obj, event=None):
 def initialize_storage(obj, event=None):
     storage = IStorage(obj)
     storage.initialize()
+
+@grok.subscribe(ICompilationErrorEvent)
+def on_compilation_error(event):
+    request = getattr(event.container.context, 'REQUEST', None)
+    if request:
+        message = """in %s, at line %d: %s""" % (
+            event.container.id,
+            event.error.lineno,
+            event.error.msg,
+        )
+        IStatusMessage(request).addStatusMessage(message, type="error")
+
+@grok.subscribe(IExecutionErrorEvent)
+def on_execution_error(event):
+    request = getattr(event.container.context, 'REQUEST', None)
+    if request:
+        message = """in %s: %s""" % (
+            event.container.id,
+            event.error.message,
+        )
+        IStatusMessage(request).addStatusMessage(message, type="error")
