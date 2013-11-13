@@ -9,7 +9,7 @@ from rapido.plone.field import IField
 @grok.subscribe(IFormable, IObjectModifiedEvent)
 def update_html(obj, event=None):
     form = IForm(obj)
-    form.set_layout(obj.html)
+    form.set_layout(obj.html.output)
 
 @grok.subscribe(IField, IObjectAddedEvent)
 @grok.subscribe(IField, IObjectModifiedEvent)
