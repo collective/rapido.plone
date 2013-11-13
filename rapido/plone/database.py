@@ -49,6 +49,9 @@ class Database(Container):
     def root(self):
         return api.portal.get()
 
+    def url(self):
+        return self.absolute_url()
+
 
 # View class
 # The view will automatically use a similarly named template in

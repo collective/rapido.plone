@@ -8,7 +8,8 @@ class OpenForm(core.OpenForm):
 
 class DocumentView(core.DocumentView):
 
-    template = ViewPageTemplateFile('templates/opendocument.pt')
+    view_template = ViewPageTemplateFile('templates/opendocument.pt')
+    edit_template = ViewPageTemplateFile('templates/editdocument.pt')
 
 class AllDocumentsView(core.AllDocumentsView):
 

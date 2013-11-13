@@ -10,10 +10,13 @@
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
-    <form action="create" method="POST" tal:attributes="name view/form/id;">
+    <form method="POST" tal:attributes="
+        name view/doc/form/id;
+        action string:${view/doc/url}/save;
+        ">
       <input type="hidden" name="Form"
-        tal:attributes="value view/form/id" />
-      <tal:block tal:replace="structure python:view.form.display(edit=True)" />
+        tal:attributes="value view/doc/form/id" />
+      <tal:block tal:replace="structure python:view.doc.display(edit=True)" />
       <input type="submit" i18n:attributes="value" value="Save" />
     </form>
 
