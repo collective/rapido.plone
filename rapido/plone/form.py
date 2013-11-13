@@ -1,10 +1,11 @@
 from five import grok
 
-from z3c.form import group, field
+from z3c.form import group, field, form, button
 from zope import schema
-from zope.interface import invariant, Invalid
+from zope.interface import invariant, Invalid, Interface, implements
 from zope.schema.interfaces import IContextSourceBinder
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone.dexterity.content import Container
 from plone.directives import dexterity, form
@@ -12,13 +13,12 @@ from plone.namedfile.field import NamedImage, NamedFile
 from plone.namedfile.field import NamedBlobImage, NamedBlobFile
 from plone.namedfile.interfaces import IImageScaleTraversable
 from plone.app.textfield import RichText
+from plone.app.z3cform.layout import wrap_form, FormWrapper
 
-from rapido.core.interfaces import IFormable
+from rapido.core import interfaces as core
 
 from rapido.plone import MessageFactory as _
 
-
-# Interface class; used to define content-type schema.
 
 class IForm(form.Schema, IImageScaleTraversable):
     """
@@ -37,34 +37,52 @@ class IForm(form.Schema, IImageScaleTraversable):
             required=False,
         )
 
-
-# Custom content-type class; objects created for this content type will
-# be instances of this class. Use this class to add content-type specific
-# methods and properties. Put methods that are mainly useful for rendering
-# in separate view classes.
+grok.context(IForm)
 
 class Form(Container):
-    grok.implements(IForm, IFormable)
+    grok.implements(IForm, core.IFormable)
 
-    # Add your class methods and properties here
+    code = u"# your code here"
 
+class IFormCode(Interface):
 
-# View class
-# The view will automatically use a similarly named template in
-# form_templates.
-# Template filenames should be all lower case.
-# The view will render when you request a content object with this
-# interface with "/@@sampleview" appended.
-# You may make this the default view for content objects
-# of this type by uncommenting the grok.name line below or by
-# changing the view class name and template filename to View / view.pt.
+    code = schema.Text(
+        title=_("Code"),
+        required=False,
+        )
 
-class SampleView(grok.View):
-    """ sample view class """
+class FormContext(object):
+    implements(IFormCode)
 
-    grok.context(IForm)
-    grok.require('zope2.View')
+class EditFormCode(form.Form):
+    implements(IFormCode)
 
-    # grok.name('view')
+    fields = field.Fields(IFormCode)
+    
+    def getContent(self):
+        obj = FormContext()
+        obj.code = core.IForm(self.context).code
+        return obj
 
-    # Add view methods here
+    @button.buttonAndHandler(u'Apply')
+    def handleApply(self, action):
+        data, errors = self.extractData()
+        if errors:
+            return
+        core.IForm(self.context).set_code(data['code'])
+        self.status = _("Code saved")
+
+class EditFormCodeWrapper(FormWrapper):
+
+    def update(self):
+        FormWrapper.update(self)
+
+edit_code_layout = ViewPageTemplateFile("templates/form_edit_code.pt")
+
+edit_form_code_view_class = wrap_form(
+    EditFormCode,
+    __wrapper_class=EditFormCodeWrapper,
+    index=edit_code_layout,
+    label=u"Form code"
+)
+

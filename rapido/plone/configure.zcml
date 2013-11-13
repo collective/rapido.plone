@@ -32,6 +32,18 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
-  <!-- -*- extra stuff goes here -*- -->
+  <browser:page
+      for=".form.IForm"
+      name="edit-code"
+      class=".form.edit_form_code_view_class"
+      permission="zope2.Public"
+      />
+
+  <adapter
+    for=".form.IForm"
+    provides=".form.IFormCode"
+    factory=".form.EditFormCode"
+  />
+
 
 </configure>
