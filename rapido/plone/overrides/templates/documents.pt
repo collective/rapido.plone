@@ -11,9 +11,16 @@
   <metal:content-core define-macro="content-core">
 
     <table class="plain">
-      <tr><th>UID</th></tr>
+      <tr><th>UID</th><th>DOCID</th></tr>
       <tal:documents tal:repeat="doc view/documents">
-        <tr><td><a tal:attributes="href python:'document/%d' % doc.uid" tal:content="doc/uid">uid</a></td></tr>
+        <tr>
+          <td>
+            <a tal:attributes="href doc/url" tal:content="doc/uid">uid</a>
+          </td>
+          <td>
+            <a tal:attributes="href doc/url" tal:content="python:doc.get_item('docid')">docid</a>
+          </td>
+        </tr>
       </tal:documents>
     </table>
 
