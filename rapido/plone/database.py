@@ -11,7 +11,7 @@ from plone.directives import dexterity, form
 from plone.namedfile.field import NamedImage, NamedFile
 from plone.namedfile.field import NamedBlobImage, NamedBlobFile
 from plone.namedfile.interfaces import IImageScaleTraversable
-
+from plone import api
 from plone.app.textfield import RichText
 
 from rapido.core.interfaces import IDatabasable
@@ -44,6 +44,10 @@ class Database(Container):
     @property
     def uid(self):
         return self.UID()
+
+    @property
+    def root(self):
+        return api.portal.get()
 
 
 # View class

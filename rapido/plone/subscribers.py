@@ -1,7 +1,6 @@
 from five import grok
 from zope.lifecycleevent.interfaces import IObjectAddedEvent,\
     IObjectModifiedEvent
-from plone import api
 
 from rapido.core.interfaces import IFormable, IForm, IDatabasable, IStorage
 from rapido.plone.field import IField
@@ -23,4 +22,4 @@ def update_field(obj, event=None):
 @grok.subscribe(IDatabasable, IObjectAddedEvent)
 def initialize_storage(obj, event=None):
     storage = IStorage(obj)
-    storage.initialize(api.portal.get())
+    storage.initialize()
