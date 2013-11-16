@@ -1,6 +1,6 @@
 from five import grok
 from zope.lifecycleevent.interfaces import IObjectAddedEvent,\
-    IObjectModifiedEvent
+    IObjectModifiedEvent, IObjectRemovedEvent
 from Products.statusmessages.interfaces import IStatusMessage
 
 from rapido.core.interfaces import IFormable, IForm, IDatabasable, IStorage
@@ -18,8 +18,14 @@ def update_html(obj, event=None):
 def update_field(obj, event=None):
     form = IForm(obj.getParentNode())
     form.set_field(obj.id, {
-        'type': obj.type
+        'type': obj.type,
+        'index_type': obj.index_type,
     })
+
+@grok.subscribe(IField, IObjectRemovedEvent)
+def remove_field(obj, event=None):
+    form = IForm(obj.getParentNode())
+    form.remove_field(obj.id)
 
 @grok.subscribe(IDatabasable, IObjectAddedEvent)
 def initialize_storage(obj, event=None):
