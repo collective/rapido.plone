@@ -22,6 +22,13 @@ field_types = SimpleVocabulary([
     SimpleTerm(value=u'NUMBER', title=_(u'Number')),
 ])
 
+index_types = SimpleVocabulary([
+    SimpleTerm(value=u'', title=_(u'Not indexed')),
+    SimpleTerm(value=u'field', title=_(u'Field index')),
+    SimpleTerm(value=u'keyword', title=_(u'Keyword index')),
+    SimpleTerm(value=u'text', title=_(u'Full-text index')),
+])
+
 class IField(form.Schema, IImageScaleTraversable):
     """
     Field
@@ -35,6 +42,12 @@ class IField(form.Schema, IImageScaleTraversable):
     type = schema.Choice(
             title=_(u"Type"),
             vocabulary=field_types,
+            required=True,
+        )
+
+    index_type = schema.Choice(
+            title=_(u"Index type"),
+            vocabulary=index_types,
             required=True,
         )
 
