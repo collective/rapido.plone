@@ -45,4 +45,12 @@
     factory=".form.EditFormCode"
   />
 
+  <browser:page
+      for=".database.IDatabase"
+      name="breadcrumbs_view"
+      class=".navigation.PhysicalNavigationBreadcrumbs"
+      permission="zope.Public"
+      allowed_attributes="breadcrumbs"
+      />
+
 </configure>
