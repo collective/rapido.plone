@@ -36,19 +36,10 @@ def initialize_storage(obj, event=None):
 def on_compilation_error(event):
     request = getattr(event.container.context, 'REQUEST', None)
     if request:
-        message = """in %s, at line %d: %s""" % (
-            event.container.id,
-            event.error.lineno,
-            event.error.msg,
-        )
-        IStatusMessage(request).addStatusMessage(message, type="error")
+        IStatusMessage(request).addStatusMessage(event.message, type="error")
 
 @grok.subscribe(IExecutionErrorEvent)
 def on_execution_error(event):
     request = getattr(event.container.context, 'REQUEST', None)
     if request:
-        message = """in %s: %s""" % (
-            event.container.id,
-            event.error.message,
-        )
-        IStatusMessage(request).addStatusMessage(message, type="error")
+        IStatusMessage(request).addStatusMessage(event.message, type="error")
