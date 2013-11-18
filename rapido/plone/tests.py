@@ -45,52 +45,11 @@ def test_suite():
 
         # Integration tests that use PloneTestCase
         ztc.ZopeDocFileSuite(
-            'INTEGRATION.txt',
+            'rapido.plone.rst',
             package='rapido.plone',
             optionflags = OPTION_FLAGS,
             test_class=TestCase),
-
-        # -*- extra stuff goes here -*-
-
-        # Integration tests for Column
-        ztc.ZopeDocFileSuite(
-            'Column.txt',
-            package='rapido.plone',
-            optionflags = OPTION_FLAGS,
-            test_class=TestCase),
-
-
-        # Integration tests for Field
-        ztc.ZopeDocFileSuite(
-            'Field.txt',
-            package='rapido.plone',
-            optionflags = OPTION_FLAGS,
-            test_class=TestCase),
-
-
-        # Integration tests for View
-        ztc.ZopeDocFileSuite(
-            'View.txt',
-            package='rapido.plone',
-            optionflags = OPTION_FLAGS,
-            test_class=TestCase),
-
-
-        # Integration tests for Form
-        ztc.ZopeDocFileSuite(
-            'Form.txt',
-            package='rapido.plone',
-            optionflags = OPTION_FLAGS,
-            test_class=TestCase),
-
-
-        # Integration tests for Database
-        ztc.ZopeDocFileSuite(
-            'Database.txt',
-            package='rapido.plone',
-            optionflags = OPTION_FLAGS,
-            test_class=TestCase),
-
+        ])
 
 
 if __name__ == '__main__':
