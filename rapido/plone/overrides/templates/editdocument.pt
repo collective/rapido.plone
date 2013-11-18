@@ -16,7 +16,7 @@
         ">
       <input type="hidden" name="Form"
         tal:attributes="value view/doc/form/id" />
-      <tal:block tal:replace="structure python:view.doc.display(edit=True)" />
+      <tal:block tal:replace="structure view/body" />
       <input type="submit" i18n:attributes="value" value="Save" />
     </form>
 
