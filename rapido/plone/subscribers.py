@@ -11,11 +11,16 @@ from rapido.core.events import ICompilationErrorEvent, IExecutionErrorEvent
 @grok.subscribe(IFormable, IObjectModifiedEvent)
 def update_html(obj, event=None):
     form = IForm(obj)
-    form.set_layout(obj.html.output)
+    if obj.html:
+        html = obj.html.output
+    else:
+        html = ''
+    form.set_layout(html)
 
 @grok.subscribe(IField, IObjectAddedEvent)
 @grok.subscribe(IField, IObjectModifiedEvent)
 def update_field(obj, event=None):
+    # TODO: this is called twice, we need to test if already executed
     form = IForm(obj.getParentNode())
     form.set_field(obj.id, {
         'type': obj.type,
@@ -24,6 +29,7 @@ def update_field(obj, event=None):
 
 @grok.subscribe(IField, IObjectRemovedEvent)
 def remove_field(obj, event=None):
+    # TODO: this is called twice, we need to test if already executed
     form = IForm(obj.getParentNode())
     form.remove_field(obj.id)
 
