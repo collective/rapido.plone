@@ -1,7 +1,7 @@
 Integration Tests
 -----------------
 
-Create a Rapido database object and put it in a folder:
+Create a Rapido database object and put it in a folder::
 
     >>> from zope.component import createObject
     >>> db_obj = createObject('rapido.plone.database')
@@ -18,12 +18,12 @@ Create a Rapido database object and put it in a folder:
     >>> db
     <Database at /plone/Members/test_user_1_/test-db>
 
-Storage has been initialized:
+Storage has been initialized::
     >>> from rapido.core.interfaces import IDatabase
     >>> IDatabase(db).storage
     <rapido.souper.soup.SoupStorage object at ...>
 
-Add a form:
+Add a form::
 
     >>> form_obj = createObject('rapido.plone.form', id='frmtest')
     >>> notify(ObjectCreatedEvent(form_obj))
@@ -34,7 +34,7 @@ Add a form:
     >>> form
     <Form at /plone/Members/test_user_1_/test-db/frmtest>
 
-Layout is updated on change:
+Layout is updated on change::
     >>> from plone.app.textfield.value import RichTextValue
     >>> form.html = RichTextValue("""Song: <span data-rapido-field="song">song</span>""")
     >>> from zope.lifecycleevent import ObjectModifiedEvent
@@ -43,7 +43,7 @@ Layout is updated on change:
     >>> IForm(form).layout
     'Song: <span data-rapido-field="song">song</span>'
 
-Add a field in the form:
+Add a field in the form::
 
     >>> field_obj = createObject('rapido.plone.field', id='song')
     >>> notify(ObjectCreatedEvent(field_obj))
@@ -53,7 +53,7 @@ Add a field in the form:
     >>> field
     <Field at /plone/Members/test_user_1_/test-db/frmtest/song>
 
-Form fields definition is updated on change:
+Form fields definition is updated on change::
     >>> field.type = 'TEXT'
     >>> field.index_type = 'FIELD'
     >>> notify(ObjectModifiedEvent(field))
