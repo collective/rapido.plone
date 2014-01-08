@@ -20,6 +20,7 @@ from rapido.plone import MessageFactory as _
 field_types = SimpleVocabulary([
     SimpleTerm(value=u'TEXT', title=_(u'Text')),
     SimpleTerm(value=u'NUMBER', title=_(u'Number')),
+    SimpleTerm(value=u'DATETIME', title=_(u'Date/time')),
 ])
 
 index_types = SimpleVocabulary([
