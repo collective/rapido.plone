@@ -3,8 +3,15 @@ from zope.lifecycleevent.interfaces import IObjectAddedEvent,\
     IObjectModifiedEvent, IObjectRemovedEvent
 from Products.statusmessages.interfaces import IStatusMessage
 
-from rapido.core.interfaces import IFormable, IForm, IDatabasable, IStorage
+from rapido.core.interfaces import (
+    IFormable,
+    IForm,
+    IDatabasable,
+    IStorage,
+    IDatabase
+)
 from rapido.plone.field import IField
+from rapido.plone.rule import IRule
 from rapido.core.events import ICompilationErrorEvent, IExecutionErrorEvent
 
 @grok.subscribe(IFormable, IObjectAddedEvent)
@@ -16,6 +23,12 @@ def update_html(obj, event=None):
     else:
         html = ''
     form.set_layout(html)
+
+@grok.subscribe(IFormable, IObjectAddedEvent)
+@grok.subscribe(IFormable, IObjectModifiedEvent)
+def update_assigned_rules(obj, event=None):
+    form = IForm(obj)
+    form.assign_rules(obj.assigned_rules)
 
 @grok.subscribe(IField, IObjectAddedEvent)
 @grok.subscribe(IField, IObjectModifiedEvent)
@@ -32,6 +45,19 @@ def remove_field(obj, event=None):
     # TODO: this is called twice, we need to test if already executed
     form = IForm(obj.getParentNode())
     form.remove_field(obj.id)
+
+@grok.subscribe(IRule, IObjectAddedEvent)
+@grok.subscribe(IRule, IObjectModifiedEvent)
+def update_rule(obj, event=None):
+    db = IDatabase(obj.getParentNode())
+    db.set_rule(obj.id, {
+        'code': obj.code,
+    })
+
+@grok.subscribe(IRule, IObjectRemovedEvent)
+def remove_rule(obj, event=None):
+    db = IDatabase(obj.getParentNode())
+    db.remove_rule(obj.id)
 
 @grok.subscribe(IDatabasable, IObjectAddedEvent)
 def initialize_storage(obj, event=None):

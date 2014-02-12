@@ -36,3 +36,7 @@ class Database(Container):
 
     def url(self):
         return self.absolute_url()
+
+    @property
+    def forms(self):
+        return self.objectValues(spec='Form')

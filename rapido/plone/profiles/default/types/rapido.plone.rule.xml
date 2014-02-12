@@ -1,29 +1,24 @@
 <?xml version="1.0"?>
-<object name="rapido.plone.database"
+<object name="rapido.plone.rule"
    meta_type="Dexterity FTI"
    i18n:domain="rapido.plone" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <!-- Basic metadata -->
-  <property name="title" i18n:translate="">Database</property>
+  <property name="title" i18n:translate="">Rule</property>
   <property name="description"
-    i18n:translate="">Rapido database</property>
-  <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
-  <property name="factory">rapido.plone.database</property>
-  <property name="global_allow">True</property>
+    i18n:translate="">Rule</property>
+  <property name="icon_expr">string:${portal_url}/document_icon.png</property>
+  <property name="factory">rapido.plone.rule</property>
+  <property name="global_allow">False</property>
   <property name="filter_content_types">True</property>
-  <property name="allowed_content_types">
-    <element value="rapido.plone.view"/>
-    <element value="rapido.plone.form"/>
-    <element value="rapido.plone.rule"/>
-  </property>
+  <property name="allowed_content_types" />
   <property name="allow_discussion">False</property>
 
   <!-- schema and class used for content items -->
-  <property name="schema">rapido.plone.database.IDatabase</property>
-  <property name="klass">rapido.plone.database.Database</property>
+  <property name="schema">rapido.plone.rule.IRule</property>
+  <property name="klass">rapido.plone.rule.Rule</property>
 
   <property name="behaviors">
-     <element value="plone.app.content.interfaces.INameFromTitle" />
      <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
    </property>
 

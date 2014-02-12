@@ -16,7 +16,6 @@ from plone.app.textfield import RichText
 from plone.app.z3cform.layout import wrap_form, FormWrapper
 
 from rapido.core import interfaces as core
-
 from rapido.plone import MessageFactory as _
 
 
@@ -36,6 +35,12 @@ class IForm(form.Schema, IImageScaleTraversable):
             output_mime_type='text/html',
             required=False,
         )
+
+    assigned_rules = schema.List(
+        title=_('Assigned rules'),
+        value_type=schema.Choice(vocabulary="rapido.plone.rules"),
+        required=False,
+    )
 
 grok.context(IForm)
 

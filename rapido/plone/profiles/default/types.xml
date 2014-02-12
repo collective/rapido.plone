@@ -12,6 +12,7 @@
   <object name="rapido.plone.field" meta_type="Dexterity FTI" />
   <object name="rapido.plone.view" meta_type="Dexterity FTI" />
   <object name="rapido.plone.form" meta_type="Dexterity FTI" />
+  <object name="rapido.plone.rule" meta_type="Dexterity FTI" />
   <object name="rapido.plone.database" meta_type="Dexterity FTI" />
 
 </object>
