@@ -45,3 +45,9 @@ class Database(Container):
         """ Returns the current user id
         """
         return api.user.get_current().getUserName()
+
+    def current_user_groups(self):
+        """ Get the current user groups
+        """
+        member = api.user.get_current()
+        return member.getGroups()
