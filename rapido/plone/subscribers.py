@@ -60,9 +60,9 @@ def remove_rule(obj, event=None):
     db.remove_rule(obj.id)
 
 @grok.subscribe(IDatabasable, IObjectAddedEvent)
-def initialize_storage(obj, event=None):
-    storage = IStorage(obj)
-    storage.initialize()
+def initialize_database(obj, event=None):
+    db = IDatabase(obj)
+    db.initialize()
 
 @grok.subscribe(ICompilationErrorEvent)
 def on_compilation_error(event):

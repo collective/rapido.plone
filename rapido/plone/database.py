@@ -40,3 +40,8 @@ class Database(Container):
     @property
     def forms(self):
         return self.objectValues(spec='Form')
+
+    def current_user(self):
+        """ Returns the current user id
+        """
+        return api.user.get_current().getUserName()
