@@ -25,3 +25,5 @@ class IRule(form.Schema):
 
 class Rule(Container):
     grok.implements(IRule)
+
+    meta_type = "Rapido rule"

@@ -26,3 +26,5 @@ class IView(form.Schema, IImageScaleTraversable):
 
 class View(Container):
     grok.implements(IView)
+
+    meta_type = "Rapido view"

@@ -55,3 +55,5 @@ class IField(form.Schema, IImageScaleTraversable):
 
 class Field(Container):
     grok.implements(IField)
+
+    meta_type = "Rapido field"

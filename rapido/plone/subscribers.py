@@ -28,7 +28,8 @@ def update_html(obj, event=None):
 @grok.subscribe(IFormable, IObjectModifiedEvent)
 def update_assigned_rules(obj, event=None):
     form = IForm(obj)
-    form.assign_rules(obj.assigned_rules)
+    rules = obj.assigned_rules and obj.assigned_rules or []
+    form.assign_rules(rules)
 
 @grok.subscribe(IField, IObjectAddedEvent)
 @grok.subscribe(IField, IObjectModifiedEvent)

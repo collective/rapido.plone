@@ -47,6 +47,8 @@ grok.context(IForm)
 class Form(Container):
     grok.implements(IForm, core.IFormable)
 
+    meta_type = "Rapido form"
+
     code = u"# your code here"
 
 class IFormCode(Interface):

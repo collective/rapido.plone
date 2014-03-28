@@ -3,20 +3,15 @@ Integration Tests
 
 Create a Rapido database object and put it in a folder::
 
-    >>> from zope.component import createObject
-    >>> db_obj = createObject('rapido.plone.database')
-    >>> from zope.event import notify
-    >>> from zope.lifecycleevent import ObjectCreatedEvent
-    >>> notify(ObjectCreatedEvent(db_obj))
-    >>> db_obj.portal_type
-    'rapido.plone.database'
-    >>> db_obj.setTitle('Test db')
-    >>> db_obj.Title()
-    'Test db'
-    >>> from plone.dexterity.utils import addContentToContainer
-    >>> db = addContentToContainer(folder, db_obj)
+    >>> id = folder.invokeFactory('rapido.plone.database', 'test-db')
+    >>> db = folder['test-db']
     >>> db
     <Database at /plone/Members/test_user_1_/test-db>
+    >>> db.portal_type
+    'rapido.plone.database'
+    >>> db.setTitle('Test db')
+    >>> db.Title()
+    'Test db'
 
 Storage has been initialized::
     >>> from rapido.core.interfaces import IDatabase
@@ -25,18 +20,19 @@ Storage has been initialized::
 
 Add a form::
 
-    >>> form_obj = createObject('rapido.plone.form', id='frmtest')
-    >>> notify(ObjectCreatedEvent(form_obj))
-    >>> form_obj.portal_type
-    'rapido.plone.form'
-    >>> form_obj.setTitle('Test form')
-    >>> form = addContentToContainer(db, form_obj)
+    >>> id = db.invokeFactory('rapido.plone.form', 'frmtest')
+    >>> form = db['frmtest']
     >>> form
     <Form at /plone/Members/test_user_1_/test-db/frmtest>
+    >>> form.portal_type
+    'rapido.plone.form'
+    >>> form.setTitle('Test form')
+    
 
 Layout is updated on change::
     >>> from plone.app.textfield.value import RichTextValue
     >>> form.html = RichTextValue("""Song: <span data-rapido-field="song">song</span>""")
+    >>> from zope.event import notify
     >>> from zope.lifecycleevent import ObjectModifiedEvent
     >>> notify(ObjectModifiedEvent(form))
     >>> from rapido.core.interfaces import IForm
@@ -45,13 +41,13 @@ Layout is updated on change::
 
 Add a field in the form::
 
-    >>> field_obj = createObject('rapido.plone.field', id='song')
-    >>> notify(ObjectCreatedEvent(field_obj))
-    >>> field_obj.portal_type
-    'rapido.plone.field'
-    >>> field = addContentToContainer(form, field_obj)
+    >>> id = form.invokeFactory('rapido.plone.field', 'song')
+    >>> field = form['song']
     >>> field
     <Field at /plone/Members/test_user_1_/test-db/frmtest/song>
+    >>> field.portal_type
+    'rapido.plone.field'
+    
 
 Form fields definition is updated on change::
     >>> field.type = 'TEXT'
@@ -59,3 +55,29 @@ Form fields definition is updated on change::
     >>> notify(ObjectModifiedEvent(field))
     >>> IForm(form).fields
     {'song': {'index_type': 'FIELD', 'type': 'TEXT'}}
+
+The database design can be exported and imported::
+    >>> from rapido.core.interfaces import IExporter
+    >>> exporter = IExporter(IDatabase(db))
+    >>> data = exporter.export_database()
+    >>> data
+    {'forms': {'frmtest': {'frmtest.html': 'Song: <span data-rapido-field="song">song</span>', 'frmtest.yaml': "assigned_rules: []\nfields:\n  song: {index_type: FIELD, type: TEXT}\nid: frmtest\ntitle: !!python/unicode 'Test form'\n", 'frmtest.py': ''}}, 'settings.yaml': 'acl:\n  rights:\n    author: []\n    editor: []\n    manager: [test_user_1_]\n    reader: []\n  roles: {}\n'}
+    >>> id = folder.invokeFactory('rapido.plone.database', 'new-db')
+    >>> newdb = folder['new-db']
+    >>> newdb.forms
+    []
+    >>> from rapido.core.interfaces import IImporter
+    >>> IImporter(IDatabase(newdb)).import_database(data)
+    >>> newdb.forms[0].id
+    'frmtest'
+
+When the imported design contains a form already existing in the db, the local
+one will be overridden ::
+    >>> newdb.frmtest.song.type
+    'TEXT'
+    >>> newdb.frmtest.song.type = 'NUMBER'
+    >>> IImporter(IDatabase(newdb)).import_database(data)
+    >>> newdb.frmtest.song.type
+    'TEXT'
+
+

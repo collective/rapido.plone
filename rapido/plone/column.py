@@ -25,3 +25,5 @@ class IColumn(form.Schema, IImageScaleTraversable):
 
 class Column(Container):
     grok.implements(IColumn)
+
+    meta_type = "Rapido column"

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <object name="rapido.plone.field"
-   meta_type="Dexterity FTI"
+   meta_type="Rapido field"
    i18n:domain="rapido.plone" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <!-- Basic metadata -->
