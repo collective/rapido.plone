@@ -14,6 +14,8 @@
   <!-- Grok the package to initialize schema interfaces and content classes -->
   <grok:grok package="." />
 
+  <include package=".browser"/>
+  
   <!-- Register a resource directory from which we can deploy static
    resource files. -->
   <browser:resourceDirectory

@@ -7,20 +7,27 @@
         name="view"
         for="rapido.core.interfaces.IFormable"
         permission="zope.Public"
-        class=".overrides.views.OpenForm"
+        class=".views.OpenForm"
         />
 
+    <browser:page
+        name="create"
+        for="rapido.core.interfaces.IFormable"
+        permission="zope.Public"
+        class=".views.CreateDocument"
+        />
+        
     <browser:page
         name="document"
         for="rapido.core.interfaces.IDatabasable"
         permission="zope.Public"
-        class=".overrides.views.DocumentView"
+        class=".views.DocumentView"
         />
 
     <browser:page
         name="documents"
         for="rapido.core.interfaces.IDatabasable"
         permission="zope.Public"
-        class=".overrides.views.AllDocumentsView"
+        class=".views.AllDocumentsView"
         />
 </configure>
