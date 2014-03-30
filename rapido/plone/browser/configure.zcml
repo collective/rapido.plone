@@ -25,6 +25,13 @@
         />
 
     <browser:page
+        name="api"
+        for="rapido.core.interfaces.IDatabasable"
+        permission="zope.Public"
+        class=".rest.Api"
+        />
+
+    <browser:page
         name="documents"
         for="rapido.core.interfaces.IDatabasable"
         permission="zope.Public"
