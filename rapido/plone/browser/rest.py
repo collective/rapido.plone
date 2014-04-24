@@ -58,10 +58,10 @@ class Api(BrowserView):
         return self.render()
 
     def __contains__(self, name):
-        # When processing other methods than GET and POST, ZPublisher tyies to
+        # When processing other methods than GET and POST, ZPublisher tries to
         # make sure the requested resource exists in the parent. So we just 
-        # retend that any part of the url path is an existing element.
-        # That's qute hacky :)
+        # pretend that any part of the url path is an existing element.
+        # That's quite hacky :)
         if name in self.request.URL.split('/'):
             return True
         else:
