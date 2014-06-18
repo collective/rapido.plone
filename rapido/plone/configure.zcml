@@ -55,4 +55,10 @@
       allowed_attributes="breadcrumbs"
       />
 
+  <adapter
+    for="souper.plone.interfaces.ISoupRoot"
+    provides="souper.interfaces.IStorageLocator" 
+    factory="rapido.souper.locator.StorageLocator" 
+  />
+
 </configure>
