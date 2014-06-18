@@ -15,6 +15,7 @@
   <grok:grok package="." />
 
   <include package=".browser"/>
+  <include package=".design"/>
   
   <!-- Register a resource directory from which we can deploy static
    resource files. -->
@@ -33,19 +34,6 @@
       description="Extension profile for Rapido for Plone"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-
-  <browser:page
-      for=".form.IForm"
-      name="edit-code"
-      class=".form.edit_form_code_view_class"
-      permission="zope2.Public"
-      />
-
-  <adapter
-    for=".form.IForm"
-    provides=".form.IFormCode"
-    factory=".form.EditFormCode"
-  />
 
   <browser:page
       for=".database.IDatabase"
