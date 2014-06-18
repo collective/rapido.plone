@@ -37,4 +37,12 @@
         permission="zope.Public"
         class=".views.AllDocumentsView"
         />
+
+    <browser:page
+        for="rapido.core.interfaces.IDatabasable"
+        name="importexport"
+        class=".design.import_export_design"
+        permission="zope2.Public"
+        />
+
 </configure>

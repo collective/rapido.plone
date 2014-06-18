@@ -58,6 +58,7 @@ class Database(Container):
     def create_form(self, settings, code, html):
         """ Create a form 
         (used by the importation mechanism)
+        Note: it first deletes the form if it was existing
         """
         form_id = settings['id']
         # if the form exists, we remove it first
@@ -77,5 +78,5 @@ class Database(Container):
             form_obj.invokeFactory('rapido.plone.field', field_id)
             field = form_obj[field_id]
             field.type = field_settings['type']
-            field.index_type = field_settings['index_type']
+            field.index_type = field_settings.get('index_type', None)
             update_field(field)
