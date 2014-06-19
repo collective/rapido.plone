@@ -5,6 +5,8 @@ from zope import schema
 from zope.interface import invariant, Invalid
 from zope.schema.interfaces import IContextSourceBinder
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
+from zope.annotation.interfaces import IAnnotations
+from persistent.dict import PersistentDict
 
 from plone.dexterity.content import Container
 from plone.directives import dexterity, form
@@ -18,6 +20,7 @@ from rapido.core.interfaces import IDatabasable, IForm
 from .subscribers import update_html, update_field, update_assigned_rules
 from rapido.plone import MessageFactory as _
 
+ANNOTATION_KEY = "RAPIDO_PLONE_ANNOTATION"
 
 class IDatabase(form.Schema, IImageScaleTraversable):
     """
@@ -80,3 +83,14 @@ class Database(Container):
             field.type = field_settings['type']
             field.index_type = field_settings.get('index_type', None)
             update_field(field)
+
+    def set_watcher(self, path):
+        annotations = IAnnotations(self)
+        if ANNOTATION_KEY not in annotations:
+            annotations[ANNOTATION_KEY] = PersistentDict()
+        annotations[ANNOTATION_KEY]["watch_path"] = path
+
+    def get_watcher(self):
+        annotations = IAnnotations(self)
+        if ANNOTATION_KEY in annotations:
+            return annotations[ANNOTATION_KEY].get("watch_path", None)

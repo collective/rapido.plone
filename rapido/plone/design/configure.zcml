@@ -16,11 +16,18 @@
     factory=".form.EditFormCode"
   />
   
-    <browser:page
-        for="rapido.core.interfaces.IDatabasable"
-        name="importexport"
-        class=".design.import_export_design"
-        permission="zope2.Public"
-        />
+  <browser:page
+    for="rapido.core.interfaces.IDatabasable"
+    name="importexport"
+    class=".design.import_export_design"
+    permission="zope2.Public"
+    />
+
+  <browser:page
+    name="refreshfromsource"
+    for="rapido.core.interfaces.IDatabasable"
+    permission="zope.Public"
+    class=".design.RefreshDesign"
+    />
 
 </configure>
