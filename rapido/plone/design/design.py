@@ -1,3 +1,4 @@
+import json
 from zope import schema
 from zope.interface.interface import Interface
 from zope.interface import implements
@@ -8,7 +9,7 @@ from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
 from Products.Five.browser import BrowserView
 
 from rapido.plone import MessageFactory as _
-from rapido.core.interfaces import IDatabase, IImporter, IExporter
+from rapido.core.interfaces import IDatabase, IImporter, IExporter, IDatabasable
 
 class IDesignImportExportForm(Interface):
     """
@@ -75,10 +76,18 @@ import_export_design = wrap_form(
 class RefreshDesign(BrowserView):
 
     def __call__(self):
-        if IDatabase.implementedBy(self.context):
-            db = self.context
-        else:
-            db = self.context.getParentDatabase()
-        path = db.get_watcher()
+        path = self.context.get_watcher()
         if path:
-            IImporter(IDatabase(db)).import_from_fs(path)
+            IImporter(IDatabase(self.context)).import_from_fs(path)
+            result = {
+                'status': 'success',
+                'message': 'Design refreshed from %s' % path,
+            }
+        else:
+            result = {
+                'status': 'error',
+                'message': 'Source path missing',
+            }
+
+        self.request.response.setHeader("Content-Type", "application/json")
+        return json.dumps(result)
