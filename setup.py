@@ -32,7 +32,6 @@ setup(name='rapido.plone',
           'rapido.souper',
           'souper.plone',
           'plone.api',
-          'plone.app.toolbar',
           'plone.app.widgets [dexterity]',
       ],
       entry_points="""
