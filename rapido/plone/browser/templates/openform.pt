@@ -10,7 +10,9 @@
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
-    <form action="create" method="POST" tal:attributes="name view/form/id;">
+    <form method="POST" tal:attributes="name view/form/id;
+        action string:${view/context/absolute_url}/create;
+        data-rapido-form view/api">
       <input type="hidden" name="Form"
         tal:attributes="value view/form/id" />
       <tal:block tal:replace="structure view/body" />
