@@ -10,7 +10,7 @@
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
-    <table class="plain">
+    <table class="pat-tablesorter">
       <tr><th>UID</th><th>DOCID</th></tr>
       <tal:documents tal:repeat="doc view/documents">
         <tr>
