@@ -16,6 +16,7 @@
 
   <include package=".browser"/>
   <include package=".design"/>
+  <include package=".resources"/>
   
   <!-- Register a resource directory from which we can deploy static
    resource files. -->

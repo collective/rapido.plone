@@ -15,6 +15,7 @@ class OpenForm(BrowserView):
         self.context = context
         self.request = request
         self.form = IForm(context)
+        self.api = self.form.database.url + '/api/form/' + self.form.id
         self.body = self.form.display(edit=True)
 
     def __call__(self):

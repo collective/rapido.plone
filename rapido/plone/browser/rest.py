@@ -16,6 +16,7 @@ class Api(BrowserView):
         self.query = None
         self.method = self.request.method
         self.doc = None
+        self.form = None
         self.error = None
 
     def json_response(self, result):
@@ -28,6 +29,16 @@ class Api(BrowserView):
             return self
         if self.method == "POST" and name in ["_update", "_create", "_delete"]:
             self.query = name
+            return self
+        if self.method == "GET" and name == "form":
+            self.query = name
+            return self
+
+        if self.query == 'form':
+            form = self.db.get_form(name)
+            if not form:
+                raise NotFound(self, name, request)
+            self.form = form
             return self
 
         doc = self.db.get_document(name)
@@ -47,6 +58,8 @@ class Api(BrowserView):
                 return self.json_response({'success': 'deleted'})
             elif self.method == "PATCH" or (self.method == "POST" and self.query == "_update"):
                 return self.json_response({'error': 'Not implemented'})
+            elif self.method == "GET" and self.query == "form":
+                return self.json_response({'layout': self.form.layout})
             else:
                 return self.json_response({'error': 'Not allowed'})
         except Exception, e:
