@@ -53,4 +53,10 @@
     url_expr="string:${object_url}/edit" visible="True">
     <permission value="Modify portal content" />
   </action>
+  <action title="Import/export design" action_id="import_export"
+    category="object_buttons" condition_expr="" description="" icon_expr=""
+    link_target="" url_expr="string:${object_url}/@@importexport"
+    visible="True">
+  <permission value="Modify portal content"/>
+ </action>
 </object>
