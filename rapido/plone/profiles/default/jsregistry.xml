@@ -1,6 +1,18 @@
 <?xml version="1.0"?>
 <object name="portal_javascripts" meta_type="JavaScripts Registry">
  <javascript authenticated="False" bundle="default" cacheable="True"
+    compression="none" conditionalcomment="" cookable="True" enabled="True"
+    expression="" id="++resource++rapido.libs/schema-form-libs.min.js" inline="False"
+    insert-before="++resource++plone.js" />
+ <javascript authenticated="False" bundle="default" cacheable="True"
+    compression="none" conditionalcomment="" cookable="True" enabled="True"
+    expression="" id="++resource++rapido.libs/schema-form.min.js" inline="False"
+    insert-before="++resource++rapido.libs/bootstrap-decorator.min.js"/>
+ <javascript authenticated="False" bundle="default" cacheable="True"
+    compression="none" conditionalcomment="" cookable="True" enabled="True"
+    expression="" id="++resource++rapido.libs/bootstrap-decorator.min.js" inline="False"
+    insert-before="++resource++rapido.js"/>
+ <javascript authenticated="False" bundle="default" cacheable="True"
     compression="safe" conditionalcomment="" cookable="True" enabled="True"
     expression="" id="++resource++rapido.js" inline="False"/>
 </object>

@@ -6,5 +6,8 @@
   <browser:resource
       name="rapido.js"
       file="rapido.js" />
-
+  
+  <browser:resourceDirectory
+      name="rapido.libs"
+      directory="libs" />
 </configure>
