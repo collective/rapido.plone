@@ -38,4 +38,11 @@
         class=".views.AllDocumentsView"
         />
 
+    <browser:page
+        name="opendatabase"
+        for="rapido.core.interfaces.IDatabasable"
+        permission="zope.Public"
+        class=".views.OpenDatabase"
+        />
+
 </configure>

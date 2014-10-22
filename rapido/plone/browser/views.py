@@ -7,6 +7,19 @@ from Products.Five.browser import BrowserView
 from rapido.core.interfaces import IForm, IDatabase
 
 
+class OpenDatabase(BrowserView):
+
+    template = ViewPageTemplateFile('templates/opendatabase.pt')
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+        self.db = IDatabase(self.context)
+
+    def __call__(self):
+        return self.template()
+
+
 class OpenForm(BrowserView):
 
     template = ViewPageTemplateFile('templates/openform.pt')
