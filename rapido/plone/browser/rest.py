@@ -59,13 +59,31 @@ class Api(BrowserView):
             elif self.method == "PATCH" or (self.method == "POST" and self.query == "_update"):
                 return self.json_response({'error': 'Not implemented'})
             elif self.method == "GET" and self.query == "form":
-                return self.json_response({'layout': self.form.layout})
+                return self.render_form()
             else:
                 return self.json_response({'error': 'Not allowed'})
         except Exception, e:
             return self.json_response({'error': str(e)})
 
+    def render_form(self):
+        data = {
+            "layout": self.form.layout,
+            "schema": {
+                "type": "object",
+                "title": self.form.title,
+                "properties": {},
+            },
+            "form": [],
+        }
+        for field_id in self.form.fields.keys():
+            settings = self.form.fields[field_id]
+            data["schema"]["properties"][field_id] = {
+                "title": field_id,
+                "type": "string",
+            }
+            data["form"].append(field_id)
 
+        return self.json_response(data)
 
     def __call__(self):
         return self.render()
