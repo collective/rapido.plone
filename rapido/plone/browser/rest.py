@@ -67,7 +67,7 @@ class Api(BrowserView):
 
     def render_form(self):
         data = {
-            "layout": self.form.layout.replace("data-rapido-field", "sf-insert-field"),
+            "layout": self.form.layout,
             "schema": {
                 "type": "object",
                 "title": self.form.title,

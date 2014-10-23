@@ -25,6 +25,7 @@ angular.module('rapido',['schemaForm'])
     }
     $http.get(this.getApi() + resource)
     .then(function(result) {
+      result.data.layout = result.data.layout.replace(/data-rapido-field/g, 'sf-insert-field');
       _data = result.data;
       deferred.resolve();
     });
@@ -57,6 +58,15 @@ angular.module('rapido',['schemaForm'])
       $scope.schema = DatabaseService.getData().schema;
       $scope.form = DatabaseService.getData().form;
     });
+
+    $scope.submitForm = function(form, model) {
+      // First we broadcast an event so all fields validate themselves
+      $scope.$broadcast('schemaFormValidate');
+      // Then we check if the form is valid
+      if (form.$valid) {
+        alert('You did it!');
+      }
+    }
 
   //   $scope.schema = {
   //   "type": "object",
