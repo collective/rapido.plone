@@ -61,19 +61,19 @@ class Api(BrowserView):
                 doc = self.db.create_document()
                 items = json.loads(self.request.get('BODY'))
                 doc.save(items, creation=True)
-                data = {'success': 'created', 'docid': doc.id}
+                data = {'success': 'created', 'model': self.doc.items()}
             elif self.method == "DELETE" or (self.method == "POST" and self.query == "_delete"):
                 self.db.delete_document(doc=self.doc)
                 data = {'success': 'deleted'}
             elif self.method == "PATCH" or (self.method == "POST" and not self.query):
                 items = json.loads(self.request.get('BODY'))
                 self.doc.save(items)
-                data = {'success': 'updated', 'docid': self.doc.id}
+                data = {'success': 'updated', 'model': self.doc.items()}
             elif self.method == "GET" and self.query == "form":
                 data = self.form.json()
             elif self.method == "GET" and self.query == "_full":
                 data = self.doc.form.json()
-                data["items"] = self.doc.items()
+                data["model"] = self.doc.items()
             else:
                 data = {'error': 'Not allowed'}
             return self.json_response(data)

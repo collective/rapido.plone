@@ -34,21 +34,25 @@ angular.module('rapido',['schemaForm'])
     return deferred.promise;
   };
   this.save = function(form_id, model) {
+    var deferred = $q.defer();
     model.Form = form_id;
     if(model.docid) {
-      return $http.post(
+      $http.post(
         this.getApi() + '/' + model.docid,
         model,
         {headers: {'X-CSRF-TOKEN': _token}})
       .then(function(result) {
-        console.log(result);
+        _data.model = result.data.model;
+        deferred.resolve(result.data.model);
       });
     } else {
       return $http.put(this.getApi() + '/document', model)
       .then(function(result) {
-        console.log(result);
+        _data.model = result.data.model;
+        deferred.resolve(result.data.model)
       });
     }
+    return deferred.promise;
   }
 
 })
@@ -66,7 +70,7 @@ angular.module('rapido',['schemaForm'])
   $scope.decorator = 'bootstrap-decorator';
 
   DatabaseService.load('/8736169359445/_full').then(function() {
-    $scope.model = DatabaseService.getData().items || {};
+    $scope.model = DatabaseService.getData().model || {};
     $scope.layout = DatabaseService.getLayout();
     $scope.schema = DatabaseService.getData().schema;
     $scope.form = DatabaseService.getData().form;
@@ -77,7 +81,9 @@ angular.module('rapido',['schemaForm'])
     $scope.$broadcast('schemaFormValidate');
     // Then we check if the form is valid
     if (form.$valid) {
-      DatabaseService.save('frmtest', model);
+      DatabaseService.save('frmtest', model).then(function(model) {
+        $scope.model = model;
+      });
     }
   }
 
