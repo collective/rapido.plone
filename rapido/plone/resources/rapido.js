@@ -82,7 +82,15 @@ angular.module('rapido',['schemaForm'])
   })
   $scope.openForm = function(formId) {
     $rootScope.state = "form";
-    $rootScope.formId = formId
+    $rootScope.formId = formId;
+  };
+  $scope.openMenu = function() {
+    $rootScope.state = "menu";
+    delete $rootScope.formId;
+  };
+  $scope.openView = function() {
+    $rootScope.state = "view";
+    delete $rootScope.formId;
   };
 })
 .controller('FormCtrl', function($scope, $rootScope, $http, DatabaseService){

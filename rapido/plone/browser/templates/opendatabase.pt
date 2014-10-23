@@ -14,13 +14,19 @@
     tal:attributes="
       rapido-api string:${view/db/url}/api;
       rapido-token context/@@authenticator/token;">
-    <div ng-controller="MenuCtrl" ng-if="$root.state=='menu'">
-      <h3>Forms</h3>
-      <dl>
-        <dt ng-repeat="form in forms">
-          <a ng-click="openForm(form.id)" class="btn btn-info">{{ form.title }}</a>
-        </dt>
-      </dl>
+    <div ng-controller="MenuCtrl">
+      <nav>
+        <a ng-click="openMenu()" class="btn btn-info">Menu</a>
+        <a ng-click="openView()" class="btn btn-info">Documents</a>
+      </nav>
+      <section ng-if="$root.state=='menu'">
+        <h3>Forms</h3>
+        <dl>
+          <dt ng-repeat="form in forms">
+            <a ng-click="openForm(form.id)" class="btn btn-info">{{ form.title }}</a>
+          </dt>
+        </dl>
+      </section>
     </div>
     <form ng-controller="FormCtrl"
       ng-if="$root.state=='form'"
