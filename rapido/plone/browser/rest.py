@@ -29,6 +29,7 @@ class Api(BrowserView):
             "form",
             "_full",
             "database",
+            "documents",
             ]:
             self.query = name
             return self
@@ -75,6 +76,8 @@ class Api(BrowserView):
                 data["model"] = self.doc.items()
             elif self.method == "GET" and self.query == "database":
                 data = self.db.json()
+            elif self.method == "GET" and self.query == "documents":
+                data = [doc.items() for doc in self.db._documents()]
             else:
                 data = {'error': 'Not allowed'}
             return self.json_response(data)
