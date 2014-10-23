@@ -10,10 +10,6 @@
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
-<div ng-app="rapido" ng-controller="FormCtrl">
-<form name="ngform"  sf-model="modelData" sf-form="form" sf-schema="schema" ng-submit="submitForm(ngform,modelData)"><p>yo<span sf-insert-field="name"></span>bla</p></form>
-</div>
-
     <form method="POST" tal:attributes="name view/form/id;
         action string:${view/context/absolute_url}/create;
         data-rapido-form view/api">
