@@ -13,8 +13,18 @@
   <div ng-app="rapido" ng-controller="DatabaseCtrl"
     tal:attributes="
       rapido-api string:${view/db/url}/api;
-      rapido-token context/@@authenticator/token;"> 
-    <form name="ngform"
+      rapido-token context/@@authenticator/token;">
+    <div ng-controller="MenuCtrl" ng-if="$root.state=='menu'">
+      <h3>Forms</h3>
+      <dl>
+        <dt ng-repeat="form in forms">
+          <a ng-click="openForm(form.id)" class="btn btn-info">{{ form.title }}</a>
+        </dt>
+      </dl>
+    </div>
+    <form ng-controller="FormCtrl"
+      ng-if="$root.state=='form'"
+      name="ngform"
       sf-model="model"
       sf-form="form"
       sf-layout="layout"

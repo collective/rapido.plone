@@ -24,7 +24,12 @@ class Api(BrowserView):
         return json.dumps(result)
 
     def publishTraverse(self, request, name):
-        if self.method == "GET" and name == "_search":
+        if self.method == "GET" and name in [
+            "_search",
+            "form",
+            "_full",
+            "database",
+            ]:
             self.query = name
             return self
         if self.method == "POST" and name in ["_create", "_delete"]:
@@ -32,12 +37,6 @@ class Api(BrowserView):
             return self
         if self.method == "PUT" and name == "document":
             self.query = "_create"
-            return self
-        if self.method == "GET" and name == "form":
-            self.query = name
-            return self
-        if self.method == "GET" and name == "_full":
-            self.query = name
             return self
 
         if self.query == 'form':
@@ -61,7 +60,7 @@ class Api(BrowserView):
                 doc = self.db.create_document()
                 items = json.loads(self.request.get('BODY'))
                 doc.save(items, creation=True)
-                data = {'success': 'created', 'model': self.doc.items()}
+                data = {'success': 'created', 'model': doc.items()}
             elif self.method == "DELETE" or (self.method == "POST" and self.query == "_delete"):
                 self.db.delete_document(doc=self.doc)
                 data = {'success': 'deleted'}
@@ -74,6 +73,8 @@ class Api(BrowserView):
             elif self.method == "GET" and self.query == "_full":
                 data = self.doc.form.json()
                 data["model"] = self.doc.items()
+            elif self.method == "GET" and self.query == "database":
+                data = self.db.json()
             else:
                 data = {'error': 'Not allowed'}
             return self.json_response(data)
