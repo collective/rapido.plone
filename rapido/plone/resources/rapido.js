@@ -31,6 +31,13 @@ angular.module('rapido',['schemaForm'])
     });
     return deferred.promise;
   };
+  this.save = function(form_id, model) {
+    model.Form = form_id;
+    return $http.put(this.getApi() + '/document', model)
+    .then(function(result) {
+      console.log(result);
+    });
+  }
 
 })
 .directive('rapidoApi', function(DatabaseService) {
@@ -44,7 +51,7 @@ angular.module('rapido',['schemaForm'])
     }
   }
 })
-.controller('DatabaseCtrl', function($scope, DatabaseService){
+.controller('DatabaseCtrl', function($scope, $http, DatabaseService){
 
   $scope.decorator = 'bootstrap-decorator';
   $scope.modelData = {};
@@ -61,7 +68,7 @@ angular.module('rapido',['schemaForm'])
     $scope.$broadcast('schemaFormValidate');
     // Then we check if the form is valid
     if (form.$valid) {
-      console.log(model);
+      DatabaseService.save('frmtest', model);
     }
   }
 

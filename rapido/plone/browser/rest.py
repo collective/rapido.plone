@@ -30,6 +30,9 @@ class Api(BrowserView):
         if self.method == "POST" and name in ["_update", "_create", "_delete"]:
             self.query = name
             return self
+        if self.method == "PUT" and name == "document":
+            self.query = "_create"
+            return self
         if self.method == "GET" and name == "form":
             self.query = name
             return self
@@ -52,7 +55,10 @@ class Api(BrowserView):
             if self.method == "GET" and not self.query:
                 return self.json_response(self.doc.items())
             elif self.method == "PUT" or (self.method == "POST" and self.query == "_create"):
-                return self.json_response({'error': 'Not implemented'})
+                doc = self.db.create_document()
+                data = json.loads(self.request.get('BODY'))
+                doc.save(data, creation=True)
+                return self.json_response({'success': 'created', 'docid': doc.id})
             elif self.method == "DELETE" or (self.method == "POST" and self.query == "_delete"):
                 self.db.delete_document(doc=self.doc)
                 return self.json_response({'success': 'deleted'})
