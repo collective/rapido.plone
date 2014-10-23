@@ -16,10 +16,9 @@
       sf-form="form"
       sf-layout="layout"
       sf-schema="schema"
-      ng-submit="submitForm(ngform,modelData)"
+      ng-submit="submitForm(ngform, modelData)"
       tal:attributes="rapido-api string:${view/db/url}/api">
     </form>
-    LAYOUT = {{ layout }}
 </div>
 
   </metal:content-core>

@@ -45,64 +45,25 @@ angular.module('rapido',['schemaForm'])
   }
 })
 .controller('DatabaseCtrl', function($scope, DatabaseService){
-  console.log('api='+DatabaseService.getApi());
-    // $http.get(val.data).then(function(res){
-    //     $scope.schema = res.data.schema;
-    //     $scope.form   = res.data.form;
-    //   });
 
-    $scope.service = DatabaseService;
-    DatabaseService.load().then(function() {
-      $scope.model = {};
-      $scope.layout = DatabaseService.getLayout();
-      $scope.schema = DatabaseService.getData().schema;
-      $scope.form = DatabaseService.getData().form;
-    });
+  $scope.decorator = 'bootstrap-decorator';
+  $scope.modelData = {};
 
-    $scope.submitForm = function(form, model) {
-      // First we broadcast an event so all fields validate themselves
-      $scope.$broadcast('schemaFormValidate');
-      // Then we check if the form is valid
-      if (form.$valid) {
-        alert('You did it!');
-      }
+  DatabaseService.load().then(function() {
+    $scope.model = {};
+    $scope.layout = DatabaseService.getLayout();
+    $scope.schema = DatabaseService.getData().schema;
+    $scope.form = DatabaseService.getData().form;
+  });
+
+  $scope.submitForm = function(form, model) {
+    // First we broadcast an event so all fields validate themselves
+    $scope.$broadcast('schemaFormValidate');
+    // Then we check if the form is valid
+    if (form.$valid) {
+      console.log(model);
     }
+  }
 
-  //   $scope.schema = {
-  //   "type": "object",
-  //   "title": "Comment",
-  //   "properties": {
-  //     "name":  {
-  //       "title": "Name",
-  //       "type": "string"
-  //     },
-  //     "email":  {
-  //       "title": "Email",
-  //       "type": "string",
-  //       "pattern": "^\\S+@\\S+$",
-  //       "description": "Email will be used for evil."
-  //     },
-  //     "comment": {
-  //       "title": "Comment",
-  //       "type": "string",
-  //       "maxLength": 20,
-  //       "validationMessage": "Don't be greedy!"
-  //     }
-  //   },
-  //   "required": ["name","email","comment"]
-  // };
-  // $scope.form = [
-  //   "name",
-  //   "email",
-  //   {
-  //     "key": "comment",
-  //     "type": "textarea"
-  //   },
-  //   {
-  //     "type": "submit",
-  //     "style": "btn-info",
-  //     "title": "OK"
-  //   }
-  // ];
 
 });

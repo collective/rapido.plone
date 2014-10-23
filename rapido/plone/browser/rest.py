@@ -73,7 +73,11 @@ class Api(BrowserView):
                 "title": self.form.title,
                 "properties": {},
             },
-            "form": [],
+            "form": [{
+                  "type": "submit",
+                  "style": "btn-info",
+                  "title": "Save"
+                }],
         }
         for field_id in self.form.fields.keys():
             settings = self.form.fields[field_id]
