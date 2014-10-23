@@ -1,7 +1,11 @@
 angular.module('rapido',['schemaForm'])
-.service('DatabaseService', function($http){
+.service('DatabaseService', function($http, $q){
   var _api;
   var _data = {};
+
+  // HARD-CODED FOT NOW
+  _api = 'http://localhost:8080/test1/testdb/api';
+
   this.getApi = function() {
     return _api;
   };
@@ -15,13 +19,16 @@ angular.module('rapido',['schemaForm'])
     return _data;
   };
   this.load = function(resource) {
+    var deferred = $q.defer();
     if(!resource) {
       resource = '/form/frmtest';
     }
     $http.get(this.getApi() + resource)
     .then(function(result) {
       _data = result.data;
+      deferred.resolve();
     });
+    return deferred.promise;
   };
 
 })
@@ -30,9 +37,9 @@ angular.module('rapido',['schemaForm'])
     restrict: 'A',
     scope: true,
     link: function (scope, iElement, iAttrs) {
-      console.log(iAttrs.rapidoApi);
-      DatabaseService.setApi(iAttrs.rapidoApi);
-      DatabaseService.load();
+      // console.log(iAttrs.rapidoApi);
+      // DatabaseService.setApi(iAttrs.rapidoApi);
+      // DatabaseService.load();
     }
   }
 })
@@ -43,8 +50,13 @@ angular.module('rapido',['schemaForm'])
     //     $scope.form   = res.data.form;
     //   });
 
-    $scope.model = {};
     $scope.service = DatabaseService;
+    DatabaseService.load().then(function() {
+      $scope.model = {};
+      $scope.layout = DatabaseService.getLayout();
+      $scope.schema = DatabaseService.getData().schema;
+      $scope.form = DatabaseService.getData().form;
+    });
 
   //   $scope.schema = {
   //   "type": "object",

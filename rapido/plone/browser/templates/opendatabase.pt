@@ -14,13 +14,12 @@
     <form name="ngform"
       sf-model="modelData"
       sf-form="form"
+      sf-layout="layout"
       sf-schema="schema"
       ng-submit="submitForm(ngform,modelData)"
       tal:attributes="rapido-api string:${view/db/url}/api">
-      YO {{ service.getLayout() }} BLA
     </form>
-      <div>DATA={{ service.getData().layout }}</div>
-      <div>LAYOUT={{ service.getLayout() }}</div>
+    LAYOUT = {{ layout }}
 </div>
 
   </metal:content-core>
