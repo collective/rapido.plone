@@ -11,14 +11,17 @@
   <metal:content-core define-macro="content-core">
 
   <div ng-app="rapido" ng-controller="DatabaseCtrl">
-    <form name="ngform"
-      sf-model="modelData"
-      sf-form="form"
-      sf-layout="layout"
-      sf-schema="schema"
-      ng-submit="submitForm(ngform, modelData)"
-      tal:attributes="rapido-api string:${view/db/url}/api">
-    </form>
+    <div tal:attributes="
+        rapido-api string:${view/db/url}/api;
+        rapido-token context/@@authenticator/token;"> 
+      <form name="ngform"
+        sf-model="model"
+        sf-form="form"
+        sf-layout="layout"
+        sf-schema="schema"
+        ng-submit="submitForm(ngform, model)">
+      </form>
+    </div>
 </div>
 
   </metal:content-core>

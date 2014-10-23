@@ -1,6 +1,7 @@
 angular.module('rapido',['schemaForm'])
 .service('DatabaseService', function($http, $q){
   var _api;
+  var _token;
   var _data = {};
 
   // HARD-CODED FOT NOW
@@ -9,8 +10,9 @@ angular.module('rapido',['schemaForm'])
   this.getApi = function() {
     return _api;
   };
-  this.setApi = function(api) {
+  this.setParameters = function(api, token) {
     _api = api;
+    _token = token;
   };
   this.getLayout = function() {
     return _data.layout;
@@ -33,31 +35,38 @@ angular.module('rapido',['schemaForm'])
   };
   this.save = function(form_id, model) {
     model.Form = form_id;
-    return $http.put(this.getApi() + '/document', model)
-    .then(function(result) {
-      console.log(result);
-    });
+    if(model.docid) {
+      return $http.post(
+        this.getApi() + '/' + model.docid,
+        model,
+        {headers: {'X-CSRF-TOKEN': _token}})
+      .then(function(result) {
+        console.log(result);
+      });
+    } else {
+      return $http.put(this.getApi() + '/document', model)
+      .then(function(result) {
+        console.log(result);
+      });
+    }
   }
 
 })
 .directive('rapidoApi', function(DatabaseService) {
   return {
     restrict: 'A',
-    scope: true,
-    link: function (scope, iElement, iAttrs) {
-      // console.log(iAttrs.rapidoApi);
-      // DatabaseService.setApi(iAttrs.rapidoApi);
-      // DatabaseService.load();
+    scope: false,
+    link: function (scope, element, attrs) {
+      DatabaseService.setParameters(attrs.rapidoApi, attrs.rapidoToken);
     }
   }
 })
 .controller('DatabaseCtrl', function($scope, $http, DatabaseService){
 
   $scope.decorator = 'bootstrap-decorator';
-  $scope.modelData = {};
 
-  DatabaseService.load().then(function() {
-    $scope.model = {};
+  DatabaseService.load('/8736169359445/_full').then(function() {
+    $scope.model = DatabaseService.getData().items || {};
     $scope.layout = DatabaseService.getLayout();
     $scope.schema = DatabaseService.getData().schema;
     $scope.form = DatabaseService.getData().form;

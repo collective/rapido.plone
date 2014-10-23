@@ -27,13 +27,16 @@ class Api(BrowserView):
         if self.method == "GET" and name == "_search":
             self.query = name
             return self
-        if self.method == "POST" and name in ["_update", "_create", "_delete"]:
+        if self.method == "POST" and name in ["_create", "_delete"]:
             self.query = name
             return self
         if self.method == "PUT" and name == "document":
             self.query = "_create"
             return self
         if self.method == "GET" and name == "form":
+            self.query = name
+            return self
+        if self.method == "GET" and name == "_full":
             self.query = name
             return self
 
@@ -53,47 +56,29 @@ class Api(BrowserView):
     def render(self):
         try:
             if self.method == "GET" and not self.query:
-                return self.json_response(self.doc.items())
+                data = self.doc.items()
             elif self.method == "PUT" or (self.method == "POST" and self.query == "_create"):
                 doc = self.db.create_document()
-                data = json.loads(self.request.get('BODY'))
-                doc.save(data, creation=True)
-                return self.json_response({'success': 'created', 'docid': doc.id})
+                items = json.loads(self.request.get('BODY'))
+                doc.save(items, creation=True)
+                data = {'success': 'created', 'docid': doc.id}
             elif self.method == "DELETE" or (self.method == "POST" and self.query == "_delete"):
                 self.db.delete_document(doc=self.doc)
-                return self.json_response({'success': 'deleted'})
-            elif self.method == "PATCH" or (self.method == "POST" and self.query == "_update"):
-                return self.json_response({'error': 'Not implemented'})
+                data = {'success': 'deleted'}
+            elif self.method == "PATCH" or (self.method == "POST" and not self.query):
+                items = json.loads(self.request.get('BODY'))
+                self.doc.save(items)
+                data = {'success': 'updated', 'docid': self.doc.id}
             elif self.method == "GET" and self.query == "form":
-                return self.render_form()
+                data = self.form.json()
+            elif self.method == "GET" and self.query == "_full":
+                data = self.doc.form.json()
+                data["items"] = self.doc.items()
             else:
-                return self.json_response({'error': 'Not allowed'})
+                data = {'error': 'Not allowed'}
+            return self.json_response(data)
         except Exception, e:
             return self.json_response({'error': str(e)})
-
-    def render_form(self):
-        data = {
-            "layout": self.form.layout,
-            "schema": {
-                "type": "object",
-                "title": self.form.title,
-                "properties": {},
-            },
-            "form": [{
-                  "type": "submit",
-                  "style": "btn-info",
-                  "title": "Save"
-                }],
-        }
-        for field_id in self.form.fields.keys():
-            settings = self.form.fields[field_id]
-            data["schema"]["properties"][field_id] = {
-                "title": field_id,
-                "type": "string",
-            }
-            data["form"].append(field_id)
-
-        return self.json_response(data)
 
     def __call__(self):
         return self.render()
