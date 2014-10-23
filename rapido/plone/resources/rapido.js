@@ -1,11 +1,8 @@
 angular.module('rapido',['schemaForm'])
 .service('DatabaseService', function($http, $q){
-  var _api;
+  var _api = './api';
   var _token;
-  var _data = {};
-
-  // HARD-CODED FOT NOW
-  _api = 'http://localhost:8080/test1/testdb/api';
+  var _data = {}; 
 
   this.getApi = function() {
     return _api;

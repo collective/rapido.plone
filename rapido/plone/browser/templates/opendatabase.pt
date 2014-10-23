@@ -10,18 +10,17 @@
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
-  <div ng-app="rapido" ng-controller="DatabaseCtrl">
-    <div tal:attributes="
-        rapido-api string:${view/db/url}/api;
-        rapido-token context/@@authenticator/token;"> 
-      <form name="ngform"
-        sf-model="model"
-        sf-form="form"
-        sf-layout="layout"
-        sf-schema="schema"
-        ng-submit="submitForm(ngform, model)">
-      </form>
-    </div>
+  <div ng-app="rapido" ng-controller="DatabaseCtrl"
+    tal:attributes="
+      rapido-api string:${view/db/url}/api;
+      rapido-token context/@@authenticator/token;"> 
+    <form name="ngform"
+      sf-model="model"
+      sf-form="form"
+      sf-layout="layout"
+      sf-schema="schema"
+      ng-submit="submitForm(ngform, model)">
+    </form>
 </div>
 
   </metal:content-core>
