@@ -10,7 +10,7 @@ $(document).ready(function() {
             name: 'save',
             bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
             exec: function(editor) {
-                $('#form').submit();
+                $("#form-buttons-apply").click();
             },
             readOnly: false
         });
