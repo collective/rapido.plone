@@ -17,6 +17,13 @@
     expression="" id="++resource++rapido.libs/bootstrap-decorator.min.js" inline="False"
     insert-before="++resource++rapido.js"/>
  <javascript authenticated="False" bundle="default" cacheable="True"
+    compression="none" conditionalcomment="" cookable="True" enabled="True"
+    expression="" id="++resource++rapido.libs/ace.js" inline="False"
+    insert-before="++resource++rapido.js"/>
+ <javascript authenticated="False" bundle="default" cacheable="True"
     compression="safe" conditionalcomment="" cookable="True" enabled="True"
     expression="" id="++resource++rapido.js" inline="False"/>
+ <javascript authenticated="False" bundle="default" cacheable="True"
+    compression="safe" conditionalcomment="" cookable="True" enabled="True"
+    expression="" id="++resource++rapido.plone.js" inline="False"/>
 </object>

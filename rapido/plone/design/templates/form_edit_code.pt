@@ -11,6 +11,7 @@
   <metal:content-core define-macro="content-core">
 
     <div id="form-container" tal:content="structure view/contents"></div>
+    <div id="editor"></div>
 
   </metal:content-core>
 </metal:main>

@@ -6,7 +6,15 @@
   <browser:resource
       name="rapido.js"
       file="rapido.js" />
-  
+
+  <browser:resource
+      name="rapido.plone.js"
+      file="rapido.plone.js" />
+
+  <browser:resource
+      name="rapido.plone.css"
+      file="rapido.plone.css" />
+
   <browser:resourceDirectory
       name="rapido.libs"
       directory="libs" />
