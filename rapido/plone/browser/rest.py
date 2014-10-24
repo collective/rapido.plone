@@ -72,7 +72,7 @@ class Api(BrowserView):
             elif self.method == "GET" and self.query == "form":
                 data = self.form.json()
             elif self.method == "GET" and self.query == "_full":
-                data = self.doc.form.json()
+                data = self.doc.form.json(self.doc)
                 data["model"] = self.doc.items()
             elif self.method == "GET" and self.query == "database":
                 data = self.db.json()
