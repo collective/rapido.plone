@@ -6,6 +6,10 @@
     insert-before="++resource++plone.js" />
  <javascript authenticated="False" bundle="default" cacheable="True"
     compression="none" conditionalcomment="" cookable="True" enabled="True"
+    expression="" id="++resource++rapido.libs/ng-table.min.js" inline="False"
+    insert-before="++resource++plone.js" />
+ <javascript authenticated="False" bundle="default" cacheable="True"
+    compression="none" conditionalcomment="" cookable="True" enabled="True"
     expression="" id="++resource++rapido.libs/schema-form.js" inline="False"
     insert-before="++resource++rapido.libs/bootstrap-decorator.min.js"/>
 <!--  <javascript authenticated="False" bundle="default" cacheable="True"

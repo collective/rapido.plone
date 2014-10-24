@@ -26,7 +26,6 @@
         </ul>
       </nav>
       <section ng-if="$root.state=='menu'">
-        <h3>Forms</h3>
         <div class="btn-group-vertical">
           <a ng-repeat="form in forms" ng-click="openForm(form.id)" class="btn btn-info">{{ form.title }}</a>
         </div>
@@ -41,6 +40,18 @@
       sf-schema="schema"
       ng-submit="submitForm(ngform, model)">
     </form>
+    <div ng-controller="ViewCtrl" ng-if="$root.state=='documents'">
+      <table ng-table="tableParams" class="table">
+          <tr ng-repeat="user in $data">
+              <td data-title="'Name'" sortable="'name'">
+                  {{user.name}}
+              </td>
+              <td data-title="'Age'" sortable="'age'">
+                  {{user.age}}
+              </td>
+          </tr>
+      </table>
+    </div>
 </div>
 
   </metal:content-core>

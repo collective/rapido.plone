@@ -1,4 +1,4 @@
-angular.module('rapido',['schemaForm'])
+angular.module('rapido',['schemaForm', 'ngTable'])
 .service('DatabaseService', function($http, $q){
   var _api;
   var _token;
@@ -94,7 +94,7 @@ angular.module('rapido',['schemaForm'])
       delete $rootScope.formId;
     };
     $scope.openView = function() {
-      $rootScope.state = "view";
+      $rootScope.state = "documents";
       delete $rootScope.formId;
     };
   }
@@ -125,6 +125,41 @@ angular.module('rapido',['schemaForm'])
       });
     }
   }
+})
+.controller('ViewCtrl', function($scope, $filter, ngTableParams) {
+  var data = [{name: "Moroni", age: 50},
+                {name: "Tiancum", age: 43},
+                {name: "Jacob", age: 27},
+                {name: "Nephi", age: 29},
+                {name: "Enos", age: 34},
+                {name: "Tiancum", age: 43},
+                {name: "Jacob", age: 27},
+                {name: "Nephi", age: 29},
+                {name: "Enos", age: 34},
+                {name: "Tiancum", age: 43},
+                {name: "Jacob", age: 27},
+                {name: "Nephi", age: 29},
+                {name: "Enos", age: 34},
+                {name: "Tiancum", age: 43},
+                {name: "Jacob", age: 27},
+                {name: "Nephi", age: 29},
+                {name: "Enos", age: 34}];
+
+    $scope.tableParams = new ngTableParams({
+        page: 1,
+        count: 10,
+        sorting: {
+            name: 'asc'
+        }
+    }, {
+        total: data.length,
+        getData: function($defer, params) {
+            var orderedData = params.sorting() ?
+                                $filter('orderBy')(data, params.orderBy()) :
+                                data;
+            $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+        }
+    });
 })
 .run(function($rootScope) {
   $rootScope.ready = false;
