@@ -54,14 +54,14 @@ Form fields definition is updated on change::
     >>> field.index_type = 'FIELD'
     >>> notify(ObjectModifiedEvent(field))
     >>> IForm(form).fields
-    {'song': {'index_type': 'FIELD', 'type': 'TEXT'}}
+    {'song': {'index_type': 'FIELD', 'type': 'TEXT', 'title': ''}}
 
 The database design can be exported and imported::
     >>> from rapido.core.interfaces import IExporter
     >>> exporter = IExporter(IDatabase(db))
     >>> data = exporter.export_database()
     >>> data
-    {'forms': {'frmtest': {'frmtest.html': 'Song: <span data-rapido-field="song">song</span>', 'frmtest.yaml': "assigned_rules: []\nfields:\n  song: {index_type: FIELD, type: TEXT}\nid: frmtest\ntitle: !!python/unicode 'Test form'\n", 'frmtest.py': ''}}, 'settings.yaml': 'acl:\n  rights:\n    author: []\n    editor: []\n    manager: [test_user_1_]\n    reader: []\n  roles: {}\n'}
+    {'forms': {'frmtest': {'frmtest.html': 'Song: <span data-rapido-field="song">song</span>', 'frmtest.yaml': "assigned_rules: []\nfields:\n  song: {index_type: FIELD, title: '', type: TEXT}\nid: frmtest\ntitle: !!python/unicode 'Test form'\n", 'frmtest.py': ''}}, 'settings.yaml': 'acl:\n  rights:\n    author: []\n    editor: []\n    manager: [test_user_1_]\n    reader: []\n  roles: {}\n'}
     >>> id = folder.invokeFactory('rapido.plone.database', 'new-db')
     >>> newdb = folder['new-db']
     >>> newdb.forms

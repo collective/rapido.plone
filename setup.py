@@ -34,6 +34,12 @@ setup(name='rapido.plone',
           'plone.api',
           'plone.app.widgets [dexterity]',
       ],
+      extras_require={
+        'test': [
+            'plone.app.testing',
+            'Products.PloneTestCase',
+            ],
+      },
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]

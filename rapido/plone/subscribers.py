@@ -39,6 +39,7 @@ def update_field(obj, event=None):
     form.set_field(obj.id, {
         'type': obj.type,
         'index_type': obj.index_type,
+        'title': obj.Title(),
     })
 
 @grok.subscribe(IField, IObjectRemovedEvent)
