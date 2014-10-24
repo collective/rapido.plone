@@ -1,6 +1,6 @@
 angular.module('rapido',['schemaForm'])
 .service('DatabaseService', function($http, $q){
-  var _api = './api';
+  var _api;
   var _token;
   var _data = {}; 
 
@@ -64,12 +64,13 @@ angular.module('rapido',['schemaForm'])
     return deferred.promise;
   }
 })
-.directive('rapidoApi', function(DatabaseService) {
+.directive('rapidoApi', function($rootScope, DatabaseService) {
   return {
     restrict: 'A',
     scope: false,
     link: function (scope, element, attrs) {
       DatabaseService.setParameters(attrs.rapidoApi, attrs.rapidoToken);
+      $rootScope.ready = true;
     }
   }
 })
@@ -77,21 +78,26 @@ angular.module('rapido',['schemaForm'])
   $rootScope.state = "menu";
 })
 .controller('MenuCtrl', function($scope, $rootScope, DatabaseService) {
-  DatabaseService.loadMenu().then(function(result) {
-    $scope.forms = result.data.forms;
-  })
-  $scope.openForm = function(formId) {
-    $rootScope.state = "form";
-    $rootScope.formId = formId;
-  };
-  $scope.openMenu = function() {
-    $rootScope.state = "menu";
-    delete $rootScope.formId;
-  };
-  $scope.openView = function() {
-    $rootScope.state = "view";
-    delete $rootScope.formId;
-  };
+   $scope.$watch('ready',function(ready){
+    if (ready){ startController(); }
+  });
+  function startController() {
+    DatabaseService.loadMenu().then(function(result) {
+      $scope.forms = result.data.forms;
+    })
+    $scope.openForm = function(formId) {
+      $rootScope.state = "form";
+      $rootScope.formId = formId;
+    };
+    $scope.openMenu = function() {
+      $rootScope.state = "menu";
+      delete $rootScope.formId;
+    };
+    $scope.openView = function() {
+      $rootScope.state = "view";
+      delete $rootScope.formId;
+    };
+  }
 })
 .controller('FormCtrl', function($scope, $rootScope, $http, DatabaseService){
 
@@ -119,4 +125,7 @@ angular.module('rapido',['schemaForm'])
       });
     }
   }
+})
+.run(function($rootScope) {
+  $rootScope.ready = false;
 });
