@@ -39,7 +39,7 @@
         />
 
     <browser:page
-        name="opendatabase"
+        name="view"
         for="rapido.core.interfaces.IDatabasable"
         permission="zope.Public"
         class=".views.OpenDatabase"

@@ -15,17 +15,21 @@
       rapido-api string:${view/db/url}/api;
       rapido-token context/@@authenticator/token;">
     <div ng-controller="MenuCtrl">
-      <nav>
-        <a ng-click="openMenu()" class="btn btn-info">Menu</a>
-        <a ng-click="openView()" class="btn btn-info">Documents</a>
+      <nav class="navbar navbar-default" role="navigation">
+        <ul class="nav navbar-nav">
+          <li ng-class="{'active': $root.state=='menu'}">
+            <a ng-click="openMenu()"><span class="glyphicon glyphicon-home"></span></a>
+          </li>
+          <li ng-class="{'active': $root.state=='documents'}">
+            <a ng-click="openView()"><span class="glyphicon glyphicon-th-list"></span> Documents</a>
+          </li>
+        </ul>
       </nav>
       <section ng-if="$root.state=='menu'">
         <h3>Forms</h3>
-        <dl>
-          <dt ng-repeat="form in forms">
-            <a ng-click="openForm(form.id)" class="btn btn-info">{{ form.title }}</a>
-          </dt>
-        </dl>
+        <div class="btn-group-vertical">
+          <a ng-repeat="form in forms" ng-click="openForm(form.id)" class="btn btn-info">{{ form.title }}</a>
+        </div>
       </section>
     </div>
     <form ng-controller="FormCtrl"
