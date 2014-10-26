@@ -42,6 +42,10 @@ angular.module('rapido',['schemaForm', 'ngTable'])
     });
   };
 
+  this.loadDocuments = function() {
+    return this.load('/documents');
+  }
+
   this.save = function(form_id, model) {
     var deferred = $q.defer();
     model.Form = form_id;
@@ -76,6 +80,24 @@ angular.module('rapido',['schemaForm', 'ngTable'])
 })
 .controller('DatabaseCtrl', function($rootScope) {
   $rootScope.state = "menu";
+
+  $rootScope.openForm = function(formId) {
+    $rootScope.state = "form";
+    $rootScope.formId = formId;
+  };
+  $rootScope.openMenu = function() {
+    $rootScope.state = "menu";
+    delete $rootScope.formId;
+  };
+  $rootScope.openView = function() {
+    $rootScope.state = "documents";
+    delete $rootScope.formId;
+  };
+  $rootScope.openDocument = function(doc) {
+    $rootScope.state = "form";
+    $rootScope.formId = doc.Form;
+    $rootScope.docId = doc.docid;
+  };
 })
 .controller('MenuCtrl', function($scope, $rootScope, DatabaseService) {
    $scope.$watch('ready',function(ready){
@@ -85,18 +107,6 @@ angular.module('rapido',['schemaForm', 'ngTable'])
     DatabaseService.loadMenu().then(function(result) {
       $scope.forms = result.data.forms;
     })
-    $scope.openForm = function(formId) {
-      $rootScope.state = "form";
-      $rootScope.formId = formId;
-    };
-    $scope.openMenu = function() {
-      $rootScope.state = "menu";
-      delete $rootScope.formId;
-    };
-    $scope.openView = function() {
-      $rootScope.state = "documents";
-      delete $rootScope.formId;
-    };
   }
 })
 .controller('FormCtrl', function($scope, $rootScope, $http, DatabaseService){
@@ -105,7 +115,7 @@ angular.module('rapido',['schemaForm', 'ngTable'])
 
   var resource = '/form/' + $scope.formId;
   if($rootScope.docId) {
-    resource = $scope.docId + '/_full';
+    resource = '/' + $scope.docId + '/_full';
   }
   DatabaseService.loadForm(resource).then(function() {
     $scope.model = DatabaseService.getData().model || {};
@@ -126,25 +136,15 @@ angular.module('rapido',['schemaForm', 'ngTable'])
     }
   }
 })
-.controller('ViewCtrl', function($scope, $filter, ngTableParams) {
-  var data = [{name: "Moroni", age: 50},
-                {name: "Tiancum", age: 43},
-                {name: "Jacob", age: 27},
-                {name: "Nephi", age: 29},
-                {name: "Enos", age: 34},
-                {name: "Tiancum", age: 43},
-                {name: "Jacob", age: 27},
-                {name: "Nephi", age: 29},
-                {name: "Enos", age: 34},
-                {name: "Tiancum", age: 43},
-                {name: "Jacob", age: 27},
-                {name: "Nephi", age: 29},
-                {name: "Enos", age: 34},
-                {name: "Tiancum", age: 43},
-                {name: "Jacob", age: 27},
-                {name: "Nephi", age: 29},
-                {name: "Enos", age: 34}];
+.controller('ViewCtrl', function($scope, $filter, ngTableParams, DatabaseService) {
 
+  DatabaseService.loadDocuments()
+  .then(function(results) {
+    var data = results.data;
+    $scope.columns = [
+      {'field': 'Form', 'title': 'Form'},
+      {'field': 'docid', 'title': 'Doc id'}
+    ];
     $scope.tableParams = new ngTableParams({
         page: 1,
         count: 10,
@@ -160,6 +160,8 @@ angular.module('rapido',['schemaForm', 'ngTable'])
             $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
         }
     });
+  });
+
 })
 .run(function($rootScope) {
   $rootScope.ready = false;

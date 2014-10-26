@@ -42,15 +42,31 @@
     </form>
     <div ng-controller="ViewCtrl" ng-if="$root.state=='documents'">
       <table ng-table="tableParams" class="table">
-          <tr ng-repeat="user in $data">
-              <td data-title="'Name'" sortable="'name'">
-                  {{user.name}}
+          <tr ng-repeat="doc in $data" ng-click="openDocument(doc)">
+              <td data-title="'Form'" sortable="'form'">
+                  {{doc.Form}}
               </td>
-              <td data-title="'Age'" sortable="'age'">
-                  {{user.age}}
+              <td data-title="'docid'" sortable="'docid'">
+                  {{doc.docid}}
               </td>
           </tr>
       </table>
+      <table ng-table="tableParams" class="table">
+        <thead>
+        <tr>
+            <th ng-repeat="column in columns">
+                {{column.title}}
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="doc in $data">
+            <td ng-repeat="column in columns" ng-click="openDocument(doc)" sortable="column.field">
+                {{doc[column.field]}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
     </div>
 </div>
 
