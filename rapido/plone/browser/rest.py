@@ -4,7 +4,8 @@ from Products.Five.browser import BrowserView
 from zope.publisher.interfaces import IPublishTraverse
 from zope.publisher.interfaces import NotFound
 
-from rapido.core.interfaces import IDatabase
+from rapido.core.interfaces import IDatabase, IRest
+from rapido.core.exceptions import NotFound as RapidoNotFound
 
 class Api(BrowserView):
     implements(IPublishTraverse)
@@ -13,76 +14,26 @@ class Api(BrowserView):
         self.context = context
         self.request = request
         self.db = IDatabase(self.context)
-        self.query = None
         self.method = self.request.method
-        self.doc = None
-        self.form = None
-        self.error = None
+        self.path = []
 
     def json_response(self, result):
         self.request.response.setHeader("Content-Type", "application/json")
         return json.dumps(result)
 
     def publishTraverse(self, request, name):
-        if self.method == "GET" and name in [
-            "_search",
-            "form",
-            "_full",
-            "database",
-            "documents",
-            ]:
-            self.query = name
-            return self
-        if self.method == "POST" and name in ["_create", "_delete"]:
-            self.query = name
-            return self
-        if self.method == "PUT" and name == "document":
-            self.query = "_create"
-            return self
-
-        if self.query == 'form':
-            form = self.db.get_form(name)
-            if not form:
-                raise NotFound(self, name, request)
-            self.form = form
-            return self
-
-        doc = self.db.get_document(name)
-        if not doc:
-            raise NotFound(self, name, request)
-        self.doc = doc
+        self.path.append(name)
         return self
 
     def render(self):
+        rest = IRest(self.db)
+        method = getattr(rest, self.method)
+        body = self.request.get('BODY')
         try:
-            if self.method == "GET" and not self.query:
-                data = self.doc.items()
-            elif self.method == "PUT" or (self.method == "POST" and self.query == "_create"):
-                doc = self.db.create_document()
-                items = json.loads(self.request.get('BODY'))
-                doc.save(items, creation=True)
-                data = {'success': 'created', 'model': doc.items()}
-            elif self.method == "DELETE" or (self.method == "POST" and self.query == "_delete"):
-                self.db.delete_document(doc=self.doc)
-                data = {'success': 'deleted'}
-            elif self.method == "PATCH" or (self.method == "POST" and not self.query):
-                items = json.loads(self.request.get('BODY'))
-                self.doc.save(items)
-                data = {'success': 'updated', 'model': self.doc.items()}
-            elif self.method == "GET" and self.query == "form":
-                data = self.form.json()
-            elif self.method == "GET" and self.query == "_full":
-                data = self.doc.form.json(self.doc)
-                data["model"] = self.doc.items()
-            elif self.method == "GET" and self.query == "database":
-                data = self.db.json()
-            elif self.method == "GET" and self.query == "documents":
-                data = [doc.items() for doc in self.db._documents()]
-            else:
-                data = {'error': 'Not allowed'}
+            data = method(self.path, body)
             return self.json_response(data)
-        except Exception, e:
-            return self.json_response({'error': str(e)})
+        except RapidoNotFound, e:
+            raise NotFound(self, e.name, self.request)
 
     def __call__(self):
         return self.render()

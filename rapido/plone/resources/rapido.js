@@ -119,7 +119,7 @@ angular.module('rapido',['schemaForm', 'ngTable'])
   if($scope.formId) {
     var resource = '/form/' + $scope.formId;
     if($rootScope.docId) {
-      resource = '/' + $scope.docId + '/_full';
+      resource = '/document/' + $scope.docId + '/_full';
     }
     DatabaseService.loadForm(resource).then(function() {
       $scope.model = DatabaseService.getData().model || {};
