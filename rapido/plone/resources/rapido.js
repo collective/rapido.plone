@@ -84,14 +84,17 @@ angular.module('rapido',['schemaForm', 'ngTable'])
   $rootScope.openForm = function(formId) {
     $rootScope.state = "form";
     $rootScope.formId = formId;
+    delete $rootScope.docId;
   };
   $rootScope.openMenu = function() {
     $rootScope.state = "menu";
     delete $rootScope.formId;
+    delete $rootScope.docId;
   };
   $rootScope.openView = function() {
     $rootScope.state = "documents";
     delete $rootScope.formId;
+    delete $rootScope.docId;
   };
   $rootScope.openDocument = function(doc) {
     $rootScope.state = "form";
@@ -113,26 +116,28 @@ angular.module('rapido',['schemaForm', 'ngTable'])
 
   $scope.decorator = 'bootstrap-decorator';
 
-  var resource = '/form/' + $scope.formId;
-  if($rootScope.docId) {
-    resource = '/' + $scope.docId + '/_full';
-  }
-  DatabaseService.loadForm(resource).then(function() {
-    $scope.model = DatabaseService.getData().model || {};
-    $scope.layout = DatabaseService.getLayout();
-    $scope.schema = DatabaseService.getData().schema;
-    $scope.form = DatabaseService.getData().form;
-  });
+  if($scope.formId) {
+    var resource = '/form/' + $scope.formId;
+    if($rootScope.docId) {
+      resource = '/' + $scope.docId + '/_full';
+    }
+    DatabaseService.loadForm(resource).then(function() {
+      $scope.model = DatabaseService.getData().model || {};
+      $scope.layout = DatabaseService.getLayout();
+      $scope.schema = DatabaseService.getData().schema;
+      $scope.form = DatabaseService.getData().form;
+    });
 
-  $scope.submitForm = function(form, model) {
-    // First we broadcast an event so all fields validate themselves
-    $scope.$broadcast('schemaFormValidate');
-    // Then we check if the form is valid
-    if (form.$valid) {
-      DatabaseService.save($rootScope.formId, model).then(function(data) {
-        $rootScope.docId = data.docid;
-        $scope.model = data;
-      });
+    $scope.submitForm = function(form, model) {
+      // First we broadcast an event so all fields validate themselves
+      $scope.$broadcast('schemaFormValidate');
+      // Then we check if the form is valid
+      if (form.$valid) {
+        DatabaseService.save($rootScope.formId, model).then(function(data) {
+          $rootScope.docId = data.docid;
+          $scope.model = data;
+        });
+      }
     }
   }
 })
