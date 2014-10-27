@@ -42,9 +42,13 @@ angular.module('rapido',['schemaForm', 'ngTable'])
     });
   };
 
-  this.loadDocuments = function() {
-    return this.load('/documents');
-  }
+  this.loadDocuments = function(viewId) {
+    if(viewId) {
+      return this.load('/view/' + viewId);
+    } else {
+      return this.load('/documents');
+    }
+  };
 
   this.save = function(form_id, model) {
     var deferred = $q.defer();
@@ -91,8 +95,9 @@ angular.module('rapido',['schemaForm', 'ngTable'])
     delete $rootScope.formId;
     delete $rootScope.docId;
   };
-  $rootScope.openView = function() {
+  $rootScope.openView = function(viewId) {
     $rootScope.state = "documents";
+    $rootScope.viewId = viewId;
     delete $rootScope.formId;
     delete $rootScope.docId;
   };
@@ -109,6 +114,7 @@ angular.module('rapido',['schemaForm', 'ngTable'])
   function startController() {
     DatabaseService.loadMenu().then(function(result) {
       $scope.forms = result.data.forms;
+      $scope.views = result.data.views;
     })
   }
 })
@@ -141,15 +147,21 @@ angular.module('rapido',['schemaForm', 'ngTable'])
     }
   }
 })
-.controller('ViewCtrl', function($scope, $filter, ngTableParams, DatabaseService) {
+.controller('ViewCtrl', function($scope, $rootScope, $filter, ngTableParams, DatabaseService) {
 
-  DatabaseService.loadDocuments()
+  DatabaseService.loadDocuments($rootScope.viewId)
   .then(function(results) {
-    var data = results.data;
-    $scope.columns = [
-      {'field': 'Form', 'title': 'Form'},
-      {'field': 'docid', 'title': 'Doc id'}
-    ];
+    var data;
+    if(results.data.columns) {
+      $scope.columns = results.data.columns;
+      data = results.data.rows;
+    } else {
+      $scope.columns = [
+        {'field': 'Form', 'title': 'Form'},
+        {'field': 'docid', 'title': 'Doc id'}
+      ];
+      data = results.data;
+    }
     $scope.tableParams = new ngTableParams({
         page: 1,
         count: 10,

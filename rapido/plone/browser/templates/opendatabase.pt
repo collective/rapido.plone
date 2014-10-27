@@ -26,8 +26,13 @@
         </ul>
       </nav>
       <section ng-if="$root.state=='menu'">
+        <h3>Compose</h3>
         <div class="btn-group-vertical">
           <a ng-repeat="form in forms" ng-click="openForm(form.id)" class="btn btn-info">{{ form.title }}</a>
+        </div>
+        <h3>Browse</h3>
+        <div class="btn-group-vertical">
+          <a ng-repeat="view in views" ng-click="openView(view.id)" class="btn btn-info">{{ view.title }}</a>
         </div>
       </section>
     </div>
@@ -42,27 +47,23 @@
     </form>
     <div ng-controller="ViewCtrl" ng-if="$root.state=='documents'">
       <table ng-table="tableParams" class="table">
-          <tr ng-repeat="doc in $data" ng-click="openDocument(doc)">
-              <td data-title="'Form'" sortable="'form'">
-                  {{doc.Form}}
-              </td>
-              <td data-title="'docid'" sortable="'docid'">
-                  {{doc.docid}}
-              </td>
-          </tr>
-      </table>
-      <table ng-table="tableParams" class="table">
         <thead>
         <tr>
-            <th ng-repeat="column in columns">
-                {{column.title}}
+            <th ng-repeat="column in columns"
+                class="text-center sortable" ng-class="{
+                    'sort-asc': tableParams.isSortBy(column.field, 'asc'),
+                    'sort-desc': tableParams.isSortBy(column.field, 'desc')
+                  }"
+                ng-click="tableParams.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')">
+                <div>{{column.title}}</div>
             </th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="doc in $data">
-            <td ng-repeat="column in columns" ng-click="openDocument(doc)" sortable="column.field">
-                {{doc[column.field]}}
+            <td ng-repeat="column in columns" ng-click="openDocument(doc)" 
+              sortable="column.field">
+              {{doc[column.field]}}
             </td>
         </tr>
         </tbody>
