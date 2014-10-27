@@ -47,6 +47,10 @@ class Database(Container):
     def forms(self):
         return self.objectValues(spec='Rapido form')
 
+    @property
+    def views(self):
+        return self.objectValues(spec='Rapido view')
+
     def current_user(self):
         """ Returns the current user id
         """

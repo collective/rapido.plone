@@ -14,7 +14,7 @@ from plone.namedfile.interfaces import IImageScaleTraversable
 
 from plone.app.textfield import RichText
 
-
+from rapido.core import interfaces as core
 from rapido.plone import MessageFactory as _
 
 
@@ -23,8 +23,17 @@ class IView(form.Schema, IImageScaleTraversable):
     View
     """
 
+    id = schema.TextLine(
+        title=_("Id"),
+        required=True,
+    )
+
+    columns = schema.Text(
+        title=_('Columns'),
+        required=True,
+    )
 
 class View(Container):
-    grok.implements(IView)
+    grok.implements(IView, core.IViewable)
 
     meta_type = "Rapido view"

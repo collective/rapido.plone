@@ -10,12 +10,33 @@ class RulesVocabulary(grok.GlobalUtility):
     grok.implements(IVocabularyFactory)
 
     def __call__(self, context):
-        if not IDatabase.providedBy(context.getParentNode()):
+        if IDatabase.providedBy(context.getParentNode()):
+            db = core.IDatabase(context.getParentNode())
+        elif IDatabase.providedBy(context):
+            db = core.IDatabase(context)
+        else:
             return SimpleVocabulary([])
-        db = core.IDatabase(context.getParentNode())
         terms = [SimpleVocabulary.createTerm(
                      value,
                      value,
                      value)
                  for value in db.rules().keys()]
+        return SimpleVocabulary(terms)
+
+
+class FieldsVocabulary(grok.GlobalUtility):
+    grok.name('rapido.plone.fields')
+    grok.implements(IVocabularyFactory)
+
+    def __call__(self, context):
+        if IDatabase.providedBy(context.getParentNode()):
+            db = core.IDatabase(context.getParentNode())
+        elif IDatabase.providedBy(context):
+            db = core.IDatabase(context)
+        else:
+            return SimpleVocabulary([])
+        terms = []
+        for form in db.forms:
+            for id in form.fields.keys():
+                terms.append(SimpleVocabulary.createTerm(id, id, id))
         return SimpleVocabulary(terms)

@@ -8,7 +8,9 @@ from rapido.core.interfaces import (
     IForm,
     IDatabasable,
     IStorage,
-    IDatabase
+    IDatabase,
+    IViewable,
+    IView,
 )
 from rapido.plone.field import IField
 from rapido.plone.rule import IRule
@@ -61,6 +63,12 @@ def update_rule(obj, event=None):
 def remove_rule(obj, event=None):
     db = IDatabase(obj.getParentNode())
     db.remove_rule(obj.id)
+
+@grok.subscribe(IViewable, IObjectAddedEvent)
+@grok.subscribe(IViewable, IObjectModifiedEvent)
+def update_columns(obj, event=None):
+    view = IView(obj)
+    view.set_columns(obj.columns.replace('\r', '').split('\n'))
 
 @grok.subscribe(IDatabasable, IObjectAddedEvent)
 def initialize_database(obj, event=None):
