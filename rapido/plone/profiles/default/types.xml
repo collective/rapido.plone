@@ -8,6 +8,7 @@
   -->
 <object name="portal_types" meta_type="Plone Types Tool">
   <!-- -*- extra stuff goes here -*- -->
+  <object name="rapido.plone.action" meta_type="Dexterity FTI" />
   <object name="rapido.plone.column" meta_type="Dexterity FTI" />
   <object name="rapido.plone.field" meta_type="Dexterity FTI" />
   <object name="rapido.plone.view" meta_type="Dexterity FTI" />

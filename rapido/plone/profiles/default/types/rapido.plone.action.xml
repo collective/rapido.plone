@@ -1,27 +1,24 @@
 <?xml version="1.0"?>
-<object name="rapido.plone.form"
-   meta_type="Rapido form"
+<object name="rapido.plone.action"
+   meta_type="Rapido action"
    i18n:domain="rapido.plone" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <!-- Basic metadata -->
-  <property name="title" i18n:translate="">Form</property>
+  <property name="title" i18n:translate="">Action</property>
   <property name="description"
-    i18n:translate="">Form</property>
-  <property name="factory">rapido.plone.form</property>
+    i18n:translate="">Action</property>
+  <property name="factory">rapido.plone.action</property>
   <property name="global_allow">False</property>
   <property name="filter_content_types">True</property>
-  <property name="allowed_content_types">
-    <element value="rapido.plone.field"/>
-    <element value="rapido.plone.action"/>
-  </property>
+  <property name="allowed_content_types" />
   <property name="allow_discussion">False</property>
 
   <!-- schema and class used for content items -->
-  <property name="schema">rapido.plone.form.IForm</property>
-  <property name="klass">rapido.plone.form.Form</property>
+  <property name="schema">rapido.plone.action.IAction</property>
+  <property name="klass">rapido.plone.action.Action</property>
 
   <property name="behaviors">
-      <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
+     <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
    </property>
 
   <!-- View information -->
@@ -48,10 +45,6 @@
   </action>
   <action title="Edit" action_id="edit" category="object" condition_expr=""
     url_expr="string:${object_url}/edit" visible="True">
-    <permission value="Modify portal content" />
-  </action>
-  <action title="Code" action_id="code" category="object_buttons" condition_expr=""
-    url_expr="string:${object_url}/edit-code" visible="True">
     <permission value="Modify portal content" />
   </action>
 </object>

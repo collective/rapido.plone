@@ -13,6 +13,7 @@ from rapido.core.interfaces import (
     IView,
 )
 from rapido.plone.field import IField
+from rapido.plone.action import IAction
 from rapido.plone.rule import IRule
 from rapido.core.events import ICompilationErrorEvent, IExecutionErrorEvent
 
@@ -86,3 +87,18 @@ def on_execution_error(event):
     request = getattr(event.container.context, 'REQUEST', None)
     if request:
         IStatusMessage(request).addStatusMessage(event.message, type="error")
+
+@grok.subscribe(IAction, IObjectAddedEvent)
+@grok.subscribe(IAction, IObjectModifiedEvent)
+def update_field(obj, event=None):
+    # TODO: this is called twice, we need to test if already executed
+    form = IForm(obj.getParentNode())
+    form.set_action(obj.id, {
+        'title': obj.Title(),
+    })
+
+@grok.subscribe(IAction, IObjectRemovedEvent)
+def remove_field(obj, event=None):
+    # TODO: this is called twice, we need to test if already executed
+    form = IForm(obj.getParentNode())
+    form.remove_action(obj.id)
