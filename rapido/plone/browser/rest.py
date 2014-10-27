@@ -5,7 +5,7 @@ from zope.publisher.interfaces import IPublishTraverse
 from zope.publisher.interfaces import NotFound
 
 from rapido.core.interfaces import IDatabase, IRest
-from rapido.core.exceptions import NotFound as RapidoNotFound
+
 
 class Api(BrowserView):
     implements(IPublishTraverse)
@@ -17,7 +17,8 @@ class Api(BrowserView):
         self.method = self.request.method
         self.path = []
 
-    def json_response(self, result):
+    def json_response(self, result, status):
+        self.request.response.setStatus(status)
         self.request.response.setHeader("Content-Type", "application/json")
         return json.dumps(result)
 
@@ -29,11 +30,8 @@ class Api(BrowserView):
         rest = IRest(self.db)
         method = getattr(rest, self.method)
         body = self.request.get('BODY')
-        try:
-            data = method(self.path, body)
-            return self.json_response(data)
-        except RapidoNotFound, e:
-            raise NotFound(self, e.name, self.request)
+        data = method(self.path, body)
+        return self.json_response(data, rest.status)
 
     def __call__(self):
         return self.render()
