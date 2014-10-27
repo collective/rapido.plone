@@ -80,8 +80,8 @@ class Database(Container):
         for (field_id, field_settings) in settings['fields'].items():
             form_obj.invokeFactory('rapido.plone.field', field_id)
             field = form_obj[field_id]
-            field.type = field_settings['type']
-            field.index_type = field_settings.get('index_type', None)
+            for (key, value) in field_settings.items():
+                setattr(field, key, value)
             update_field(field)
 
     def set_watcher(self, path):
