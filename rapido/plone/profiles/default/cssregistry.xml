@@ -8,11 +8,4 @@
         insert-before="ploneCustom.css"
         />
 
-    <stylesheet
-        id="++resource++rapido.libs/ng-table.min.css"
-        applyPrefix="1"
-        media=""
-        insert-before="ploneCustom.css"
-        />
-
 </object>

@@ -1,4 +1,4 @@
-angular.module('rapido',['schemaForm', 'ngTable'])
+angular.module('rapido',['schemaForm'])
 .service('DatabaseService', function($http, $q){
   var _api;
   var _token;
@@ -152,7 +152,7 @@ angular.module('rapido',['schemaForm', 'ngTable'])
 
   }
 })
-.controller('ViewCtrl', function($scope, $rootScope, $filter, ngTableParams, DatabaseService) {
+.controller('ViewCtrl', function($scope, $rootScope, DatabaseService) {
 
   DatabaseService.loadDocuments($rootScope.viewId)
   .then(function(results) {
@@ -167,21 +167,7 @@ angular.module('rapido',['schemaForm', 'ngTable'])
       ];
       data = results.data;
     }
-    $scope.tableParams = new ngTableParams({
-        page: 1,
-        count: 10,
-        sorting: {
-            name: 'asc'
-        }
-    }, {
-        total: data.length,
-        getData: function($defer, params) {
-            var orderedData = params.sorting() ?
-                                $filter('orderBy')(data, params.orderBy()) :
-                                data;
-            $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-        }
-    });
+    $scope.rows = data;
   });
 
 })

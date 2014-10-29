@@ -46,23 +46,18 @@
       ng-submit="submitForm(ngform, model)">
     </form>
     <div ng-controller="ViewCtrl" ng-if="$root.state=='documents'">
-      <table ng-table="tableParams" class="table">
+      <table class="table rapido-view">
         <thead>
         <tr>
             <th ng-repeat="column in columns"
-                class="text-center sortable" ng-class="{
-                    'sort-asc': tableParams.isSortBy(column.field, 'asc'),
-                    'sort-desc': tableParams.isSortBy(column.field, 'desc')
-                  }"
-                ng-click="tableParams.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')">
-                <div>{{column.title}}</div>
+                class="text-center">
+                {{column.title}}
             </th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="doc in $data">
-            <td ng-repeat="column in columns" ng-click="openDocument(doc)" 
-              sortable="column.field">
+        <tr ng-repeat="doc in rows">
+            <td ng-repeat="column in columns" ng-click="openDocument(doc)">
               {{doc[column.field]}}
             </td>
         </tr>
