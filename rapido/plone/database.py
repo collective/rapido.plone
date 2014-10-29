@@ -16,8 +16,8 @@ from plone.namedfile.interfaces import IImageScaleTraversable
 from plone import api
 from plone.app.textfield import RichText, RichTextValue
 
-from rapido.core.interfaces import IDatabasable, IForm
-from .subscribers import update_html, update_field, update_assigned_rules
+from rapido.core.interfaces import IDatabasable, IForm, IView
+from .subscribers import update_html, update_field, update_assigned_rules, update_columns
 from rapido.plone import MessageFactory as _
 
 ANNOTATION_KEY = "RAPIDO_PLONE_ANNOTATION"
@@ -87,6 +87,20 @@ class Database(Container):
             for (key, value) in field_settings.items():
                 setattr(field, key, value)
             update_field(field)
+
+    def create_view(self, settings):
+        """ Create a view 
+        (used by the importation mechanism)
+        Note: it first deletes the view if it was existing
+        """
+        view_id = settings['id']
+        if view_id in self.objectIds():
+            self.manage_delObjects([view_id])
+        self.invokeFactory('rapido.plone.view', view_id,
+            title=settings['title'])
+        view_obj = self[view_id]
+        view_obj.columns = '\n'.join(settings.get('columns', []))
+        update_columns(view_obj)
 
     def set_watcher(self, path):
         annotations = IAnnotations(self)
