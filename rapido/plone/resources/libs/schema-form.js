@@ -1297,6 +1297,7 @@ angular.module('schemaForm')
             element[0].appendChild(frag);
 
             //compile only children
+            // TODO: compile everything ?
             $compile(element.children())(scope);
 
             //ok, now that that is done let's set any defaults

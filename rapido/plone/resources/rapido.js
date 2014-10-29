@@ -2,7 +2,8 @@ angular.module('rapido',['schemaForm', 'ngTable'])
 .service('DatabaseService', function($http, $q){
   var _api;
   var _token;
-  var _data = {}; 
+  var _data = {};
+  var action_re = /<[^>]+ data-rapido-action="([^"]+)">[^<]+<\/[^>]+>/g;
 
   this.getApi = function() {
     return _api;
@@ -38,6 +39,9 @@ angular.module('rapido',['schemaForm', 'ngTable'])
     return this.load(resource)
     .then(function(result) {
       result.data.layout = result.data.layout.replace(/data-rapido-field/g, 'sf-insert-field');
+      result.data.layout = result.data.layout.replace(action_re, function(all, match) {
+        return '<button onclick="rapido.runAction(\''+match+'\', " value="'+match+'" class="btn">'+match+'</button>';
+      });
       _data = result.data;
     });
   };
@@ -55,7 +59,7 @@ angular.module('rapido',['schemaForm', 'ngTable'])
     model.Form = form_id;
     if(model.docid) {
       $http.post(
-        this.getApi() + '/' + model.docid,
+        this.getApi() + '/document/' + model.docid,
         model,
         {headers: {'X-CSRF-TOKEN': _token}})
       .then(function(result) {
@@ -144,7 +148,8 @@ angular.module('rapido',['schemaForm', 'ngTable'])
           $scope.model = data;
         });
       }
-    }
+    };
+
   }
 })
 .controller('ViewCtrl', function($scope, $rootScope, $filter, ngTableParams, DatabaseService) {
