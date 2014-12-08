@@ -3,7 +3,6 @@ angular.module('rapido',['schemaForm'])
   var _api;
   var _token;
   var _data = {};
-  var action_re = /<[^>]+ data-rapido-action="([^"]+)">[^<]+<\/[^>]+>/g;
 
   this.getApi = function() {
     return _api;
@@ -39,9 +38,6 @@ angular.module('rapido',['schemaForm'])
     return this.load(resource)
     .then(function(result) {
       result.data.layout = result.data.layout.replace(/data-rapido-field/g, 'sf-insert-field');
-      result.data.layout = result.data.layout.replace(action_re, function(all, match) {
-        return '<button onclick="rapido.runAction(\''+match+'\', " value="'+match+'" class="btn">'+match+'</button>';
-      });
       _data = result.data;
     });
   };
@@ -74,7 +70,21 @@ angular.module('rapido',['schemaForm'])
       });
     }
     return deferred.promise;
-  }
+  };
+
+  this.runAction = function(form_id, action_id, model) {
+    var deferred = $q.defer();
+    model.Form = form_id;
+    $http.post(
+      this.getApi() + '/document/' + model.docid + '/action/' + action_id,
+      model,
+      {headers: {'X-CSRF-TOKEN': _token}})
+    .then(function(result) {
+      _data.model = result.data.model;
+      deferred.resolve(result.data.model);
+    });
+    return deferred.promise;
+  };
 })
 .directive('rapidoApi', function($rootScope, DatabaseService) {
   return {
@@ -150,6 +160,11 @@ angular.module('rapido',['schemaForm'])
       }
     };
 
+    $scope.runAction = function(action_id) {
+      DatabaseService.runAction($rootScope.formId, action_id, $scope.model).then(function(data) {
+        $scope.model = data;
+      });
+    };
   }
 })
 .controller('ViewCtrl', function($scope, $rootScope, DatabaseService) {
