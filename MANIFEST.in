@@ -1,0 +1,3 @@
+graft src/rapido
+graft docs/
+include *.cfg *.rst *.in
