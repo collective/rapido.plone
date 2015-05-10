@@ -2,5 +2,6 @@
 <metadata>
   <version>1000</version>
   <dependencies>
+    <dependency>profile-souper.plone:default</dependency>
   </dependencies>
 </metadata>

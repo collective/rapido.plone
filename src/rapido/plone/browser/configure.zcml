@@ -1,7 +1,13 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="rapido.plone">
+
+    <browser:page
+        name="rapido"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        permission="zope.Public"
+        class=".views.RapidoView"
+        />
 
 </configure>
