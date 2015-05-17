@@ -4,7 +4,7 @@ from plone.app.theming.interfaces import THEME_RESOURCE_NAME
 from plone.app.theming.utils import getCurrentTheme
 from plone.resource.utils import queryResourceDirectory
 
-from rapido.core.interfaces import IDatabasable
+from rapido.core.interfaces import IDatabasable, IDatabase
 
 
 class Database:
@@ -23,7 +23,7 @@ class Database:
         return self.resources['forms'].listDirectory()
 
     def get_form(self, form_id, ftype='yaml'):
-        path = "%s.%s" % (form_id, ftype)
+        path = "forms/%s.%s" % (form_id, ftype)
         return self.get_resource(path)
 
     def get_resource_directory(self):
@@ -41,3 +41,8 @@ class Database:
             return self.resources.readFile(full_path)
         except:
             raise KeyError(full_path)
+
+
+def get_database(db_id):
+    db = Database(db_id)
+    return IDatabase(db)
