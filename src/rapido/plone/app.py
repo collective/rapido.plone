@@ -4,11 +4,11 @@ from plone.app.theming.interfaces import THEME_RESOURCE_NAME
 from plone.app.theming.utils import getCurrentTheme
 from plone.resource.utils import queryResourceDirectory
 
-from rapido.core.interfaces import IDatabasable, IDatabase
+from rapido.core.interfaces import IRapidable, IRapidoApplication
 
 
-class Database:
-    implements(IDatabasable)
+class RapidoApplication:
+    implements(IRapidable)
 
     def __init__(self, id):
         self.id = id
@@ -16,7 +16,10 @@ class Database:
         self.resources = self.get_resource_directory()
 
     def url(self):
-        return api.portal.get().absolute_url()
+        return "%s/@@rapido/%s" % (
+            api.portal.get().absolute_url(),
+            self.id,
+        )
 
     @property
     def forms(self):
@@ -43,6 +46,6 @@ class Database:
             raise KeyError(full_path)
 
 
-def get_database(db_id):
-    db = Database(db_id)
-    return IDatabase(db)
+def get_app(db_id):
+    db = RapidoApplication(db_id)
+    return IRapidoApplication(db)

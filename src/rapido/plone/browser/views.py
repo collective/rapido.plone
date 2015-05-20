@@ -2,7 +2,7 @@ from Products.Five.browser import BrowserView
 from zope.interface import implements
 from zope.publisher.interfaces import IPublishTraverse
 
-from rapido.plone.database import get_database
+from rapido.plone.app import get_app
 
 
 class RapidoView(BrowserView):
@@ -27,7 +27,7 @@ class RapidoView(BrowserView):
         else:
             action = 'view'
 
-        db = get_database(db_id)
+        db = get_app(db_id)
         if directive == "form":
             form = db.get_form(obj_id)
             result = form.display(edit=True)
