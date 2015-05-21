@@ -27,7 +27,7 @@ class RapidoView(BrowserView):
         else:
             action = 'view'
 
-        app = get_app(app_id)
+        app = get_app(app_id, self.request)
         if directive == "form":
             form = app.get_form(obj_id)
             result = form.display(edit=True)

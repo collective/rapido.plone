@@ -4,14 +4,16 @@ from plone.app.theming.interfaces import THEME_RESOURCE_NAME
 from plone.app.theming.utils import getCurrentTheme
 from plone.resource.utils import queryResourceDirectory
 
+from rapido.core.app import Context
 from rapido.core.interfaces import IRapidable, IRapidoApplication
 
 
 class RapidoApplication:
     implements(IRapidable)
 
-    def __init__(self, id):
+    def __init__(self, id, context):
         self.id = id
+        self.context = context
         self.available_rules = {}
         self.resources = self.get_resource_directory()
 
@@ -46,6 +48,14 @@ class RapidoApplication:
             raise KeyError(full_path)
 
 
-def get_app(app_id):
-    app = RapidoApplication(app_id)
+def get_app(app_id, request):
+    portal = api.portal.get()
+    context = Context()
+    context.request = request
+    context.parent_request = request.get("PARENT_REQUEST", None)
+    context.portal = portal
+    context.api = api
+    context.content = portal.restrictedTraverse(
+        request['PARENT_REQUEST']['PATH_INFO'])
+    app = RapidoApplication(app_id, context)
     return IRapidoApplication(app)
