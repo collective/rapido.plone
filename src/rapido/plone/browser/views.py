@@ -19,7 +19,7 @@ class RapidoView(BrowserView):
         return self
 
     def __call__(self):
-        db_id = self.path[0]
+        app_id = self.path[0]
         directive = self.path[1]
         obj_id = self.path[2]
         if len(self.path) > 3:
@@ -27,9 +27,9 @@ class RapidoView(BrowserView):
         else:
             action = 'view'
 
-        db = get_app(db_id)
+        app = get_app(app_id)
         if directive == "form":
-            form = db.get_form(obj_id)
+            form = app.get_form(obj_id)
             result = form.display(edit=True)
         else:
             result = "Unknown directive"

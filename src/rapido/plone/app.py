@@ -46,6 +46,6 @@ class RapidoApplication:
             raise KeyError(full_path)
 
 
-def get_app(db_id):
-    db = RapidoApplication(db_id)
-    return IRapidoApplication(db)
+def get_app(app_id):
+    app = RapidoApplication(app_id)
+    return IRapidoApplication(app)
