@@ -53,9 +53,12 @@ def get_app(app_id, request):
     context = Context()
     context.request = request
     context.parent_request = request.get("PARENT_REQUEST", None)
+    if context.parent_request:
+        context.content = portal.restrictedTraverse(
+            context.parent_request['PATH_INFO'])
+    else:
+        context.content = None
     context.portal = portal
     context.api = api
-    context.content = portal.restrictedTraverse(
-        request['PARENT_REQUEST']['PATH_INFO'])
     app = RapidoApplication(app_id, context)
     return IRapidoApplication(app)

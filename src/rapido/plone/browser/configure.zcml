@@ -10,4 +10,8 @@
         class=".views.RapidoView"
         />
 
+    <browser:resource
+        name="rapido.js"
+        file="rapido.js" />
+
 </configure>
