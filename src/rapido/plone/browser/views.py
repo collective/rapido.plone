@@ -28,19 +28,7 @@ class RapidoView(BrowserView):
             action = 'view'
 
         app = get_app(app_id, self.request)
-        if directive == "form":
-            form = app.get_form(obj_id)
-            if self.method == "POST":
-                # execute submitted actions
-                actions = [key for key in self.request.keys()
-                    if key.startswith("action.")]
-                for id in actions:
-                    field_id = id[7:]
-                    if form.fields.get(field_id, None):
-                        form.compute_field(field_id, {'form': form})
-            result = form.display(edit=True)
-        else:
-            result = "Unknown directive"
+        result = app.process(self.method, directive, obj_id, action)
 
         self.request.response.setHeader('X-Theme-Disabled', '1')
         return result
