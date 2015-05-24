@@ -30,7 +30,9 @@ require([
                     dataType:'html',
                     data: formData,
                     success: function(response, textStatus, jqXHR){
-                        self.$el.html(response);
+                        var $content = $(response);
+                        self.$el.replaceWith($content);
+                        Registry.scan($content);
                         self.initAjaxForm();
                     },
                     error: function(jqXHR, textStatus, errorThrown){
