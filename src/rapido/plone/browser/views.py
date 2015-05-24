@@ -20,6 +20,8 @@ class RapidoView(BrowserView):
 
     def __call__(self):
         app_id = self.path[0]
+        if app_id == 'view':
+            return self.context()
         directive = self.path[1]
         obj_id = self.path[2]
         if len(self.path) > 3:

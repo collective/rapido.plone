@@ -5,7 +5,7 @@
 
     <browser:page
         name="rapido"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        for="*"
         permission="zope.Public"
         class=".views.RapidoView"
         />

@@ -54,14 +54,16 @@ def get_app(app_id, request):
     context = Context()
     context.request = request
     context.parent_request = request.get("PARENT_REQUEST", None)
+    path = None
     if context.parent_request:
-        context.content = portal.restrictedTraverse(
-            context.parent_request['PATH_INFO'])
+        path = context.parent_request['PATH_INFO']
     elif request.get('HTTP_REFERER', None):
         path = urlparse(request['HTTP_REFERER']).path
-        context.content = portal.restrictedTraverse(path)
+    if path:
+        path = path.split("@@")[0]
+        context.content = portal.unrestrictedTraverse(path)
     else:
-        content = None
+        context.content = None
     context.portal = portal
     context.api = api
     app = RapidoApplication(app_id, context)
