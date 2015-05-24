@@ -3,6 +3,7 @@ from plone import api
 from plone.app.theming.interfaces import THEME_RESOURCE_NAME
 from plone.app.theming.utils import getCurrentTheme
 from plone.resource.utils import queryResourceDirectory
+from urlparse import urlparse
 
 from rapido.core.app import Context
 from rapido.core.interfaces import IRapidable, IRapidoApplication
@@ -56,8 +57,11 @@ def get_app(app_id, request):
     if context.parent_request:
         context.content = portal.restrictedTraverse(
             context.parent_request['PATH_INFO'])
+    elif request.get('HTTP_REFERER', None):
+        path = urlparse(request['HTTP_REFERER']).path
+        context.content = portal.restrictedTraverse(path)
     else:
-        context.content = None
+        content = None
     context.portal = portal
     context.api = api
     app = RapidoApplication(app_id, context)
