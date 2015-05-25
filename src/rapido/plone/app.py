@@ -25,8 +25,15 @@ class RapidoApplication:
         )
 
     @property
+    def root(self):
+        return api.portal.get()
+
+    @property
     def forms(self):
         return self.resources['forms'].listDirectory()
+
+    def get_settings(self):
+        return self.get_resource('settings.yaml')
 
     def get_form(self, form_id, ftype='yaml'):
         path = "forms/%s.%s" % (form_id, ftype)
@@ -47,6 +54,17 @@ class RapidoApplication:
             return self.resources.readFile(full_path)
         except:
             raise KeyError(full_path)
+
+    def current_user(self):
+        """ Returns the current user id
+        """
+        return api.user.get_current().getUserName()
+
+    def current_user_groups(self):
+        """ Get the current user groups
+        """
+        member = api.user.get_current()
+        return member.getGroups()
 
 
 def get_app(app_id, request):
