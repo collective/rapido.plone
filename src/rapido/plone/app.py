@@ -33,7 +33,11 @@ class RapidoApplication:
         return self.resources['forms'].listDirectory()
 
     def get_settings(self):
-        return self.get_resource('settings.yaml')
+        try:
+            return self.get_resource('settings.yaml')
+        except KeyError:
+            # settings.yaml is not mandatory
+            return 'no_settings: {}'
 
     def get_form(self, form_id, ftype='yaml'):
         path = "forms/%s.%s" % (form_id, ftype)
