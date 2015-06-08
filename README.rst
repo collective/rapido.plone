@@ -11,9 +11,9 @@ Creating a small form able to send an email, or to store some data, generating
 an extra information about a page and insert it wherever we want; with Plone
 that kind of tasks are complex for experts, and almost impossible for beginners.
 
-rapido.plone allows any developer having a little knowledge of HTML and a little
-knowledge of Python to implement custom elements and insert them anywhere they
-want in their Plone site.
+**rapido.plone** allows any developer having a little knowledge of HTML and a
+little knowledge of Python to implement custom elements and insert them anywhere
+they want in their Plone site.
 
 How?
 ====
@@ -24,11 +24,11 @@ theming tool**.
 It implies it can be achieved in the *file system* (in the /static folder like
 the rest of the theming elements), or through the theming *inline editor*.
 
-The rapido applications are just a piece of the current theme, they can be
+The rapido applications are just a piece of our current theme, they can be
 imported, exported, copied, modified, etc. like the rest of the theme.
 
-Moreover, we will use Diazo extensively to inject our application in the Plone
-layout.
+Moreover, we can use `Diazo <http://docs.diazo.org/en/latest/>`_ extensively to
+inject our application in the Plone layout easily.
 
 Creating a rapido app
 =====================
@@ -62,15 +62,15 @@ needed.
 The app building blocks are `forms`. A form is a set of 3 files (HTML, Python,
 and YAML files) located in the ``forms`` folder.
 
-The YAML file defines the fields. A field is any dynamically generated element
-in a form, it can be an actual form fields (input, select, etc.), but also can
-be a button (``ACTION``), or even just a piece of generated HTML (``BASIC``).
+The **YAML file** defines the fields. A field is any dynamically generated
+element in a form, it can be an actual form fields (input, select, etc.), but
+also a button (``ACTION``), or even just a piece of generated HTML (``BASIC``).
 
-The HTML file contains the layout of the form. The templating mechanism is super
-simple, fields are just enclosed in brackets, like this: ``{my_field}``.
+The **HTML file** contains the layout of the form. The templating mechanism is
+super simple, fields are just enclosed in brackets, like this: ``{my_field}``.
 
-The Python file contains functions which implement everything the form and its
-fields might need. It can be many things.
+The **Python file** contains the application logic. It is a set of functions
+which names refer to the field or the event they are related to.
 
 For a ``BASIC`` field for instance, we are supposed to provide a function having
 the same name as the field, its returned value will be inserted in the form at
@@ -109,7 +109,7 @@ We can see our form by visiting the following URL::
 
     http://localhost:8080/Plone/@@rapido/myapp/forms/simpleform
 
-It works fine, but where is our Plone site??
+It works fine, but where is our Plone site now??
 
 Inserting a form in a Plone page
 ================================
@@ -124,7 +124,7 @@ Now, if we visit any page of our site, we will see our form.
 But unfortunately, when we click on our "Do something" button, we are redirected
 to the original bare form.
 
-To remain in the Plone page, we need to activate the ``AJAX`` target in
+To remain in the Plone page, we need to activate the ``ajax`` target in
 rapido/myapp/forms/simpleform.yaml::
 
     id: simpleform
@@ -139,3 +139,44 @@ rapido/myapp/forms/simpleform.yaml::
 
 Now, when we click our button, the rapido form is reloaded inside the Plone
 page.
+
+Running Python code
+===================
+
+Every function in our Python files takes a parameter named ``context``.
+The context gives access to useful objects:
+
+- ``context.app``: the current rapido app,
+- ``context.request``: the current request to rapido (the sub-request, if called
+  from Diazo),
+- ``context.parent_request``: the current page request (when called from Diazo),
+- ``context.portal``: the Plone portal object,
+- ``context.content``: the current Plone content object,
+- ``context.api``: the `Plone API
+  <http://docs.plone.org/external/plone.api/docs/>`_.
+
+It allows us to interact with Plone in very various ways, for instance we can
+run catalog queries, create contents, change workflow status, etc.
+
+Nevertheless, it will behave as expected:
+
+- the code will always be executed with the current user access right, so the
+  appropriate Plone access restrictions will be applied,
+- the CSRF policy will also be applied (for instance, a Plone operation marked
+  as ``PostOnly`` would fail if performed in a GET request).
+
+Note: The code we put in our Python files is compiled and executed in a
+sandboxed environment (provided by `zope.untrustedpython.interpreter 
+<https://github.com/zopefoundation/zope.untrustedpython/blob/master/docs/narr.rst>`_).
+
+Storing and retrieving data
+===========================
+
+A rapido app provides a builtin storage service, based on
+`Souper <https://pypi.python.org/pypi/souper>`_.
+
+
+
+Note: Souper is designed to store (and index) huge amounts of small data (it can
+easily store survey results, comments, ratings, etc., but it will not be
+appropriate for attached files for instance)
