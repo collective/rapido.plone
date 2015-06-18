@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<registry>
+  <record name="plone.app.tiles">
+    <value purge="false">
+      <element>rapido.plone.tile</element>
+    </value>
+  </record>
+  <records prefix="plone.app.mosaic.app_tiles.rapido_plone_tile"
+           interface="plone.app.mosaic.interfaces.ITile">
+    <value key="name">rapido.plone.tile</value>
+    <value key="label">Rapido element</value>
+    <value key="category">advanced</value>
+    <value key="tile_type">app</value>
+    <value key="default_value"></value>
+    <value key="read_only">false</value>
+    <value key="settings">true</value>
+    <value key="favorite">false</value>
+    <value key="rich_text">false</value>
+    <value key="weight">10</value>
+  </records>
+</registry>

@@ -18,19 +18,23 @@ class RapidoView(BrowserView):
         self.path.append(name)
         return self
 
-    def __call__(self):
-        app_id = self.path[0]
+    def content(self, path=None):
+        if not path:
+            path = self.path
+        app_id = path[0]
         if app_id == 'view':
             return self.context()
-        directive = self.path[1]
-        obj_id = self.path[2]
-        if len(self.path) > 3:
-            action = self.path[3]
+        directive = path[1]
+        obj_id = path[2]
+        if len(path) > 3:
+            action = path[3]
         else:
             action = 'view'
 
         app = get_app(app_id, self.request)
-        result = app.process(self.method, directive, obj_id, action)
+        return app.process(self.method, directive, obj_id, action)
 
+    def __call__(self):
+        result = self.content()
         self.request.response.setHeader('X-Theme-Disabled', '1')
         return result

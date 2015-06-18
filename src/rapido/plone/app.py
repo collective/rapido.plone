@@ -55,7 +55,7 @@ class RapidoApplication:
     def get_resource(self, path):
         full_path = "rapido/%s/%s" % (self.id, path)
         try:
-            return self.resources.readFile(full_path)
+            return self.resources.readFile(str(full_path))
         except:
             raise KeyError(full_path)
 

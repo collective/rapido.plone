@@ -1,0 +1,22 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="rapido.plone">
+
+    <include package="plone.tiles" />
+    <include package="plone.app.tiles" />
+
+    <plone:tile
+        name="rapido.plone.tile"
+        title="Rapido tile"
+        description="A tile displaying a rapido element"
+        add_permission="zope.Public"
+        class=".tile.RapidoTile"
+        schema=".tile.IRapidoTile"
+        for="*"
+        permission="zope2.View"
+        template="tile.pt"
+        />
+
+</configure>
