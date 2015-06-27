@@ -34,6 +34,9 @@ class RapidoView(BrowserView):
 
     def __call__(self):
         if self.path[0] == 'view':
+            # this is neutral, we just return the default content view
+            # but it gives the opportunity to create specific pseudo views
+            # via our Diazo rules.xml
             return self.context()
         result = self.content()
         self.request.response.setHeader('X-Theme-Disabled', '1')
