@@ -117,7 +117,7 @@ Inserting a form in a Plone page
 To put our form somewhere in the Plone site, we use a Diazo rule::
 
     <before css:content="#content-core">
-        <include css:content="form" href="/@@rapido/myapp/forms/simpleform" />
+        <include css:content="form" href="/@@rapido/myapp/form/simpleform" />
     </before>
 
 Now, if we visit any page of our site, we will see our form.
@@ -139,6 +139,29 @@ rapido/myapp/forms/simpleform.yaml::
 
 Now, when we click our button, the rapido form is reloaded inside the Plone
 page.
+
+Instead of adding a form to an existing Plone view, we might need to provide a
+new rendering, answering for a specific URL.
+We can do that by adding ``@@rapido/view`` to the content URL. it will just
+display the default view of our content, but it allows us to define a specific
+Diazo rule for this path::
+
+    <rules if-path="@@rapido/view">
+        <replace css:content="#content">
+            <include css:content="form" href="/@@rapido/myapp/form/simpleform" />
+        </replace>      
+    </rules>
+
+We might add an extra name to our path, which will be ignored in term of
+rendering, but it will allow us to define different rules for different use
+cases (like ``path_to_content/@@rapido/view/subscribe``, ``path_to_content/@@rapido/view/unsubscribe``, ``path_to_content/@@rapido/view/stats``, ...).
+
+Note: adding a lot of rapido rules in our main ``rules.xml`` is not ideal.
+We might prefer to create a ``rules.xml`` file into our ``rapido/myapp``
+folder, and include in in our main ``rules.xml`` file like this::
+
+    <xi:include href="rapido/myapp/rules.xml" />
+
 
 Running Python code
 ===================
