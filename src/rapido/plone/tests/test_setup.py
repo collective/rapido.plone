@@ -24,9 +24,3 @@ class TestSetup(unittest.TestCase):
         """Test if rapido.plone is cleanly uninstalled."""
         self.installer.uninstallProducts(['rapido.plone'])
         self.assertFalse(self.installer.isProductInstalled('rapido.plone'))
-
-    def test_browserlayer(self):
-        """Test that IRapidoPloneLayer is registered."""
-        from rapido.plone.interfaces import IRapidoPloneLayer
-        from plone.browserlayer import utils
-        self.assertIn(IRapidoPloneLayer, utils.registered_layers())
