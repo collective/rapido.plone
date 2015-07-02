@@ -1,0 +1,6 @@
+fields:
+    create:
+        type: ACTION
+        label: Create a quote
+    display_quote:
+        type: BASIC

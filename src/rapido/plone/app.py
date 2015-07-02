@@ -83,7 +83,11 @@ def get_app(app_id, request):
         path = urlparse(request['HTTP_REFERER']).path
     if path:
         path = path.split("@@")[0]
-        context.content = portal.unrestrictedTraverse(path)
+        try:
+            context.content = portal.unrestrictedTraverse(path)
+        except KeyError:
+            # not a Plone url, probably a browsertest context
+            context.content = None
     else:
         context.content = None
     context.portal = portal

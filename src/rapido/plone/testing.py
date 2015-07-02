@@ -16,11 +16,15 @@ class RapidoPloneLayer(PloneSandboxLayer):
     defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
+        import rapido.plone.tests
         xmlconfig.file(
             'configure.zcml',
-            rapido.plone,
+            rapido.plone.tests,
             context=configurationContext
         )
+        # Run the startup hook
+        from plone.app.theming.plugins.hooks import onStartup
+        onStartup(None)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, 'rapido.plone:default')
