@@ -4,7 +4,7 @@ from Products.Five.browser import BrowserView
 from zope.interface import implements
 from zope.publisher.interfaces import IPublishTraverse
 
-from rapido.core.exceptions import NotAllowed, NotFound, Unauthorized
+from rapido.core.exceptions import NotAllowed, Unauthorized
 from rapido.core.interfaces import IRest
 from rapido.plone.app import get_app
 
@@ -52,7 +52,7 @@ class RapidoView(BrowserView):
             self.request.response.setStatus(403)
         except Unauthorized:
             self.request.response.setStatus(401)
-        except Exception(e):
+        except Exception, e:
             self.request.response.setStatus(500)
             return {'error': str(e)}
 
