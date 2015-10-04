@@ -45,7 +45,13 @@ class RapidoApplication:
 
     def get_form(self, form_id, ftype='yaml'):
         path = "forms/%s.%s" % (form_id, ftype)
-        return self.get_resource(path)
+        try:
+            return self.get_resource(path)
+        except KeyError:
+            if ftype == "yaml":
+                return 'id: %s' % form_id
+            else:
+                raise KeyError('%s.%s' % (form_id, ftype))
 
     def get_resource_directory(self):
         theme = getCurrentTheme()
