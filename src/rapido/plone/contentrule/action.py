@@ -1,9 +1,9 @@
 from OFS.SimpleItem import SimpleItem
-from plone.app.contentrules import PloneMessageFactory
+from plone import api
 from plone.app.contentrules.actions import ActionAddForm, ActionEditForm
 from plone.app.contentrules.browser.formhelper import ContentRuleFormWrapper
 from plone.contentrules.rule.interfaces import IExecutable, IRuleElementData
-from Products.statusmessages.interfaces import IStatusMessage
+from zExceptions import NotFound
 from zope.component import adapts
 from zope.interface import implements, Interface
 from zope import schema
@@ -61,7 +61,16 @@ class ActionExecutor(object):
 
     def __call__(self):
         request = self.context.REQUEST
-        app = get_app(self.element.app, request)
+        try:
+            app = get_app(self.element.app, request)
+        except NotFound:
+            api.portal.show_message(
+                message="Rapido application %s cannot be found." % (
+                    self.element.app,),
+                request=request,
+                type='error',
+            )
+            return True
         form = app.get_form(self.element.form)
         form.compute_field(self.element.method, {'form': form})
         return True
