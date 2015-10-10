@@ -1,0 +1,33 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone">
+
+    <adapter factory=".action.ActionExecutor" />
+
+    <browser:page
+        for="plone.app.contentrules.browser.interfaces.IRuleActionAdding"
+        name="rapido.plone.Action"
+        class=".action.AddFormView"
+        permission="plone.app.contentrules.ManageContentRules"
+      />
+
+    <browser:page
+        for="rapido.plone.contentrule.action.IAction"
+        name="edit"
+        class=".action.EditFormView"
+        permission="plone.app.contentrules.ManageContentRules"
+      />
+
+    <plone:ruleAction
+        name="rapido.plone.Action"
+        title="Rapido action"
+        description="Execute a Rapido method"
+        for="*"
+        event="*"
+        addview="rapido.plone.Action"
+        editview="edit"
+        schema=".action.IAction"
+        factory=".action.Action"
+        />
+</configure>

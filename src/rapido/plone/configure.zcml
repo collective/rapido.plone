@@ -11,6 +11,10 @@
     <i18n:registerTranslations directory="locales" />
 
     <include package=".browser" />
+    <include package=".contentrule" />
+    <configure zcml:condition="installed plone.app.mosaic"> 
+        <include package=".tile" />
+    </configure>
 
 
     <genericsetup:registerProfile
@@ -35,8 +39,5 @@
         description="Installs the rapido.plone mosaic tile."
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <configure zcml:condition="installed plone.app.mosaic"> 
-        <include package=".tile" />
-    </configure>
 
 </configure>
