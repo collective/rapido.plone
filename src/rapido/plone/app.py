@@ -55,19 +55,14 @@ class RapidoApplication:
 
     def get_resource_directory(self):
         theme = getCurrentTheme()
-        if theme is None:
-            raise KeyError(self.id)
         directory = queryResourceDirectory(THEME_RESOURCE_NAME, theme)
-        if directory is None:
-            raise KeyError(self.id)
-        return directory
+        return directory['rapido'][self.id]
 
     def get_resource(self, path):
-        full_path = "rapido/%s/%s" % (self.id, path)
         try:
-            return self.resources.readFile(str(full_path))
+            return self.resources.readFile(str(path))
         except:
-            raise KeyError(full_path)
+            raise KeyError(path)
 
     def current_user(self):
         """ Returns the current user id
