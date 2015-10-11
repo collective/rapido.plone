@@ -4,6 +4,11 @@ rapido.plone
 
 **Happy hacking on Plone**
 
+|travisstatus|_
+
+.. |travisstatus| image:: https://secure.travis-ci.org/plomino/rapido.plone.png?branch=master
+.. _travisstatus:  http://travis-ci.org/plomino/rapido.plone
+
 What for?
 =========
 
