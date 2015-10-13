@@ -5,7 +5,7 @@ from zope.interface import implements
 from zope.publisher.interfaces import IPublishTraverse
 
 from rapido.core.exceptions import NotAllowed, Unauthorized, NotFound
-from rapido.core.interfaces import IRest
+from rapido.core.interfaces import IRest, IDisplay
 from rapido.plone.app import get_app
 
 
@@ -26,16 +26,9 @@ class RapidoView(BrowserView):
         if not path:
             path = self.path
         app_id = path[0]
-        directive = path[1]
-        obj_id = path[2]
-        if len(path) > 3:
-            action = path[3]
-        else:
-            action = 'view'
-
         app = get_app(app_id, self.request)
-        (result, redirect) = app.process(
-            self.method, directive, obj_id, action)
+        method = getattr(IDisplay(app), self.method)
+        (result, redirect) = method(path, self.request)
         if redirect:
             self.request.RESPONSE.redirect(redirect)
         else:
