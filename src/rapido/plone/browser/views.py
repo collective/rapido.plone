@@ -34,7 +34,12 @@ class RapidoView(BrowserView):
             action = 'view'
 
         app = get_app(app_id, self.request)
-        return app.process(self.method, directive, obj_id, action)
+        (result, redirect) = app.process(
+            self.method, directive, obj_id, action)
+        if redirect:
+            self.request.RESPONSE.redirect(redirect)
+        else:
+            return result
 
     def json(self, path=None):
         if not path:
