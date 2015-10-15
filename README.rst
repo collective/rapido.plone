@@ -203,8 +203,24 @@ Storing and retrieving data
 A rapido app provides a builtin storage service, based on
 `Souper <https://pypi.python.org/pypi/souper>`_.
 
-
-
 Note: Souper is designed to store (and index) huge amounts of small data (it can
 easily store survey results, comments, ratings, etc., but it will not be
 appropriate for attached files for instance)
+
+Installation
+============
+
+Rapido packages are not released yet, plus it depends on a unmerged PR in Diazo.
+So for now, we need to checkout the following repositories::
+
+    auto-checkout =
+    rapido.core
+    rapido.plone
+    rapido.souper
+    diazo
+
+    [sources]
+    rapido.core = git https://github.com/plomino/rapido.core.git
+    rapido.plone = git https://github.com/plomino/rapido.plone.git
+    rapido.souper = git https://github.com/plomino/rapido.souper.git
+    diazo = git https://github.com/plone/diazo.git branch=include-content-review
