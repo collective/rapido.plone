@@ -6,7 +6,7 @@ require([
     'use strict';
     var Rapido = Base.extend({
         name: 'rapido',
-        trigger: '.rapido-form',
+        trigger: '.rapido-block',
         defaults: {},
         init: function() {
             var self = this;

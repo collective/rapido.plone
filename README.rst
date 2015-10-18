@@ -53,7 +53,7 @@ Here is a typical layout for a rapido app::
     /rapido
         /myapp
             settings.yaml
-            /forms
+            /blocks
                 stats.html
                 stats.py
                 stats.yaml
@@ -64,21 +64,21 @@ Here is a typical layout for a rapido app::
 Note: ``settings.yaml`` is not mandatory, it allows to define access rights if
 needed.
 
-The app building blocks are `forms`. A form is a set of 3 files (HTML, Python,
-and YAML files) located in the ``forms`` folder.
+The app components are `blocks`. A block is a set of 3 files (HTML, Python,
+and YAML files) located in the ``blocks`` folder.
 
 The **YAML file** defines the fields. A field is any dynamically generated
-element in a form, it can be an actual form fields (input, select, etc.), but
+element in a block, it can be a form field (input, select, etc.), but
 also a button (``ACTION``), or even just a piece of generated HTML (``BASIC``).
 
-The **HTML file** contains the layout of the form. The templating mechanism is
+The **HTML file** contains the layout of the block. The templating mechanism is
 super simple, fields are just enclosed in brackets, like this: ``{my_field}``.
 
 The **Python file** contains the application logic. It is a set of functions
 which names refer to the field or the event they are related to.
 
 For a ``BASIC`` field for instance, we are supposed to provide a function having
-the same name as the field, its returned value will be inserted in the form at
+the same name as the field, its returned value will be inserted in the block at
 the location of the field.
 
 For an ``ACTION``, we are supposed to provide a function having the same name as
@@ -86,10 +86,10 @@ the field, it will be executed when a user clicks on the action button.
 
 Here is a basic example:
 
-- rapido/myapp/forms/simpleform.yaml::
+- rapido/myapp/blocks/simpleblock.yaml::
 
-    id: simpleform
-    title: A simple form
+    id: simpleblock
+    title: A simple block
     fields:
         result:
             type: BASIC
@@ -97,12 +97,12 @@ Here is a basic example:
             type: ACTION
             label: Do something
 
-- rapido/myapp/forms/simpleform.html::
+- rapido/myapp/blocks/simpleblock.html::
 
     <p>the answer to life, the universe, and everything is {result}</p>
     {do_something}
 
-- rapido/myapp/forms/simpleform.py::
+- rapido/myapp/blocks/simpleblock.py::
 
     def result(context):
         return "<strong>42</strong>"
@@ -110,30 +110,30 @@ Here is a basic example:
     def do_something(context):
         context.portal.plone_log("Hello")
 
-We can see our form by visiting the following URL::
+We can see our block by visiting the following URL::
 
-    http://localhost:8080/Plone/@@rapido/myapp/forms/simpleform
+    http://localhost:8080/Plone/@@rapido/myapp/blocks/simpleblock
 
 It works fine, but where is our Plone site now??
 
-Inserting a form in a Plone page
+Inserting a block in a Plone page
 ================================
 
-To put our form somewhere in the Plone site, we use a Diazo rule::
+To put our block somewhere in the Plone site, we use a Diazo rule::
 
     <before css:content="#content-core">
-        <include css:content="form" href="/@@rapido/myapp/form/simpleform" />
+        <include css:content="form" href="/@@rapido/myapp/block/simpleblock" />
     </before>
 
-Now, if we visit any page of our site, we will see our form.
+Now, if we visit any page of our site, we will see our block.
 But unfortunately, when we click on our "Do something" button, we are redirected
-to the original bare form.
+to the original bare block.
 
 To remain in the Plone page, we need to activate the ``ajax`` target in
-rapido/myapp/forms/simpleform.yaml::
+rapido/myapp/blocks/simpleblock.yaml::
 
-    id: simpleform
-    title: A simple form
+    id: simpleblock
+    title: A simple block
     target: ajax
     fields:
         result:
@@ -142,10 +142,10 @@ rapido/myapp/forms/simpleform.yaml::
             type: ACTION
             label: Do something
 
-Now, when we click our button, the rapido form is reloaded inside the Plone
+Now, when we click our button, the rapido block is reloaded inside the Plone
 page.
 
-Instead of adding a form to an existing Plone view, we might need to provide a
+Instead of adding a block to an existing Plone view, we might need to provide a
 new rendering, answering for a specific URL.
 We can do that by adding ``@@rapido/view`` to the content URL. it will just
 display the default view of our content, but it allows us to define a specific
@@ -153,7 +153,7 @@ Diazo rule for this path::
 
     <rules if-path="@@rapido/view">
         <replace css:content="#content">
-            <include css:content="form" href="/@@rapido/myapp/form/simpleform" />
+            <include css:content="form" href="/@@rapido/myapp/block/simpleblock" />
         </replace>      
     </rules>
 

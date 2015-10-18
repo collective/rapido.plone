@@ -33,21 +33,21 @@ class TestCase(unittest.TestCase):
     def tearDown(self):
         Globals.DevelopmentMode = False
 
-    def test_form_with_basic_field(self):
+    def test_block_with_basic_field(self):
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/testdb/form/basic')
+            self.portal.absolute_url() + '/@@rapido/testdb/block/basic')
         self.assertTrue("""<span>How simple is it? Very simple!</span>"""
             in self.browser.contents)
 
-    def test_form_with_text_field(self):
+    def test_block_with_text_field(self):
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/testdb/form/text')
+            self.portal.absolute_url() + '/@@rapido/testdb/block/text')
         self.assertTrue("""<span>How simple is it? <input type="text"\n        name="answer" value="" /></span>"""
             in self.browser.contents)
 
-    def test_form_with_action_field(self):
+    def test_block_with_action_field(self):
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/testdb/form/action')
+            self.portal.absolute_url() + '/@@rapido/testdb/block/action')
         self.assertTrue("""<span>Quote is: No quote</span>"""
             in self.browser.contents)
         self.assertTrue("""<input type="submit"\n        name="action.create" value="Create a quote" />"""

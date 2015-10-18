@@ -22,8 +22,8 @@ class IAction(Interface):
         description=_(u"The targeted Rapido application."),
         required=True)
 
-    form = schema.TextLine(title=_(u"Form"),
-        description=_(u"The form containing the method."),
+    block = schema.TextLine(title=_(u"Block"),
+        description=_(u"The block providing the method."),
         required=True)
 
     method = schema.TextLine(title=_(u"Method"),
@@ -37,15 +37,15 @@ class Action(SimpleItem):
     implements(IAction, IRuleElementData)
 
     app = ''
-    form = ''
+    block = ''
     method = ''
 
     element = 'rapido.plone.Action'
 
     @property
     def summary(self):
-        return _(u"Call Rapido method ${method} from ${app}/${form}",
-            mapping=dict(app=self.app, method=self.method, form=self.form))
+        return _(u"Call Rapido method ${method} from ${app}/${block}",
+            mapping=dict(app=self.app, method=self.method, block=self.block))
 
 
 class ActionExecutor(object):
@@ -71,8 +71,8 @@ class ActionExecutor(object):
                 type='error',
             )
             return True
-        form = app.get_form(self.element.form)
-        form.compute_field(self.element.method, {'form': form})
+        block = app.get_block(self.element.block)
+        block.compute_field(self.element.method, {'block': block})
         return True
 
 

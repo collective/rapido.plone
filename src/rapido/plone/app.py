@@ -33,8 +33,8 @@ class RapidoApplication:
         return api.portal.get()
 
     @property
-    def forms(self):
-        return self.resources['forms'].listDirectory()
+    def blocks(self):
+        return self.resources['blocks'].listDirectory()
 
     def get_settings(self):
         try:
@@ -43,15 +43,15 @@ class RapidoApplication:
             # settings.yaml is not mandatory
             return 'no_settings: {}'
 
-    def get_form(self, form_id, ftype='yaml'):
-        path = "forms/%s.%s" % (form_id, ftype)
+    def get_block(self, block_id, ftype='yaml'):
+        path = "blocks/%s.%s" % (block_id, ftype)
         try:
             return self.get_resource(path)
         except KeyError:
             if ftype == "yaml":
-                return 'id: %s' % form_id
+                return 'id: %s' % block_id
             else:
-                raise KeyError('%s.%s' % (form_id, ftype))
+                raise KeyError('%s.%s' % (block_id, ftype))
 
     def get_resource_directory(self):
         theme = getCurrentTheme()
