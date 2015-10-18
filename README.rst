@@ -67,22 +67,22 @@ needed.
 The app components are `blocks`. A block is a set of 3 files (HTML, Python,
 and YAML files) located in the ``blocks`` folder.
 
-The **YAML file** defines the fields. A field is any dynamically generated
+The **YAML file** defines the elements. An element is any dynamically generated
 element in a block, it can be a form field (input, select, etc.), but
 also a button (``ACTION``), or even just a piece of generated HTML (``BASIC``).
 
 The **HTML file** contains the layout of the block. The templating mechanism is
-super simple, fields are just enclosed in brackets, like this: ``{my_field}``.
+super simple, elements are just enclosed in brackets, like this: ``{my_element}``.
 
 The **Python file** contains the application logic. It is a set of functions
-which names refer to the field or the event they are related to.
+which names refer to the element or the event they are related to.
 
-For a ``BASIC`` field for instance, we are supposed to provide a function having
-the same name as the field, its returned value will be inserted in the block at
-the location of the field.
+For a ``BASIC`` element for instance, we are supposed to provide a function having
+the same name as the element, its returned value will be inserted in the block at
+the location of the element.
 
 For an ``ACTION``, we are supposed to provide a function having the same name as
-the field, it will be executed when a user clicks on the action button.
+the element, it will be executed when a user clicks on the action button.
 
 Here is a basic example:
 
@@ -90,7 +90,7 @@ Here is a basic example:
 
     id: simpleblock
     title: A simple block
-    fields:
+    elements:
         result:
             type: BASIC
         do_something:
@@ -135,7 +135,7 @@ rapido/myapp/blocks/simpleblock.yaml::
     id: simpleblock
     title: A simple block
     target: ajax
-    fields:
+    elements:
         result:
             type: BASIC
         do_something:

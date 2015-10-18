@@ -1,4 +1,4 @@
-fields:
+elements:
     create:
         type: ACTION
         label: Create a quote

@@ -72,7 +72,7 @@ class ActionExecutor(object):
             )
             return True
         block = app.get_block(self.element.block)
-        block.compute_field(self.element.method, {'block': block})
+        block.compute_element(self.element.method, {'block': block})
         return True
 
 
