@@ -29,16 +29,16 @@ theming tool**.
 It implies it can be achieved in the *file system* (in the /static folder like
 the rest of the theming elements), or through the theming *inline editor*.
 
-The rapido applications are just a piece of our current theme, they can be
+A Rapido applications are just a piece of our current theme, it can be
 imported, exported, copied, modified, etc. like the rest of the theme.
 
 Moreover, we can use `Diazo <http://docs.diazo.org/en/latest/>`_ extensively to
 inject our application in the Plone layout easily.
 
-Creating a rapido app
+Creating a Rapido app
 =====================
 
-Here are the basic steps to create a rapido app:
+Here are the basic steps to create a Rapido app:
 
 - go to the theme folder (``static`` folder in the theme module if we want to
   work in thefile system, or in Plone setup / Theme if we prefer inline),
@@ -64,15 +64,16 @@ Here is a typical layout for a rapido app::
 Note: ``settings.yaml`` is not mandatory, it allows to define access rights if
 needed.
 
-The app components are `blocks`. A block is a set of 3 files (HTML, Python,
-and YAML files) located in the ``blocks`` folder.
+The app components are `blocks`. A block is defined by a set of 3 files (HTML,
+Python, and YAML files) located in the ``blocks`` folder.
 
 The **YAML file** defines the elements. An element is any dynamically generated
 element in a block, it can be a form field (input, select, etc.), but
 also a button (``ACTION``), or even just a piece of generated HTML (``BASIC``).
 
 The **HTML file** contains the layout of the block. The templating mechanism is
-super simple, elements are just enclosed in brackets, like this: ``{my_element}``.
+super simple, elements are just enclosed in brackets, like this:
+``{my_element}``.
 
 The **Python file** contains the application logic. It is a set of functions
 which names refer to the element or the event they are related to.
@@ -147,7 +148,7 @@ page.
 
 Instead of adding a block to an existing Plone view, we might need to provide a
 new rendering, answering for a specific URL.
-We can do that by adding ``@@rapido/view`` to the content URL. it will just
+We can do that by adding ``@@rapido/view`` to the content URL. It will just
 display the default view of our content, but it allows us to define a specific
 Diazo rule for this path::
 
@@ -163,7 +164,7 @@ cases (like ``path_to_content/@@rapido/view/subscribe``, ``path_to_content/@@rap
 
 Note: adding a lot of rapido rules in our main ``rules.xml`` is not ideal.
 We might prefer to create a ``rules.xml`` file into our ``rapido/myapp``
-folder, and include in in our main ``rules.xml`` file like this::
+folder, and include it in our main ``rules.xml`` file like this::
 
     <xi:include href="rapido/myapp/rules.xml" />
 
@@ -207,20 +208,63 @@ Note: Souper is designed to store (and index) huge amounts of small data (it can
 easily store survey results, comments, ratings, etc., but it will not be
 appropriate for attached files for instance)
 
+The Rapido storage service stores **records**, and records contain **items**.
+
+There are 3 ways to create records in Rapido:
+- we can create records by submitting a block: if a
+  block contain some fields elements (like `TEXT` or `NUMBER` elements for
+  instance), and if the block contains a save button (by adding `{_save}` in its
+  layout), everytime the user will enter values in the fields and click save,
+  the submitted values will be saved in a new record,
+- we can create records by code::
+    
+    record = context.app.create_record(id='myrecord')
+
+- we can create records using the Rapido JSON REST API::
+
+
+The same goes for accessing data:
+- we can display records by calling their URL, and they will be rendered using
+  the block they have been created with:
+
+    /@@rapido/myapp/record/myrecord
+
+- we can get a record by code::
+
+    record = context.app.get_record(id='myrecord')
+    some_records = context.app.search('author=="JOSEPH CONRAD"')
+
+- we can get records using the Rapido JSON REST API::
+
+
+Integration in Plone
+====================
+
+In addition to the Diazo injection of Rapido blocks in our theme, we can also
+integrate our Rapido developments in Plone using:
+
+- Mosaic: Rapido provides a Mosaic tile which enable to insert a Rapido block in
+  our page layout.
+
+- Content Rules: Rapido provides a Plone content rule action allowing to call a
+  Python function from a block when a given Plone event happens.
+
+
 Installation
 ============
 
-Rapido packages are not released yet, plus it depends on a unmerged PR in Diazo.
+Rapido packages are not released yet, plus it depends on an unmerged PR in
+Diazo.
 So for now, we need to checkout the following repositories::
 
     auto-checkout =
-    rapido.core
-    rapido.plone
-    rapido.souper
-    diazo
+        rapido.core
+        rapido.plone
+        rapido.souper
+        diazo
 
     [sources]
     rapido.core = git https://github.com/plomino/rapido.core.git
     rapido.plone = git https://github.com/plomino/rapido.plone.git
     rapido.souper = git https://github.com/plomino/rapido.souper.git
-    diazo = git https://github.com/plone/diazo.git branch=include-content-review
+    diazo = git https://github.com/plone/diazo.git branch=include-content-refactor
