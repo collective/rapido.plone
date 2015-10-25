@@ -36,15 +36,15 @@ class RapidoView(BrowserView):
 
     def json(self, path=None):
         if not path:
-            path = self.path[1:]
+            path = self.path
         app_id = path[0]
         if len(path) > 0:
             path = path[1:]
         else:
             path = None
-        app = get_app(app_id, self.request)
-        method = getattr(IRest(app), self.method)
         try:
+            app = get_app(app_id, self.request)
+            method = getattr(IRest(app), self.method)
             return method(path, self.request.get('BODY'))
         except NotAllowed:
             self.request.response.setStatus(403)
@@ -62,16 +62,16 @@ class RapidoView(BrowserView):
             # but it gives the opportunity to create specific pseudo views
             # via our Diazo rules.xml
             return self.context()
-        elif self.path[0] == 'json':
+
+        self.request.response.setHeader('X-Theme-Disabled', '1')
+        if self.request.getHeader('Accept') == "application/json":
             result = self.json()
-            self.request.response.setHeader('X-Theme-Disabled', '1')
-            if len(self.path) == 2:
+            if len(self.path) == 1:
                 self.request.response.setHeader('X-CSRF-TOKEN', createToken())
             self.request.response.setHeader('content-type', 'application/json')
             return json.dumps(result)
         else:
             result = self.content()
-            self.request.response.setHeader('X-Theme-Disabled', '1')
             return result
 
     def __contains__(self, name):

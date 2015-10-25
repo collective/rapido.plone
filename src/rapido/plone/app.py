@@ -18,11 +18,8 @@ class RapidoApplication:
         self.available_rules = {}
         self.resources = self.get_resource_directory()
 
-    def url(self, rest=False):
-        if rest:
-            url_format = "%s/@@rapido/json/%s"
-        else:
-            url_format = "%s/@@rapido/%s"
+    def url(self):
+        url_format = "%s/@@rapido/%s"
         return url_format % (
             api.portal.get().absolute_url(),
             self.id,
