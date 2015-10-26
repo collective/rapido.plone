@@ -178,7 +178,7 @@ Fist, let's change the block layout in `rate.html`:
 .. code:: html
 
     <p>{display}</p>
-    <p></p><i>If you like what you read, say it! {like}</i></p>
+    <p><i>If you like what you read, say it! {like}</i></p>
 
 So we have now a new `display` element in our block.
 
