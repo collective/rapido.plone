@@ -75,7 +75,6 @@ The `rate.yaml` file:
 
 .. code:: yaml
 
-    id: rate
     elements:
         like:
             type: ACTION
@@ -126,7 +125,6 @@ Let's just change our `rate.yaml` file like this:
 
 .. code:: yaml
 
-    id: rate
     target: ajax
     elements:
         like:
@@ -188,7 +186,6 @@ Let's declare it in `rate.yaml`:
 
 .. code:: yaml
 
-    id: rate
     target: ajax
     elements:
         like:

@@ -268,6 +268,10 @@ Rapido packages are not released yet, plus it depends on an unmerged PR in
 Diazo.
 So for now, we need to checkout the following repositories::
 
+    eggs =
+        ...
+        rapido.plone
+
     auto-checkout =
         rapido.core
         rapido.plone
