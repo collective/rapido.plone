@@ -222,13 +222,13 @@ There are 3 ways to create records in Rapido:
 
 - we can create records using the Rapido JSON REST API::
 
-    POST /<site_id>/@@rapido/<app_id>
+    POST /:site_id/@@rapido/:app_id
     Accept: application/json
     {'item1': 'value1'}
 
   or::
 
-    PUT /<site_id>/@@rapido/<app_id>/record/<record_id>
+    PUT /:site_id/@@rapido/:app_id/record/:record_id
     Accept: application/json
     {'item1': 'value1'}
 
@@ -245,7 +245,7 @@ The same goes for accessing data:
 
 - we can get records using the Rapido JSON REST API::
 
-    GET /<site_id>/@@rapido/<app_id>/record/<record_id>
+    GET /:site_id/@@rapido/:app_id/record/:record_id
     Accept: application/json
 
 Integration in Plone
