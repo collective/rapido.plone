@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
-# rapido documentation build configuration file, created by
-# sphinx-quickstart on Wed Oct 28 21:15:32 2015.
+# Rapido documentation build configuration file, created by
+# sphinx-quickstart on Thu Oct 29 00:27:15 2015.
 #
 # This file is execfile()d with the current directory set to its containing dir.
 #
@@ -12,13 +12,6 @@
 # serve to show the default.
 
 import sys, os
-
-on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
-
-if not on_rtd:  # only import and set the theme if we're building docs locally
-    import sphinx_rtd_theme
-    html_theme = 'sphinx_rtd_theme'
-    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -100,10 +93,17 @@ pygments_style = 'sphinx'
 # a list of builtin themes.
 # html_theme = 'default'
 
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+
+if not on_rtd:  # only import and set the theme if we're building docs locally
+    import sphinx_rtd_theme
+    html_theme = 'sphinx_rtd_theme'
+    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-# html_theme_options = {}
+#html_theme_options = {}
 
 # Add any paths that contain custom themes here, relative to this directory.
 #html_theme_path = []
@@ -171,7 +171,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'rapidodoc'
+htmlhelp_basename = 'Rapidodoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -190,8 +190,8 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'rapido.tex', u'rapido Documentation',
-   u'Eric BREHAULT', 'manual'),
+  ('index', 'Rapido.tex', u'Rapido Documentation',
+   u'Makina Corpus', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -220,8 +220,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'rapido', u'rapido Documentation',
-     [u'Eric BREHAULT'], 1)
+    ('index', 'rapido', u'Rapido Documentation',
+     [u'Makina Corpus'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -234,8 +234,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'rapido', u'rapido Documentation',
-   u'Eric BREHAULT', 'rapido', 'One line description of project.',
+  ('index', 'Rapido', u'Rapido Documentation',
+   u'Makina Corpus', 'Rapido', 'One line description of project.',
    'Miscellaneous'),
 ]
 
