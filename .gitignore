@@ -16,3 +16,4 @@ var/
 dist/
 buildout-cache
 local/
+docs/_build

@@ -1,5 +1,5 @@
-Rapido tutorial
-===============
+Tutorial
+========
 
 How to build a content rating system in Plone in 5 minutes
 
@@ -12,7 +12,7 @@ Plone content, and the total of votes must be displayed next to the button.
 Prerequisites
 -------------
 
-Run buildout to deploy Rapido and its dependencies (see README).
+Run buildout to deploy Rapido and its dependencies (see :doc:`./installation`).
 
 Install the `rapido.plone` add-on from Plone site setup.
 
@@ -24,6 +24,7 @@ We go to Plone Site setup, and then Theming.
 If our current active theme is not editable inline through the Plone web
 interface (i.e. there is no "Modify theme" button), we will first need to create
 an editable copy:
+
 - click on "Copy",
 - enter a name,
 - check "Immediately enable new theme".
@@ -34,6 +35,7 @@ We can see our theme structure, containing CSS files, images, HTML, and Diazo
 rules.
 
 To initialize our Rapido app named "rating", we need to:
+
 - create a folder maned `rapido` in the theme root,
 - in this `rapido` folder, create a folder named `rating`.
 
@@ -44,13 +46,14 @@ Creating the "Like" button
 
 Rapido apps are composed of **blocks**. Let's create a block that will render
 our button:
+
 - go to the `rating` folder and create a new folder named `blocks`,
 - in this `blocks` folder, let's create a new block named `rate`. It implies to
   create 3 files:
 
 The `rate.html` file:
 
-.. code:: html
+.. code-block:: html
 
     <i>If you like what you read, say it! {like}</i>
 
@@ -60,7 +63,7 @@ one element, noted `{like}`, in charge of rendering the "Like" button.
 
 The `rate.py` file
 
-.. code:: python
+.. code-block:: python
 
     def like(context):
         # nothing for now
@@ -73,7 +76,7 @@ Right now, it makes nothing, but we will change it later.
 
 The `rate.yaml` file:
 
-.. code:: yaml
+.. code-block:: yaml
 
     elements:
         like:
@@ -97,7 +100,7 @@ To include our block somewhere in Plone, we will use a Diazo rule.
 Let's open our `rules.xml` file in the root of our theme, and add the following
 lines:
 
-.. code:: xml
+.. code-block:: xml
 
     <after css:content=".documentFirstHeading">
         <include css:content="form" href="/@@rapido/rating/block/rate" />
@@ -123,7 +126,7 @@ enable to **AJAX** mode.
 
 Let's just change our `rate.yaml` file like this:
 
-.. code:: yaml
+.. code-block:: yaml
 
     target: ajax
     elements:
@@ -147,7 +150,7 @@ and we will use the content path as an id.
 
 So let's repalce our current implementation with:
 
-.. code:: python
+.. code-block:: python
 
     def like(context):
         content_path = context.content.absolute_url_path()
@@ -175,7 +178,7 @@ We are able to store votes, we want now to display the total of votes.
 
 Fist, let's change the block layout in `rate.html`:
 
-.. code:: html
+.. code-block:: html
 
     <p>{display}</p>
     <p><i>If you like what you read, say it! {like}</i></p>
@@ -184,7 +187,7 @@ So we have now a new `display` element in our block.
 
 Let's declare it in `rate.yaml`:
 
-.. code:: yaml
+.. code-block:: yaml
 
     target: ajax
     elements:
@@ -196,7 +199,7 @@ Let's declare it in `rate.yaml`:
 
 And let's implement it in `rate.py`:
 
-.. code:: python
+.. code-block:: python
 
     def display(context):
         content_path = context.content.absolute_url_path()

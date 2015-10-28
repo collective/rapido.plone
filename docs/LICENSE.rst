@@ -1,4 +1,7 @@
-bobtemplates.plone Copyright 2015, Eric BREHAULT
+License
+=======
+
+Rapido Copyright 2015, Makina Corpus - Eric BREHAULT
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

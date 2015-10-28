@@ -24,7 +24,7 @@ Those files have the same filename (which is the block id) with the extensions
 The .html file contains the layout of the block. It is regular html, and dynamic
 elements are enclosed in brackets. Example:
 
-..code:: html
+.. code-block:: html
 
     <p>This is a dynamic message: {message}</p>
 
@@ -81,7 +81,7 @@ root folder.
 
 The expected format is:
 
-..code:: yaml
+.. code-block:: yaml
 
     acl:
       rights:
