@@ -14,7 +14,7 @@ Prerequisites
 
 Run buildout to deploy Rapido and its dependencies (see :doc:`./installation`).
 
-Install the `rapido.plone` add-on from Plone site setup.
+Install the ``rapido.plone`` add-on from Plone site setup.
 
 Initializing the Rapido app
 ---------------------------
@@ -36,8 +36,8 @@ rules.
 
 To initialize our Rapido app named "rating", we need to:
 
-- create a folder maned `rapido` in the theme root,
-- in this `rapido` folder, create a folder named `rating`.
+- create a folder maned ``rapido`` in the theme root,
+- in this ``rapido`` folder, create a folder named ``rating``.
 
 The application is now ready.
 
@@ -47,11 +47,11 @@ Creating the "Like" button
 Rapido apps are composed of **blocks**. Let's create a block that will render
 our button:
 
-- go to the `rating` folder and create a new folder named `blocks`,
-- in this `blocks` folder, let's create a new block named `rate`. It implies to
+- go to the ``rating`` folder and create a new folder named ``blocks``,
+- in this ``blocks`` folder, let's create a new block named ``rate``. It implies to
   create 3 files:
 
-The `rate.html` file:
+The ``rate.html`` file:
 
 .. code-block:: html
 
@@ -59,9 +59,9 @@ The `rate.html` file:
 
 It allows us to implement the block layout. It is a regular HTML file, but it
 may contain Rapido **elements**, enclosed in brackets. In our case, we have
-one element, noted `{like}`, in charge of rendering the "Like" button.
+one element, noted ``{like}``, in charge of rendering the "Like" button.
 
-The `rate.py` file
+The ``rate.py`` file
 
 .. code-block:: python
 
@@ -74,7 +74,7 @@ corresponding Python function having the same id.
 In our case, that is the code that will be executed when a user click on "Like".
 Right now, it makes nothing, but we will change it later.
 
-The `rate.yaml` file:
+The ``rate.yaml`` file:
 
 .. code-block:: yaml
 
@@ -84,7 +84,7 @@ The `rate.yaml` file:
             label: Like
 
 This file contains all the needed settings for our block. Here we declare our
-block contains one element named `like`, which is an **action** (i.e. it will
+block contains one element named ``like``, which is an **action** (i.e. it will
 be rendered as a button), and its displayed label is "Like".
 
 Now our block is ready, we can see it using the following URL:
@@ -97,7 +97,7 @@ Inserting the block in Plone pages
 ----------------------------------
 
 To include our block somewhere in Plone, we will use a Diazo rule.
-Let's open our `rules.xml` file in the root of our theme, and add the following
+Let's open our ``rules.xml`` file in the root of our theme, and add the following
 lines:
 
 .. code-block:: xml
@@ -106,8 +106,8 @@ lines:
         <include css:content="form" href="/@@rapido/rating/block/rate" />
     </after>
 
-The `include` directive allows to retrieve a piece of content, in our case, the
-HTML form produces by our block. And the `after` directive inserts it after the
+The ``include`` directive allows to retrieve a piece of content, in our case, the
+HTML form produces by our block. And the ``after`` directive inserts it after the
 main title in our page.
 
 So, now if we visit any page of our Plone site, we see our block displayed just
@@ -124,7 +124,7 @@ Keeping in our Plone page
 If we want to keep in our current page after submitting our block, we need to
 enable to **AJAX** mode.
 
-Let's just change our `rate.yaml` file like this:
+Let's just change our ``rate.yaml`` file like this:
 
 .. code-block:: yaml
 
@@ -140,7 +140,7 @@ and we keep in our current page.
 Counting the votes
 ------------------
 
-Let's go back to `rate.py`, and focus on the `like` function implementation.
+Let's go back to ``rate.py``, and focus on the ``like`` function implementation.
 
 When a user clicks on the "Like" button, we need to get the current content the
 user voted for, check how many votes it already has, and add one new vote.
@@ -161,13 +161,13 @@ So let's repalce our current implementation with:
         total += 1
         record.set_item('total', total)
 
-`context.content` returns the current Plone content, and `absolute_url_path` is
+``context.content`` returns the current Plone content, and ``absolute_url_path`` is
 a Plone method returning the path of a Plone object.
 
-`context.app` allows to access to the current Rapido app, so we can easily use
-the Rapido API, like `create_record` or `get_record`.
+``context.app`` allows to access to the current Rapido app, so we can easily use
+the Rapido API, like ``create_record`` or ``get_record``.
 
-A Rapido record contains **items**. The `get_item(item, default=None)` method
+A Rapido record contains **items**. The ``get_item(item, default=none)`` method
 returns the value of the requested item or the default value if the item does
 not exist.
 
@@ -176,16 +176,16 @@ Displaying the votes
 
 We are able to store votes, we want now to display the total of votes.
 
-Fist, let's change the block layout in `rate.html`:
+Fist, let's change the block layout in ``rate.html``:
 
 .. code-block:: html
 
     <p>{display}</p>
     <p><i>If you like what you read, say it! {like}</i></p>
 
-So we have now a new `display` element in our block.
+So we have now a new ``display`` element in our block.
 
-Let's declare it in `rate.yaml`:
+Let's declare it in ``rate.yaml``:
 
 .. code-block:: yaml
 
@@ -197,7 +197,7 @@ Let's declare it in `rate.yaml`:
         display:
             type: BASIC
 
-And let's implement it in `rate.py`:
+And let's implement it in ``rate.py``:
 
 .. code-block:: python
 

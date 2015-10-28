@@ -4,20 +4,21 @@ Rapido reference
 Application
 -----------
 
-A Rapido application is defined by a folder in the `rapido` folder in the
+A Rapido application is defined by a folder in the ``rapido`` folder in the
 current theme.
 
-The application folder might contain a `settings.yaml` file in its root to
+The application folder might contain a ``settings.yaml`` file in its root to
 define its access control settings (see below), but that is not mandatory.
 
-It always contain a `blocks` folder containing its blocks (see below).
+It always contain a ``blocks`` folder containing its blocks (see below).
 
 It might also contain regular theme items (rules.xml, CSS, Javascript, etc.).
 
 Blocks
 ------
 
-A block is defined by 3 files stored in the `blocks` folder of the application.
+A block is defined by 3 files stored in the ``blocks`` folder of the
+application.
 Those files have the same filename (which is the block id) with the extensions
 .html, .py and .yaml.
 
@@ -28,44 +29,70 @@ elements are enclosed in brackets. Example:
 
     <p>This is a dynamic message: {message}</p>
 
-When rendered, the block layout is wrapped in an HTML `<form>` element.
+When rendered, the block layout is wrapped in an HTML ``<form>`` element.
 
 Note: the layout can contain Mockup patterns markup, they will be rendered as
 expected.
 
 The .yaml file contains:
 - the elements settings (see below),
-- the `target` option: if set to `ajax`, any action in the block resulting in a
+- the ``target`` option: if set to ``ajax``, any action in the block resulting in a
 form submission will not redirect the current page, it will just refresh the 
 block content through an AJAX call.
 
 The .py file contains the implementation of each element as a Python function
-which name is the element id, and taking `context` as parameter.
+which name is the element id, and taking ``context`` as parameter.
 
 Elements
 --------
 
-There are different types of elements (defined by the `type` parameter):
+There are different types of elements (defined by the ``type`` parameter):
 
-- `BASIC`: a piece of HTML returned by its implementation function.
-- `ACTION`: a button that will execute the implementation function when clicked.
-  Its label is provided by the `label` parameter.
-- `TEXT`: a text input field.
-- `NUMBER`: a number input field.
-- `DATETIME`: a date/time input field.
+- ``BASIC``: a piece of HTML returned by its implementation function.
+- ``ACTION``: a button that will execute the implementation function when clicked.
+  Its label is provided by the ``label`` parameter.
+- ``TEXT``: a text input field.
+- ``NUMBER``: a number input field.
+- ``DATETIME``: a date/time input field.
 
-Input elements (i.e. `TEXT`, `NUMBER`, or `DATETIME`) can be indexed as `field`
-(matching exact value, and allowing sorting and compairison), or `text` (
-indexing words). Indexing is indicated using the `index_type` parameter.
+Input elements (i.e. ``TEXT``, ``NUMBER``, or ``DATETIME``) can be indexed as ``field``
+(matching exact value, and allowing sorting and compairison), or ``text`` (
+indexing words). Indexing is indicated using the ``index_type`` parameter.
 
-Python API
-----------
+Associated Python functions
+---------------------------
+
+For a ``BASIC`` element, the associated Python function (having the same id)
+will return the content of the element.
+
+For field elements (``TEXT``, ``NUMBER``, ``DATETIME``), the associated Python
+function will return its default value.
+
+For an ``ACTION`` element, the associated Python function will be executed when
+the action is triggered.
 
 Specific actions
 ----------------
 
+The following actions can included in our block HTML layout, and they will not
+require an associated Python function:
+
+- ``_save``: will create a record based on the field elements submitted values
+  and then redirect to the record display in read mode;
+- ``_edit``: will open the current record in edit mode;
+- ``_delete``: will delete the current record.
+
 Specific Python functions
 -------------------------
+
+If the block's Python file contains a function named ``on_save``, it will be
+executed when a block record is saved.
+
+If the block's Python file contains a function named ``on_delete``, it will be
+executed when a block record is deleted.
+
+Python API
+----------
 
 REST API
 --------
@@ -76,7 +103,7 @@ Import/export
 Access control
 --------------
 
-The access control settings are managed in the `settings.yaml` file in the app
+The access control settings are managed in the ``settings.yaml`` file in the app
 root folder.
 
 The expected format is:
