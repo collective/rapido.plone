@@ -31,7 +31,13 @@ class RapidoApplication:
 
     @property
     def blocks(self):
-        return self.resources['blocks'].listDirectory()
+        ids = []
+        files = self.resources['blocks'].listDirectory()
+        for filename in files:
+            id = filename.rpartition('.')[0]
+            if id not in ids:
+                ids.append(id)
+        return ids
 
     def get_settings(self):
         try:
