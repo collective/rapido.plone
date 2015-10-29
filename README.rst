@@ -26,8 +26,8 @@ How?
 The unique interface to build applications with rapido.plone is the **Plone
 theming tool**.
 
-It implies it can be achieved in the *file system* (in the /static folder like
-the rest of the theming elements), or through the theming *inline editor*.
+It implies it can be achieved in the *file system* or through the theming
+*inline editor*.
 
 A Rapido application is just a piece of our current theme, it can be
 imported, exported, copied, modified, etc. like the rest of the theme.
@@ -38,4 +38,4 @@ inject our application in the Plone layout easily.
 Documentation
 =============
 
-See the full `Rapido documentation <http://http://rapido.readthedocs.org/en/latest/>`_.
+See the full `Rapido documentation <http://rapidoplone.readthedocs.org/en/latest/>`_.

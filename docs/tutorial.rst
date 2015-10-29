@@ -185,7 +185,7 @@ Fist, let's change the block layout in ``rate.html``:
 
 So we have now a new ``display`` element in our block.
 
-Let's declare it in ``rate.yaml``:
+We must declare it in ``rate.yaml``:
 
 .. code-block:: yaml
 
@@ -212,3 +212,81 @@ We get the record corresponding to the current content, and we return as many ‚ù
 as votes we have stored.
 
 That's it! Our rating feature is ready to be used.
+
+Listing the top 5 contents
+--------------------------
+
+We would also like to see the top 5 rated contents on the site home page.
+
+First we need is to index the ``total`` element.
+
+We declare its indexing mode in ``rate.yaml``:
+
+.. code-block:: yaml
+
+    target: ajax
+        elements:
+            like:
+                type: ACTION
+                label: Like
+            display:
+                type: BASIC
+            total:
+                type: NUMBER
+                index_type: field
+
+And then we have to refresh the storage index by calling the following URL::
+
+    http://localhost:8080/Plone/@@rapido/rating/refresh
+
+We are now able to build a block to display the top 5 contents:
+
+- ``top5.html``:
+
+.. code-block:: html
+
+    <h3>Our current Top 5!</h3>
+    {top}
+
+- ``top5.yaml``:
+
+.. code-block:: yaml
+
+    elements:
+        top:
+            type: BASIC
+
+- ``top5.py``:
+
+.. code-block:: python
+
+    def top(context):
+        search = context.app.search("total>0", sort_index="total", reverse=True)[:5]
+        html = "<ul>"
+        for record in search:
+            content = context.api.content.get(path=record.get_item("id"))
+            html += '<li><a href="%s">%s</a> %d ‚ù§</li>' % (
+                content.absolute_url(),
+                content.title,
+                record.get_item("total")) 
+        html += "</ul>"
+        return html
+
+The ``search`` method allows to query our stored records. The record ids are
+the contents pathes, so using the Plone API (``context.api``), we can easily
+get the corresponding contents, and then obtain their URLs and titles.
+
+Our block works now::
+
+    http://localhost:8080/tutorial/@@rapido/rating/block/top5
+
+Finally, we have to insert our block in the home page. That will be done in
+``rules.xml``:
+
+.. code-block:: xml
+
+    <rules css:if-content=".section-front-page">
+        <before css:content=".documentFirstHeading">
+            <include css:content="form" href="/@@rapido/rating/block/top5" />
+        </before>
+    </rules>
