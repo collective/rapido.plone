@@ -157,11 +157,61 @@ We can also reindex all the records using the ``refresh`` URL command::
 
 or using the REST API (see :doc:`./rest`).
 
-Import/export
--------------
+Import/export and source management
+-----------------------------------
+
+Rapido applications are implemented in the `/rapido` folder of a Diazo theme.
+So all the known development procedures for theming apply to Rapido
+development.
+
+**ZIP import/export**
+
+The Plone theming editor allows to export a Diazo theme as a ZIP file, or to
+import a new theme from a ZIP file.
+
+That is the way we will import/export our Rapido applications between our sites.
+
+**Direct source editing**
+
+We might also store our Diazo themes on our server in the Plone installation
+folder::
+
+    $INSTALL_FOLDER/resources/theme/my-theme
+
+That way, we can develop our Rapido applications using our usual development
+tools (text editor or IDE, Git, etc.).
+
+**Plone add-on**
+
+We can also create our own Plone add-on (see `Plone documentation <http://docs.plone.org/develop/addons/index.html>`_,
+and `Plone training <http://training.plone.org/5/theming/theme-package.html>`_)
+and manage our Rapido applications in its theme folder.
+
 
 Access control
 --------------
+
+Access control applies to records, not the blocks. Blocks are always accessible,
+if we do not want a block to render an information, we have to implement it in
+its Python file.
+
+Moreover, access control only impacts direct HTTP access to records (like openning
+a record URL, deleting a record from the JSON API, etc.), and it does **not**
+impact what hapens in block Python files.
+
+For instance in the :doc:`./tutorial`, if an anonymous visitor click on the Like
+button on a page nobody had already vote for, the ``like`` function will create
+a record.
+
+But an anonymous visitor would not be able to modify this record or to delete it
+using the JSON API.
+
+The access levels are:
+
+- ``reader``: can read all the records,
+- ``author``: can read all the records, can create records, can modify/delete his
+  own records,
+- ``editor``: can read/modify/delete any record, can create records.
 
 The access control settings are managed in the ``settings.yaml`` file in the app
 root folder.
@@ -172,14 +222,48 @@ The expected format is:
 
     acl:
       rights:
+        reader: [<list of users or groups>]
         author: [<list of users or groups>]
         editor: [<list of users or groups>]
-        manager: [<list of users or groups>]
-        reader: [<list of users or groups>]
       roles: {<role_id>: [<list of users or groups>]}
+
+In the list of users or groups, ``'*'`` means everyone.
+
+Roles are not granting any specific rights on records, they can be defined freely,
+they can be used in our Python functions to change the app behavior depending on
+the user.
+
+For instance, we might have a role named 'PurchaseManager', and if our block we
+would display a "Validate purchase" button if the current user as the
+'PurchaseManager' role.
 
 Content rules
 -------------
 
+Content rules allows to trigger specific actions (for instance, send an email)
+when an given event (for instance, when a new content is created in such folder)
+happens in our Plone site.
+
+Rapido provides a content rule action, so we can execute a Rapido function when
+an given event happens.
+
+The action to take is defined in the Plone content rules editor (see the `Plone content rules documentation <http://docs.plone.org/working-with-content/managing-content/contentrules.html>`_), and requires the following parameter:
+
+- the app id,
+- the block id,
+- the function name.
+
+The ``context.content`` received by the function will be the content where the
+event happened.
+
 Mosaic
 ------
+
+`Mosaic <http://plone-app-mosaic.s3-website-us-east-1.amazonaws.com/latest/>`_
+is a layout editor.
+
+It allows to add and manipulate `tiles` in our content layouts.
+
+Rapido provides a Mosaic tile, so any Rapido block can be displayed in a tile.
+
+The requested information is just the path to the Rapido tile we want to display.

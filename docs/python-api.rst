@@ -19,6 +19,9 @@ This property gives access to the Rapido application object.
 
 *Propeties*
 
+``acl``
+    Returns the Rapido application's access control list object (see below).
+
 ``blocks``
     Returns the existing block ids.
 
@@ -187,3 +190,36 @@ Record
     Set the item value.
 
     Note: it does not reindex it.
+
+Access control list
+-------------------
+
+Note: The application access control list can be obtain by ``context.app.acl``.
+
+**Methods**
+
+``current_user(self)``
+    Returns the current user id.
+    Equivalent to:
+
+..code:: python
+
+    context.api.user.get_current().getUserName()
+
+``current_user_groups(self)``
+    Returns the groups the current user belongs to.
+    Equivalent to:
+
+..code:: python
+
+    api.user.get_current().getGroups()
+
+``has_access_right(self, access_right)``
+    Returns ``True`` if the current user has the specified access right (Rapido
+    access rights are ``reader``, ``author``, ``editor``, ``manager``)
+
+``has_role(self, role_id)``
+    Returns ``True`` if the current user has the specified role.
+
+``roles(self)``
+    Returns the existing roles.
