@@ -70,12 +70,15 @@ enrich the content layout themselves.
 is the perfect solution to manipulate the content layout, we can move existing
 elements (like the title, description, etc.), but also add new ones.
 
+Once a layout is created, it can be exported and copied in our Diazo
+``manifest.cfg`` file so it can be available as a new layout for our users.
+
 Diazo and Mosaic allows us to control entirely how information is displayed
-in  our web site, but it does not allow to change the behavior of Plone, like
+in our web site, but they do not allow to change the behavior of Plone, like
 adding new features, new dynamically computed information, etc.
 
 It can be achieved with Rapido (as explained in :doc:`./tutorial`), with a very
-basic knowledge of HTMl and Python (so still no need to learn about the
+basic knowledge of HTML and Python (so, still, no need to learn about the
 different Plone frameworks).
 
 Our Rapido developments are managed in our existing theme folder, so here again

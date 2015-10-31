@@ -37,6 +37,11 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   easy-plone
+
+.. toctree::
+   :maxdepth: 2
+
    installation
 
 .. toctree::
@@ -52,12 +57,17 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   easy-plone
+   reference
 
 .. toctree::
    :maxdepth: 2
 
-   reference
+   python-api
+
+.. toctree::
+   :maxdepth: 2
+
+   rest
 
 .. toctree::
    :maxdepth: 2

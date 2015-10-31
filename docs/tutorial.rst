@@ -1,7 +1,7 @@
 Tutorial
 ========
 
-How to build a content rating system in Plone in 5 minutes
+How to build a content rating system in Plone in few minutes.
 
 Objective
 ---------
@@ -290,3 +290,10 @@ Finally, we have to insert our block in the home page. That will be done in
             <include css:content="form" href="/@@rapido/rating/block/top5" />
         </before>
     </rules>
+
+Listing all the votes
+---------------------
+
+For now, we have just added small chuncks of HTML in existing page. But Rapido
+also allows to create a new page (a Plone developer would name it a new `view`).
+

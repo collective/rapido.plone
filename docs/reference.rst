@@ -55,9 +55,31 @@ There are different types of elements (defined by the ``type`` parameter):
 - ``NUMBER``: a number input field.
 - ``DATETIME``: a date/time input field.
 
-Input elements (i.e. ``TEXT``, ``NUMBER``, or ``DATETIME``) can be indexed as ``field``
-(matching exact value, and allowing sorting and compairison), or ``text`` (
-indexing words). Indexing is indicated using the ``index_type`` parameter.
+Input elements (i.e. ``TEXT``, ``NUMBER``, or ``DATETIME``) can be indexed as
+``field`` or ``text``. Indexing is indicated using the ``index_type`` parameter.
+
+ By default input elements are editable but they might also have a different
+ ``mode``:
+
+- ``COMPUTED_ON_SAVE``: the value is computed everytime the record is saved,
+- ``COMPUTED_ON_CREATION``: the value is computed when the record is created.
+
+Records
+-------
+
+Rapido records can be created by saving a block containing field elements.
+the value of each submitted elements will be stored in corresponding items.
+
+In that case, the record has an associated block (the block id is stored in an
+item named ``block``), when the record is rendered for display (when we load its
+URL in our browser), it uses the block layout.
+
+Records can also be created manually (without any associated block) using the
+Python API or the REST API. Such records cannot be rendered automatically by
+calling their URL, but their items values can be used in a block if we know how
+to find the record (in the :doc:`./tutorial` for instance, our records are
+created manually from the ``like`` function, they are not associated to the
+``rate`` block, but we use the stored items to produce our elements content).
 
 Associated Python functions
 ---------------------------
@@ -85,17 +107,55 @@ require an associated Python function:
 Specific Python functions
 -------------------------
 
-If the block's Python file contains a function named ``on_save``, it will be
-executed when a block record is saved.
+``on_save``
+    Executed when a record is saved with the block.
 
-If the block's Python file contains a function named ``on_delete``, it will be
-executed when a block record is deleted.
+``on_delete``
+    Executed when a record is deleted.
 
-Python API
-----------
+``record_id``
+    Executed at creation time to compute the record id.
 
-REST API
---------
+``title``
+    Executed when a record is saved to compute the record ``title`` item.
+
+Indexing and searching
+----------------------
+
+The Rapido storage system (`souper <https://github.com/bluedynamics/souper>`_)
+supports indexing.
+
+Any block element can be indexed by adding a ``index_type`` setting in its YAML
+definition.
+
+The ``index_type`` setting can have two possible values:
+
+- ``field``: such index matches exact values, and support comparison queries,
+  range queries, and sorting.
+- ``text``: such index matches contained words (applicable for text values only).
+
+Queries use the *CQE format* (`see documentation <http://docs.repoze.org/catalog/usage.html#query-objects>`_.
+
+Example (assuming `author`, `title` and `price` are existing indexes):
+
+..code:: python
+
+    context.app.search(
+        "author == 'Conrad' and 'Lord Jim' in title",
+        sort_index="price")
+
+Records are indexed at the time they are saved. We can force reindexing using
+the Python API:
+
+..code:: python
+
+    myrecord.reindex()
+
+We can also reindex all the records using the ``refresh`` URL command::
+
+    http://localhost:8080/Plone/@@rapido/<app-id>/refresh
+
+or using the REST API (see :doc:`./rest`).
 
 Import/export
 -------------
