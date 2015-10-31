@@ -78,6 +78,11 @@ class RapidoApplication:
         member = api.user.get_current()
         return member.getGroups()
 
+    def is_manager(self):
+        if 'Manager' in api.user.get_roles():
+            return True
+        return False
+
 
 def get_app(app_id, request):
     portal = api.portal.get()
