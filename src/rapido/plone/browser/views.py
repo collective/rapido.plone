@@ -1,4 +1,5 @@
 import json
+from plone.protect import CheckAuthenticator
 from plone.protect.authenticator import createToken
 from Products.Five.browser import BrowserView
 from zope.interface import implements
@@ -44,6 +45,8 @@ class RapidoView(BrowserView):
             path = None
         try:
             app = get_app(app_id, self.request)
+            if self.method not in ["GET", "OPTIONS"]:
+                CheckAuthenticator(self.request)
             method = getattr(IRest(app), self.method)
             return method(path, self.request.get('BODY'))
         except NotAllowed:

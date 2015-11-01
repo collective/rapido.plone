@@ -14,7 +14,9 @@ REST API
 
 Returns the Rapido application settings and set a token in the
 ``X-CSRF-TOKEN`` HTTP header value.
-This HTTP header will have to be reused in all the request made to the API.
+
+This HTTP header will have to be reused in all the requests made to the API (but
+for GET requests).
 
 **Request**
 ::
