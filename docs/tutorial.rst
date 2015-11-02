@@ -6,7 +6,7 @@ How to build a content rating system in Plone in few minutes.
 Objective
 ---------
 
-We want to offer tor our visitors the ability to click on "Like" button on any
+We want to offer to our visitors the ability to click on "Like" button on any
 Plone content, and the total of votes must be displayed next to the button.
 
 Prerequisites
@@ -291,9 +291,156 @@ Finally, we have to insert our block in the home page. That will be done in
         </before>
     </rules>
 
-Listing all the votes
----------------------
+Creating a new page for reports
+-------------------------------
 
-For now, we have just added small chuncks of HTML in existing page. But Rapido
+For now, we have just added small chuncks of HTML in existing pages. But Rapido
 also allows to create a new page (a Plone developer would name it a new `view`).
 
+Let's imagine we want to create a report page about a folder's contents votes.
+
+First, we need a block, ``report.html``:
+
+.. code-block:: html
+
+    <h2>Rating report</h2>
+    <div id="chart"></div>
+
+We want this block to be the main content of a new view.    
+We will do that with a **neutral view** (see :doc:`./reference/display`).
+By adding ``@@rapido/view/<any-name>`` to a content URL we get the content's
+default view, and using a Diazo rule, we will replace the default content with
+our block:
+
+.. code-block:: xml
+
+    <rules if-path="@@rapido/view/show-report">
+        <replace css:content="#content">
+            <include css:content="form" href="/@@rapido/rating/block/report" />
+        </replace>      
+    </rules>
+
+Now if we visit for instance::
+
+    http://localhost:8080/tutorial/news/@@rapido/view/show-report
+
+we do see our block instead of the regular News page content.
+
+Now we need to implement our report content. We could do it with a Rapido element
+like we did in the Top 5 block.
+
+Let's change our approach and implement a fancy pie chart using the `amazing D3js library <http://d3js.org/>`_ and the :doc:`Rapido REST API <./rest>`.
+
+We need to create a Javascript file (``report.js``) in the ``/rapido/rating``
+folder:
+
+.. code-block:: javascript
+
+    require(['mockup-utils', '//d3js.org/d3.v3.min.js'], function(utils, d3) {
+        var authenticator = utils.getAuthenticator();
+        var local_folder_path = location.pathname.split('/@@rapido')[0];
+        var width = 960,
+            height = 500,
+            radius = Math.min(width, height) / 2;
+        
+        var arc = d3.svg.arc()
+            .outerRadius(radius - 10)
+            .innerRadius(0);
+        
+        var pie = d3.layout.pie()
+            .sort(null)
+            .value(function(d) { return d.value; });
+        
+        var svg = d3.select("#chart").append("svg")
+            .attr("width", width)
+            .attr("height", height)
+          .append("g")
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+        d3.json("../../@@rapido/rating/search")
+        .header("X-Csrf-Token", authenticator)
+        .post(
+            JSON.stringify({"query": "total>0"}),
+            function(err, results) {
+                console.log(results);
+                var data = [];
+                var color = d3.scale.linear().domain([0,results.length]).range(["#005880","#9abdd6"]);
+                var index = 0;
+                results.forEach(function(d) {
+                    if(d.items.id.startsWith(local_folder_path)) {
+                        var label = d.items.id.split('/')[d.items.id.split('/').length - 1];
+                        data.push({
+                            'i': index,
+                            'value': d.items.total,
+                            'label': label
+                        });
+                        index += 1;
+                    }
+                });
+                var g = svg.selectAll(".arc")
+                  .data(pie(data))
+                .enter().append("g")
+                  .attr("class", "arc");
+                
+                g.append("path")
+                  .attr("d", arc)
+                  .style("fill", function(d) { return color(d.data.i); });
+                
+                g.append("text")
+                  .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+                  .attr("dy", ".35em")
+                  .style("text-anchor", "middle")
+                  .text(function(d) { return d.data.label; })
+                  .style("fill", "white");
+            }
+        );
+    });
+
+That is a quite complex script, and we will not detailed here the D3js related
+aspects (it is just a typical example to draw a pie chart), but we will focus on
+the way we obtain the data.
+
+The first thing to notice is the ``require`` function, it is a feature of the
+RequireJS library (provided with Plone be default) to load our dependencies.
+
+We have 2 dependencies:
+
+- ``mockup-utils``, which is a Plone internal resource,
+- D3js (and we load it by passing its remote URL to RequireJS).
+
+``mockup-utils`` allows us to get the authenticator token (with the ``getAuthenticator``
+method), we need it to use the Rapido REST API.
+
+Notes:
+
+- RequireJS or ``mockup-utils`` are not mandatory to use the Rapido REST API,
+  if we were outside of Plone (using Rapido as a remote backend), we would have made
+  a call to /tutorial/@@rapido/rating which returns the token in an HTTP header.
+  We just use them because they are provided by Plone by default, and they make our
+  work easier.
+- Instead of loading D3 directly form its CDN, we could have put the ``d3.v3.min.js``
+  in the ``/rapido/rating`` folder, and serve it locally.
+
+The second interesting part is the ``d3.json()`` call:
+
+- it calls the ``@@rapido/rating/search`` endpoint,
+- it puts the authenticator token in the ``X-Csrf-Token`` header,
+- and it passes the search query in the request BODY.
+
+That is basically what we need to do whatever JS framework we would use (here we
+use D3, but it could be a generalist framework like Angular, Backbone, Ember, etc.).
+
+
+Now we just need to load this script from our block:
+
+.. code:: html
+
+    <h2>Rating report</h2>
+    <div id="chart"></div>
+    <script src="++theme++test/rapido/rating/report.js"></script>
+
+And we can visit::
+
+    http://localhost:8080/tutorial/news/@@rapido/view/show-report
+
+to see a pie chart about the News items votes!!
