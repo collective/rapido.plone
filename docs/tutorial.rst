@@ -433,7 +433,7 @@ use D3, but it could be a generalist framework like Angular, Backbone, Ember, et
 
 Now we just need to load this script from our block:
 
-.. code:: html
+.. code-block:: html
 
     <h2>Rating report</h2>
     <div id="chart"></div>
@@ -444,3 +444,5 @@ And we can visit::
     http://localhost:8080/tutorial/news/@@rapido/view/show-report
 
 to see a pie chart about the News items votes!!
+
+Download the :download:`source files of this tutorial <files/tutorial.zip>`.
