@@ -39,6 +39,8 @@ To initialize our Rapido app named "rating", we need to:
 - create a folder maned ``rapido`` in the theme root,
 - in this ``rapido`` folder, create a folder named ``rating``.
 
+.. image:: files/screen-1.png
+
 The application is now ready.
 
 Creating the "Like" button
@@ -50,6 +52,8 @@ our button:
 - go to the ``rating`` folder and create a new folder named ``blocks``,
 - in this ``blocks`` folder, let's create a new block named ``rate``. It implies to
   create 3 files:
+
+.. image:: files/screen-2.png
 
 The ``rate.html`` file:
 
@@ -91,6 +95,8 @@ Now our block is ready, we can see it using the following URL:
 
 http://localhost:8080/Plone/@@rapido/rating/block/rate
 
+.. image:: files/screen-3.png
+
 The next step is to put our block in our Plone pages.
 
 Inserting the block in Plone pages
@@ -113,10 +119,12 @@ main title in our page.
 So, now if we visit any page of our Plone site, we see our block displayed just
 under the title.
 
+.. image:: files/screen-4.png
+
 That is nice, but there is a small problem: when we like on the "Like" button,
 we are redirected to the raw block content, and we loose our current Plone page.
 
-let's fix that.
+Let's fix that.
 
 Keeping in our Plone page
 -------------------------
@@ -211,6 +219,8 @@ And let's implement it in ``rate.py``:
 We get the record corresponding to the current content, and we return as many ❤
 as votes we have stored.
 
+.. image:: files/screen-5.png
+
 That's it! Our rating feature is ready to be used.
 
 Listing the top 5 contents
@@ -290,6 +300,8 @@ Finally, we have to insert our block in the home page. That will be done in
             <include css:content="form" href="/@@rapido/rating/block/top5" />
         </before>
     </rules>
+
+.. image:: files/screen-6.png
 
 Creating a new page for reports
 -------------------------------
@@ -444,5 +456,7 @@ And we can visit::
     http://localhost:8080/tutorial/news/@@rapido/view/show-report
 
 to see a pie chart about the News items votes!!
+
+.. image:: files/screen-7.png
 
 Download the :download:`source files of this tutorial <files/tutorial.zip>`.
