@@ -67,7 +67,7 @@ class RapidoView(BrowserView):
             return self.context()
 
         self.request.response.setHeader('X-Theme-Disabled', '1')
-        if "application/json" in self.request.getHeader('Accept'):
+        if "application/json" in self.request.getHeader('Accept', ''):
             result = self.json()
             if len(self.path) == 1:
                 self.request.response.setHeader('X-CSRF-TOKEN', createToken())
