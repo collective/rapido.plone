@@ -23,6 +23,18 @@ class RapidoView(BrowserView):
         self.path.append(name)
         return self
 
+    def store_app_messages(self, app):
+        if len(app.messages) > 0:
+            old_messages = app.context.cache.get('messages', [])
+            app.context.cache['messages'] = old_messages + app.messages
+
+    def get_app_messages(self):
+        app_id = self.path[0]
+        app = get_app(app_id, self.request)
+        messages = app.context.cache.get('messages', [])
+        app.context.cache['messages'] = []
+        return messages
+
     def content(self, path=None):
         if not path:
             path = self.path
@@ -30,6 +42,7 @@ class RapidoView(BrowserView):
         app = get_app(app_id, self.request)
         method = getattr(IDisplay(app), self.method)
         (result, redirect) = method(path, self.request)
+        self.store_app_messages(app)
         if redirect:
             self.request.RESPONSE.redirect(redirect)
         else:
@@ -48,7 +61,9 @@ class RapidoView(BrowserView):
             if self.method not in ["GET", "OPTIONS"]:
                 CheckAuthenticator(self.request)
             method = getattr(IRest(app), self.method)
-            return method(path, self.request.get('BODY'))
+            result = method(path, self.request.get('BODY'))
+            self.store_app_messages(app)
+            return result
         except NotAllowed:
             self.request.response.setStatus(403)
         except NotFound:
@@ -67,6 +82,12 @@ class RapidoView(BrowserView):
             return self.context()
 
         self.request.response.setHeader('X-Theme-Disabled', '1')
+
+        if self.path[1] == '_log':
+            messages = self.get_app_messages()
+            self.request.response.setHeader('content-type', 'application/json')
+            return json.dumps(messages)
+
         if "application/json" in self.request.getHeader('Accept', ''):
             result = self.json()
             if len(self.path) == 1:

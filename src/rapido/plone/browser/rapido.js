@@ -10,8 +10,12 @@ require([
         defaults: {},
         init: function() {
             var self = this;
+            self.settings = JSON.parse(self.$el.attr('rapido-settings'));
             if(self.$el.hasClass('rapido-target-ajax')) {
                 self.initAjaxForm();
+            }
+            if(self.settings.debug) {
+                self.showDebug();
             }
         },
         initAjaxForm: function() {
@@ -45,6 +49,14 @@ require([
             self.$el.find('input[type=submit]').each(function(i, el) {
                 $(el).click(ajax_submit.bind($(el)));
             });
+        },
+        showDebug: function() {
+            var self = this;
+            $.getJSON(self.settings.url + '/_log', function(data) {
+                $.each(data, function(i, item) {
+                    console.log(item);
+                });
+            })
         }
     });
     return Rapido;

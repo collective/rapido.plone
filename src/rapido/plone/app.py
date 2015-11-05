@@ -1,9 +1,11 @@
-from zope.interface import implements
 from plone import api
 from plone.app.theming.interfaces import THEME_RESOURCE_NAME
 from plone.app.theming.utils import getCurrentTheme
+from plone.memoize.interfaces import ICacheChooser
 from plone.resource.utils import queryResourceDirectory
 from urlparse import urlparse
+from zope.component import queryUtility
+from zope.interface import implements
 
 from rapido.core.app import Context
 from rapido.core.interfaces import IRapidable, IRapidoApplication
@@ -17,6 +19,7 @@ class RapidoApplication:
         self.context = context
         self.available_rules = {}
         self.resources = self.get_resource_directory()
+        self.cache = queryUtility(ICacheChooser)("rapido-" + id)
 
     def url(self):
         url_format = "%s/@@rapido/%s"
