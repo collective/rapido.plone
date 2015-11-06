@@ -14,7 +14,7 @@ require([
             if(self.$el.hasClass('rapido-target-ajax')) {
                 self.initAjaxForm();
             }
-            if(self.settings.debug) {
+            if(self.settings.app.debug) {
                 self.showDebug();
             }
         },
@@ -52,7 +52,7 @@ require([
         },
         showDebug: function() {
             var self = this;
-            $.getJSON(self.settings.url + '/_log', function(data) {
+            $.getJSON(self.settings.app.url + '/_log', function(data) {
                 $.each(data, function(i, item) {
                     console.log(item);
                 });

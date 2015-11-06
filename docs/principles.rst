@@ -177,6 +177,22 @@ Note: The code we put in our Python files is compiled and executed in a
 sandboxed environment (provided by `zope.untrustedpython.interpreter 
 <https://github.com/zopefoundation/zope.untrustedpython/blob/master/docs/narr.rst>`_).
 
+To help us debugging our code, we can add:
+
+.. code-block:: yaml
+
+    debug: true
+
+in our app ``settings.yaml`` file. Then we can add some log message in our code:
+
+.. code-block:: python
+
+    context.app.log("OK")
+    context.app.log({"something": 1)
+
+and they will be display in both the server log and the browser's javascript
+console.
+
 Storing and retrieving data
 ---------------------------
 

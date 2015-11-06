@@ -24,6 +24,8 @@ class RapidoView(BrowserView):
         return self
 
     def store_app_messages(self, app):
+        if not app.settings.get('debug'):
+            return
         if len(app.messages) > 0:
             old_messages = app.context.cache.get('messages', [])
             app.context.cache['messages'] = old_messages + app.messages

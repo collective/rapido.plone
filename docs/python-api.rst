@@ -51,6 +51,11 @@ This property gives access to the Rapido application object.
     Returns the record corresponding to the ``id``, or ``None`` if it does not
     exists.
 
+``log(self, message)``
+    Logs a message in the server log. And if the the app is in debug mode, logs
+    the same message in the browser's javascript console.
+    Messages can be strings or any other serializable object.
+
 ``records(self)``
     Returns all the records as a list.
     
