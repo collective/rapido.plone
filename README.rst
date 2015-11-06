@@ -2,7 +2,9 @@
 rapido.plone
 ====================
 
-**Happy hacking on Plone**
+**Happy hacking with Plone**
+
+.. image:: https://raw.githubusercontent.com/plomino/rapido.plone/master/docs/files/logo-rapido.png
 
 |travisstatus|_
 
@@ -39,3 +41,13 @@ Documentation
 =============
 
 See the full `Rapido documentation <http://rapidoplone.readthedocs.org/en/latest/>`_.
+
+Credits
+=======
+
+Eric BREHAULT
+
+|makinacom|_
+
+.. |makinacom| image:: http://depot.makina-corpus.org/public/logo.gif
+.. _makinacom:  http://www.makina-corpus.com

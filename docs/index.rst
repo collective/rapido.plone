@@ -6,6 +6,11 @@
 Rapido
 ======
 
+**Happy hacking with Plone**
+
+.. image:: files/logo-rapido.svg
+  :width: 50 %
+
 What for?
 ---------
 
