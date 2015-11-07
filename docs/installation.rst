@@ -7,18 +7,13 @@ Install Plone, then modify ``buildout.cfg`` to add Rapido as a dependency::
         ...
         rapido.plone
 
-Rapido packages are not released yet, so for now, we need to checkout the
-following repositories::
+rapido.plone is not released yet, so for now, we need to checkout its repository::
 
     auto-checkout =
-        rapido.core
         rapido.plone
-        rapido.souper
 
     [sources]
-    rapido.core = git https://github.com/plomino/rapido.core.git
     rapido.plone = git https://github.com/plomino/rapido.plone.git
-    rapido.souper = git https://github.com/plomino/rapido.souper.git
 
     # IF PLONE 5.0 (useless with >= 5.0.1)
     [versions]
