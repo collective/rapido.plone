@@ -68,3 +68,6 @@ It allows to add and manipulate `tiles` in our content layouts.
 
 Rapido provides a Mosaic tile, so any Rapido block can be added as a tile to
 our layouts.
+
+To enable it, we need to install Mosaic and then to import a specific Rapido
+Generic Setip profile named "rapido.plone mosaic tile".
