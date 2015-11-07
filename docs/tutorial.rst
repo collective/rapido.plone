@@ -223,6 +223,60 @@ as votes we have stored.
 
 That's it! Our rating feature is ready to be used.
 
+Debugging
+---------
+
+As we are writing code, we might (we will) make mistakes, if so, it is always
+helpul to read the error messages returned by the system.
+
+It is also very helpful to be able to log messages from our code, so we
+understand what is going on exactly when it is executed.
+
+Rapido provides the ``context.app.log()`` method which will log string messages
+or any serializable object (dictionnaries, arrays, etc.).
+
+The log messages and the error messages are visible in the server log (but we
+might not be able to access it), but also in our browser's **javascript console**.
+
+First thing to do is to enable the **debug mode** in our app.
+To do that, we need to create a ``settings.yaml`` file in ``/rapido/rating``:
+
+.. code-block:: yaml
+
+    debug: true
+
+And now, let's change our ``display`` function:
+
+.. code-block:: python
+
+    def display(context):
+        content_path = context.content.absolute_url_path()
+        record = context.app.get_record(content_path)
+        if not record:
+            return ''
+        context.app.log(record.items())
+        return "❤" * record.get_item('total', 0)
+
+We will see the following in our browser's console:
+
+.. image:: files/debug-1.png
+
+Let's imagine now we made an error like forgetting the colon at the end of the
+``if`` statement:
+
+.. code-block:: python
+
+    def display(context):
+        content_path = context.content.absolute_url_path()
+        record = context.app.get_record(content_path)
+        if not record
+            return ''
+        return "❤" * record.get_item('total', 0)
+
+Then we get this:
+
+.. image:: files/debug-2.png
+
 Listing the top 5 contents
 --------------------------
 
