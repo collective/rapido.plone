@@ -2,6 +2,7 @@
 *.egg
 *.mo
 *.pyc
+*.pyo
 *~
 .installed.cfg
 bin/
