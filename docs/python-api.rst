@@ -87,14 +87,14 @@ Exemples:
 
 - Reading submitted values:
 
-.. code:: python
+.. code-block:: python
 
     val1 = context.request.get('field_1') # will returns None if not exists
     val1 = context.request['field_2'] # will fail if not exists
 
 - Reading the ``BODY``:
 
-.. code:: python
+.. code-block:: python
 
     request.get('BODY')
 
@@ -106,7 +106,7 @@ It returns the Plone portal object.
 
 It is equivalent to:
 
-.. code:: python
+.. code-block:: python
 
     context.api.portal.get()
 
@@ -126,18 +126,18 @@ The most common tasks we will perform on the content are:
 
 - reading/writing its attributes (read/write):
 
-.. code:: python
+.. code-block:: python
 
     the_tile = context.content.title
     context.content.title = "I prefer another title"
 
 - getting its URL:
 
-.. code:: python
+.. code-block:: python
 
     context.content.absolute_url()
 
-To manipulate the content, refer to the `Plone API documentation <http://docs.plone.org/develop/plone.api/docs/content.html>`_.
+To manipulate the content, refer to the `Plone API documentation about contents <http://docs.plone.org/develop/plone.api/docs/content.html>`_.
 
 Note: depending on its content type, the content object might have very different methods and properties.
 
@@ -168,7 +168,7 @@ Record
 ``display(self, edit=False)``
     Render the record using its associated block (if any).
 
-``get_item(self, name, default=None)``
+``get(self, name, default=None)``
     Returns the value of the item (and defaults to ``default`` if the item does
     not exist).
 
@@ -177,9 +177,6 @@ Record
 
 ``reindex(self)``
     Re-index the record.
-
-``remove_item(self, name)``
-    Removes the designated item.
 
 ``save(self, request=None, block=None, block_id=None, creation=False)``
     Update the record with the provided items and index it.
@@ -191,10 +188,19 @@ Record
 
     If no block (and ``request`` is a dict), we just save the items values.
 
-``set_item(self, name, value)``
-    Set the item value.
+*Python dictionary-like interface*
 
-    Note: it does not reindex it.
+The record's items can be accessed and manipulated like dictionary items:
+
+.. code-block:: python
+
+    myrecord['fruit'] = "banana"
+    for key in myrecord:
+        context.app.log(myrecord[key])
+    if 'vegetable' in myrecord:
+        del myrecord['fruit']
+
+Note: when setting an item value, the record is not reindexed.
 
 Access control list
 -------------------
@@ -207,7 +213,7 @@ Note: The application access control list can be obtain by ``context.app.acl``.
     Returns the current user id.
     Equivalent to:
 
-..code:: python
+.. code-block:: python
 
     context.api.user.get_current().getUserName()
 
@@ -215,7 +221,7 @@ Note: The application access control list can be obtain by ``context.app.acl``.
     Returns the groups the current user belongs to.
     Equivalent to:
 
-..code:: python
+.. code-block:: python
 
     api.user.get_current().getGroups()
 

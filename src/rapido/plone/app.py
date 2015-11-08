@@ -11,7 +11,7 @@ from rapido.core.app import Context
 from rapido.core.interfaces import IRapidable, IRapidoApplication
 
 
-class RapidoApplication:
+class RapidoApplication(object):
     implements(IRapidable)
 
     def __init__(self, id, context):

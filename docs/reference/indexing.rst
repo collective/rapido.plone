@@ -17,7 +17,7 @@ Queries use the *CQE format* (`see documentation <http://docs.repoze.org/catalog
 
 Example (assuming `author`, `title` and `price` are existing indexes):
 
-..code:: python
+.. code-block:: python
 
     context.app.search(
         "author == 'Conrad' and 'Lord Jim' in title",
@@ -26,7 +26,7 @@ Example (assuming `author`, `title` and `price` are existing indexes):
 Records are indexed at the time they are saved. We can force reindexing using
 the Python API:
 
-..code:: python
+.. code-block:: python
 
     myrecord.reindex()
 

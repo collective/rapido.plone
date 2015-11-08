@@ -165,9 +165,9 @@ So let's repalce our current implementation with:
         record = context.app.get_record(content_path)
         if not record:
             record = context.app.create_record(id=content_path)
-        total = record.get_item('total', 0)
+        total = record.get('total', 0)
         total += 1
-        record.set_item('total', total)
+        record['total'] = total
 
 ``context.content`` returns the current Plone content, and ``absolute_url_path`` is
 a Plone method returning the path of a Plone object.
@@ -175,7 +175,7 @@ a Plone method returning the path of a Plone object.
 ``context.app`` allows to access to the current Rapido app, so we can easily use
 the Rapido API, like ``create_record`` or ``get_record``.
 
-A Rapido record contains **items**. The ``get_item(item, default=none)`` method
+A Rapido record contains **items**. The ``get(item, default=none)`` method
 returns the value of the requested item or the default value if the item does
 not exist.
 
@@ -214,7 +214,7 @@ And let's implement it in ``rate.py``:
         record = context.app.get_record(content_path)
         if not record:
             return ''
-        return "❤" * record.get_item('total', 0)
+        return "❤" * record.get('total', 0)
 
 We get the record corresponding to the current content, and we return as many ❤
 as votes we have stored.
@@ -255,7 +255,7 @@ And now, let's change our ``display`` function:
         if not record:
             return ''
         context.app.log(record.items())
-        return "❤" * record.get_item('total', 0)
+        return "❤" * record.get('total', 0)
 
 We will see the following in our browser's console:
 
@@ -271,7 +271,7 @@ Let's imagine now we made an error like forgetting the colon at the end of the
         record = context.app.get_record(content_path)
         if not record
             return ''
-        return "❤" * record.get_item('total', 0)
+        return "❤" * record.get('total', 0)
 
 Then we get this:
 
@@ -328,11 +328,11 @@ We are now able to build a block to display the top 5 contents:
         search = context.app.search("total>0", sort_index="total", reverse=True)[:5]
         html = "<ul>"
         for record in search:
-            content = context.api.content.get(path=record.get_item("id"))
+            content = context.api.content.get(path=record["id"])
             html += '<li><a href="%s">%s</a> %d ❤</li>' % (
                 content.absolute_url(),
                 content.title,
-                record.get_item("total")) 
+                record["total"]) 
         html += "</ul>"
         return html
 

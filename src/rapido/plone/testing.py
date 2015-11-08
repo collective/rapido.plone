@@ -8,8 +8,6 @@ from plone.app.testing import PloneSandboxLayer
 from plone.testing import z2
 from zope.configuration import xmlconfig
 
-import rapido.plone
-
 
 class RapidoPloneLayer(PloneSandboxLayer):
 
