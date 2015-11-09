@@ -52,6 +52,7 @@ setup(
             'plone.app.testing',
             'plone.app.contenttypes',
             'plone.app.robotframework[debug]',
+            'requests',
         ],
     },
     entry_points="""

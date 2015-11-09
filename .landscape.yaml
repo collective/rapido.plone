@@ -1,0 +1,7 @@
+ignore-paths:
+    - bootstrap-buildout.py
+pylint:
+    disable:
+        - inherit-non-class
+        - W0613
+        - W0622

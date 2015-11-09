@@ -38,7 +38,7 @@ RAPIDO_PLONE_INTEGRATION_TESTING = IntegrationTesting(
 
 
 RAPIDO_PLONE_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(RAPIDO_PLONE_FIXTURE,),
+    bases=(RAPIDO_PLONE_FIXTURE, z2.ZSERVER_FIXTURE),
     name='RapidoPloneLayer:FunctionalTesting'
 )
 

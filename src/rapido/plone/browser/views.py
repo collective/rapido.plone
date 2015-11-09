@@ -85,7 +85,7 @@ class RapidoView(BrowserView):
 
         self.request.response.setHeader('X-Theme-Disabled', '1')
 
-        if self.path[1] == '_log':
+        if len(self.path) == 2 and self.path[1] == '_log':
             messages = self.get_app_messages()
             self.request.response.setHeader('content-type', 'application/json')
             return json.dumps(messages)

@@ -6,10 +6,15 @@ rapido.plone
 
 .. image:: https://raw.githubusercontent.com/plomino/rapido.plone/master/docs/files/logo-rapido.png
 
-|travisstatus|_
-
-.. |travisstatus| image:: https://secure.travis-ci.org/plomino/rapido.plone.png?branch=master
-.. _travisstatus:  http://travis-ci.org/plomino/rapido.plone
+.. image:: https://secure.travis-ci.org/plomino/rapido.plone.png?branch=master
+    :target: http://travis-ci.org/plomino/rapido.plone
+    :alt: Tests
+.. image:: https://landscape.io/github/plomino/rapido.plone/master/landscape.svg?style=flat
+    :target: https://landscape.io/github/plomino/rapido.plone/master
+    :alt: Code Health
+.. image:: https://coveralls.io/repos/plomino/rapido.plone/badge.svg?branch=master&service=github
+    :target: https://coveralls.io/github/plomino/rapido.plone?branch=master
+    :alt: Coverage
 
 What for?
 =========
