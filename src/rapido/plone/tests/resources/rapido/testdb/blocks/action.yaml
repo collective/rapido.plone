@@ -4,3 +4,6 @@ elements:
         label: Create a quote
     display_quote:
         type: BASIC
+    boom:
+        type: ACTION
+        label: Make an error

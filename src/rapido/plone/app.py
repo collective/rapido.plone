@@ -78,10 +78,14 @@ class RapidoApplication(object):
     def current_user_groups(self):
         """ Get the current user groups
         """
+        if api.user.is_anonymous():
+            return []
         member = api.user.get_current()
         return member.getGroups()
 
     def is_manager(self):
+        if api.user.is_anonymous():
+            return False
         if 'Manager' in api.user.get_roles():
             return True
         return False

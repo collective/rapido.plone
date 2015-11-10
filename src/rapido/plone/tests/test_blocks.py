@@ -33,6 +33,18 @@ class TestCase(unittest.TestCase):
     def tearDown(self):
         Globals.DevelopmentMode = False
 
+    def test_static_block(self):
+        self.browser.open(
+            self.portal.absolute_url() + '/@@rapido/testdb/block/purehtml')
+        self.assertTrue("""<p>Hello, I am static</p>"""
+            in self.browser.contents)
+
+    def test_traverse_to_content(self):
+        self.browser.open(
+            self.portal.absolute_url() + '/sendto_form/@@rapido/testdb/block/purehtml')
+        self.assertTrue("""<p>Hello, I am static</p>"""
+            in self.browser.contents)
+
     def test_block_with_basic_element(self):
         self.browser.open(
             self.portal.absolute_url() + '/@@rapido/testdb/block/basic')
@@ -55,3 +67,14 @@ class TestCase(unittest.TestCase):
         self.browser.getControl('Create a quote').click()
         self.assertTrue("""<span>Quote is: Knowledge is power, France is bacon.</span>"""
             in self.browser.contents)
+
+    def test_log(self):
+        self.browser.open(
+            self.portal.absolute_url() + '/@@rapido/testdb/_log')
+        self.assertEquals(self.browser.contents, '[]')
+        self.browser.open(
+            self.portal.absolute_url() + '/@@rapido/testdb/block/action')
+        self.browser.getControl('Make an error').click()
+        self.browser.open(
+            self.portal.absolute_url() + '/@@rapido/testdb/_log')
+        self.assertEquals(self.browser.contents, '["Rapido execution error - testdb:\\n   \'Context\' object has no attribute \'wrong\'\\n   File \\"action.py\\", line 16, in boom"]')

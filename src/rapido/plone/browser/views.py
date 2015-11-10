@@ -1,3 +1,4 @@
+from AccessControl import Unauthorized as unauth
 import json
 from plone.protect import CheckAuthenticator
 from plone.protect.authenticator import createToken
@@ -43,7 +44,10 @@ class RapidoView(BrowserView):
         app_id = path[0]
         app = get_app(app_id, self.request)
         method = getattr(IDisplay(app), self.method)
-        (result, redirect) = method(path, self.request)
+        try:
+            (result, redirect) = method(path, self.request)
+        except Unauthorized:
+            raise unauth("Not authorized")
         self.store_app_messages(app)
         if redirect:
             self.request.RESPONSE.redirect(redirect)
