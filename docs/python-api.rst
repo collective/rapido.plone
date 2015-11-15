@@ -160,8 +160,8 @@ Record
 ``url``
     Returns the record url.
 
-``title``
-    Returns the record title.
+``id``
+    Returns the record identifier.
 
 *Methods*
 
@@ -187,6 +187,10 @@ Record
     will be executed.
 
     If no block (and ``request`` is a dict), we just save the items values.
+
+``set_block(self, block_id)``
+    Assign a block to the record. The block will be then used to render the
+    record or to save it.
 
 *Python dictionary-like interface*
 

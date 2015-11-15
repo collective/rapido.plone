@@ -13,7 +13,7 @@ script:
   - bin/test
   - bin/createcoverage
 after_success:
-  - pip install coverage==3.6 coveralls
+  - pip install coverage==3.7 coveralls
   - coveralls
 notifications:
   irc:

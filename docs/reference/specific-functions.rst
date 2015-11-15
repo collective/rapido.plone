@@ -9,6 +9,3 @@ Specific Python functions
 
 ``record_id``
     Executed at creation time to compute the record id.
-
-``title``
-    Executed when a record is saved to compute the record ``title`` item.

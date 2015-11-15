@@ -58,7 +58,6 @@ Here is a basic example:
 .. code-block:: yaml
 
     id: simpleblock
-    title: A simple block
     elements:
         result:
             type: BASIC
@@ -110,7 +109,6 @@ rapido/myapp/blocks/simpleblock.yaml:
 .. code-block:: yaml
 
     id: simpleblock
-    title: A simple block
     target: ajax
     elements:
         result:
