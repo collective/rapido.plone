@@ -42,10 +42,12 @@ imported, exported, copied, modified, etc. like the rest of the theme.
 Moreover, we can use `Diazo <http://docs.diazo.org/en/latest/>`_ extensively to
 inject our application in the Plone layout easily.
 
-Documentation
-=============
+Documentation and screencast
+============================
 
-See the full `Rapido documentation <http://rapidoplone.readthedocs.org/en/latest/>`_.
+- Full `Rapido documentation <http://rapidoplone.readthedocs.org/en/latest/>`_.
+- `How to implement a rating system in 3'33'' <http://rapidoplone.readthedocs.org/en/latest/tutorial.html>`_ (tutorial).
+- `How to implement a rating system in 3'33'' <https://www.youtube.com/watch?v=a7B-lX0caW0>`_ (screencast).
 
 Credits
 =======

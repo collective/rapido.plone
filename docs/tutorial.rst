@@ -9,6 +9,8 @@ Objective
 We want to offer to our visitors the ability to click on "Like" button on any
 Plone content, and the total of votes must be displayed next to the button.
 
+Note: there is a screencast covering the `first steps of the Rapido tutorial <https://www.youtube.com/watch?v=a7B-lX0caW0>`_.
+
 Prerequisites
 -------------
 

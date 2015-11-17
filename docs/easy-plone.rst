@@ -7,7 +7,7 @@ frightening.
 It can be actually easy, and it does not necessarily involve to learn a lot
 about various complex frameworks.
 
-Here are the basics of easy developing with Plone.
+Here are the **basics of easy developing with Plone**.
 
 Install it
 ----------
@@ -15,21 +15,19 @@ Install it
 Installing Plone is very easy (see the `installation documentation
 <http://docs.plone.org/manage/installing/installation.html>`_).
 
-Once done, just add Rapido (see :doc:`./installation`).
-
 Theme it
 --------
 
 `Diazo <http://docs.diazo.org/en/latest/>`_ is the Plone theming engine. Diazo
-has a brilliant approach of theming: it is applied on top of Plone, not inside.
+has a brilliant approach of theming: **it applies on top of Plone, not inside**.
 
 Indeed, Plone produces content pages and Diazo can apply any theme on-the-fly to
 those pages. So we do not need to know anything about Plone internal mechanisms
 to theme it.
 
-Diazo only requires a regular static theme (HTML files, CSS, JS, etc.) and an
-XML file (``rules.xml``) which allows to specify where each parts of our Plone
-content pages must goes in our static design.
+Diazo only requires a **regular static theme** (HTML files, CSS, JS, etc.) and 
+**some mapping rules** (specified in ``rules.xml``) which allows to specify
+where each parts of our Plone content pages must goes in our static design.
 
 The Diazo theme can be built directly from the Plone interface in the Theming
 editor. The Plone 5 default theme (named Barceloneta) can be copied and we can
@@ -53,8 +51,10 @@ Plone can be extented in two ways.
 We can `install add-ons <http://training.plone.org/5/add-ons.html>`_ developed
 by the Plone community.
 
-And we can also create our own specific content types using `Dexterity <http://training.plone.org/5/dexterity.html>`_.
-Dexterity is the Plone content-type framework and it allows to create new
+And we can also create our own specific content types using
+`Dexterity <http://training.plone.org/5/dexterity.html>`_.
+
+Dexterity is the Plone **content-type framework** and it allows to create new
 content-types through the Plone web interface.
 
 Like with Diazo, we are able to export what have been created online, so we can
@@ -67,7 +67,7 @@ Once we have change the design with Diazo, we might want to re-organize or
 enrich the content layout themselves.
 
 `Mosaic <http://plone-app-mosaic.s3-website-us-east-1.amazonaws.com/latest/>`_
-is the perfect solution to manipulate the content layout, we can move existing
+is the **perfect solution to manipulate the content layout**, we can move existing
 elements (like the title, description, etc.), but also add new ones.
 
 Once a layout is created, it can be exported and copied in our Diazo
@@ -77,7 +77,7 @@ Diazo and Mosaic allows us to control entirely how information is displayed
 in our web site, but they do not allow to change the behavior of Plone, like
 adding new features, new dynamically computed information, etc.
 
-It can be achieved with Rapido (as explained in :doc:`./tutorial`), with a very
+It can be achieved with **Rapido** (as explained in :doc:`./tutorial`), with a very
 basic knowledge of HTML and Python (so, still, no need to learn about the
 different Plone frameworks).
 
@@ -85,7 +85,8 @@ Our Rapido developments are managed in our existing theme folder, so here again
 we can work online in the Plone theming editor, or in ``/resources/theme``
 folder.
 
-Rapido gives an easy access to the `Plone API <http://docs.plone.org/develop/plone.api/docs/>`_. The Plone API gathers in one unique module many different Plone tools
+Rapido gives an easy access to the `Plone API <http://docs.plone.org/develop/plone.api/docs/>`_.
+The Plone API gathers in one unique module many different Plone tools
 allowing to search for contents, create contents, access user profiles
 information, etc. It makes Plone internal features much more approchable, and
 developping with Rapido might be a good opportunity to discover Plone through
