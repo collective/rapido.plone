@@ -58,7 +58,7 @@ class RapidoView(BrowserView):
         if not path:
             path = self.path
         app_id = path[0]
-        if len(path) > 0:
+        if len(path) > 1:
             path = path[1:]
         else:
             path = None

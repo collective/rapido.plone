@@ -44,8 +44,8 @@ class Action(SimpleItem):
 
     @property
     def summary(self):
-        return _(u"Call Rapido method ${method} from ${app}/${block}",
-            mapping=dict(app=self.app, method=self.method, block=self.block))
+        return _(u"Call Rapido method %s from %s/%s" % (
+            self.method, self.app, self.block))
 
 
 class ActionExecutor(object):

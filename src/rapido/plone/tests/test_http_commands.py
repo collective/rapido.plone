@@ -50,5 +50,5 @@ class TestCase(unittest.TestCase):
             'Basic %s:%s' % (SITE_OWNER_NAME, SITE_OWNER_PASSWORD,)
         )
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/testdb/refresh')
+            self.portal.absolute_url() + '/@@rapido/testapp/refresh')
         self.assertTrue("Refreshed" in self.browser.contents)

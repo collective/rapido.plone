@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-import json
 from plone.app.theming.interfaces import IThemeSettings
 from plone.app.theming.utils import applyTheme
 from plone.app.theming.utils import getTheme
 from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
+from plone.app.testing import TEST_USER_ID, TEST_USER_PASSWORD
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.registry.interfaces import IRegistry
@@ -42,31 +41,93 @@ class TestCase(unittest.TestCase):
     def tearDown(self):
         Globals.DevelopmentMode = False
 
-    def test_json_refresh_no_token(self):
+    def test_refresh_no_token(self):
         self.browser.addHeader(
             'Authorization',
             'Basic %s:%s' % (SITE_OWNER_NAME, SITE_OWNER_PASSWORD,)
         )
         self.browser.post(
-            self.portal.absolute_url() + '/@@rapido/testdb/refresh', '')
+            self.portal.absolute_url() + '/@@rapido/testapp/refresh', '')
         self.assertEquals(self.browser.headers["status"],
             '500 Internal Server Error')
         self.assertEquals(self.browser.contents,
             '{"error": "Form authenticator is invalid."}')
 
-    def test_json_refresh(self):
+    def test_refresh_not_manager(self):
+        self.browser.addHeader(
+            'Authorization',
+            'Basic %s:%s' % (TEST_USER_ID, TEST_USER_PASSWORD,)
+        )
+        self.browser.open(
+            self.portal.absolute_url() + '/@@rapido/testapp')
+        self.assertTrue('x-csrf-token' in self.browser.headers)
+        token = self.browser.headers['x-csrf-token']
+        self.browser.addHeader('x-csrf-token', token)
+        self.browser.post(
+            self.portal.absolute_url() + '/@@rapido/testapp/refresh', '')
+        self.assertEquals(self.browser.headers["status"],
+            '401 Unauthorized')
+
+    def test_refresh(self):
         self.browser.addHeader(
             'Authorization',
             'Basic %s:%s' % (SITE_OWNER_NAME, SITE_OWNER_PASSWORD,)
         )
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/testdb')
+            self.portal.absolute_url() + '/@@rapido/testapp')
         self.assertTrue('x-csrf-token' in self.browser.headers)
         token = self.browser.headers['x-csrf-token']
         self.browser.addHeader('x-csrf-token', token)
         self.browser.post(
-            self.portal.absolute_url() + '/@@rapido/testdb/refresh', '')
+            self.portal.absolute_url() + '/@@rapido/testapp/refresh', '')
         self.assertEquals(self.browser.headers["status"],
             '200 Ok')
         self.assertEquals(self.browser.contents,
             '{"success": "refresh", "indexes": ["id"]}')
+
+    def test_403(self):
+        self.browser.addHeader(
+            'Authorization',
+            'Basic %s:%s' % (SITE_OWNER_NAME, SITE_OWNER_PASSWORD,)
+        )
+        self.browser.open(
+            self.portal.absolute_url() + '/@@rapido/testapp')
+        self.assertTrue('x-csrf-token' in self.browser.headers)
+        token = self.browser.headers['x-csrf-token']
+        self.browser.addHeader('x-csrf-token', token)
+        self.browser.post(
+            self.portal.absolute_url() + '/@@rapido/testapp/wrong', '')
+        self.assertEquals(self.browser.headers["status"],
+            '403 Forbidden')
+
+    def test_404(self):
+        self.browser.addHeader(
+            'Authorization',
+            'Basic %s:%s' % (SITE_OWNER_NAME, SITE_OWNER_PASSWORD,)
+        )
+        self.browser.open(
+            self.portal.absolute_url() + '/@@rapido/testapp')
+        self.assertTrue('x-csrf-token' in self.browser.headers)
+        token = self.browser.headers['x-csrf-token']
+        self.browser.addHeader('x-csrf-token', token)
+        self.browser.post(
+            self.portal.absolute_url() + '/@@rapido/testapp/record/unknown',
+            '')
+        self.assertEquals(self.browser.headers["status"],
+            '404 Not Found')
+
+    def test_401(self):
+        self.browser.addHeader(
+            'Authorization',
+            'Basic %s:%s' % (TEST_USER_ID, TEST_USER_PASSWORD,)
+        )
+        self.browser.open(
+            self.portal.absolute_url() + '/@@rapido/testapp')
+        self.assertTrue('x-csrf-token' in self.browser.headers)
+        token = self.browser.headers['x-csrf-token']
+        self.browser.addHeader('x-csrf-token', token)
+        self.browser.post(
+            self.portal.absolute_url() + '/@@rapido/testapp/refresh',
+            '')
+        self.assertEquals(self.browser.headers["status"],
+            '401 Unauthorized')

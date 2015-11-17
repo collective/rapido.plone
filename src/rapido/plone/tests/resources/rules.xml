@@ -4,7 +4,7 @@
     xmlns:css="http://namespaces.plone.org/diazo/css"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-    <!-- <xi:include href="rapido/testdb/rules.xml" /> -->
+    <!-- <xi:include href="rapido/testapp/rules.xml" /> -->
 
     <rules css:if-content="#visual-portal-wrapper">
 
