@@ -46,8 +46,8 @@ Documentation and screencast
 ============================
 
 - Full `Rapido documentation <http://rapidoplone.readthedocs.org/en/latest/>`_.
-- `How to implement a rating system in 3'33'' <http://rapidoplone.readthedocs.org/en/latest/tutorial.html>`_ (tutorial).
-- `How to implement a rating system in 3'33'' <https://www.youtube.com/watch?v=a7B-lX0caW0>`_ (screencast).
+- How to implement a rating system in 3'33'' (`tutorial <http://rapidoplone.readthedocs.org/en/latest/tutorial.html>`_,
+  `screencast <https://www.youtube.com/watch?v=a7B-lX0caW0>`_).
 
 Credits
 =======
