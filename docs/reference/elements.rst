@@ -24,3 +24,11 @@ By default input elements are editable but they might also have a different
 
 - ``COMPUTED_ON_SAVE``: the value is computed everytime the record is saved,
 - ``COMPUTED_ON_CREATION``: the value is computed when the record is created.
+
+Action elements
+---------------
+
+If the action function returns a value, it must be a string, and it will be used
+as a redirection URL for the current request.
+
+It is way to redirect to another location once the action has been executed.
