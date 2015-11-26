@@ -72,8 +72,9 @@ class RapidoView(BrowserView):
             return result
         except NotAllowed:
             self.request.response.setStatus(403)
-        except NotFound:
+        except NotFound, e:
             self.request.response.setStatus(404)
+            return {'id': str(e.name)}
         except Unauthorized:
             self.request.response.setStatus(401)
         except Exception, e:

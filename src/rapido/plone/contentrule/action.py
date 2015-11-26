@@ -3,11 +3,11 @@ from plone import api
 from plone.app.contentrules.actions import ActionAddForm, ActionEditForm
 from plone.app.contentrules.browser.formhelper import ContentRuleFormWrapper
 from plone.contentrules.rule.interfaces import IExecutable, IRuleElementData
-from zExceptions import NotFound
 from zope.component import adapts
 from zope.interface import implements, Interface
 from zope import schema
 
+from rapido.core.exceptions import NotFound
 from rapido.plone import _
 from rapido.plone.app import get_app
 

@@ -6,7 +6,9 @@ from plone.resource.utils import queryResourceDirectory
 from urlparse import urlparse
 from zope.component import queryUtility
 from zope.interface import implements
+from zExceptions import NotFound
 
+from rapido.core import exceptions
 from rapido.core.app import Context
 from rapido.core.interfaces import IRapidable, IRapidoApplication
 
@@ -62,7 +64,10 @@ class RapidoApplication(object):
     def get_resource_directory(self):
         theme = getCurrentTheme()
         directory = queryResourceDirectory(THEME_RESOURCE_NAME, theme)
-        return directory['rapido'][self.id]
+        try:
+            return directory['rapido'][self.id]
+        except NotFound:
+            raise exceptions.NotFound(self.id)
 
     def get_resource(self, path):
         try:
