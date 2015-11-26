@@ -77,4 +77,9 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   use-cases/index
+
+.. toctree::
+   :maxdepth: 2
+
    LICENSE
