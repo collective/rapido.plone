@@ -6,6 +6,9 @@ application.
 Those files have the same filename (which is the block id) with the extensions
 .html, .py and .yaml.
 
+The HTML file
+-------------
+
 The .html file contains the layout of the block. It is regular html, and dynamic
 elements are enclosed in curly brackets. Example:
 
@@ -26,11 +29,26 @@ we need to double them:
     <a href="#modal" class="pat-plone-modal"
         data-pat-modal='{{"content": "form"}}'>Display modal</a>
 
+Once rendered, if the block contains some links an `ajax` target:
+
+.. code-block:: html
+
+    <a href="@@rapido/record/1234" target="ajax">Open</a>
+
+the request will loaded in  AJAX mode and its content will replace the current
+block content.
+
+The YAML file
+-------------
+
 The .yaml file contains:
 - the elements settings (see below),
 - the ``target`` option: if set to ``ajax``, any action in the block resulting in a
 form submission will not redirect the current page, it will just refresh the 
 block content through an AJAX call.
+
+The Python file
+---------------
 
 The .py file contains the implementation of each element as a Python function
 which name is the element id, and taking ``context`` as parameter.

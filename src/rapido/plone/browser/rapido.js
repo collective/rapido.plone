@@ -14,6 +14,7 @@ require([
             if(self.$el.hasClass('rapido-target-ajax')) {
                 self.initAjaxForm();
             }
+            self.ajaxLink();
             if(self.settings.app.debug) {
                 self.showDebug();
             }
@@ -37,7 +38,7 @@ require([
                         var $content = $(response);
                         self.$el.replaceWith($content);
                         Registry.scan($content);
-                        self.initAjaxForm();
+                        self.init();
                     },
                     error: function(jqXHR, textStatus, errorThrown){
                         console.log('error(s):'+textStatus, errorThrown);
@@ -48,6 +49,29 @@ require([
             self.$el.submit(ajax_submit.bind(self.$el));
             self.$el.find('input[type=submit]').each(function(i, el) {
                 $(el).click(ajax_submit.bind($(el)));
+            });
+        },
+        ajaxLink: function() {
+            var self = this;
+            var ajax_load = function(event){
+                $.ajax({
+                    url: $(this).attr('href'),
+                    type: 'GET',
+                    dataType:'html',
+                    success: function(response, textStatus, jqXHR){
+                        var $content = $(response);
+                        self.$el.replaceWith($content);
+                        Registry.scan($content);
+                        self.init();
+                    },
+                    error: function(jqXHR, textStatus, errorThrown){
+                        console.log('error(s):'+textStatus, errorThrown);
+                    }
+                });
+                return false;
+            };
+            self.$el.find('a[target="ajax"]').each(function(i, el) {
+                $(el).click(ajax_load.bind($(el)));
             });
         },
         showDebug: function() {
