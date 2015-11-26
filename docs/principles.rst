@@ -153,6 +153,8 @@ Every function in our Python files takes a parameter named ``context``.
 The context gives access to useful objects:
 
 - ``context.app``: the current rapido app,
+- ``context.block``: (if executed in a block context) the current block,
+- ``context.record``: (if executed in a record context) the current record,
 - ``context.request``: the current request to rapido (the sub-request, if called
   from Diazo),
 - ``context.parent_request``: the current page request (when called from Diazo),
