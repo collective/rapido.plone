@@ -7,7 +7,7 @@ Those files have the same filename (which is the block id) with the extensions
 .html, .py and .yaml.
 
 The .html file contains the layout of the block. It is regular html, and dynamic
-elements are enclosed in brackets. Example:
+elements are enclosed in curly brackets. Example:
 
 .. code-block:: html
 
@@ -15,8 +15,16 @@ elements are enclosed in brackets. Example:
 
 When rendered, the block layout is wrapped in an HTML ``<form>`` element.
 
-Note: the layout can contain Mockup patterns markup, they will be rendered as
+The layout can contain Mockup patterns markup, they will be rendered as
 expected.
+
+Some Mockup patterns might need to render actual curly brackets in the output,
+we need to double them:
+
+.. code-block:: html
+
+    <a href="#modal" class="pat-plone-modal"
+        data-pat-modal='{{"content": "form"}}'>Display modal</a>
 
 The .yaml file contains:
 - the elements settings (see below),
