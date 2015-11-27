@@ -3,7 +3,7 @@ Displaying Rapido in Plone
 
 We can see a block by visiting its URL::
 
-    http://localhost:8080/Plone/@@rapido/myapp/blocks/simpleblock
+    http://localhost:8080/Plone/@@rapido/myapp/block/simpleblock
 
 Similarly for a record::
 
