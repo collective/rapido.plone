@@ -5,7 +5,8 @@ Changelog
 1.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Ajax links
+  [ebrehault]
 
 
 1.0 (2015-11-17)
