@@ -158,7 +158,7 @@ user voted for, check how many votes it already has, and add one new vote.
 Rapido allows to create **records**, so we will create a record for each content
 and we will use the content path as an id.
 
-So let's repalce our current implementation with:
+So let's replace our current implementation with:
 
 .. code-block:: python
 
