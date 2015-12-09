@@ -84,7 +84,7 @@ Here is a basic example:
 
 We can see our block by visiting the following URL::
 
-    http://localhost:8080/Plone/@@rapido/myapp/blocks/simpleblock
+    http://localhost:8080/Plone/@@rapido/myapp/block/simpleblock
 
 It works fine, but where is our Plone site now??
 
