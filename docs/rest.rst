@@ -176,4 +176,4 @@ Remove all the records and delete the indexes.
 
     {"success": "refresh", "indexes": ["id", "total"]}
 
-Re-declare the indexes and re-indx all the records.
+Re-declare the indexes and re-index all the records.
