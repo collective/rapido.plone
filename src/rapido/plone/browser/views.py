@@ -90,6 +90,12 @@ class RapidoView(BrowserView):
 
         self.request.response.setHeader('X-Theme-Disabled', '1')
 
+        if self.path[0] == 'from-querystring':
+            # we use the path passed in the Diazo parent querystring
+            path = self.request.PARENT_REQUEST.get('rapidopath', '').split('/')
+            result = self.content(path)
+            return result
+
         if len(self.path) == 2 and self.path[1] == '_log':
             messages = self.get_app_messages()
             self.request.response.setHeader('content-type', 'application/json')

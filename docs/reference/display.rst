@@ -28,6 +28,26 @@ Example:
         <include css:content="form" href="/@@rapido/myapp/block/simpleblock" />
     </before>
 
+Pass a Rapido path in query string
+----------------------------------
+
+If the Rapido content we want to insert in our page is not always the same,
+we can use the `from-querystring` directive and pass the Rapido path to render
+in a querystring parameter named `rapidopath`.
+
+Example:
+
+.. code-block:: xml
+
+    <before css:content="#content-core">
+        <include css:content="form" href="/@@rapido/from-querystring" />
+    </before>
+
+and we can open::
+
+    http://localhost:8080/Plone?rapidopath=myapp/record/my-record-id
+    http://localhost:8080/Plone?rapidopath=myapp/block/simpleblock
+
 Diazo rules on extra views
 --------------------------
 
