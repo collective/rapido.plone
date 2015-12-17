@@ -108,15 +108,13 @@ def get_app(app_id, request):
         path = urlparse(request['HTTP_REFERER']).path
     if path:
         path = path.split("@@")[0]
-        try:
-            context.content = portal.unrestrictedTraverse(path)
-            if not hasattr(context.content, 'portal_type'):
-                # we are in a view, let's shorten the path
-                path = '/'.join(path.split('/')[0:-1])
+        context.content = None
+        while not hasattr(context.content, 'portal_type'):
+            try:
                 context.content = portal.unrestrictedTraverse(path)
-        except KeyError:
-            # not a Plone url, probably a browsertest context
-            context.content = None
+            except:
+                pass
+            path = '/'.join(path.split('/')[0:-1])
     else:
         context.content = None
     context.portal = portal
