@@ -11,6 +11,16 @@ from rapido.core.interfaces import IRest, IDisplay
 from rapido.plone.app import get_app
 
 
+class PythonObjectEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(
+            obj,
+            (list, dict, str, unicode, int, float, bool, type(None))
+        ):
+            return json.JSONEncoder.default(self, obj)
+        return {'_not_serializable': str(obj)}
+
+
 class RapidoView(BrowserView):
     implements(IPublishTraverse)
 
@@ -99,7 +109,7 @@ class RapidoView(BrowserView):
         if len(self.path) == 2 and self.path[1] == '_log':
             messages = self.get_app_messages()
             self.request.response.setHeader('content-type', 'application/json')
-            return json.dumps(messages)
+            return json.dumps(messages, cls=PythonObjectEncoder)
 
         if "application/json" in self.request.getHeader('Accept', ''):
             result = self.json()
