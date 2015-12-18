@@ -3,7 +3,6 @@ from plone.app.theming.interfaces import THEME_RESOURCE_NAME
 from plone.app.theming.utils import getCurrentTheme
 from plone.memoize.interfaces import ICacheChooser
 from plone.resource.utils import queryResourceDirectory
-from urlparse import urlparse
 from zope.component import queryUtility
 from zope.interface import implements
 from zExceptions import NotFound
@@ -103,9 +102,11 @@ def get_app(app_id, request):
     context.parent_request = request.get("PARENT_REQUEST", None)
     path = None
     if context.parent_request:
-        path = context.parent_request['PATH_INFO']
+        path = '/'.join(
+            context.parent_request.physicalPathFromURL(
+                context.parent_request.URL))
     elif request.get('HTTP_REFERER', None):
-        path = urlparse(request['HTTP_REFERER']).path
+        path = '/'.join(request.physicalPathFromURL(request.URL))
     if path:
         path = path.split("@@")[0]
         context.content = None
