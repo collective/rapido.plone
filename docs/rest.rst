@@ -21,6 +21,21 @@ for GET requests).
 **Request**
 ::
 
+    GET /:site_id/@@rapido/:app_id/block/:block_id/:element_id
+    Accept: application/json
+    X-CSRF-TOKEN: :token
+
+**Response**
+::
+
+    {"something": "bla"}
+
+Returns the value returned by the element computation. The X-CSRF-TOKEN is not
+needed if the computation does not produce any change.
+
+**Request**
+::
+
     GET /:site_id/@@rapido/:app_id/record/:record_id
     Accept: application/json
     X-CSRF-TOKEN: :token
@@ -28,7 +43,7 @@ for GET requests).
 **Response**
 ::
 
-    {"bla": "bla", "id": "boom"}
+    {"item1": "value1", "id": "boom"}
 
 Returns the record items.
 
