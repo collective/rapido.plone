@@ -52,8 +52,6 @@ Documentation and screencast
 Credits
 =======
 
-Eric BREHAULT
-
 |makinacom|_
 
 .. |makinacom| image:: http://depot.makina-corpus.org/public/logo.gif
