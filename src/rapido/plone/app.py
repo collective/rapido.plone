@@ -24,8 +24,9 @@ class RapidoApplication(object):
 
     def url(self):
         url_format = "%s/@@rapido/%s"
+        target = self.context.content or api.portal.get()
         return url_format % (
-            api.portal.get().absolute_url(),
+            target.absolute_url(),
             self.id,
         )
 
@@ -100,24 +101,20 @@ def get_app(app_id, request):
     context = Context()
     context.request = request
     context.parent_request = request.get("PARENT_REQUEST", None)
-    path = None
     if context.parent_request:
         path = '/'.join(
             context.parent_request.physicalPathFromURL(
                 context.parent_request.URL))
-    elif request.get('HTTP_REFERER', None):
-        path = '/'.join(request.physicalPathFromURL(request.URL))
-    if path:
-        path = path.split("@@")[0]
-        context.content = None
-        while not hasattr(context.content, 'portal_type'):
-            try:
-                context.content = portal.unrestrictedTraverse(path)
-            except:
-                pass
-            path = '/'.join(path.split('/')[0:-1])
     else:
-        context.content = None
+        path = '/'.join(request.physicalPathFromURL(request.URL))
+    path = path.split("@@")[0]
+    context.content = None
+    while not hasattr(context.content, 'portal_type'):
+        try:
+            context.content = portal.unrestrictedTraverse(path)
+        except:
+            pass
+        path = '/'.join(path.split('/')[0:-1])
     context.portal = portal
     context.api = api
     app = RapidoApplication(app_id, context)

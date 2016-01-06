@@ -12,6 +12,12 @@ from rapido.plone.app import get_app
 from rapido.plone.testing import RAPIDO_PLONE_FUNCTIONAL_TESTING
 
 
+class FakeRequest(TestRequest):
+
+    def physicalPathFromURL(self, url):
+        return []
+
+
 class TestCase(unittest.TestCase):
 
     layer = RAPIDO_PLONE_FUNCTIONAL_TESTING
@@ -34,7 +40,7 @@ class TestCase(unittest.TestCase):
         Globals.DevelopmentMode = False
 
     def test_app_url(self):
-        request = TestRequest()
+        request = FakeRequest()
         app = get_app('testapp', request)
         self.assertEquals(app.url,
             'http://localhost:55001/plone/@@rapido/testapp')
