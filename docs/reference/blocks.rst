@@ -16,6 +16,22 @@ elements are enclosed in curly brackets. Example:
 
     <p>This is a dynamic message: {message}</p>
 
+The curly brackets will be replaced by the corresponding element value.
+
+If the element is a BASIC element and returns an object, we can access its
+properties. Example:
+
+.. code-block:: html
+
+    <h1>{my_doc.title}</h1>
+
+Similarly, if a BASIC element returns a dictionnary, we can access its items.
+Example:
+
+.. code-block:: html
+
+    <p>{info[user]} said: {info[comment]}</p>
+
 When rendered, the block layout is wrapped in an HTML ``<form>`` element.
 
 The layout can contain Mockup patterns markup, they will be rendered as
@@ -35,7 +51,7 @@ Once rendered, if the block contains some links an `ajax` target:
 
     <a href="@@rapido/record/1234" target="ajax">Open</a>
 
-the request will loaded in  AJAX mode and its content will replace the current
+the request will be loaded in AJAX mode and its content will replace the current
 block content.
 
 The YAML file
