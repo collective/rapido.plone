@@ -101,6 +101,19 @@ To put our block somewhere in the Plone site, we use a Diazo rule:
     </before>
 
 Now, if we visit any page of our site, we will see our block.
+
+.. note ::
+
+    If we want to display it only in the News folder, we would use `css:if-content`:
+
+    .. code-block:: xml
+
+        <before css:content="#content-core" css:if-content=".section-news">
+            <include css:content="form" href="/@@rapido/myapp/block/simpleblock" />
+        </before>
+
+    See the `Diazo <http://docs.diazo.org/en/latest/>`_ documentation for more details.
+
 But unfortunately, when we click on our "Do something" button, we are redirected
 to the original bare block.
 
