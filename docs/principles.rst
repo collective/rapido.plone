@@ -180,6 +180,14 @@ The context gives access to useful objects:
 - ``context.api``: the `Plone API
   <http://docs.plone.org/external/plone.api/docs/>`_.
 
+.. warning ::
+
+    ``context`` is not the usual ``context`` we know in Plone (like ``context``
+    in a ZPT template or a PythonScript, or ``self.context`` in a BrowserView).
+    
+    The Plone ``context`` is most part of time the current content, in Rapido
+    we can obtain it using ``context.content``.
+
 It allows us to interact with Plone in very various ways, for instance we can
 run catalog queries, create contents, change workflow status, etc.
 
