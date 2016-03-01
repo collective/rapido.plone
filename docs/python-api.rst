@@ -110,12 +110,11 @@ It is equivalent to:
 
     context.api.portal.get()
 
-The most common tasks we will perform through the portal object are:
+The most common task we will perform through the portal object is to get its contents:
 
-- sending emails,
-- showing notification messages.
+.. code-block:: python
 
-See the `Plone API documentation <http://docs.plone.org/develop/plone.api/docs/portal.html>`_ about those features.
+    folder = context.portal['my-folder']
 
 ``context.content``
 -------------------
@@ -139,18 +138,67 @@ The most common tasks we will perform on the content are:
 
 To manipulate the content, refer to the `Plone API documentation about contents <http://docs.plone.org/develop/plone.api/docs/content.html>`_.
 
-Note: depending on its content type, the content object might have very different methods and properties.
+.. note ::
+
+    Depending on its content type, the content object might have very different methods and properties.
 
 ``context.api``
 ---------------
 
 It gives access to the full `Plone API <http://docs.plone.org/develop/plone.api/docs/index.html>`_.
 
+.. warning::
+
+    There is no need to import the API, as shown in all the Plone API examples:
+
+    .. code-block:: python
+
+        from plone import api # WRONG
+
+    because the API is already available in the Rapido `context`:
+
+    .. code-block:: python
+
+        catalog = context.api.portal.get().portal_catalog
+
 This API mainly allows:
 
-- to search contents,
-- to manipulate contents (create / delete / move / publish / etc.),
-- to access or manage the users and groups informations.
+- to search contents, example:
+    
+    .. code-block:: python
+
+        folders = context.api.content.find(portal_type="Folder")
+        # be careful, the find() method return Brain objects, not real objects
+        # so only indexed attributes are available.
+        desc = folders[0].Description # OK
+        folders[0].objectIds() # WRONG!
+        folder = folders[0].getObject()
+        folder.objectIds() # OK!
+
+- to manipulate contents (create / delete / move / publish / etc.), example:
+
+    .. code-block:: python
+
+        new_page = context.api.content.create(
+            type='Document',
+            title='My Content',
+            container=context.content)
+        context.api.content.transition(obj=new_page, transition='publish')
+
+
+- to access or manage the users and groups informations, and send emails. Example:
+
+    .. code-block:: python
+
+        current_user = context.api.user.get_current()
+        context.api.portal.send_email(
+            recipient=current_user.getProperty("email"),
+            sender="noreply@plone.org",
+            subject="Hello",
+            body="World",
+        )
+
+For more detailed examples, refer to the `Plone API documentation <http://docs.plone.org/develop/plone.api/docs/index.html>`_.
 
 Record
 ------
@@ -204,12 +252,16 @@ The record's items can be accessed and manipulated like dictionary items:
     if 'vegetable' in myrecord:
         del myrecord['fruit']
 
-Note: when setting an item value, the record is not reindexed.
+.. note ::
+
+    When setting an item value, the record is not reindexed.
 
 Access control list
 -------------------
 
-Note: The application access control list can be obtain by ``context.app.acl``.
+.. note ::
+
+    The application access control list can be obtain by ``context.app.acl``.
 
 **Methods**
 

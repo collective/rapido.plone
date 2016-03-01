@@ -1,6 +1,9 @@
 REST API
 ========
 
+Get the application settings
+----------------------------
+
 **Request**
 ::
 
@@ -18,6 +21,9 @@ Returns the Rapido application settings and set a token in the
 This HTTP header will have to be reused in all the requests made to the API (but
 for GET requests).
 
+Compute an element
+------------------
+
 **Request**
 ::
 
@@ -33,6 +39,9 @@ for GET requests).
 Returns the value returned by the element computation. The X-CSRF-TOKEN is not
 needed if the computation does not produce any change.
 
+Get a record
+------------
+
 **Request**
 ::
 
@@ -47,6 +56,9 @@ needed if the computation does not produce any change.
 
 Returns the record items.
 
+Get all the records
+-------------------
+
 **Request**
 ::
 
@@ -60,6 +72,9 @@ Returns the record items.
     [{"path": "http://localhost:8080/demo/@@rapido/test2/record/boom", "id": "boom", "items": {"bla": "bla", "id": "boom"}}, {"path": "http://localhost:8080/demo/@@rapido/test2/record/10025657", "id": "10025657", "items": {"id": "10025657"}}, {"path": "http://localhost:8080/demo/@@rapido/test2/record/9755269", "id": "9755269", "items": {"bla": "bli", "id": "9755269"}}, {"path": "http://localhost:8080/demo/@@rapido/test2/record/8742197835653", "id": "8742197835653", "items": {"bla": "bli", "id": "8742197835653"}}, {"path": "http://localhost:8080/demo/@@rapido/test2/record/9755345", "id": "9755345", "items": {"id": "9755345"}}]
 
 Returns all the records.
+
+Create a new record
+-------------------
 
 **Request**
 ::
@@ -76,6 +91,9 @@ Returns all the records.
 
 Creates a new record with the provided items.
 
+Create many records
+-------------------
+
 **Request**
 ::
 
@@ -90,6 +108,9 @@ Creates a new record with the provided items.
     {"total": 2, "success": "created"}
 
 Bulk creation of records.
+
+Create a new record by id
+-------------------------
 
 **Request**
 ::
@@ -106,6 +127,9 @@ Bulk creation of records.
 
 Creates a new record with the provided items and having the specified id.
 
+Delete a record
+---------------
+
 **Request**
 ::
 
@@ -120,6 +144,26 @@ Creates a new record with the provided items and having the specified id.
 
 Deletes the record.
 
+Remove all records
+------------------
+
+**Request**
+::
+
+    POST /:site_id/@@rapido/:app_id/clear
+    Accept: application/json
+    X-CSRF-TOKEN: :token
+
+**Response**
+::
+
+    {"success": "clear_storage"}
+
+Remove all the records and delete the indexes.
+
+Update a record
+---------------
+
 **Request**
 ::
 
@@ -128,14 +172,7 @@ Deletes the record.
     X-CSRF-TOKEN: :token
     {"item1": "newvalue1"}
 
-**Response**
-::
-
-    {"success": "updated"}
-
-Updates the record with provided items.
-
-**Request**
+or
 ::
 
     PATCH /:site_id/@@rapido/:app_id/record/:record_id
@@ -149,6 +186,9 @@ Updates the record with provided items.
     {"success": "updated"}
 
 Updates the record with provided items.
+
+Search for records
+------------------
 
 **Request**
 ::
@@ -165,19 +205,8 @@ Updates the record with provided items.
 
 Search for records.
 
-**Request**
-::
-
-    POST /:site_id/@@rapido/:app_id/clear
-    Accept: application/json
-    X-CSRF-TOKEN: :token
-
-**Response**
-::
-
-    {"success": "clear_storage"}
-
-Remove all the records and delete the indexes.
+Re-index
+--------
 
 **Request**
 ::

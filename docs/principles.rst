@@ -27,8 +27,9 @@ Here is a typical layout for a rapido app::
                 tags.py
                 tags.yaml
 
-Note: ``settings.yaml`` is not mandatory, it allows to define access rights if
-needed.
+.. note ::
+
+    ``settings.yaml`` is not mandatory, it allows to define access rights if needed.
 
 The app components are `blocks`. A block is defined by a set of 3 files (HTML,
 Python, and YAML files) located in the ``blocks`` folder.
@@ -138,13 +139,16 @@ We might add an extra name to our path, which will be ignored in term of
 rendering, but it will allow us to define different rules for different use
 cases (like ``path_to_content/@@rapido/view/subscribe``, ``path_to_content/@@rapido/view/unsubscribe``, ``path_to_content/@@rapido/view/stats``, ...).
 
-Note: adding a lot of rapido rules in our main ``rules.xml`` is not ideal.
-We might prefer to create a ``rules.xml`` file into our ``rapido/myapp``
-folder, and include it in our main ``rules.xml`` file like this:
+.. note ::
 
-.. code-block:: xml
+    Adding a lot of rapido rules in our main ``rules.xml`` is not ideal.
+    
+    We might prefer to create a ``rules.xml`` file into our ``rapido/myapp``
+    folder, and include it in our main ``rules.xml`` file like this:
 
-    <xi:include href="rapido/myapp/rules.xml" />
+    .. code-block:: xml
+
+        <xi:include href="rapido/myapp/rules.xml" />
 
 Running Python code
 -------------------
@@ -173,9 +177,11 @@ Nevertheless, it will behave as expected:
 - the CSRF policy will also be applied (for instance, a Plone operation marked
   as ``PostOnly`` would fail if performed in a GET request).
 
-Note: The code we put in our Python files is compiled and executed in a
-sandboxed environment (provided by `zope.untrustedpython.interpreter 
-<https://github.com/zopefoundation/zope.untrustedpython/blob/master/docs/narr.rst>`_).
+.. note ::
+
+    The code we put in our Python files is compiled and executed in a
+    sandboxed environment (provided by `zope.untrustedpython.interpreter 
+    <https://github.com/zopefoundation/zope.untrustedpython/blob/master/docs/narr.rst>`_).
 
 To help us debugging our code, we can add:
 
@@ -199,9 +205,11 @@ Storing and retrieving data
 A rapido app provides a builtin storage service, based on
 `Souper <https://pypi.python.org/pypi/souper>`_.
 
-Note: Souper is designed to store (and index) huge amounts of small data (it can
-easily store survey results, comments, ratings, etc., but it will not be
-appropriate for attached files for instance)
+.. note ::
+
+    Souper is designed to store (and index) huge amounts of small data (it can
+    easily store survey results, comments, ratings, etc., but it will not be
+    appropriate for attached files for instance).
 
 The Rapido storage service stores **records**, and records contain **items**.
 
