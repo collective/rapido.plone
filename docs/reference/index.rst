@@ -49,6 +49,11 @@ Reference
 .. toctree::
    :maxdepth: 2
 
+   javascript
+
+.. toctree::
+   :maxdepth: 2
+
    sources
 
 .. toctree::

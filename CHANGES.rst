@@ -5,7 +5,8 @@ Changelog
 1.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add rapidoLoad Javascript event
+  [ebrehault]
 
 
 1.0.1 (2016-01-06)

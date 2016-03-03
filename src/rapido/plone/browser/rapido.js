@@ -10,6 +10,7 @@ require([
         defaults: {},
         init: function() {
             var self = this;
+            self.id = self.$el.attr('name');
             self.settings = JSON.parse(self.$el.attr('rapido-settings'));
             if(self.$el.hasClass('rapido-target-ajax')) {
                 self.initAjaxForm();
@@ -18,6 +19,7 @@ require([
             if(self.settings.app.debug) {
                 self.showDebug();
             }
+            $(document).trigger('rapidoLoad', [self.id]);
         },
         initAjaxForm: function() {
             var self = this;
@@ -38,7 +40,6 @@ require([
                         var $content = $(response);
                         self.$el.replaceWith($content);
                         Registry.scan($content);
-                        self.init();
                     },
                     error: function(jqXHR, textStatus, errorThrown){
                         console.log('error(s):'+textStatus, errorThrown);
@@ -62,7 +63,6 @@ require([
                         var $content = $(response);
                         self.$el.replaceWith($content);
                         Registry.scan($content);
-                        self.init();
                     },
                     error: function(jqXHR, textStatus, errorThrown){
                         console.log('error(s):'+textStatus, errorThrown);
