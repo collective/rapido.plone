@@ -31,13 +31,20 @@ Compute an element
     Accept: application/json
     X-CSRF-TOKEN: :token
 
+or
+::
+
+    POST /:site_id/@@rapido/:app_id/block/:block_id/:element_id
+    Accept: application/json
+    X-CSRF-TOKEN: :token
+
 **Response**
 ::
 
     {"something": "bla"}
 
 Returns the value returned by the element computation. The X-CSRF-TOKEN is not
-needed if the computation does not produce any change.
+needed for a GET if the computation does not produce any change.
 
 Get a record
 ------------
