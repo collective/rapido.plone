@@ -21,3 +21,11 @@ def log_me(context):
     context.app.log("Hello!")
     context.app.log([1, 2, {'a': 3}])
     context.app.log(context)
+
+
+def create_content(context):
+    context.api.content.create(
+        container=context.api.portal.get(),
+        type='Document',
+        title='My Content',
+    )

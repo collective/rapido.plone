@@ -10,3 +10,6 @@ elements:
     log_me:
         type: ACTION
         label: Write a log
+    create_content:
+        type: ACTION
+        label: Create a content

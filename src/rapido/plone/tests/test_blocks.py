@@ -137,3 +137,37 @@ class TestCase(unittest.TestCase):
         self.browser.getControl(name='author').value = u"Victor Hugo"
         self.browser.getControl('Save').click()
         self.assertTrue("Victor Hugo" in self.browser.contents)
+
+    def test_plone_security_anonymous(self):
+        self.browser.open(
+            self.portal.absolute_url() + '/@@rapido/testapp/block/action')
+        self.assertRaises(
+            ExecutionError,
+            self.browser.getControl('Create a content').click
+        )
+        self.assertTrue('my-content' not in self.portal.objectIds())
+
+    def test_plone_security_member(self):
+        self.browser.addHeader(
+            'Authorization',
+            'Basic %s:%s' % (TEST_USER_ID, TEST_USER_PASSWORD,)
+        )
+        self.browser.open(
+            self.portal.absolute_url() + '/@@rapido/testapp/block/action')
+        self.assertRaises(
+            ExecutionError,
+            self.browser.getControl('Create a content').click
+        )
+        self.assertTrue('my-content' not in self.portal.objectIds())
+
+    def test_plone_security_manager(self):
+        self.browser.addHeader(
+            'Authorization',
+            'Basic %s:%s' % (SITE_OWNER_NAME, SITE_OWNER_PASSWORD,)
+        )
+        self.browser.open(
+            self.portal.absolute_url() + '/@@rapido/testapp/block/action')
+        if "Confirm action" in self.browser.contents:
+            self.browser.getControl('Confirm action').click()
+        self.browser.getControl('Create a content').click()
+        self.assertTrue('my-content' in self.portal.objectIds())
