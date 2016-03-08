@@ -8,9 +8,16 @@ def display_quote(context):
 
 def create(context):
     doc = context.app.create_record('doc1')
+    doc['block'] = 'action'
     doc["quote"] = "Knowledge is power, France is bacon."
     doc.save()
 
 
 def boom(context):
     context.wrong()
+
+
+def log_me(context):
+    context.app.log("Hello!")
+    context.app.log([1, 2, {'a': 3}])
+    context.app.log(context)

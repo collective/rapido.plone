@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from AccessControl import Unauthorized
+import json
 from plone.app.testing import (
     TEST_USER_ID,
     TEST_USER_PASSWORD,
@@ -15,6 +16,7 @@ from zope.component import getUtility
 import Globals
 import unittest2 as unittest
 
+from rapido.core.exceptions import ExecutionError
 from rapido.plone.testing import RAPIDO_PLONE_FUNCTIONAL_TESTING
 
 
@@ -80,18 +82,30 @@ class TestCase(unittest.TestCase):
             '</span>'
             in self.browser.contents)
 
+    def test_error(self):
+        self.browser.open(
+            self.portal.absolute_url() + '/@@rapido/testapp/_log')
+        self.assertEquals(self.browser.contents, '[]')
+        self.browser.open(
+            self.portal.absolute_url() + '/@@rapido/testapp/block/action')
+        self.assertRaises(
+            ExecutionError,
+            self.browser.getControl('Make an error').click
+        )
+
     def test_log(self):
         self.browser.open(
             self.portal.absolute_url() + '/@@rapido/testapp/_log')
         self.assertEquals(self.browser.contents, '[]')
         self.browser.open(
             self.portal.absolute_url() + '/@@rapido/testapp/block/action')
-        self.browser.getControl('Make an error').click()
+        self.browser.getControl('Write a log').click()
         self.browser.open(
             self.portal.absolute_url() + '/@@rapido/testapp/_log')
-        self.assertEquals(self.browser.contents, '["Rapido execution error - '
-            'testapp:\\n   \'Context\' object has no attribute \'wrong\'\\n'
-            '   File \\"action.py\\", line 16, in boom"]')
+        messages = json.loads(self.browser.contents)
+        self.assertEquals(messages[0], "Hello!")
+        self.assertEquals(messages[1], [1, 2, {"a": 3}])
+        self.assertTrue("_not_serializable" in messages[2])
 
     def test_save_anonymous(self):
         self.browser.open(

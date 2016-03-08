@@ -7,3 +7,6 @@ elements:
     boom:
         type: ACTION
         label: Make an error
+    log_me:
+        type: ACTION
+        label: Write a log
