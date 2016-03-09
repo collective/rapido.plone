@@ -25,7 +25,7 @@ require([
             var self = this;
             var ajax_submit = function(event){
                 var formData = self.$el.serializeArray();
-                if(this.prop("tagName")=='INPUT') {
+                if(this.prop("tagName")=='INPUT' || this.prop("tagName")=='BUTTON') {
                     formData.push({
                         name: this.attr('name'),
                         value: this.val()
@@ -48,7 +48,7 @@ require([
                 return false;
             };
             self.$el.submit(ajax_submit.bind(self.$el));
-            self.$el.find('input[type=submit]').each(function(i, el) {
+            self.$el.find(':submit').each(function(i, el) {
                 $(el).click(ajax_submit.bind($(el)));
             });
         },
