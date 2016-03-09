@@ -29,16 +29,6 @@ Reference
 .. toctree::
    :maxdepth: 2
 
-   specific-actions
-
-.. toctree::
-   :maxdepth: 2
-
-   specific-functions
-
-.. toctree::
-   :maxdepth: 2
-
    indexing
 
 .. toctree::
