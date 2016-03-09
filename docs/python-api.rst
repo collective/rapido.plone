@@ -10,6 +10,7 @@ The ``context`` provides the following properties:
 - ``context.parent_request``,
 - ``context.portal``,
 - ``context.content``,
+- ``context.record``,
 - ``context.api``.
 
 ``context.app``
@@ -141,6 +142,13 @@ To manipulate the content, refer to the `Plone API documentation about contents 
 .. note ::
 
     Depending on its content type, the content object might have very different methods and properties.
+
+``context.record``
+-------------------
+
+It returns the current Rapido record if any.
+
+See `Record`_ for more information.
 
 ``context.api``
 ---------------
