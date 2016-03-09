@@ -28,28 +28,8 @@ Example:
         <include css:content="form" href="/@@rapido/myapp/block/simpleblock" />
     </before>
 
-Pass a Rapido path in query string
-----------------------------------
-
-If the Rapido content we want to insert in our page is not always the same,
-we can use the `from-querystring` directive and pass the Rapido path to render
-in a querystring parameter named `rapidopath`.
-
-Example:
-
-.. code-block:: xml
-
-    <before css:content="#content-core">
-        <include css:content="form" href="/@@rapido/from-querystring" />
-    </before>
-
-and we can open::
-
-    http://localhost:8080/Plone?rapidopath=myapp/record/my-record-id
-    http://localhost:8080/Plone?rapidopath=myapp/block/simpleblock
-
-Diazo rules on extra views
---------------------------
+Extra views
+-----------
 
 If we do not want to just inject a small piece of HTML in existing pages,
 but create a new view for our contents, we can use the Rapido **neutral views**.
@@ -58,7 +38,7 @@ Neutral views are obtained by adding ``@@rapido/view/<any-name>`` to a
 content URL. It will just return the content's default view (that is why we
 call them neutral).
 
-So, all those URLs display the same thing::
+For instance, all those URLs display the same thing::
 
     http://localhost:8080/Plone/front-page
     http://localhost:8080/Plone/front-page/@@rapido/view/
@@ -66,17 +46,67 @@ So, all those URLs display the same thing::
     http://localhost:8080/Plone/front-page/@@rapido/view/123
 
 So we are able to call a content with a URL we control, and that allows us
-to create specific Diazo rules for it using the ``if-path`` attribute:
+to create specific Diazo rules for it using the ``if-path`` attribute.
+
+**Hard-coded injection**
 
 .. code-block:: xml
     
     <rules if-path="@@rapido/view/show-report">
         <replace css:content="#content">
-            <include css:content="form" href="/@@rapido/stats/form/report" />
+            <include css:content="form" href="/@@rapido/stats/block/report" />
         </replace>      
     </rules>
 
-In this example, we replace the page main content with our ``report`` block.
+In this example, if we open::
+
+    http://localhost:8080/Plone/@@rapido/view/show-report
+
+we will see our page main content replaced with our ``report`` block.
+
+**Dynamic injection**
+
+We can also display dynamically a Rapido resource specified in the URL. Rapido provides an URL injection pattern which allows to refer to the parent request in our Diazo rule.
+
+The pattern is: ``$<integer>``, where the integer specifies the starting position after ``@@rapido`` to get the path to inject.
+
+For instance:
+
+    - with ``http://localhost:8080/Plone/@@rapido/view/show-report/5654654``, ``$3`` gets the part of the path starting at the 3rd element after ``@@rapido``, which is: ``5654654``,
+    - with ``http://localhost:8080/Plone/@@rapido/view/show-report/myapp/record/5654654``, ``$3`` gets the part of the path starting at the 3rd element after ``@@rapido``, which is: ``myapp/record/5654654``,
+    - with ``http://localhost:8080/Plone/@@rapido/view/show-report/myapp/record/5654654/edit``, ``$5`` gets the part of the path starting at the 5th element after ``@@rapido``, which is: ``5654654/edit``.
+
+Examples:
+
+.. code-block:: xml
+
+    <rules if-path="@@rapido/view/show-report">
+        <replace css:content="#content-core">
+            <include css:content="form" href="/@@rapido/$3" />
+        </replace>
+    </rules>
+
+if we open::
+
+    http://localhost:8080/Plone/@@rapido/view/show-report/myapp/record/my-record-id
+
+we will render ``myapp/record/my-record-id`` in our page main content.
+
+We could also do:
+
+.. code-block:: xml
+
+    <rules if-path="@@rapido/view/show-report">
+        <replace css:content="#content-core">
+            <include css:content="form" href="/@@rapido/myapp/record/$3" />
+        </replace>
+    </rules>
+
+if we open::
+
+    http://localhost:8080/Plone/@@rapido/view/show-report/my-record-id
+
+we will get the very same rendering as in our previous example.
 
 Mosaic
 ------

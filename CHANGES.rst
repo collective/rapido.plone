@@ -8,6 +8,9 @@ Changelog
 - Add rapidoLoad Javascript event
   [ebrehault]
 
+- Allow to inject parent request path in Rapdio path
+  [ebrehault]
+
 
 1.0.1 (2016-01-06)
 ------------------

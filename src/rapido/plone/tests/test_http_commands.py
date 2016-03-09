@@ -44,9 +44,9 @@ class TestCase(unittest.TestCase):
             self.portal.absolute_url() + '/@@rapido/view/whatever')
         self.assertTrue("This is the theme" in self.browser.contents)
 
-    def test_path_from_querystring(self):
+    def test_path_from_parent_request(self):
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/view/anything?rapidopath=testapp/block/basic')
+            self.portal.absolute_url() + '/@@rapido/view/anything/testapp/block/basic')
         self.assertTrue("How simple is it" in self.browser.contents)
 
     def test_refresh(self):

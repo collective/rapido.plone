@@ -9,7 +9,7 @@
         <theme href="theme.html" />
 
         <after if-path="anything" css:content="#content-core">
-            <include css:content="form" href="/@@rapido/from-querystring" />
+            <include css:content="form" href="/@@rapido/$3" />
         </after>
 
         <replace content='/html/head/title' theme='/html/head/title' />

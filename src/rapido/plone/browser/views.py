@@ -100,11 +100,15 @@ class RapidoView(BrowserView):
 
         self.request.response.setHeader('X-Theme-Disabled', '1')
 
-        if self.path[0] == 'from-querystring':
-            # we use the path passed in the Diazo parent querystring
-            path = self.request.PARENT_REQUEST.get('rapidopath', '').split('/')
-            result = self.content(path)
-            return result
+        if self.path[-1].startswith('$'):
+            # inject Diazo parent request path
+            parent_path = self.request.PARENT_REQUEST['URL'].split('/')
+            try:
+                offset = int(self.path[-1][1:])
+            except ValueError:
+                return "Bad Rapido url injection %s" % self.path[-1]
+            index = parent_path.index('@@rapido')
+            self.path = self.path[:-1] + parent_path[index + offset:]
 
         if len(self.path) == 2 and self.path[1] == '_log':
             messages = self.get_app_messages()
