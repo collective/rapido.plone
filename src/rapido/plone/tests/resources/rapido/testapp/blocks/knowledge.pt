@@ -1,0 +1,3 @@
+<p>Knowledge is power</p>
+<ul><li tal:repeat="joke elements/jokes" tal:content="joke" /></ul>
+<a tal:attributes="href context/request/URL">Home</a>

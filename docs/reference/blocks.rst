@@ -54,6 +54,60 @@ Once rendered, if the block contains some links an `ajax` target:
 the request will be loaded in AJAX mode and its content will replace the current
 block content.
 
+TAL template
+^^^^^^^^^^^^
+
+The HTML template only offers element insertion. If we need more templating
+features, the `.html` file can be replaced by a `.pt` file, and we can use the
+`TAL commands <http://www.owlfish.com/software/simpleTAL/tal-guide.html>`_.
+
+The block elements are available in the ``elements`` object:
+
+.. code-block:: python
+
+    def my_title(context):
+        return "Chapter 1"
+
+.. code-block:: html
+
+    <h1 tal:content="elements/my_title"></h1>
+
+Elements can be used as conditions:
+
+.. code-block:: python
+
+    def is_footer(context):
+        return True
+
+.. code-block:: html
+
+    <footer tal:condition="elements/is_footer">My footer</footer>
+
+If an element returns an iterable object (list, dictionnary), we can make a loop:
+
+.. code-block:: python
+
+    def links(context):
+        return [
+            {'url': 'https://validator.w3.org/', 'title': 'Markup Validation Service'},
+            {'url': 'https://www.w3.org/Style/CSS/', 'title': 'CSS'},
+        ]
+
+.. code-block:: html
+
+    <ul>
+        <li tal:repeat="link elements/links">
+            <a tal:attributes="link/url"
+                tal:content="link/title"></a>
+        </li>
+    </ul>
+
+The current Rapido context is available in the ``context`` object:
+
+.. code-block:: html
+
+    <h1 tal:content="context/content/title"></h1>
+
 The YAML file
 -------------
 

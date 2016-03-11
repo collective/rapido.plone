@@ -11,6 +11,9 @@ Changelog
 - Allow to inject parent request path in Rapdio path
   [ebrehault]
 
+- Support TAL templates
+  [ebrehault]
+
 
 1.0.1 (2016-01-06)
 ------------------

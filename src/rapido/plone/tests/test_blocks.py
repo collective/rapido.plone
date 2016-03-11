@@ -171,3 +171,11 @@ class TestCase(unittest.TestCase):
             self.browser.getControl('Confirm action').click()
         self.browser.getControl('Create a content').click()
         self.assertTrue('my-content' in self.portal.objectIds())
+
+    def test_pt_template(self):
+        self.browser.open(
+            self.portal.absolute_url() + '/@@rapido/testapp/block/knowledge')
+        self.assertTrue('<p>Knowledge is power</p>\n<ul><li>France is bacon'
+            '</li>\n<li>Francis Bacon</li></ul>\n<a href="http://localhost:'
+            '55001/plone/@@rapido/testapp/block/knowledge">Home</a>'
+            in self.browser.contents)

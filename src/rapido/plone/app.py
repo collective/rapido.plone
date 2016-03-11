@@ -5,11 +5,29 @@ from plone.memoize.interfaces import ICacheChooser
 from plone.resource.utils import queryResourceDirectory
 from zope.component import queryUtility
 from zope.interface import implements
+from zope.pagetemplate.pagetemplate import PageTemplate
 from zExceptions import NotFound
 
 from rapido.core import exceptions
 from rapido.core.app import Context
 from rapido.core.interfaces import IRapidable, IRapidoApplication
+
+
+class RapidoTemplateFile(PageTemplate):
+
+    def __init__(self, text):
+        self.write(text)
+
+    def __call__(self, elements, context):
+        try:
+            return self.pt_render({'elements': elements, 'context': context})
+        except Exception, e:
+            lines = str(e).split('\n')
+            if len(lines) > 4:
+                message = "%s\n%s</pre>" % (lines[2], lines[4])
+            else:
+                message = str(e)
+            return "<pre>Rendering error\n%s</pre>" % message
 
 
 class RapidoApplication(object):
@@ -57,7 +75,15 @@ class RapidoApplication(object):
             return self.get_resource(path)
         except KeyError:
             if ftype == "yaml":
+                # the YAML file is not mandatory, return a default content
                 return 'id: %s' % block_id
+            elif ftype == "html":
+                # if .html is missing, try .pt
+                try:
+                    pt = self.get_block(block_id, ftype="pt")
+                    return RapidoTemplateFile(pt)
+                except KeyError:
+                    raise KeyError('%s.%s' % (block_id, ftype))
             else:
                 raise KeyError('%s.%s' % (block_id, ftype))
 
