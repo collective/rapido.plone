@@ -11,7 +11,8 @@ The ``context`` provides the following properties:
 - ``context.portal``,
 - ``context.content``,
 - ``context.record``,
-- ``context.api``.
+- ``context.api``,
+- ``context.modules``.
 
 ``context.app``
 ---------------
@@ -207,6 +208,28 @@ This API mainly allows:
         )
 
 For more detailed examples, refer to the `Plone API documentation <http://docs.plone.org/develop/plone.api/docs/index.html>`_.
+
+``context.modules``
+-------------------
+
+.. warning:: For security reason, it is not allowed to import a Python module in a Rapido Python file.
+
+Rapido provides some safe modules through ``context.modules``:
+
+- ``context.modules.datetime``: `Basic date and time types <https://docs.python.org/2/library/datetime.html>`_,
+- ``context.modules.random``: `Generate pseudo-random numbers <https://docs.python.org/2/library/random.html>`_,
+- ``context.modules.time``: `Time access and conversions <https://docs.python.org/2/library/time.html>`_.
+
+If we need to add extra modules to ``context.modules``, we can do it by adding in our own add-on something like:
+
+.. code-block:: python
+
+    import re
+    from rapido.core import app
+
+    app.safe_modules.re = re
+
+In this example, we allow to access ``context.modules.re`` from our Rapido Python files.
 
 Record
 ------
