@@ -220,7 +220,7 @@ Rapido provides some safe modules through ``context.modules``:
 - ``context.modules.random``: `Generate pseudo-random numbers <https://docs.python.org/2/library/random.html>`_,
 - ``context.modules.time``: `Time access and conversions <https://docs.python.org/2/library/time.html>`_.
 
-We can declare more safe modules (from our own server-local code only, not from the Plone UI) like this:
+If we need to add extra modules to ``context.modules``, we can do it by adding in our own add-on something like:
 
 .. code-block:: python
 
@@ -229,7 +229,7 @@ We can declare more safe modules (from our own server-local code only, not from 
 
     app.safe_modules.re = re
 
-will allow to access ``context.modules.re`` from our Rapido Python files.
+In this example, we allow to access ``context.modules.re`` from our Rapido Python files.
 
 Record
 ------
