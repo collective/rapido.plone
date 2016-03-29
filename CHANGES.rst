@@ -14,6 +14,9 @@ Changelog
 - Support TAL templates
   [ebrehault]
 
+- Set content properly when calling block from content rule
+  [ebrehault]
+
 
 1.0.1 (2016-01-06)
 ------------------

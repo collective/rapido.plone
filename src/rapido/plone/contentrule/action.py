@@ -62,7 +62,7 @@ class ActionExecutor(object):
     def __call__(self):
         request = self.context.REQUEST
         try:
-            app = get_app(self.element.app, request)
+            app = get_app(self.element.app, request, content=self.event.object)
         except NotFound:
             api.portal.show_message(
                 message="Rapido application %s cannot be found." % (
