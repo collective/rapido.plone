@@ -122,7 +122,7 @@ class RapidoApplication(object):
         return False
 
 
-def get_app(app_id, request):
+def get_app(app_id, request, content=None):
     portal = api.portal.get()
     context = Context()
     context.request = request
@@ -134,7 +134,7 @@ def get_app(app_id, request):
     else:
         path = '/'.join(request.physicalPathFromURL(request.URL))
     path = path.split("@@")[0]
-    context.content = None
+    context.content = content
     while not hasattr(context.content, 'portal_type'):
         try:
             context.content = portal.unrestrictedTraverse(path)

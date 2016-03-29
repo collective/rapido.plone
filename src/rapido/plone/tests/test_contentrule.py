@@ -22,6 +22,9 @@ from rapido.plone.testing import RAPIDO_PLONE_FUNCTIONAL_TESTING
 class DummyEvent(object):
     implements(Interface)
 
+    def __init__(self, obj):
+        self.object = obj
+
 
 class TestRapidoAction(unittest.TestCase):
 
@@ -82,7 +85,8 @@ class TestRapidoAction(unittest.TestCase):
         e.block = 'rule'
         e.method = 'hello'
 
-        ex = getMultiAdapter((self.portal, e, DummyEvent()), IExecutable)
+        ex = getMultiAdapter(
+            (self.portal, e, DummyEvent(self.portal)), IExecutable)
         self.assertEqual(True, ex())
 
     def testNotFound(self):
@@ -91,7 +95,8 @@ class TestRapidoAction(unittest.TestCase):
         e.block = 'rule'
         e.method = 'hello'
 
-        ex = getMultiAdapter((self.portal, e, DummyEvent()), IExecutable)
+        ex = getMultiAdapter(
+            (self.portal, e, DummyEvent(self.portal)), IExecutable)
         ex()
         new_cookies = self.request.RESPONSE.cookies[STATUSMESSAGEKEY]
         messages = _decodeCookieValue(new_cookies['value'])
