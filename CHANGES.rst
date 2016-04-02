@@ -17,6 +17,9 @@ Changelog
 - Set content properly when calling block from content rule
   [ebrehault]
 
+- External call to Rapido elements using @@rapido-call
+  [ebrehault]
+
 
 1.0.1 (2016-01-06)
 ------------------

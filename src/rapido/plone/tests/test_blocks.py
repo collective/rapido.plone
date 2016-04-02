@@ -179,3 +179,10 @@ class TestCase(unittest.TestCase):
             '</li>\n<li>Francis Bacon</li></ul>\n<a href="http://localhost:'
             '55001/plone/@@rapido/testapp/block/knowledge">Home</a>'
             in self.browser.contents)
+
+    def test_call(self):
+        self.assertEquals(
+            self.portal.restrictedTraverse('@@rapido-call')(
+                'testapp/call/call_me', x=7, y=6),
+            42
+        )

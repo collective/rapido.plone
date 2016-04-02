@@ -10,6 +10,13 @@
         class=".views.RapidoView"
         />
 
+    <browser:page
+        name="rapido-call"
+        for="*"
+        permission="zope.Public"
+        class=".call.RapidoCall"
+        />
+
     <browser:resource
         name="rapido.js"
         file="rapido.js" />
