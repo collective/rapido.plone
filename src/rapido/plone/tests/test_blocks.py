@@ -16,7 +16,7 @@ from zope.component import getUtility
 import Globals
 import unittest2 as unittest
 
-from rapido.core.exceptions import ExecutionError
+from rapido.core.exceptions import ExecutionError, NotFound
 from rapido.plone.testing import RAPIDO_PLONE_FUNCTIONAL_TESTING
 
 
@@ -179,6 +179,17 @@ class TestCase(unittest.TestCase):
             '</li>\n<li>Francis Bacon</li></ul>\n<a href="http://localhost:'
             '55001/plone/@@rapido/testapp/block/knowledge">Home</a>'
             in self.browser.contents)
+
+    def test_bad_pt_template(self):
+        self.browser.open(
+            self.portal.absolute_url() + '/@@rapido/testapp/block/bad')
+        self.assertTrue('<pre>Rendering error\n - Expression: "boom/jokes"\n'
+            ' - Location:   (line 2: col 25)</pre>' in self.browser.contents)
+
+    def test_missing_template(self):
+        self.assertRaises(NotFound,
+            self.browser.open(
+                self.portal.absolute_url() + '/@@rapido/testapp/block/oops'))
 
     def test_call(self):
         self.assertEquals(
