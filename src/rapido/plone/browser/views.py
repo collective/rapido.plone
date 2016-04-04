@@ -1,4 +1,5 @@
 from AccessControl import Unauthorized as unauth
+from datetime import datetime
 import json
 from plone.protect import CheckAuthenticator
 from plone.protect.authenticator import createToken
@@ -14,6 +15,8 @@ from rapido.plone.app import get_app
 
 class PythonObjectEncoder(json.JSONEncoder):
     def default(self, obj):
+        if isinstance(obj, datetime):
+            return obj.isoformat()
         if isinstance(
             obj,
             (list, dict, str, unicode, int, float, bool, type(None))
@@ -125,7 +128,7 @@ class RapidoView(BrowserView):
             if len(self.path) == 1:
                 self.request.response.setHeader('X-CSRF-TOKEN', createToken())
             self.request.response.setHeader('content-type', 'application/json')
-            return json.dumps(result)
+            return json.dumps(result, cls=PythonObjectEncoder)
         else:
             result = self.content()
             return result
