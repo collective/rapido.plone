@@ -12,6 +12,7 @@ from plone.app.theming.utils import applyTheme
 from plone.app.theming.utils import getTheme
 from plone.registry.interfaces import IRegistry
 from plone.testing.z2 import Browser
+import zExceptions
 from zope.component import getUtility
 import Globals
 import unittest2 as unittest
@@ -39,6 +40,7 @@ class TestCase(unittest.TestCase):
         self.portal = self.layer['portal']
         self.browser = Browser(self.layer['app'])
         self.browser.handleErrors = False
+        self.browser.raiseHttpErrors = False
 
     def tearDown(self):
         Globals.DevelopmentMode = False
@@ -179,3 +181,25 @@ class TestCase(unittest.TestCase):
             '</li>\n<li>Francis Bacon</li></ul>\n<a href="http://localhost:'
             '55001/plone/@@rapido/testapp/block/knowledge">Home</a>'
             in self.browser.contents)
+
+    def test_bad_pt_template(self):
+        self.browser.open(
+            self.portal.absolute_url() + '/@@rapido/testapp/block/bad')
+        self.assertTrue('<pre>Rendering error\n - Expression: "boom/jokes"\n'
+            ' - Location:   (line 2: col 25)</pre>' in self.browser.contents)
+
+    def test_missing_template(self):
+        try:
+            self.browser.open(
+                self.portal.absolute_url() + '/@@rapido/testapp/block/oops')
+        except Exception, e:
+            self.assertTrue(type(e) is zExceptions.NotFound)
+        else:
+            self.fail("Missing template should produce a NotFound exception.")
+
+    def test_call(self):
+        self.assertEquals(
+            self.portal.restrictedTraverse('@@rapido-call')(
+                'testapp/call/call_me', x=7, y=6),
+            42
+        )

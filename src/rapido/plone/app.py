@@ -24,7 +24,7 @@ class RapidoTemplateFile(PageTemplate):
         except Exception, e:
             lines = str(e).split('\n')
             if len(lines) > 4:
-                message = "%s\n%s</pre>" % (lines[2], lines[4])
+                message = "%s\n%s" % (lines[2], lines[4])
             else:
                 message = str(e)
             return "<pre>Rendering error\n%s</pre>" % message
