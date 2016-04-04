@@ -12,11 +12,12 @@ from plone.app.theming.utils import applyTheme
 from plone.app.theming.utils import getTheme
 from plone.registry.interfaces import IRegistry
 from plone.testing.z2 import Browser
+import zExceptions
 from zope.component import getUtility
 import Globals
 import unittest2 as unittest
 
-from rapido.core.exceptions import ExecutionError, NotFound
+from rapido.core.exceptions import ExecutionError
 from rapido.plone.testing import RAPIDO_PLONE_FUNCTIONAL_TESTING
 
 
@@ -39,6 +40,7 @@ class TestCase(unittest.TestCase):
         self.portal = self.layer['portal']
         self.browser = Browser(self.layer['app'])
         self.browser.handleErrors = False
+        self.browser.raiseHttpErrors = False
 
     def tearDown(self):
         Globals.DevelopmentMode = False
@@ -187,9 +189,13 @@ class TestCase(unittest.TestCase):
             ' - Location:   (line 2: col 25)</pre>' in self.browser.contents)
 
     def test_missing_template(self):
-        self.assertRaises(NotFound,
+        try:
             self.browser.open(
-                self.portal.absolute_url() + '/@@rapido/testapp/block/oops'))
+                self.portal.absolute_url() + '/@@rapido/testapp/block/oops')
+        except Exception, e:
+            self.assertTrue(type(e) is zExceptions.NotFound)
+        else:
+            self.fail("Missing template should produce a NotFound exception.")
 
     def test_call(self):
         self.assertEquals(

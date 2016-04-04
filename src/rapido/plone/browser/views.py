@@ -3,6 +3,7 @@ import json
 from plone.protect import CheckAuthenticator
 from plone.protect.authenticator import createToken
 from Products.Five.browser import BrowserView
+import zExceptions
 from zope.interface import implements
 from zope.publisher.interfaces import IPublishTraverse
 
@@ -56,6 +57,10 @@ class RapidoView(BrowserView):
         method = getattr(IDisplay(app), self.method)
         try:
             (result, redirect) = method(path, self.request)
+        except NotAllowed:
+            raise zExceptions.BadRequest()
+        except NotFound:
+            raise zExceptions.NotFound()
         except Unauthorized:
             raise unauth("Not authorized")
         self.store_app_messages(app)
