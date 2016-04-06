@@ -203,3 +203,11 @@ class TestCase(unittest.TestCase):
                 'testapp/call/call_me', x=7, y=6),
             42
         )
+
+    def test_access_other_app(self):
+        self.browser.open(
+            self.portal.absolute_url() + '/@@rapido/testapp/block/otherapp')
+        self.assertTrue('Records=1' in self.browser.contents)
+        self.browser.open(
+            self.portal.absolute_url() + '/@@rapido/testapp/block/otherapp')
+        self.assertTrue('Records=2' in self.browser.contents)

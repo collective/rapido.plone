@@ -143,5 +143,7 @@ def get_app(app_id, request, content=None):
         path = '/'.join(path.split('/')[0:-1])
     context.portal = portal
     context.api = api
+    context.rapido = lambda id, content=context.content: get_app(
+        id, request, content=content)
     app = RapidoApplication(app_id, context)
     return IRapidoApplication(app)

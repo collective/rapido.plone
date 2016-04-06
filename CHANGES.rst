@@ -20,6 +20,9 @@ Changelog
 - External call to Rapido elements using @@rapido-call
   [ebrehault]
 
+- API to access an external Rapido app
+  [ebrehault] 
+
 
 1.0.1 (2016-01-06)
 ------------------

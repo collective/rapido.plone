@@ -5,14 +5,8 @@ Any Rapido Python function receives ``context`` as parameter.
 
 The ``context`` provides the following properties:
 
-- ``context.app``,
-- ``context.request``,
-- ``context.parent_request``,
-- ``context.portal``,
-- ``context.content``,
-- ``context.record``,
-- ``context.api``,
-- ``context.modules``.
+.. contents::
+    :local:
 
 ``context.app``
 ---------------
@@ -208,6 +202,24 @@ This API mainly allows:
         )
 
 For more detailed examples, refer to the `Plone API documentation <http://docs.plone.org/develop/plone.api/docs/index.html>`_.
+
+``context.rapido``
+------------------
+
+``context.rapido`` is a function able to obtain another Rapido application in our current script.
+
+It takes as mandatory parameter the id of the Rapido application. Example:
+
+.. code-block:: python
+
+    purchase_app = context.rapido('purchase')
+    new_purchase_order = purchase_app.create_record()
+
+It might also accept a ``content`` parameter to provide a specific content context to the app (if not provided, it will take the current content). Example:
+
+.. code-block:: python
+
+    stat_app = context.rapido('stats', content=context.portal.news)
 
 ``context.modules``
 -------------------
