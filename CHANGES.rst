@@ -5,7 +5,8 @@ Changelog
 1.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add book use case
+  [sverbois]
 
 
 1.0.2 (2016-04-09)
@@ -14,7 +15,7 @@ Changelog
 - Add rapidoLoad Javascript event
   [ebrehault]
 
-- Allow to inject parent request path in Rapdio path
+- Allow to inject parent request path in Rapido path
   [ebrehault]
 
 - Support TAL templates
