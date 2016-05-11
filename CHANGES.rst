@@ -8,6 +8,9 @@ Changelog
 - Add book use case
   [sverbois]
 
+- Always return unicode when reading app files
+  [ebrehault]
+
 
 1.0.2 (2016-04-09)
 ------------------

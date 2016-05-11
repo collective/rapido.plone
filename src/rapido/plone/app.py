@@ -97,7 +97,7 @@ class RapidoApplication(object):
 
     def get_resource(self, path):
         try:
-            return self.resources.readFile(str(path))
+            return self.resources.readFile(str(path)).decode('utf-8')
         except:
             raise KeyError(path)
 
