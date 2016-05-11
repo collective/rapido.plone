@@ -5,3 +5,4 @@ Use cases
    :maxdepth: 1
 
    glossary
+   book
