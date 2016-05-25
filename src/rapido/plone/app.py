@@ -72,7 +72,10 @@ class RapidoApplication(object):
     def get_block(self, block_id, ftype='yaml'):
         path = "blocks/%s.%s" % (block_id, ftype)
         try:
-            return self.get_resource(path)
+            content = self.get_resource(path)
+            if ftype in ('html', 'pt', ):
+                content = content.decode('utf-8')
+            return content
         except KeyError:
             if ftype == "yaml":
                 # the YAML file is not mandatory, return a default content
@@ -97,7 +100,7 @@ class RapidoApplication(object):
 
     def get_resource(self, path):
         try:
-            return self.resources.readFile(str(path)).decode('utf-8')
+            return self.resources.readFile(str(path))
         except:
             raise KeyError(path)
 

@@ -8,7 +8,7 @@ Changelog
 - Add book use case
   [sverbois]
 
-- Always return unicode when reading app files
+- Return unicode when loading templates
   [ebrehault]
 
 
