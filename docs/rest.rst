@@ -157,14 +157,14 @@ Remove all records
 **Request**
 ::
 
-    POST /:site_id/@@rapido/:app_id/clear
+    DELETE /:site_id/@@rapido/:app_id/records
     Accept: application/json
     X-CSRF-TOKEN: :token
 
 **Response**
 ::
 
-    {"success": "clear_storage"}
+    {"success": "deleted"}
 
 Remove all the records and delete the indexes.
 
