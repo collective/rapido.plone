@@ -43,3 +43,26 @@ The following actions can be included in our block HTML layout, and they will no
 - ``_edit``: will open the current record in edit mode;
 - ``_delete``: will delete the current record.
 
+Direct HTTP call to elements
+----------------------------
+
+We usually want to display blocks, but we can also call an element by its URL::
+
+    http://localhost:8080/Plone/@@rapido/myapp/block/block1/element1
+
+Both GET and POST request are supported.
+
+If the element is an action, its Python function will be executed, the returned value is supposed to be a string and will be used as a redirection URL.
+When building an application, it allows to create a link that will redirect the user to the proper location depending on our business criteria (e.g. if the user belongs to such group, go to page1, else go to page2).
+
+If the element is not an action, its Python function will be executed, and the result is returned as a response.
+
+.. note ::
+    
+    We can change the response content type like this:
+
+    .. code-block:: python
+
+        def my_element(context):
+            context.request.reponse.setHeader('content-type', 'text/csv')
+            return "one,two,three\n1,2,3"
