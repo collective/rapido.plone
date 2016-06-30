@@ -1,6 +1,5 @@
 elements:
-    author:
-        type: TEXT
+    author: TEXT
     _save:
         type: ACTION
         label: Save

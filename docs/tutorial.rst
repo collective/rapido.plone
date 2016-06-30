@@ -206,8 +206,7 @@ We must declare it in ``rate.yaml``:
         like:
             type: ACTION
             label: Like
-        display:
-            type: BASIC
+        display: BASIC
 
 And let's implement it in ``rate.py``:
 
@@ -297,8 +296,7 @@ We declare its indexing mode in ``rate.yaml``:
             like:
                 type: ACTION
                 label: Like
-            display:
-                type: BASIC
+            display: BASIC
             total:
                 type: NUMBER
                 index_type: field
@@ -321,8 +319,7 @@ We are now able to build a block to display the top 5 contents:
 .. code-block:: yaml
 
     elements:
-        top:
-            type: BASIC
+        top: BASIC
 
 - ``top5.py``:
 

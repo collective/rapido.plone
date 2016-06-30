@@ -1,3 +1,2 @@
 elements:
-  create_external_record:
-    type: BASIC
+  create_external_record: BASIC

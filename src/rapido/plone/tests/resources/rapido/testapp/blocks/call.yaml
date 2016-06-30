@@ -1,3 +1,2 @@
 element:
-  call_me:
-    type: BASIC
+  call_me: BASIC

@@ -2,8 +2,7 @@ elements:
     create:
         type: ACTION
         label: Create a quote
-    display_quote:
-        type: BASIC
+    display_quote: BASIC
     boom:
         type: ACTION
         label: Make an error

@@ -1,3 +1,2 @@
 elements:
-    jokes:
-        type: BASIC
+    jokes: BASIC

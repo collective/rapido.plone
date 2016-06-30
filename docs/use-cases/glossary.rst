@@ -71,10 +71,8 @@ two field elements and three actions.
 
     target: ajax
     elements:
-        term:
-            type: TEXT
-        definition:
-            type: TEXT
+        term: TEXT
+        definition: TEXT
         close:
             type: ACTION
             label: Close
@@ -124,8 +122,7 @@ open it in the `term` block in edit mode, and a button allows to open a blank
 
     target: ajax
     elements:
-        list:
-            type: BASIC
+        list: BASIC
         new_term:
             type: ACTION
             label: Add term

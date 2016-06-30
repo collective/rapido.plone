@@ -1,6 +1,36 @@
 Elements
 ========
 
+Declaration
+-----------
+
+Elements must be declared in the YAML file under the ``elements`` entry.
+Every element is declared by its identifier, and its definition is:
+
+- either a list of parameters, e.g.:
+
+    .. code-block:: yaml
+
+        elements:
+            do_something:
+                type: ACTION
+                label: Do something
+
+- either just a string, in that case Rapido will assume it is the ``type`` parameter, e.g.:
+
+    .. code-block:: yaml
+
+        elements:
+            message: BASIC
+
+    is equivalent to:
+
+    .. code-block:: yaml
+
+        elements:
+            message:
+                type: BASIC
+
 Types
 -----
 
