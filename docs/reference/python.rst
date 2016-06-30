@@ -18,6 +18,11 @@ Special Python functions
     If it returns a value, it must be a string, and it will be used as a
     redirection URL for the current request.
 
+``on_display``
+    Executed when a block is displayed. It will be executed before all the element functions.
+    It can be used to make some computation and put the result in the ``context`` so it can be accessed by the different elements.
+    It can also be used to redirect to another page (using ``context.request.response.redirect()``).
+
 ``on_delete``
     Executed when a record is deleted.
     If it returns a value, it must be a string, and it will be used as a
