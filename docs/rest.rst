@@ -10,16 +10,40 @@ Get the application settings
     GET /:site_id/@@rapido/:app_id
     Accept: application/json
 
+
 **Response**
 ::
 
     {"no_settings": {}}
+    
+**HTTP Response Headers**
+::
 
-Returns the Rapido application settings and set a token in the
+    x-csrf-token: token
+    
+Returns the Rapido application settings and sets a token in the
 ``X-CSRF-TOKEN`` HTTP header value.
 
 This HTTP header will have to be reused in all the requests made to the API (but
 for GET requests).
+
+Authentication
+------------------
+Some of the operations below require authentication before they will run successfully.
+You will need to generate an Authorization String (A Base64 encoded version of your username and password separated by a dot).
+
+Basic Authorization String
+`````````````````````````````````
+If your username is "john" and your password is "password", you can quickly generate the basic authorization string on the python prompt as follows::
+
+    >>> "john.password".encode('base64','strict').strip()
+    'am9obi5wYXNzd29yZA=='
+
+Now you can use this header in all your requests::
+
+    Authorization: Basic am9obi5wYXNzd29yZA==
+
+.. note:: The expected X-CSRF-TOKEN will be change when you use a Basic Authorization header.
 
 Compute an element
 ------------------
