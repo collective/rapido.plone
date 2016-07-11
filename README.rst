@@ -4,16 +4,16 @@ rapido.plone
 
 **Happy hacking with Plone**
 
-.. image:: https://raw.githubusercontent.com/plomino/rapido.plone/master/docs/files/logo-rapido.png
+.. image:: https://raw.githubusercontent.com/collective/rapido.plone/master/docs/files/logo-rapido.png
 
-.. image:: https://secure.travis-ci.org/plomino/rapido.plone.png?branch=master
-    :target: http://travis-ci.org/plomino/rapido.plone
+.. image:: https://secure.travis-ci.org/collective/rapido.plone.png?branch=master
+    :target: http://travis-ci.org/collective/rapido.plone
     :alt: Tests
-.. image:: https://landscape.io/github/plomino/rapido.plone/master/landscape.svg?style=flat
-    :target: https://landscape.io/github/plomino/rapido.plone/master
+.. image:: https://landscape.io/github/collective/rapido.plone/master/landscape.svg?style=flat
+    :target: https://landscape.io/github/collective/rapido.plone/master
     :alt: Code Health
-.. image:: https://coveralls.io/repos/plomino/rapido.plone/badge.svg?branch=master&service=github
-    :target: https://coveralls.io/github/plomino/rapido.plone?branch=master
+.. image:: https://coveralls.io/repos/collective/rapido.plone/badge.svg?branch=master&service=github
+    :target: https://coveralls.io/github/collective/rapido.plone?branch=master
     :alt: Coverage
 
 What for?

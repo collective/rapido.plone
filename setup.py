@@ -33,7 +33,7 @@ setup(
     keywords='Python Plone rapido',
     author='Eric BREHAULT',
     author_email='ebrehault@gmail.com',
-    url='https://github.com/plomino/rapido.plone',
+    url='https://github.com/collective/rapido.plone',
     license='GPL',
     packages=find_packages('src', exclude=['ez_setup']),
     namespace_packages=['rapido'],
