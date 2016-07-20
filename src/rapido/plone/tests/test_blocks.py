@@ -185,8 +185,8 @@ class TestCase(unittest.TestCase):
     def test_bad_pt_template(self):
         self.browser.open(
             self.portal.absolute_url() + '/@@rapido/testapp/block/bad')
-        self.assertTrue('<pre>Rendering error\n - Expression: "boom/jokes"\n'
-            ' - Location:   (line 2: col 25)</pre>' in self.browser.contents)
+        self.assertTrue('Rendering error\n - Expression: "boom/jokes"\n'
+            ' - Location:   (line 2: col 25)' in self.browser.contents)
 
     def test_missing_template(self):
         try:

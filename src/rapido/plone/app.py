@@ -22,12 +22,16 @@ class RapidoTemplateFile(PageTemplate):
         try:
             return self.pt_render({'elements': elements, 'context': context})
         except Exception, e:
-            lines = str(e).split('\n')
+            error = str(e)
+            extra = ('<pre>' in error and error[
+                error.index('<pre>') + 5:error.index('</pre>')]) or ''
+            lines = error.split('\n')
             if len(lines) > 4:
                 message = "%s\n%s" % (lines[2], lines[4])
             else:
                 message = str(e)
-            return "<pre>Rendering error\n%s</pre>" % message
+            return "<pre>Rendering error\n%s\n\n%s</pre>" % (
+                message, extra.replace('\\n', '\n'))
 
 
 class RapidoApplication(object):
