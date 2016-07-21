@@ -1,8 +1,9 @@
 require([
     'jquery',
     'mockup-patterns-base',
-    'pat-registry'
-], function($, Base, Registry) {
+    'pat-registry',
+    'mockup-utils'
+], function($, Base, Registry, utils) {
     'use strict';
     var Rapido = Base.extend({
         name: 'rapido',
@@ -19,6 +20,7 @@ require([
             if(self.settings.app.debug) {
                 self.showDebug();
             }
+            self.loading = new utils.Loading();
             $(document).trigger('rapidoLoad', [self.id]);
         },
         initAjaxForm: function() {
@@ -31,6 +33,7 @@ require([
                         value: this.val()
                     });
                 }
+                self.loading.show();
                 $.ajax({
                     url: self.$el.attr('action'),
                     type: self.$el.attr('method'),
@@ -40,9 +43,11 @@ require([
                         var $content = $(response);
                         self.$el.replaceWith($content);
                         Registry.scan($content);
+                        self.loading.hide();
                     },
                     error: function(jqXHR, textStatus, errorThrown){
                         console.log('error(s):'+textStatus, errorThrown);
+                        self.loading.hide();
                     }
                 });
                 return false;
@@ -55,6 +60,7 @@ require([
         ajaxLink: function() {
             var self = this;
             var ajax_load = function(event){
+                self.loading.show();
                 $.ajax({
                     url: $(this).attr('href'),
                     type: 'GET',
@@ -63,9 +69,11 @@ require([
                         var $content = $(response);
                         self.$el.replaceWith($content);
                         Registry.scan($content);
+                        self.loading.hide();
                     },
                     error: function(jqXHR, textStatus, errorThrown){
                         console.log('error(s):'+textStatus, errorThrown);
+                        self.loading.hide();
                     }
                 });
                 return false;
