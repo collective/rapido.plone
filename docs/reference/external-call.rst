@@ -14,6 +14,7 @@ It might be very useful when we want to use Rapido from a PythonScript, a Plone 
 Example:
 
 PythonScript:
+
 .. code-block:: python
 
     visitors = container.restrictedTraverse('@@rapido-call')(
@@ -23,6 +24,7 @@ PythonScript:
         client='smartphone')
 
 Rapido element in myapp/stats.py:
+
 .. code-block:: python
 
     def analyse(context):
