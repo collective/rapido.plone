@@ -1,9 +1,12 @@
 Access control
 ==============
 
-Access control applies to records, not the blocks. Blocks are always accessible,
+Access control list
+-------------------
+
+The ACL defined in the app applies to records, not the blocks. Blocks are always accessible,
 if we do not want a block to render an information, we have to implement it in
-its Python file.
+its Python file or use the ``view_permission`` setting.
 
 Moreover, access control only impacts direct HTTP access to records (like openning
 a record URL, deleting a record from the JSON API, etc.), and it does **not**
@@ -52,3 +55,26 @@ the user.
 For instance, we might have a role named 'PurchaseManager', and if our block we
 would display a "Validate purchase" button if the current user as the
 'PurchaseManager' role.
+
+Permissions on blocks
+---------------------
+
+By default, blocks are accessible by anyone (including anonymous visitors).
+
+By setting the ``view_permission`` attribute in a block's YAML file, we can control access to this block.
+
+Its value is a list of users or groups.
+
+Example:
+
+.. code-block:: yaml
+
+    elements:
+      whatever: BASIC
+    view_permission:
+      PurchaseDepartment
+      eric
+
+This block will be accessible only by PurchaseDepartment group members and Eric.
+
+The restriction applies to direct block rendering and element calls, including REST calls.
