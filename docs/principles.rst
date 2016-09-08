@@ -283,3 +283,7 @@ integrate our Rapido developments in Plone using:
 
 - Content Rules: Rapido provides a Plone content rule action allowing to call a
   Python function from a block when a given Plone event happens.
+
+- `Mockup <http://plone.github.io/mockup/dev/>`_ patterns: the modal pattern and the content loader pattern can load and display Rapido blocks.
+
+See :doc:`reference/display`.
