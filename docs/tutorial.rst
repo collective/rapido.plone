@@ -301,9 +301,23 @@ We declare its indexing mode in ``rate.yaml``:
                 type: NUMBER
                 index_type: field
 
-And then we have to refresh the storage index by calling the following URL::
+To index the previously stored values, we have to refresh the storage index by calling the following URL::
 
     http://localhost:8080/Plone/@@rapido/rating/refresh
+
+And to make sure future changes will be indexed, we need to fix the ``like`` function in the ``rate`` block: the indexing is triggered when we call the record's ``save`` method:
+
+.. code-block:: python
+
+    def like(context):
+        content_path = context.content.absolute_url_path()
+        record = context.app.get_record(content_path)
+        if not record:
+            record = context.app.create_record(id=content_path)
+        total = record.get('total', 0)
+        total += 1
+        record['total'] = total
+        record.save(block_id='rate')
 
 We are now able to build a block to display the top 5 contents:
 
