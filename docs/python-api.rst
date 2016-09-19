@@ -69,7 +69,7 @@ This property gives access to the Rapido application object.
 
 ``context.request`` is the actual request to Rapido, like::
 
-    http://localhost:8080/Plone/@@rapido/rating/block/rate
+    http://localhost:8080/Plone/@@rapido/rating/blocks/rate
 
 When a block is embedded in a Plone page, ``context.request`` has not been
 issued by the user's browser, it has been issued by Diazo.

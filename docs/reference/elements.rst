@@ -78,7 +78,7 @@ Direct HTTP call to elements
 
 We usually want to display blocks, but we can also call an element by its URL::
 
-    http://localhost:8080/Plone/@@rapido/myapp/block/block1/element1
+    http://localhost:8080/Plone/@@rapido/myapp/blocks/block1/element1
 
 Both GET and POST request are supported.
 

@@ -83,7 +83,7 @@ Here is a basic example:
 
 We can see our block by visiting the following URL::
 
-    http://localhost:8080/Plone/@@rapido/myapp/block/simpleblock
+    http://localhost:8080/Plone/@@rapido/myapp/blocks/simpleblock
 
 It works fine, but where is our Plone site now??
 
@@ -95,7 +95,7 @@ To put our block somewhere in the Plone site, we use a Diazo rule:
 .. code-block:: xml
 
     <before css:content="#content-core">
-        <include css:content="form" href="/@@rapido/myapp/block/simpleblock" />
+        <include css:content="form" href="/@@rapido/myapp/blocks/simpleblock" />
     </before>
 
 Now, if we visit any page of our site, we will see our block.
@@ -107,7 +107,7 @@ Now, if we visit any page of our site, we will see our block.
     .. code-block:: xml
 
         <before css:content="#content-core" css:if-content=".section-news">
-            <include css:content="form" href="/@@rapido/myapp/block/simpleblock" />
+            <include css:content="form" href="/@@rapido/myapp/blocks/simpleblock" />
         </before>
 
     See the `Diazo <http://docs.diazo.org/en/latest/>`_ documentation for more details.
@@ -140,7 +140,7 @@ Diazo rule for this path:
 
     <rules if-path="@@rapido/view">
         <replace css:content="#content">
-            <include css:content="form" href="/@@rapido/myapp/block/simpleblock" />
+            <include css:content="form" href="/@@rapido/myapp/blocks/simpleblock" />
         </replace>      
     </rules>
 

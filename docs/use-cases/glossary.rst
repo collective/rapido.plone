@@ -38,7 +38,7 @@ Rules.xml
 
     <rules if-path="@@rapido/view/manage-glossary">
       <replace css:content="#content">
-        <include css:content="form" href="/@@rapido/glossary/block/all" />
+        <include css:content="form" href="/@@rapido/glossary/blocks/all" />
       </replace>      
     </rules>
     <after css:theme-children="body">

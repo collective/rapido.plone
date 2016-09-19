@@ -47,33 +47,33 @@ class TestCase(unittest.TestCase):
 
     def test_static_block(self):
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/otherapp/block/purehtml')
+            self.portal.absolute_url() + '/@@rapido/otherapp/blocks/purehtml')
         self.assertTrue("""<p>Hello, I am static</p>"""
             in self.browser.contents)
 
     def test_traverse_to_content(self):
         self.browser.open(
             self.portal.absolute_url() +
-            '/sendto_form/@@rapido/otherapp/block/purehtml')
+            '/sendto_form/@@rapido/otherapp/blocks/purehtml')
         self.assertTrue("""<p>Hello, I am static</p>"""
             in self.browser.contents)
 
     def test_block_with_basic_element(self):
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/testapp/block/basic')
+            self.portal.absolute_url() + '/@@rapido/testapp/blocks/basic')
         self.assertTrue("""<span>How simple is it? Very simple!</span>"""
             in self.browser.contents)
 
     def test_block_with_text_element(self):
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/testapp/block/text')
+            self.portal.absolute_url() + '/@@rapido/testapp/blocks/text')
         self.assertTrue('<span>How simple is it? <input type="text"\n'
             '        name="answer" value="" /></span>'
             in self.browser.contents)
 
     def test_block_with_action_element(self):
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/testapp/block/action')
+            self.portal.absolute_url() + '/@@rapido/testapp/blocks/action')
         self.assertTrue("""<span>Quote is: No quote</span>"""
             in self.browser.contents)
         self.assertTrue('<input type="submit"\n        name="action.create"'
@@ -89,7 +89,7 @@ class TestCase(unittest.TestCase):
             self.portal.absolute_url() + '/@@rapido/testapp/_log')
         self.assertEquals(self.browser.contents, '[]')
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/testapp/block/action')
+            self.portal.absolute_url() + '/@@rapido/testapp/blocks/action')
         self.assertRaises(
             ExecutionError,
             self.browser.getControl('Make an error').click
@@ -100,7 +100,7 @@ class TestCase(unittest.TestCase):
             self.portal.absolute_url() + '/@@rapido/testapp/_log')
         self.assertEquals(self.browser.contents, '[]')
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/testapp/block/action')
+            self.portal.absolute_url() + '/@@rapido/testapp/blocks/action')
         self.browser.getControl('Write a log').click()
         self.browser.open(
             self.portal.absolute_url() + '/@@rapido/testapp/_log')
@@ -111,7 +111,7 @@ class TestCase(unittest.TestCase):
 
     def test_save_anonymous(self):
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/testapp/block/book')
+            self.portal.absolute_url() + '/@@rapido/testapp/blocks/book')
         self.assertRaises(
             Unauthorized,
             self.browser.getControl('Save').click,
@@ -123,7 +123,7 @@ class TestCase(unittest.TestCase):
             'Basic %s:%s' % (TEST_USER_ID, TEST_USER_PASSWORD,)
         )
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/testapp/block/book')
+            self.portal.absolute_url() + '/@@rapido/testapp/blocks/book')
         self.assertRaises(
             Unauthorized,
             self.browser.getControl('Save').click,
@@ -135,14 +135,14 @@ class TestCase(unittest.TestCase):
             'Basic %s:%s' % (SITE_OWNER_NAME, SITE_OWNER_PASSWORD,)
         )
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/testapp/block/book')
+            self.portal.absolute_url() + '/@@rapido/testapp/blocks/book')
         self.browser.getControl(name='author').value = u"Victor Hugo"
         self.browser.getControl('Save').click()
         self.assertTrue("Victor Hugo" in self.browser.contents)
 
     def test_plone_security_anonymous(self):
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/testapp/block/action')
+            self.portal.absolute_url() + '/@@rapido/testapp/blocks/action')
         self.assertRaises(
             ExecutionError,
             self.browser.getControl('Create a content').click
@@ -155,7 +155,7 @@ class TestCase(unittest.TestCase):
             'Basic %s:%s' % (TEST_USER_ID, TEST_USER_PASSWORD,)
         )
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/testapp/block/action')
+            self.portal.absolute_url() + '/@@rapido/testapp/blocks/action')
         self.assertRaises(
             ExecutionError,
             self.browser.getControl('Create a content').click
@@ -168,7 +168,7 @@ class TestCase(unittest.TestCase):
             'Basic %s:%s' % (SITE_OWNER_NAME, SITE_OWNER_PASSWORD,)
         )
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/testapp/block/action')
+            self.portal.absolute_url() + '/@@rapido/testapp/blocks/action')
         if "Confirm action" in self.browser.contents:
             self.browser.getControl('Confirm action').click()
         self.browser.getControl('Create a content').click()
@@ -176,22 +176,22 @@ class TestCase(unittest.TestCase):
 
     def test_pt_template(self):
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/testapp/block/knowledge')
+            self.portal.absolute_url() + '/@@rapido/testapp/blocks/knowledge')
         self.assertTrue('<p>Knowledge is power</p>\n<ul><li>France is bacon'
             '</li>\n<li>Francis Bacon</li></ul>\n<a href="http://localhost:'
-            '55001/plone/@@rapido/testapp/block/knowledge">Home</a>'
+            '55001/plone/@@rapido/testapp/blocks/knowledge">Home</a>'
             in self.browser.contents)
 
     def test_bad_pt_template(self):
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/testapp/block/bad')
+            self.portal.absolute_url() + '/@@rapido/testapp/blocks/bad')
         self.assertTrue('Rendering error\n - Expression: "boom/jokes"\n'
             ' - Location:   (line 2: col 25)' in self.browser.contents)
 
     def test_missing_template(self):
         try:
             self.browser.open(
-                self.portal.absolute_url() + '/@@rapido/testapp/block/oops')
+                self.portal.absolute_url() + '/@@rapido/testapp/blocks/oops')
         except Exception, e:
             self.assertTrue(type(e) is zExceptions.NotFound)
         else:
@@ -206,8 +206,8 @@ class TestCase(unittest.TestCase):
 
     def test_access_other_app(self):
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/testapp/block/otherapp')
+            self.portal.absolute_url() + '/@@rapido/testapp/blocks/otherapp')
         self.assertTrue('Records=1' in self.browser.contents)
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/testapp/block/otherapp')
+            self.portal.absolute_url() + '/@@rapido/testapp/blocks/otherapp')
         self.assertTrue('Records=2' in self.browser.contents)

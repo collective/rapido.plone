@@ -3,7 +3,7 @@ Displaying Rapido in Plone
 
 We can see a block by visiting its URL::
 
-    http://localhost:8080/Plone/@@rapido/myapp/block/simpleblock
+    http://localhost:8080/Plone/@@rapido/myapp/blocks/simpleblock
 
 Similarly for a record::
 
@@ -25,7 +25,7 @@ Example:
 .. code-block:: xml
 
     <before css:content="#content-core">
-        <include css:content="form" href="/@@rapido/myapp/block/simpleblock" />
+        <include css:content="form" href="/@@rapido/myapp/blocks/simpleblock" />
     </before>
 
 Extra views
@@ -54,7 +54,7 @@ to create specific Diazo rules for it using the ``if-path`` attribute.
     
     <rules if-path="@@rapido/view/show-report">
         <replace css:content="#content">
-            <include css:content="form" href="/@@rapido/stats/block/report" />
+            <include css:content="form" href="/@@rapido/stats/blocks/report" />
         </replace>      
     </rules>
 
@@ -133,7 +133,7 @@ Some Mockup patterns can display contents provided by an URL. The two main use c
 
     .. code-block:: html
 
-        <a href="@@rapido/my-app/block/my-content"
+        <a href="@@rapido/my-app/blocks/my-content"
             class="plone-btn pat-plone-modal"
             data-pat-plone-modal="content: form.rapido-block">
                 Open in a modal
@@ -148,7 +148,7 @@ Some Mockup patterns can display contents provided by an URL. The two main use c
     .. code-block:: html
 
         <a href="#" class="pat-contentloader"
-           data-pat-contentloader="url:@@rapido/my-app/block/my-content#form.rapido-block;">
+           data-pat-contentloader="url:@@rapido/my-app/blocks/my-content#form.rapido-block;">
            Load content</a>
 
     It would replace the "Load content" link with our ``my-content`` block when we click on the link.
@@ -160,7 +160,7 @@ Some Mockup patterns can display contents provided by an URL. The two main use c
     .. code-block:: html
 
         <a href="#" class="pat-contentloader"
-           data-pat-contentloader="url:@@rapido/my-app/block/my-content#form.rapido-block;target:#here;">
+           data-pat-contentloader="url:@@rapido/my-app/blocks/my-content#form.rapido-block;target:#here;">
            Load content</a>
         <p id="here">Insert my content here.</p>
 
@@ -169,5 +169,5 @@ Some Mockup patterns can display contents provided by an URL. The two main use c
     .. code-block:: html
 
         <a href="#" class="pat-contentloader"
-           data-pat-contentloader="url:@@rapido/my-app/block/my-content#form.rapido-block;trigger:immediate">
+           data-pat-contentloader="url:@@rapido/my-app/blocks/my-content#form.rapido-block;trigger:immediate">
            Load content</a>

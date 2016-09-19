@@ -97,7 +97,7 @@ be rendered as a button), and its displayed label is "Like".
 
 Now our block is ready, we can see it using the following URL:
 
-http://localhost:8080/Plone/@@rapido/rating/block/rate
+http://localhost:8080/Plone/@@rapido/rating/blocks/rate
 
 .. image:: files/screen-3.png
 
@@ -113,7 +113,7 @@ lines:
 .. code-block:: xml
 
     <after css:content=".documentFirstHeading">
-        <include css:content="form" href="/@@rapido/rating/block/rate" />
+        <include css:content="form" href="/@@rapido/rating/blocks/rate" />
     </after>
 
 The ``include`` directive allows to retrieve a piece of content, in our case, the
@@ -357,7 +357,7 @@ get the corresponding contents, and then obtain their URLs and titles.
 
 Our block works now::
 
-    http://localhost:8080/tutorial/@@rapido/rating/block/top5
+    http://localhost:8080/tutorial/@@rapido/rating/blocks/top5
 
 Finally, we have to insert our block in the home page. That will be done in
 ``rules.xml``:
@@ -366,7 +366,7 @@ Finally, we have to insert our block in the home page. That will be done in
 
     <rules css:if-content=".section-front-page">
         <before css:content=".documentFirstHeading">
-            <include css:content="form" href="/@@rapido/rating/block/top5" />
+            <include css:content="form" href="/@@rapido/rating/blocks/top5" />
         </before>
     </rules>
 
@@ -397,7 +397,7 @@ our block:
 
     <rules if-path="@@rapido/view/show-report">
         <replace css:content="#content">
-            <include css:content="form" href="/@@rapido/rating/block/report" />
+            <include css:content="form" href="/@@rapido/rating/blocks/report" />
         </replace>      
     </rules>
 

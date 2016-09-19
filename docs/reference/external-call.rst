@@ -7,7 +7,7 @@ It might be very useful when we want to use Rapido from a PythonScript, a Plone 
 
 ``@@rapido-call`` accepts the following parameters:
 
-- ``path`` (mandatory, string): Rapido path to the element to call (format: ``app/block/element``),
+- ``path`` (mandatory, string): Rapido path to the element to call (format: ``app/blocks/element``),
 - ``content`` (optional, object): the content to provides to the Rapido context,
 - any other named parameters: those named parameters will be available in the Python implementation of the element using the ``context.params`` dictionnary.
 

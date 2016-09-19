@@ -46,7 +46,7 @@ class TestCase(unittest.TestCase):
 
     def test_path_from_parent_request(self):
         self.browser.open(
-            self.portal.absolute_url() + '/@@rapido/view/anything/testapp/block/basic')
+            self.portal.absolute_url() + '/@@rapido/view/anything/testapp/blocks/basic')
         self.assertTrue("How simple is it" in self.browser.contents)
 
     def test_refresh(self):

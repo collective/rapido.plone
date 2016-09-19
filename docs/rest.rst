@@ -51,14 +51,14 @@ Compute an element
 **Request**
 ::
 
-    GET /:site_id/@@rapido/:app_id/block/:block_id/:element_id
+    GET /:site_id/@@rapido/:app_id/blocks/:block_id/:element_id
     Accept: application/json
     X-CSRF-TOKEN: :token
 
 or
 ::
 
-    POST /:site_id/@@rapido/:app_id/block/:block_id/:element_id
+    POST /:site_id/@@rapido/:app_id/blocks/:block_id/:element_id
     Accept: application/json
     X-CSRF-TOKEN: :token
 
