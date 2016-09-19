@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.0.3 (unreleased)
+1.0.3 (2016-09-19)
 ------------------
 
 - Add book use case
