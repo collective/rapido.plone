@@ -32,6 +32,6 @@ the Python API:
 
 We can also reindex all the records using the ``refresh`` URL command::
 
-    http://localhost:8080/Plone/@@rapido/<app-id>/refresh
+    http://localhost:8080/Plone/@@rapido/<app-id>/refresh?_authenticator=<valid token>
 
 or using the REST API (see :doc:`../rest`).
