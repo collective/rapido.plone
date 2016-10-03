@@ -97,7 +97,7 @@ be rendered as a button), and its displayed label is "Like".
 
 Now our block is ready, we can see it using the following URL:
 
-http://localhost:8080/Plone/@@rapido/rating/blocks/rate
+http://localhost:8080/Plone/@@rapido/rating/block/rate
 
 .. image:: files/screen-3.png
 
