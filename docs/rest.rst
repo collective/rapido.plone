@@ -24,8 +24,8 @@ Get the application settings
 Returns the Rapido application settings and sets a token in the
 ``X-CSRF-TOKEN`` HTTP header value.
 
-This HTTP header will have to be reused in all the requests made to the API (but
-for GET requests).
+This HTTP header will have to be reused in all the requests made to the API 
+(except for GET requests).
 
 Authentication
 ------------------
@@ -33,7 +33,8 @@ Some of the operations below require authentication before they will run success
 You will need to generate an Authorization String (A Base64 encoded version of your username and password separated by a dot).
 
 Basic Authorization String
-`````````````````````````````````
+``````````````````````````
+
 If your username is "john" and your password is "password", you can quickly generate the basic authorization string on the python prompt as follows::
 
     >>> "john.password".encode('base64','strict').strip()
@@ -100,7 +101,11 @@ Get all the records
 **Response**
 ::
 
-    [{"path": "http://localhost:8080/demo/@@rapido/test2/record/boom", "id": "boom", "items": {"bla": "bla", "id": "boom"}}, {"path": "http://localhost:8080/demo/@@rapido/test2/record/10025657", "id": "10025657", "items": {"id": "10025657"}}, {"path": "http://localhost:8080/demo/@@rapido/test2/record/9755269", "id": "9755269", "items": {"bla": "bli", "id": "9755269"}}, {"path": "http://localhost:8080/demo/@@rapido/test2/record/8742197835653", "id": "8742197835653", "items": {"bla": "bli", "id": "8742197835653"}}, {"path": "http://localhost:8080/demo/@@rapido/test2/record/9755345", "id": "9755345", "items": {"id": "9755345"}}]
+    [{"path": "http://localhost:8080/demo/@@rapido/test2/record/boom", "id": "boom", "items": {"bla": "bla", "id": "boom"}},
+     {"path": "http://localhost:8080/demo/@@rapido/test2/record/10025657", "id": "10025657", "items": {"id": "10025657"}},
+     {"path": "http://localhost:8080/demo/@@rapido/test2/record/9755269", "id": "9755269", "items": {"bla": "bli", "id": "9755269"}},
+     {"path": "http://localhost:8080/demo/@@rapido/test2/record/8742197835653", "id": "8742197835653", "items": {"bla": "bli", "id": "8742197835653"}},
+     {"path": "http://localhost:8080/demo/@@rapido/test2/record/9755345", "id": "9755345", "items": {"id": "9755345"}}]
 
 Returns all the records.
 
@@ -232,7 +237,8 @@ Search for records
 **Response**
 ::
 
-    [{"path": "http://localhost:8080/tutorial/@@rapido/rating/record//tutorial/news", "id": "/tutorial/news", "items": {"total": 5, "id": "/tutorial/news"}}, {"path": "http://localhost:8080/tutorial/@@rapido/rating/record//tutorial", "id": "/tutorial", "items": {"total": 8, "id": "/tutorial"}}]
+    [{"path": "http://localhost:8080/tutorial/@@rapido/rating/record//tutorial/news", "id": "/tutorial/news", "items": {"total": 5, "id": "/tutorial/news"}},
+     {"path": "http://localhost:8080/tutorial/@@rapido/rating/record//tutorial", "id": "/tutorial", "items": {"total": 8, "id": "/tutorial"}}]
 
 Search for records.
 

@@ -7,7 +7,7 @@ Creating a Rapido app
 Here are the basic steps to create a Rapido app:
 
 - go to the theme folder (``static`` folder in the theme module if we want to
-  work in thefile system, or in Plone setup / Theme if we prefer inline),
+  work in the filesystem, or in Plone setup / Theme if we prefer inline),
 - add a new folder named ``rapido``,
 - in ``rapido``, add a new folder named ``myapp``.
 
@@ -27,34 +27,35 @@ Here is a typical layout for a rapido app::
                 tags.py
                 tags.yaml
 
-.. note ::
+.. note::
 
-    ``settings.yaml`` is not mandatory, it allows to define access rights if needed.
+    ``settings.yaml`` is not mandatory, but it allows defining access rights if needed.
 
-The app components are `blocks`. A block is defined by a set of 3 files (HTML,
-Python, and YAML files) located in the ``blocks`` folder.
+The app components are ``blocks``. A block is defined by a set of 3 files (HTML,
+Python, and YAML) located in the ``blocks`` folder.
 
 The **YAML file** defines the elements. An element is any dynamically generated
-element in a block, it can be a form field (input, select, etc.), but
+element in a block: it can be a form field (input, select, etc.), but
 also a button (``ACTION``), or even just a piece of generated HTML (``BASIC``).
 
 The **HTML file** contains the layout of the block. The templating mechanism is
 super simple, elements are just enclosed in brackets, like this:
 ``{my_element}``.
 
-The **Python file** contains the application logic. It is a set of functions
-which names refer to the element or the event they are related to.
+The **Python file** contains the application logic. It is a set of functions,
+each named for the element or the event it corresponds to.
 
-For a ``BASIC`` element for instance, we are supposed to provide a function having
-the same name as the element, its returned value will be inserted in the block at
-the location of the element.
+For a ``BASIC`` element, for instance, we need to provide a function with
+the same name as the element; its return-value replaces the element in the
+block.
 
-For an ``ACTION``, we are supposed to provide a function having the same name as
-the element, it will be executed when a user clicks on the action button.
+For an ``ACTION``, we are supposed to provide a function with the same name as
+the element; in this case, it will be *executed* when a user clicks on the
+action button.
 
 Here is a basic example:
 
-- rapido/myapp/blocks/simpleblock.yaml:
+- ``rapido/myapp/blocks/simpleblock.yaml``:
 
 .. code-block:: yaml
 
@@ -64,14 +65,14 @@ Here is a basic example:
             type: ACTION
             label: Do something
 
-- rapido/myapp/blocks/simpleblock.html:
+- ``rapido/myapp/blocks/simpleblock.html``:
 
 .. code-block:: html
 
     <p>the answer to life, the universe, and everything is {result}</p>
     {do_something}
 
-- rapido/myapp/blocks/simpleblock.py:
+- ``rapido/myapp/blocks/simpleblock.py``:
 
 .. code-block:: python
 
@@ -100,9 +101,10 @@ To put our block somewhere in the Plone site, we use a Diazo rule:
 
 Now, if we visit any page of our site, we will see our block.
 
-.. note ::
+.. note::
 
-    If we want to display it only in the News folder, we would use `css:if-content`:
+    If we want to display it only in the _News_ folder, we would use
+    ``css:if-content``:
 
     .. code-block:: xml
 
@@ -116,7 +118,7 @@ But unfortunately, when we click on our "Do something" button, we are redirected
 to the original bare block.
 
 To remain in the Plone page, we need to activate the ``ajax`` target in
-rapido/myapp/blocks/simpleblock.yaml:
+``rapido/myapp/blocks/simpleblock.yaml``:
 
 .. code-block:: yaml
 
@@ -131,7 +133,7 @@ Now, when we click our button, the rapido block is reloaded inside the Plone
 page.
 
 Instead of adding a block to an existing Plone view, we might need to provide a
-new rendering, answering for a specific URL.
+new rendering, mapped to a specific URL.
 We can do that by adding ``@@rapido/view`` to the content URL. It will just
 display the default view of our content, but it allows us to define a specific
 Diazo rule for this path:
@@ -144,15 +146,17 @@ Diazo rule for this path:
         </replace>      
     </rules>
 
-We might add an extra name to our path, which will be ignored in term of
-rendering, but it will allow us to define different rules for different use
-cases (like ``path_to_content/@@rapido/view/subscribe``, ``path_to_content/@@rapido/view/unsubscribe``, ``path_to_content/@@rapido/view/stats``, ...).
+We might add an extra name to our path, which can be used to select
+a particular rapido block, allowing us to define different rules for different
+use cases (like ``path_to_content/@@rapido/view/subscribe``,
+``path_to_content/@@rapido/view/unsubscribe``,
+``path_to_content/@@rapido/view/stats``, ...).
 
-.. note ::
+.. note::
 
     Adding a lot of rapido rules in our main ``rules.xml`` is not ideal.
     
-    We might prefer to create a ``rules.xml`` file into our ``rapido/myapp``
+    We might prefer to create a ``rules.xml`` file in our ``rapido/myapp``
     folder, and include it in our main ``rules.xml`` file like this:
 
     .. code-block:: xml
@@ -176,25 +180,25 @@ The context gives access to useful objects:
 - ``context.api``: the `Plone API
   <http://docs.plone.org/external/plone.api/docs/>`_.
 
-.. warning ::
+.. warning::
 
     ``context`` is not the usual ``context`` we know in Plone (like ``context``
     in a ZPT template or a PythonScript, or ``self.context`` in a BrowserView).
     
-    The Plone ``context`` is most part of time the current content, in Rapido
+    The Plone ``context`` is usually the current content. In Rapido
     we can obtain it using ``context.content``.
 
-It allows us to interact with Plone in very various ways, for instance we can
+This allows us to interact with Plone in many ways, for instance we can
 run catalog queries, create contents, change workflow status, etc.
 
 Nevertheless, it will behave as expected:
 
-- the code will always be executed with the current user access right, so the
+- the code will always be executed with the current user's access right, so the
   appropriate Plone access restrictions will be applied,
 - the CSRF policy will also be applied (for instance, a Plone operation marked
   as ``PostOnly`` would fail if performed in a GET request).
 
-.. note ::
+.. note::
 
     The code we put in our Python files is compiled and executed in a
     sandboxed environment (provided by `zope.untrustedpython.interpreter 
@@ -222,7 +226,7 @@ Storing and retrieving data
 A rapido app provides a builtin storage service, based on
 `Souper <https://pypi.python.org/pypi/souper>`_.
 
-.. note ::
+.. note::
 
     Souper is designed to store (and index) huge amounts of small data (it can
     easily store survey results, comments, ratings, etc., but it will not be
@@ -233,10 +237,10 @@ The Rapido storage service stores **records**, and records contain **items**.
 There are 3 ways to create records in Rapido:
 
 - we can create records by submitting a block: if a
-  block contain some fields elements (like `TEXT` or `NUMBER` elements for
-  instance), and if the block contains a save button (by adding `{_save}` in its
-  layout), everytime the user will enter values in the fields and click save,
-  the submitted values will be saved in a new record,
+  block contain some fields elements (like ``TEXT`` or ``NUMBER`` elements for
+  instance), and if the block contains a *save* button (by adding ``{_save}`` in
+  its layout), every time the user enters values in the fields and clicks
+  save, the submitted values will be saved in a new record,
 - we can create records by code::
     
     record = context.app.create_record(id='myrecord')
@@ -256,7 +260,7 @@ There are 3 ways to create records in Rapido:
 The same goes for accessing data:
 
 - we can display records by calling their URL, and they will be rendered using
-  the block they have been created with:
+  the block they were created with::
 
     /@@rapido/myapp/record/myrecord
 
@@ -278,12 +282,13 @@ Integration with Plone
 In addition to the Diazo injection of Rapido blocks in our theme, we can also
 integrate our Rapido developments in Plone using:
 
-- Mosaic: Rapido provides a Mosaic tile which enable to insert a Rapido block in
-  our page layout.
+- Mosaic: Rapido provides a Mosaic tile which enables us to insert a Rapido
+  block in our page layout.
 
-- Content Rules: Rapido provides a Plone content rule action allowing to call a
-  Python function from a block when a given Plone event happens.
+- Content Rules: Rapido provides a Plone *content rule action* allowing us to
+  call a Python function from a block when a given Plone event happens.
 
-- `Mockup <http://plone.github.io/mockup/dev/>`_ patterns: the modal pattern and the content loader pattern can load and display Rapido blocks.
+- `Mockup <http://plone.github.io/mockup/dev/>`_ patterns:
+  the *modal* and the *content loader* patterns can load and display Rapido blocks.
 
 See :doc:`reference/display`.

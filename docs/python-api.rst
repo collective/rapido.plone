@@ -13,7 +13,7 @@ The ``context`` provides the following properties:
 
 This property gives access to the Rapido application object.
 
-*Propeties*
+*Properties*
 
 ``acl``
     Returns the Rapido application's access control list object (see below).
@@ -37,18 +37,19 @@ This property gives access to the Rapido application object.
 
 ``delete_record(self, id=None, record=None, ondelete=True)``
     Delete the record (which can be passed as object or id).
-    If ``ondelete``, the ``on_delete`` function will be called (if it exists)
+    If ``ondelete`` is truthy,
+    the ``on_delete`` function will be called (if it exists)
     before deleting the record.
 
 ``get_block(self, block_id)``
     Returns a block.
 
 ``get_record(self, id)``
-    Returns the record corresponding to the ``id``, or ``None`` if it does not
-    exists.
+    Returns the record corresponding to the ``id``,
+    or ``None`` if it does not exist.
 
 ``log(self, message)``
-    Logs a message in the server log. And if the the app is in debug mode, logs
+    Logs a message in the server log. If the app is in *debug* mode, logs
     the same message in the browser's javascript console.
     Messages can be strings or any other serializable object.
 
@@ -71,8 +72,9 @@ This property gives access to the Rapido application object.
 
     http://localhost:8080/Plone/@@rapido/rating/blocks/rate
 
-When a block is embedded in a Plone page, ``context.request`` has not been
-issued by the user's browser, it has been issued by Diazo.
+When a block is embedded in a Plone page,
+``context.request`` was issued by the user's browser,
+it was issued by Diazo.
 
 To get the request issued by the user's browser, we use
 ``context.parent_request``.
@@ -85,8 +87,8 @@ Exemples:
 
 .. code-block:: python
 
-    val1 = context.request.get('field_1') # will returns None if not exists
-    val1 = context.request['field_2'] # will fail if not exists
+    val1 = context.request.get('field_1')  # returns None if key doesn't exist
+    val1 = context.request['field_2']  # fail if key doesn't exist
 
 - Reading the ``BODY``:
 
@@ -98,7 +100,7 @@ Exemples:
 ``context.portal``
 ------------------
 
-It returns the Plone portal object.
+Return the Plone portal object.
 
 It is equivalent to:
 
@@ -134,7 +136,7 @@ The most common tasks we will perform on the content are:
 
 To manipulate the content, refer to the `Plone API documentation about contents <http://docs.plone.org/develop/plone.api/docs/content.html>`_.
 
-.. note ::
+.. note::
 
     Depending on its content type, the content object might have very different methods and properties.
 
@@ -156,7 +158,7 @@ It gives access to the full `Plone API <http://docs.plone.org/develop/plone.api/
 
     .. code-block:: python
 
-        from plone import api # WRONG
+        from plone import api  # WRONG
 
     because the API is already available in the Rapido `context`:
 
@@ -166,12 +168,12 @@ It gives access to the full `Plone API <http://docs.plone.org/develop/plone.api/
 
 This API mainly allows:
 
-- to search contents, example:
+- to search contents; for example:
     
     .. code-block:: python
 
         folders = context.api.content.find(portal_type="Folder")
-        # be careful, the find() method return Brain objects, not real objects
+        # be careful, the find() method returns Brain objects, not real objects
         # so only indexed attributes are available.
         desc = folders[0].Description # OK
         folders[0].objectIds() # WRONG!
@@ -189,7 +191,7 @@ This API mainly allows:
         context.api.content.transition(obj=new_page, transition='publish')
 
 
-- to access or manage the users and groups informations, and send emails. Example:
+- to access or manage the users and groups information, and send emails. Example:
 
     .. code-block:: python
 
@@ -215,7 +217,9 @@ It takes as mandatory parameter the id of the Rapido application. Example:
     purchase_app = context.rapido('purchase')
     new_purchase_order = purchase_app.create_record()
 
-It might also accept a ``content`` parameter to provide a specific content context to the app (if not provided, it will take the current content). Example:
+It might also accept a ``content`` parameter to provide a specific content
+context to the app (if not provided, it will take the current content).
+Example:
 
 .. code-block:: python
 
@@ -249,7 +253,7 @@ Record
 *Properties*
 
 ``url``
-    Returns the record url.
+    Returns the record URL.
 
 ``id``
     Returns the record identifier.
@@ -295,14 +299,14 @@ The record's items can be accessed and manipulated like dictionary items:
     if 'vegetable' in myrecord:
         del myrecord['fruit']
 
-.. note ::
+.. note::
 
     When setting an item value, the record is not reindexed.
 
 Access control list
 -------------------
 
-.. note ::
+.. note::
 
     The application access control list can be obtain by ``context.app.acl``.
 

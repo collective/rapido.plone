@@ -4,7 +4,7 @@ Use *Rapido* to create custom *SearchableText* field
 Objective
 ---------
 
-Create TTW (Through The Web) a book content type where fields are indexed for a full-text search.
+Create TTW (Through The Web) a *Book* content type where fields are indexed for a full-text search.
 
 Content type
 ------------
@@ -14,7 +14,7 @@ Add a new content type *Book* on the *Dexterity Content Types* control panel
 
 .. image:: ../files/book-1.png
 
-Edit the Book configuration (http://localhost:8080/Plone/dexterity-types/book).
+Edit the *Book* configuration (http://localhost:8080/Plone/dexterity-types/book).
 In the *Behaviors* tab, uncheck the *Dublin Core metadata* behavior and *Save*.
 In the *Fields* tab, click on the *Edit XML Field Model* button and replace the XML model by:
 
@@ -70,8 +70,8 @@ Full text search field
 ----------------------
 
 If you have a lot of books in your site, you would like to search on the author's name or the back cover content.
-To do this we have to provide a *SearchableText* method or field which give the content of the full-text index.
-We'll use a *rapido block* and a *rapido content rule action* to compute this *SearchableText* field.
+To do this we have to provide a ``SearchableText`` method or field which give the content of the full-text index.
+We'll use a *rapido block* and a *rapido content rule action* to compute this ``SearchableText`` field.
 
 Rapido block
 ............
@@ -91,9 +91,9 @@ Create a new theme *MyTheme* with this structure.
   
 Look for example at the
 `Inheriting a new theme from Barceloneta <http://docs.plone.org/adapt-and-extend/theming/barceloneta.html#inheriting-a-new-theme-from-barceloneta>`_
-section of the Plone documentation for the content of *index.html*, *manifest.cfg* and *rules.xml* files.
+section of the Plone documentation for the content of ``index.html``, ``manifest.cfg`` and ``rules.xml`` files.
 
-Content of *fields.py* file:
+Content of ``fields.py`` file:
 
 .. code-block:: python
 
@@ -112,13 +112,13 @@ Content of *fields.py* file:
       ])
       book.reindexObject(idxs=['SearchableText'])
 
-We use the *portal_transforms* tool to convert the back_cover html field in plain text.
+We use the ``portal_transforms`` tool to convert the ``back_cover`` HTML field to plain text.
 We also need to reindex the content.
 
 Rapido content rule action
 ..........................
 
-The last thing we need is a *rapido content rule action*  which is used on each book modification.
+The last thing we need is a *rapido content rule action* which is used on each book modification.
 
 Go to the *Content Rules* (http://localhost:8080/Plone/@@rules-controlpanel) and add a rule which is triggered on *Object modified* event.
 
@@ -136,14 +136,14 @@ Assign the content rule on the whole site and *Save*.
 Exercise
 --------
 
-Modify the code above to compute a *Description* field who will be used in Plone listings.
+Modify the code above to compute a *Description* field which will be used in Plone listings.
 
 Custom book view
 ----------------
 
-To build a custom book view the simplest solution is to use a *diazo* rule.
+To build a custom book view, the simplest solution is to use a *Diazo* rule.
 
-For example, you can add in the *rules.xml* file of your theme the following *diazo rule*:
+For example, you can add in the ``rules.xml`` file of your theme the following ``diazo rule``:
 
 .. code-block:: xml
 
