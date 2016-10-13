@@ -17,40 +17,40 @@ rapido.plone
     :alt: Coverage
 
 What for?
-=========
+---------
 
 Creating a small form able to send an email, or to store some data, generating
-an extra information about a page and insert it wherever we want; with Plone
-that kind of tasks are complex for experts, and almost impossible for beginners.
+some extra information about a page and inserting it wherever we want: with Plone
+these kind of tasks are complex for experts, and almost impossible for beginners.
 
 **rapido.plone** allows any developer having a little knowledge of HTML and a
 little knowledge of Python to implement custom elements and insert them anywhere
 they want in their Plone site.
 
 How?
-====
+----
 
 The unique interface to build applications with rapido.plone is the **Plone
 theming tool**.
 
-It implies it can be achieved in the **file system** or through the theming
-**inline editor**.
+This means that it can be done on the **file system** or through the 
+**inline theming editor**.
 
-A Rapido application is just a piece of our current theme, it can be
+A Rapido application is just a part of our current theme; it can be
 imported, exported, copied, modified, etc. like the rest of the theme.
 
 Moreover, we can use `Diazo <http://docs.diazo.org/en/latest/>`_ extensively to
 inject our application in the Plone layout easily.
 
 Documentation and screencast
-============================
+----------------------------
 
 - Full `Rapido documentation <http://rapidoplone.readthedocs.org/en/latest/>`_.
 - How to implement a rating system in 3'33'' (`tutorial <http://rapidoplone.readthedocs.org/en/latest/tutorial.html>`_,
   `screencast <https://www.youtube.com/watch?v=a7B-lX0caW0>`_).
 
 Credits
-=======
+-------
 
 |makinacom|_
 

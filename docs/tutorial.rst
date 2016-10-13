@@ -6,12 +6,13 @@ How to build a content rating system in Plone in few minutes.
 Objective
 ---------
 
-We want to offer to our visitors the ability to click on "Like" button on any
+We want to offer to our visitors the ability to click on a *"Like"* button on any
 Plone content, and the total of votes must be displayed next to the button.
 
-.. note ::
+.. note::
 
-    There is a screencast covering the `first steps of the Rapido tutorial <https://www.youtube.com/watch?v=a7B-lX0caW0>`_.
+    There is a screencast covering the `first steps of the Rapido tutorial
+    <https://www.youtube.com/watch?v=a7B-lX0caW0>`_.
 
 Prerequisites
 -------------
@@ -23,17 +24,17 @@ Install the ``rapido.plone`` add-on from Plone site setup.
 Initializing the Rapido app
 ---------------------------
 
-We go to Plone Site setup, and then Theming.
+We go to Plone *Site setup*, and then *Theming*.
 
 If our current active theme is not editable inline through the Plone web
-interface (i.e. there is no "Modify theme" button), we will first need to create
-an editable copy:
+interface (i.e. there is no *"Modify theme"* button),
+we will first need to create an editable copy:
 
-- click on "Copy",
+- click on *"Copy"*,
 - enter a name,
-- check "Immediately enable new theme".
+- check *"Immediately enable new theme"*.
 
-Else, we just click on the "Modify theme" button.
+Else, we just click on the *"Modify theme"* button.
 
 We can see our theme structure, containing CSS files, images, HTML, and Diazo
 rules.
@@ -54,8 +55,8 @@ Rapido apps are composed of **blocks**. Let's create a block that will render
 our button:
 
 - go to the ``rating`` folder and create a new folder named ``blocks``,
-- in this ``blocks`` folder, let's create a new block named ``rate``. It implies to
-  create 3 files:
+- in this ``blocks`` folder, let's create a new block named ``rate``.
+  To do this, we need to create 3 files:
 
 .. image:: files/screen-2.png
 
@@ -65,9 +66,9 @@ The ``rate.html`` file:
 
     <i>If you like what you read, say it! {like}</i>
 
-It allows us to implement the block layout. It is a regular HTML file, but it
+This allows us to implement the block layout. It is a regular HTML file, but it
 may contain Rapido **elements**, enclosed in brackets. In our case, we have
-one element, noted ``{like}``, in charge of rendering the "Like" button.
+one element, namely ``{like}``, in charge of rendering the *"Like"* button.
 
 The ``rate.py`` file
 
@@ -77,10 +78,10 @@ The ``rate.py`` file
         # nothing for now
         pass
 
-It provides the elements implementation. Each element in the blockhas a
+It provides the element's implementation. Each element in the block has a
 corresponding Python function having the same id.
-In our case, that is the code that will be executed when a user click on "Like".
-Right now, it makes nothing, but we will change it later.
+In our case, that is the code that will be executed when a user clicks on *"Like"*.
+Right now, it does nothing, but we will change it later.
 
 The ``rate.yaml`` file:
 
@@ -91,17 +92,17 @@ The ``rate.yaml`` file:
             type: ACTION
             label: Like
 
-This file contains all the needed settings for our block. Here we declare our
-block contains one element named ``like``, which is an **action** (i.e. it will
-be rendered as a button), and its displayed label is "Like".
+This file contains all the needed settings for our block. Here we declare that
+our block contains one element named ``like``, which is an **action** (i.e. it
+will be rendered as a button), and its displayed label is *"Like"*.
 
-Now our block is ready, we can see it using the following URL:
+Now that our block is ready, we can see it using the following URL:
 
 http://localhost:8080/Plone/@@rapido/rating/blocks/rate
 
 .. image:: files/screen-3.png
 
-The next step is to put our block in our Plone pages.
+The next step is to embed our block in our Plone pages.
 
 Inserting the block in Plone pages
 ----------------------------------
@@ -116,27 +117,27 @@ lines:
         <include css:content="form" href="/@@rapido/rating/blocks/rate" />
     </after>
 
-The ``include`` directive allows to retrieve a piece of content, in our case, the
-HTML form produces by our block. And the ``after`` directive inserts it after the
-main title in our page.
+The ``include`` directive allows us to retrieve a piece of content;
+in our case, the HTML form produced by our block.
+And the ``after`` directive inserts it after the main title in our page.
 
 So, now if we visit any page of our Plone site, we see our block displayed just
 under the title.
 
 .. image:: files/screen-4.png
 
-That is nice, but there is a small problem: when we like on the "Like" button,
-we are redirected to the raw block content, and we loose our current Plone page.
+That is nice, but there is a small problem: when we click on the *"Like"* button,
+we are redirected to the raw block content, and we lose our current Plone page.
 
 Let's fix that.
 
-Keeping in our Plone page
+Staying in our Plone page
 -------------------------
 
-If we want to keep in our current page after submitting our block, we need to
-enable to **AJAX** mode.
+If we want to stay on our current page after submitting our block,
+we need to enable **AJAX** mode.
 
-Let's just change our ``rate.yaml`` file like this:
+To do this, let's change our ``rate.yaml`` file like this:
 
 .. code-block:: yaml
 
@@ -146,19 +147,19 @@ Let's just change our ``rate.yaml`` file like this:
             type: ACTION
             label: Like
 
-Now, if we click on the "Like" button, the block is just reloaded dynamically,
-and we keep in our current page.
+Now, if we click on the *"Like"* button, the block is just reloaded dynamically,
+and we stay in our current page.
 
 Counting the votes
 ------------------
 
 Let's go back to ``rate.py``, and focus on the ``like`` function implementation.
 
-When a user clicks on the "Like" button, we need to get the current content the
+When a user clicks on the *"Like"* button, we need to get the current content the
 user voted for, check how many votes it already has, and add one new vote.
 
 Rapido allows to create **records**, so we will create a record for each content
-and we will use the content path as an id.
+item, and we will use the content path as an id.
 
 So let's replace our current implementation with:
 
@@ -186,7 +187,7 @@ not exist.
 Displaying the votes
 --------------------
 
-We are able to store votes, we want now to display the total of votes.
+Now we are able to store votes, we also want to display the *total* of votes.
 
 Fist, let's change the block layout in ``rate.html``:
 
@@ -195,7 +196,7 @@ Fist, let's change the block layout in ``rate.html``:
     <p>{display}</p>
     <p><i>If you like what you read, say it! {like}</i></p>
 
-So we have now a new ``display`` element in our block.
+So now we have a new ``display`` element in our block.
 
 We must declare it in ``rate.yaml``:
 
@@ -229,8 +230,8 @@ That's it! Our rating feature is ready to be used.
 Debugging
 ---------
 
-As we are writing code, we might (we will) make mistakes, if so, it is always
-helpul to read the error messages returned by the system.
+As we are writing code, we might (we will) make mistakes. In this case, , it is
+always helpul to read the error messages returned by the system.
 
 It is also very helpful to be able to log messages from our code, so we
 understand what is going on exactly when it is executed.
@@ -280,12 +281,12 @@ Then we get this:
 
 .. image:: files/debug-2.png
 
-Listing the top 5 contents
---------------------------
+Listing the top 5 items
+-----------------------
 
-We would also like to see the top 5 rated contents on the site home page.
+We would also like to see the top 5 rated content items on the site home page.
 
-First we need is to index the ``total`` element.
+The first thing we need is to index the ``total`` element.
 
 We declare its indexing mode in ``rate.yaml``:
 
@@ -301,11 +302,14 @@ We declare its indexing mode in ``rate.yaml``:
                 type: NUMBER
                 index_type: field
 
-To index the previously stored values, we have to refresh the storage index by calling the following URL::
+To index the previously stored values,
+we have to refresh the storage index by calling the following URL::
 
     http://localhost:8080/Plone/@@rapido/rating/refresh
 
-And to make sure future changes will be indexed, we need to fix the ``like`` function in the ``rate`` block: the indexing is triggered when we call the record's ``save`` method:
+And to make sure future changes will be indexed,
+we need to fix the ``like`` function in the ``rate`` block:
+the indexing is triggered when we call the record's ``save`` method:
 
 .. code-block:: python
 
@@ -351,16 +355,16 @@ We are now able to build a block to display the top 5 contents:
         html += "</ul>"
         return html
 
-The ``search`` method allows to query our stored records. The record ids are
-the contents pathes, so using the Plone API (``context.api``), we can easily
+The ``search`` method allows us to query our stored records. The record ids are
+the content paths, so using the Plone API (``context.api``), we can easily
 get the corresponding contents, and then obtain their URLs and titles.
 
 Our block works now::
 
     http://localhost:8080/tutorial/@@rapido/rating/blocks/top5
 
-Finally, we have to insert our block in the home page. That will be done in
-``rules.xml``:
+Finally, we have to insert our block in the home page.
+That will be done in ``rules.xml``:
 
 .. code-block:: xml
 
@@ -375,10 +379,11 @@ Finally, we have to insert our block in the home page. That will be done in
 Creating a new page for reports
 -------------------------------
 
-For now, we have just added small chuncks of HTML in existing pages. But Rapido
-also allows to create a new page (a Plone developer would name it a new `view`).
+For now, we have just added small chunks of HTML in existing pages. But Rapido
+also allows us to create a new page (a Plone developer would name it a new `view`).
 
-Let's imagine we want to create a report page about a folder's contents votes.
+Let's pretend we want to create a report page about the votes on the content of
+a folder.
 
 First, we need a block, ``report.html``:
 
@@ -405,12 +410,13 @@ Now if we visit for instance::
 
     http://localhost:8080/tutorial/news/@@rapido/view/show-report
 
-we do see our block instead of the regular News page content.
+we do see our block instead of the regular *News* page content.
 
 Now we need to implement our report content. We could do it with a Rapido element
 like we did in the Top 5 block.
 
-Let's change our approach and implement a fancy pie chart using the `amazing D3js library <http://d3js.org/>`_ and the :doc:`Rapido REST API <./rest>`.
+Let's change our approach and implement a fancy pie chart using the 
+`amazing D3js library <http://d3js.org/>`_ and the :doc:`Rapido REST API <./rest>`.
 
 We need to create a Javascript file (``report.js``) in the ``/rapido/rating``
 folder:
@@ -435,54 +441,54 @@ folder:
         var svg = d3.select("#chart").append("svg")
             .attr("width", width)
             .attr("height", height)
-          .append("g")
+            .append("g")
             .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
         d3.json("../../@@rapido/rating/search")
-        .header("X-Csrf-Token", authenticator)
-        .post(
-            JSON.stringify({"query": "total>0"}),
-            function(err, results) {
-                console.log(results);
-                var data = [];
-                var color = d3.scale.linear().domain([0,results.length]).range(["#005880","#9abdd6"]);
-                var index = 0;
-                results.forEach(function(d) {
-                    if(d.items.id.startsWith(local_folder_path)) {
-                        var label = d.items.id.split('/')[d.items.id.split('/').length - 1];
-                        data.push({
-                            'i': index,
-                            'value': d.items.total,
-                            'label': label
-                        });
-                        index += 1;
-                    }
-                });
-                var g = svg.selectAll(".arc")
-                  .data(pie(data))
-                .enter().append("g")
-                  .attr("class", "arc");
+            .header("X-Csrf-Token", authenticator)
+            .post(
+                JSON.stringify({"query": "total>0"}),
+                function(err, results) {
+                    console.log(results);
+                    var data = [];
+                    var color = d3.scale.linear().domain([0,results.length]).range(["#005880","#9abdd6"]);
+                    var index = 0;
+                    results.forEach(function(d) {
+                        if(d.items.id.startsWith(local_folder_path)) {
+                            var label = d.items.id.split('/')[d.items.id.split('/').length - 1];
+                            data.push({
+                                'i': index,
+                                'value': d.items.total,
+                                'label': label
+                            });
+                            index += 1;
+                        }
+                    });
+                    var g = svg.selectAll(".arc")
+                        .data(pie(data))
+                        .enter().append("g")
+                        .attr("class", "arc");
                 
-                g.append("path")
-                  .attr("d", arc)
-                  .style("fill", function(d) { return color(d.data.i); });
+                    g.append("path")
+                        .attr("d", arc)
+                        .style("fill", function(d) { return color(d.data.i); });
                 
-                g.append("text")
-                  .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
-                  .attr("dy", ".35em")
-                  .style("text-anchor", "middle")
-                  .text(function(d) { return d.data.label; })
-                  .style("fill", "white");
-            }
-        );
+                    g.append("text")
+                        .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+                        .attr("dy", ".35em")
+                        .style("text-anchor", "middle")
+                        .text(function(d) { return d.data.label; })
+                        .style("fill", "white");
+                }
+            );
     });
 
-That is a quite complex script, and we will not detailed here the D3js related
-aspects (it is just a typical example to draw a pie chart), but we will focus on
+That is quite a complex script, and we will not detail here the D3js-related
+aspects (it is just a typical example to draw a pie chart); we will focus on
 the way we obtain the data.
 
-The first thing to notice is the ``require`` function, it is a feature of the
-RequireJS library (provided with Plone be default) to load our dependencies.
+The first thing to notice is the ``require`` function. It is a feature of the
+RequireJS library (provided with Plone by default) to load our dependencies.
 
 We have 2 dependencies:
 
@@ -495,8 +501,9 @@ method), we need it to use the Rapido REST API.
 Notes:
 
 - RequireJS or ``mockup-utils`` are not mandatory to use the Rapido REST API,
-  if we were outside of Plone (using Rapido as a remote backend), we would have made
-  a call to /tutorial/@@rapido/rating which returns the token in an HTTP header.
+  if we were outside of Plone (using Rapido as a remote backend),
+  we would have made a call to ``/tutorial/@@rapido/rating`` which returns the
+  token in an HTTP header.
   We just use them because they are provided by Plone by default, and they make our
   work easier.
 - Instead of loading D3 directly form its CDN, we could have put the ``d3.v3.min.js``
@@ -508,9 +515,8 @@ The second interesting part is the ``d3.json()`` call:
 - it puts the authenticator token in the ``X-Csrf-Token`` header,
 - and it passes the search query in the request BODY.
 
-That is basically what we need to do whatever JS framework we would use (here we
+That is basically what we need to do whatever JS framework we use (here we
 use D3, but it could be a generalist framework like Angular, Backbone, Ember, etc.).
-
 
 Now we just need to load this script from our block:
 
@@ -524,7 +530,7 @@ And we can visit::
 
     http://localhost:8080/tutorial/news/@@rapido/view/show-report
 
-to see a pie chart about the News items votes!!
+to see a pie chart about votes on the *News* items!!
 
 .. image:: files/screen-7.png
 
