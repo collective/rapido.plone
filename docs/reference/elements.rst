@@ -16,7 +16,7 @@ Every element is declared by its identifier, and its definition is:
                 type: ACTION
                 label: Do something
 
-- either just a string, in that case Rapido will assume it is the ``type`` parameter, e.g.:
+- or just a string, in which case Rapido will assume it is the ``type`` parameter, e.g.:
 
     .. code-block:: yaml
 
@@ -49,10 +49,10 @@ Input elements
 Input elements (i.e. ``TEXT``, ``NUMBER``, or ``DATETIME``) can be indexed as
 ``field`` or ``text``. Indexing is indicated using the ``index_type`` parameter.
 
-By default input elements are editable but they might also have a different
+By default, input elements are editable but they might also have a different
 ``mode``:
 
-- ``COMPUTED_ON_SAVE``: the value is computed everytime the record is saved,
+- ``COMPUTED_ON_SAVE``: the value is computed every time the record is saved,
 - ``COMPUTED_ON_CREATION``: the value is computed when the record is created.
 
 Action elements
@@ -62,16 +62,16 @@ Action elements are rendered as submit buttons and allow to trigger a call to an
 
 If the function returns a value, it must be a string, and it will be used as a redirection URL for the current request.
 
-It is way to redirect to another location once the action has been executed.
+This is the way to redirect to another location once the action has been executed.
 
 Builtin actions
 ---------------
 
-The following actions can be included in our block HTML layout, and they will not require an associated Python function:
+The following actions can be included in our block HTML layout, and do not require an associated Python function:
 
-- ``_save``: will create a record based on the field elements submitted values and then redirect to the record display in read mode;
-- ``_edit``: will open the current record in edit mode;
-- ``_delete``: will delete the current record.
+- ``_save``: creates a record based on the field elements' submitted values, and then redirects to the record display in read mode;
+- ``_edit``: opens the current record in edit mode;
+- ``_delete``: deletes the current record.
 
 Direct HTTP call to elements
 ----------------------------
@@ -80,14 +80,17 @@ We usually want to display blocks, but we can also call an element by its URL::
 
     http://localhost:8080/Plone/@@rapido/myapp/blocks/block1/element1
 
-Both GET and POST request are supported.
+Both GET and POST requests are supported.
 
-If the element is an action, its Python function will be executed, the returned value is supposed to be a string and will be used as a redirection URL.
-When building an application, it allows to create a link that will redirect the user to the proper location depending on our business criteria (e.g. if the user belongs to such group, go to page1, else go to page2).
+If the element is an action, its Python function will be executed;
+the returned value is supposed to be a string and will be used as a redirection URL.
+When building an application, it allows us to create links that will redirect
+the user to the proper location depending on our business criteria 
+(e.g. if the user belongs to group A, go to ``page1``, else go to ``page2``).
 
 If the element is not an action, its Python function will be executed, and the result is returned as a response.
 
-.. note ::
+.. note::
     
     We can change the response content type like this:
 

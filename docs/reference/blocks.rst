@@ -4,13 +4,13 @@ Blocks
 A block is defined by 3 files stored in the ``blocks`` folder of the
 application.
 Those files have the same filename (which is the block id) with the extensions
-.html, .py and .yaml.
+``.html``, ``.py`` and ``.yaml``.
 
 The HTML file
 -------------
 
-The .html file contains the layout of the block. It is regular html, and dynamic
-elements are enclosed in curly brackets. Example:
+The ``.html`` file contains the layout of the block. It is regular HTML. 
+Dynamic elements are enclosed in curly brackets. Example:
 
 .. code-block:: html
 
@@ -37,15 +37,15 @@ When rendered, the block layout is wrapped in an HTML ``<form>`` element.
 The layout can contain Mockup patterns markup, they will be rendered as
 expected.
 
-Some Mockup patterns might need to render actual curly brackets in the output,
-we need to double them:
+Some Mockup patterns might need to render actual curly brackets in the output.
+Double them to escape them:
 
 .. code-block:: html
 
     <a href="#modal" class="pat-plone-modal"
         data-pat-modal='{{"content": "form"}}'>Display modal</a>
 
-Once rendered, if the block contains some links an `ajax` target:
+Once rendered, if the block contains some links with an ``ajax`` target:
 
 .. code-block:: html
 
@@ -58,10 +58,11 @@ TAL template
 ^^^^^^^^^^^^
 
 The HTML template only offers element insertion. If we need more templating
-features, the `.html` file can be replaced by a `.pt` file, and we can use the
+features, the ``.html`` file can be replaced by a ``.pt`` file, and we can use the
 `TAL commands <http://www.owlfish.com/software/simpleTAL/tal-guide.html>`_.
 
-The block elements are available in the ``elements`` object:
+In the context of a Page Template, the block elements are available in the
+``elements`` object:
 
 .. code-block:: python
 
@@ -83,7 +84,7 @@ Elements can be used as conditions:
 
     <footer tal:condition="elements/is_footer">My footer</footer>
 
-If an element returns an iterable object (list, dictionnary), we can make a loop:
+If an element returns an iterable object (list, dictionary), we can make a loop:
 
 .. code-block:: python
 
@@ -111,15 +112,15 @@ The current Rapido context is available in the ``context`` object:
 The YAML file
 -------------
 
-The .yaml file contains:
+The ``.yaml`` file contains:
 - the elements settings (see below),
 - the ``target`` option: if set to ``ajax``, any action in the block resulting in a
-form submission will not redirect the current page, it will just refresh the 
-block content through an AJAX call,
+  form submission will not redirect the current page, it will just refresh the 
+  block content through an AJAX call,
 - the ``view_permission`` to manage who can see the block (see :doc:`./access`).
 
 The Python file
 ---------------
 
-The .py file contains the implementation of each element as a Python function
+The ``.py`` file contains the implementation of each element as a Python function
 which name is the element id, and taking ``context`` as parameter.
