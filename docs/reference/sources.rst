@@ -2,8 +2,7 @@ Import/export and source management
 ===================================
 
 Rapido applications are implemented in the `/rapido` folder of a Diazo theme.
-So all the known development procedures for theming apply to Rapido
-development.
+All the known development procedures for theming apply to Rapido development.
 
 ZIP import/export
 -----------------

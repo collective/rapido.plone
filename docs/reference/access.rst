@@ -4,17 +4,18 @@ Access control
 Access control list
 -------------------
 
-The ACL defined in the app applies to records, not the blocks. Blocks are always accessible,
-if we do not want a block to render an information, we have to implement it in
-its Python file or use the ``view_permission`` setting.
+The ACL defined in the app applies to records, not to blocks.
+Blocks are always accessible, if we do not want a block to render some
+information, we have to implement this in its Python file or use the
+``view_permission`` setting.
 
-Moreover, access control only impacts direct HTTP access to records (like openning
-a record URL, deleting a record from the JSON API, etc.), and it does **not**
-impact what hapens in block Python files.
+Moreover, access control only impacts direct HTTP access to records (like opening
+a record URL, deleting a record via the JSON API, etc.), and it does **not**
+impact what happens in block Python files.
 
-For instance in the :doc:`../tutorial`, if an anonymous visitor click on the Like
-button on a page nobody had already vote for, the ``like`` function will create
-a record.
+For instance in the :doc:`../tutorial`, if an anonymous visitor clicks on the
+*"Like"* button on a page nobody had voted for yet, the ``like`` function
+will create a record.
 
 But an anonymous visitor would not be able to modify this record or to delete it
 using the JSON API.
@@ -48,12 +49,12 @@ root folder.
 Roles
 -----
 
-Roles are not granting any specific rights on records, they can be defined freely,
-they can be used in our Python functions to change the app behavior depending on
+Roles do not grant any specific rights on records, they can be defined freely.
+They are used in our Python functions to change the app behavior depending on
 the user.
 
-For instance, we might have a role named 'PurchaseManager', and if our block we
-would display a "Validate purchase" button if the current user as the
+For instance, we might have a role named 'PurchaseManager', and in our block we
+would display a "Validate purchase" button if the current user has the
 'PurchaseManager' role.
 
 Permissions on blocks
@@ -75,6 +76,6 @@ Example:
       PurchaseDepartment
       eric
 
-This block will be accessible only by PurchaseDepartment group members and Eric.
+This block will be accessible only by the 'PurchaseDepartment' group members and Eric.
 
-The restriction applies to direct block rendering and element calls, including REST calls.
+This restriction applies to direct block rendering and element calls, including REST calls.

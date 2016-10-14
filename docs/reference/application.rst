@@ -10,4 +10,4 @@ that is not mandatory. It allows to define the access control settings
 
 It always contains a ``blocks`` folder containing its blocks (see :doc:`./blocks`).
 
-It might also contain regular theme items (rules.xml, CSS, Javascript, etc.).
+It might also contain regular theme items (``rules.xml``, CSS, Javascript, etc.).

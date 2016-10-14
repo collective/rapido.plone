@@ -9,13 +9,13 @@ definition.
 
 The ``index_type`` setting can have two possible values:
 
-- ``field``: such index matches exact values, and support comparison queries,
+- ``field``: such indexes match exact values, and support comparison queries,
   range queries, and sorting.
 - ``text``: such index matches contained words (applicable for text values only).
 
-Queries use the *CQE format* (`see documentation <http://docs.repoze.org/catalog/usage.html#query-objects>`_.
+Queries use the (`CQE format <http://docs.repoze.org/catalog/usage.html#query-objects>`_.
 
-Example (assuming `author`, `title` and `price` are existing indexes):
+Example (assuming ``author``, ``title`` and ``price`` are existing indexes):
 
 .. code-block:: python
 
