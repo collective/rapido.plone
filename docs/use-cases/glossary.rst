@@ -203,7 +203,7 @@ Then we load the glossary terms with the following JSON call:
 Using the term values we have loaded, we build a regular expression able to
 match those terms in any text.
 
-Then we iterate on the page main content (`#content-core`) elements, and every
+Then we iterate on the page main content (``#content-core``) elements, and every
 time we find a text node, we use our regular expression to replace the matching
-words with an `<abbr>` tag where the `title` attribute is the associated
+words with an ``<abbr>`` tag where the ``title`` attribute is the associated
 definition.
