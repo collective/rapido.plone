@@ -266,10 +266,10 @@ The same goes for accessing data:
 
 - we can get a record by code:
 
-.. code-block:: python
-
-    record = context.app.get_record(id='myrecord')
-    some_records = context.app.search('author=="JOSEPH CONRAD"')
+  .. code-block:: python
+  
+      record = context.app.get_record(id='myrecord')
+      some_records = context.app.search('author=="JOSEPH CONRAD"')
 
 - we can get records using the Rapido JSON REST API::
 
