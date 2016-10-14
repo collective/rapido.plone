@@ -57,30 +57,30 @@ Here is a basic example:
 
 - ``rapido/myapp/blocks/simpleblock.yaml``:
 
-.. code-block:: yaml
-
-    elements:
-        result: BASIC
-        do_something:
-            type: ACTION
-            label: Do something
+  .. code-block:: yaml
+  
+      elements:
+          result: BASIC
+          do_something:
+              type: ACTION
+              label: Do something
 
 - ``rapido/myapp/blocks/simpleblock.html``:
 
-.. code-block:: html
-
-    <p>the answer to life, the universe, and everything is {result}</p>
-    {do_something}
+  .. code-block:: html
+  
+      <p>the answer to life, the universe, and everything is {result}</p>
+      {do_something}
 
 - ``rapido/myapp/blocks/simpleblock.py``:
 
-.. code-block:: python
-
-    def result(context):
-        return "<strong>42</strong>"
-
-    def do_something(context):
-        context.portal.plone_log("Hello")
+  .. code-block:: python
+  
+      def result(context):
+          return "<strong>42</strong>"
+  
+      def do_something(context):
+          context.portal.plone_log("Hello")
 
 We can see our block by visiting the following URL::
 
