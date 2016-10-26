@@ -177,16 +177,16 @@ class TestCase(unittest.TestCase):
     def test_pt_template(self):
         self.browser.open(
             self.portal.absolute_url() + '/@@rapido/testapp/blocks/knowledge')
-        self.assertTrue('<p>Knowledge is power</p>\n<ul><li>France is bacon'
+        self.assertIn('<p>Knowledge is power</p>\n<ul><li>France is bacon'
             '</li>\n<li>Francis Bacon</li></ul>\n<a href="http://localhost:'
             '55001/plone/@@rapido/testapp/blocks/knowledge">Home</a>'
-            in self.browser.contents)
+            ,self.browser.contents)
 
     def test_bad_pt_template(self):
         self.browser.open(
             self.portal.absolute_url() + '/@@rapido/testapp/blocks/bad')
-        self.assertTrue('Rendering error\n - Expression: "boom/jokes"\n'
-            ' - Location:   (line 2: col 25)' in self.browser.contents)
+        self.assertIn('Rendering error\n - Expression: "boom/jokes"\n'
+            ' - Location:   (line 2: col 25)', self.browser.contents)
 
     def test_missing_template(self):
         try:
@@ -211,3 +211,9 @@ class TestCase(unittest.TestCase):
         self.browser.open(
             self.portal.absolute_url() + '/@@rapido/testapp/blocks/otherapp')
         self.assertTrue('Records=2' in self.browser.contents)
+
+    def test_on_display_only(self):
+        self.browser.open(
+            self.portal.absolute_url() + '/@@rapido/testapp/blocks/on_display')
+        self.assertEquals('[1,2,3]'
+            ,self.browser.contents)

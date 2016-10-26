@@ -69,6 +69,15 @@ class RapidoView(BrowserView):
         self.store_app_messages(app)
         if redirect:
             self.request.RESPONSE.redirect(redirect)
+            return
+
+        if len(result) == 2:
+            # Special case where the core is returning non html
+            mimetype, body = result
+            response = self.request.response
+            response.setHeader("Content-type", mimetype)
+            response.setBody(body)
+            return result
         else:
             return result
 

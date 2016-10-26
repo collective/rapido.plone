@@ -97,5 +97,5 @@ If the element is not an action, its Python function will be executed, and the r
     .. code-block:: python
 
         def my_element(context):
-            context.request.reponse.setHeader('content-type', 'text/csv')
+            context.request.response.setHeader('content-type', 'text/csv')
             return "one,two,three\n1,2,3"

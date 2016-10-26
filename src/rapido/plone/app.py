@@ -18,9 +18,10 @@ class RapidoTemplateFile(PageTemplate):
     def __init__(self, text):
         self.write(text)
 
-    def __call__(self, elements, context):
+    def __call__(self, elements, context, **values):
         try:
-            return self.pt_render({'elements': elements, 'context': context})
+            values.update({'elements': elements, 'context': context})
+            return self.pt_render(values)
         except Exception, e:
             error = str(e)
             extra = ('<pre>' in error and error[

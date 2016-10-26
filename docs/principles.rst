@@ -31,7 +31,7 @@ Here is a typical layout for a rapido app::
 
     ``settings.yaml`` is not mandatory, but it allows defining access rights if needed.
 
-The app components are ``blocks``. A block is defined by a set of 3 files (HTML,
+The app components are ``blocks``. A block is defined by a set of up to 3 files (HTML,
 Python, and YAML) located in the ``blocks`` folder.
 
 The **YAML file** defines the elements. An element is any dynamically generated
@@ -52,6 +52,9 @@ block.
 For an ``ACTION``, we are supposed to provide a function with the same name as
 the element; in this case, it will be *executed* when a user clicks on the
 action button.
+
+The **Python file** can also contain an ``on_display`` function for simple cases
+where you want to return custom html, stream files or not use elements.
 
 Here is a basic example:
 
