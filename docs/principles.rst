@@ -6,8 +6,7 @@ Creating a Rapido app
 
 Here are the basic steps to create a Rapido app:
 
-- go to the theme folder (``static`` folder in the theme module if we want to
-  work in the filesystem, or in Plone setup / Theme if we prefer inline),
+- go to the theme folder (in Plone setup / Theme if we prefer to work inline, or, if your prefer to work in the filesystem, it might be either in the ``static`` folder in your theme package, or in the ``resources`` folder in your Plone install if you do not have a custom package),
 - add a new folder named ``rapido``,
 - in ``rapido``, add a new folder named ``myapp``.
 
@@ -30,6 +29,10 @@ Here is a typical layout for a rapido app::
 .. note::
 
     ``settings.yaml`` is not mandatory, but it allows defining access rights if needed.
+
+.. note::
+
+    A Rapido application can also be located in a non-active theme (see :doc:`./reference/application`)
 
 The app components are ``blocks``. A block is defined by a set of 3 files (HTML,
 Python, and YAML) located in the ``blocks`` folder.
