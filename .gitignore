@@ -5,6 +5,8 @@
 *.pyo
 *~
 .installed.cfg
+.mr.developer.cfg
+pip-selfcheck.json
 bin/
 coverage/
 develop-eggs/
@@ -12,6 +14,7 @@ downloads/
 eggs/
 include/
 lib/
+lib64
 parts/
 var/
 dist/

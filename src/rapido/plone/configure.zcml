@@ -12,7 +12,7 @@
 
     <include package=".browser" />
     <include package=".contentrule" />
-    <configure zcml:condition="installed plone.app.mosaic"> 
+    <configure zcml:condition="installed plone.app.mosaic">
         <include package=".tile" />
     </configure>
 
@@ -38,6 +38,18 @@
         directory="profiles/mosaic"
         description="Installs the rapido.plone mosaic tile."
         provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <subscriber
+        for="plone.app.blob.interfaces.IOFSFile
+             plone.resource.interfaces.IPloneResourceCreatedEvent"
+        handler=".handlers.resource_created"
+        />
+
+    <subscriber
+        for="plone.app.blob.interfaces.IOFSFile
+             plone.resource.interfaces.IPloneResourceModifiedEvent"
+        handler=".handlers.resource_modified"
         />
 
 </configure>
