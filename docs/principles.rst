@@ -83,7 +83,7 @@ Here is a basic example:
           return "<strong>42</strong>"
   
       def do_something(context):
-          context.portal.plone_log("Hello")
+          context.app.log('Hello')
 
 We can see our block by visiting the following URL::
 
