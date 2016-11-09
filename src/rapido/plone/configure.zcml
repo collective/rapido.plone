@@ -43,13 +43,13 @@
     <subscriber
         for="plone.app.blob.interfaces.IOFSFile
              plone.resource.interfaces.IPloneResourceCreatedEvent"
-        handler=".handlers.resource_created"
+        handler=".handlers.resource_created_or_modified"
         />
 
     <subscriber
         for="plone.app.blob.interfaces.IOFSFile
              plone.resource.interfaces.IPloneResourceModifiedEvent"
-        handler=".handlers.resource_modified"
+        handler=".handlers.resource_created_or_modified"
         />
 
 </configure>

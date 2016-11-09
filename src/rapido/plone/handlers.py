@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from pyaml import yaml
+from plone.app.mosaic.interfaces import ITile
+from plone.registry.interfaces import IRegistry
 from plone.tiles import Tile
 from plone.tiles.interfaces import IBasicTile
 from plone.tiles.type import TileType
-from zope.component import provideAdapter, provideUtility
+from zope.component import provideAdapter, provideUtility, getUtility
 from zope.interface import Interface
 
 
@@ -21,14 +23,10 @@ class RapidoDynamicTile(Tile):
         return rapido.content(self.path.split('/'))
 
 
-def resource_created(object, event):
+def resource_created_or_modified(object, event):
     if is_yaml(object):
         yaml_settings = yaml.load(str(object))
 
-
-def resource_modified(object, event):
-    if is_yaml(object):
-        yaml_settings = yaml.load(str(object))
         if 'tile' in yaml_settings:
             id = object.id().rpartition('.')[0]
             tile_type = TileType(
@@ -46,3 +44,17 @@ def resource_modified(object, event):
             tile.path = path.rpartition('.')[0]
             provideAdapter(RapidoDynamicTile, (Interface, Interface),
                            IBasicTile, name=id)
+            prefix = 'plone.app.mosaic.app_tiles.rapido_dynamic_tile_' + id
+            registry = getUtility(IRegistry)
+            registry.registerInterface(ITile, prefix=prefix)
+            registry[prefix + '.name'] = unicode(id)
+            registry[prefix + '.label'] = unicode(
+                yaml_settings['tile']['label'])
+            registry[prefix + '.category'] = u'advanced'
+            registry[prefix + '.tile_type'] = u'app'
+            registry[prefix + '.default_value'] = None
+            registry[prefix + '.read_only'] = False
+            registry[prefix + '.settings'] = True
+            registry[prefix + '.favorite'] = False
+            registry[prefix + '.rich_text'] = False
+            registry[prefix + '.weight'] = 10
