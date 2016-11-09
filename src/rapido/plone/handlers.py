@@ -7,12 +7,25 @@ from plone.tiles.interfaces import IBasicTile
 from plone.tiles.type import TileType
 from zope.component import provideAdapter, provideUtility, getUtility
 from zope.interface import Interface
+from zope.publisher.browser import BrowserView
+from zope.publisher.interfaces.browser import IBrowserRequest
 
 
 def is_yaml(object):
     if object.getPhysicalPath()[-1].endswith('yaml'):
             return True
     return False
+
+
+def get_block_view(path):
+
+    class RapidoDynamicView(BrowserView):
+
+        def __call__(self):
+            rapido = self.context.unrestrictedTraverse("@@rapido")
+            return rapido.content(path.split('/'))
+
+    return RapidoDynamicView
 
 
 class RapidoDynamicTile(Tile):
@@ -26,6 +39,14 @@ class RapidoDynamicTile(Tile):
 def resource_created_or_modified(object, event):
     if is_yaml(object):
         yaml_settings = yaml.load(str(object))
+        if 'view' in yaml_settings:
+            id = yaml_settings['view']
+            path = object.getPhysicalPath()
+            path = '/'.join(path[path.index('rapido') + 1:])
+            path = path.rpartition('.')[0]
+            view = get_block_view(path)
+            provideAdapter(view, (Interface, IBrowserRequest),
+                Interface, name=id)
 
         if 'tile' in yaml_settings:
             id = object.id().rpartition('.')[0]
