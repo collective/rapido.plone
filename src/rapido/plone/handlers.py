@@ -1,16 +1,20 @@
 # -*- coding: utf-8 -*-
 from pyaml import yaml
-from plone.app.mosaic.interfaces import ITile
 from plone.registry.interfaces import IRegistry
-from plone.tiles import Tile
-from plone.tiles.interfaces import IBasicTile
-from plone.tiles.type import TileType
 from zope.component import provideAdapter, provideUtility, getUtility
 from zope.interface import Interface
 from zope.publisher.browser import BrowserView
 from zope.publisher.interfaces.browser import IBrowserRequest
-
 from .app import get_theme_directory
+
+try:
+    from plone.app.mosaic.interfaces import ITile
+    from plone.tiles import Tile
+    from plone.tiles.interfaces import IBasicTile
+    from plone.tiles.type import TileType
+    HAS_MOSAIC = True
+except ImportError:
+    HAS_MOSAIC = False
 
 RELOADED_SITES = []
 
@@ -32,12 +36,13 @@ def get_block_view(path):
     return RapidoDynamicView
 
 
-class RapidoDynamicTile(Tile):
-    __name__ = 'rapido.dynamic.tile'  # dynamic replace
+if HAS_MOSAIC:
+    class RapidoDynamicTile(Tile):
+        __name__ = 'rapido.dynamic.tile'  # dynamic replace
 
-    def __call__(self):
-        rapido = self.context.unrestrictedTraverse("@@rapido")
-        return rapido.content(self.path.split('/'))
+        def __call__(self):
+            rapido = self.context.unrestrictedTraverse("@@rapido")
+            return rapido.content(self.path.split('/'))
 
 
 def process_yaml(object):
@@ -51,7 +56,7 @@ def process_yaml(object):
             provideAdapter(view, (Interface, IBrowserRequest),
                 Interface, name=id)
 
-        if 'tile' in yaml_settings:
+        if HAS_MOSAIC and 'tile' in yaml_settings:
             id = object.id().rpartition('.')[0]
             tile_type = TileType(
                 id,
