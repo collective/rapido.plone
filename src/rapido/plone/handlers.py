@@ -10,6 +10,10 @@ from zope.interface import Interface
 from zope.publisher.browser import BrowserView
 from zope.publisher.interfaces.browser import IBrowserRequest
 
+from .app import get_theme_directory
+
+RELOADED_SITES = []
+
 
 def is_yaml(object):
     if object.getPhysicalPath()[-1].endswith('yaml'):
@@ -36,8 +40,7 @@ class RapidoDynamicTile(Tile):
         return rapido.content(self.path.split('/'))
 
 
-def resource_created_or_modified(object, event):
-    if is_yaml(object):
+def process_yaml(object):
         yaml_settings = yaml.load(str(object))
         if 'view' in yaml_settings:
             id = yaml_settings['view']
@@ -79,3 +82,42 @@ def resource_created_or_modified(object, event):
             registry[prefix + '.favorite'] = False
             registry[prefix + '.rich_text'] = False
             registry[prefix + '.weight'] = 10
+
+
+def resource_created_or_modified(object, event):
+    if is_yaml(object):
+        process_yaml(object)
+
+
+def reload(event):
+    # When rebooting the server, all TTW registered tiles or views are lost,
+    # we need to go through all the existing .yaml files to redeclare them.
+    # But as there is no plone_site_after_start event,
+    # we subscribe to IPubSuccess and IPubFailure, and make sure we only
+    # process the .yaml files once for each Plone site.
+    site_id = event.request.steps[0]
+    if site_id not in RELOADED_SITES:
+        RELOADED_SITES.append(site_id)
+        theme_dir = None
+        try:
+            theme_dir = get_theme_directory()
+        except:
+            # not a Plone site
+            pass
+
+        if theme_dir and theme_dir.isDirectory('rapido'):
+            for entry in theme_dir['rapido'].listDirectory():
+                if not theme_dir['rapido'].isDirectory(entry):
+                    continue
+                app_folder = theme_dir['rapido'][entry]
+                if not app_folder.isDirectory('blocks'):
+                    continue
+                for file_id in app_folder['blocks'].listDirectory():
+                    file = app_folder['blocks'][file_id]
+                    if is_yaml(file):
+                        try:
+                            process_yaml(file)
+                        except:
+                            # we do not want to break the rendering of all our
+                            # pages if something is wrong in a rapido app
+                            pass

@@ -52,4 +52,12 @@
         handler=".handlers.resource_created_or_modified"
         />
 
+    <subscriber
+        for="ZPublisher.interfaces.IPubSuccess"
+        handler=".handlers.reload" />
+
+    <subscriber
+        for="ZPublisher.interfaces.IPubFailure"
+        handler=".handlers.reload" />
+
 </configure>

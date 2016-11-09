@@ -95,8 +95,7 @@ class RapidoApplication(object):
                 raise KeyError('%s.%s' % (block_id, ftype))
 
     def get_resource_directory(self):
-        theme = getCurrentTheme()
-        directory = queryResourceDirectory(THEME_RESOURCE_NAME, theme)
+        directory = get_theme_directory()
         try:
             return directory['rapido'][self.id]
         except NotFound:
@@ -154,3 +153,8 @@ def get_app(app_id, request, content=None):
         id, request, content=content)
     app = RapidoApplication(app_id, context)
     return IRapidoApplication(app)
+
+
+def get_theme_directory():
+    theme = getCurrentTheme()
+    return queryResourceDirectory(THEME_RESOURCE_NAME, theme)
