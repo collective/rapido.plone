@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from pyaml import yaml
 from plone.registry.interfaces import IRegistry
+from plone.resource.file import FilesystemFile
 from zope.component import provideAdapter, provideUtility, getUtility
 from zope.interface import Interface
 from zope.publisher.browser import BrowserView
@@ -19,8 +20,15 @@ except ImportError:
 RELOADED_SITES = []
 
 
-def is_yaml(object):
-    if object.getPhysicalPath()[-1].endswith('yaml'):
+def getPath(file):
+    if isinstance(file, FilesystemFile):
+        return file.path.split('/')
+    else:
+        return file.getPhysicalPath()
+
+
+def is_yaml(file):
+    if getPath(file)[-1].endswith('yaml'):
             return True
     return False
 
@@ -45,53 +53,54 @@ if HAS_MOSAIC:
             return rapido.content(self.path.split('/'))
 
 
-def process_yaml(object):
-        yaml_settings = yaml.load(str(object))
-        if 'view' in yaml_settings:
-            id = yaml_settings['view']
-            path = object.getPhysicalPath()
-            path = '/'.join(path[path.index('rapido') + 1:])
-            path = path.rpartition('.')[0]
-            view = get_block_view(path)
-            provideAdapter(view, (Interface, IBrowserRequest),
-                Interface, name=id)
+def process_yaml(path, yaml_content):
+    yaml_settings = yaml.load(yaml_content)
+    if 'view' in yaml_settings:
+        id = yaml_settings['view']
+        path = '/'.join(path[-path[::-1].index('rapido'):])
+        path = path.rpartition('.')[0]
+        view = get_block_view(path)
+        provideAdapter(view, (Interface, IBrowserRequest),
+            Interface, name=id)
 
-        if HAS_MOSAIC and 'tile' in yaml_settings:
-            id = object.id().rpartition('.')[0]
-            tile_type = TileType(
-                id,
-                yaml_settings['tile']['label'],
-                'zope.Public',
-                'zope.View',
-                description=u'',
-                schema=None)
+    if HAS_MOSAIC and 'tile' in yaml_settings:
+        id = path[-1].rpartition('.')[0]
+        tile_type = TileType(
+            id,
+            yaml_settings['tile']['label'],
+            'zope.Public',
+            'zope.View',
+            description=u'',
+            schema=None)
 
-            provideUtility(tile_type, name=id)
-            tile = RapidoDynamicTile
-            path = object.getPhysicalPath()
-            path = '/'.join(path[path.index('rapido') + 1:])
-            tile.path = path.rpartition('.')[0]
-            provideAdapter(RapidoDynamicTile, (Interface, Interface),
-                           IBasicTile, name=id)
-            prefix = 'plone.app.mosaic.app_tiles.rapido_dynamic_tile_' + id
-            registry = getUtility(IRegistry)
-            registry.registerInterface(ITile, prefix=prefix)
-            registry[prefix + '.name'] = unicode(id)
-            registry[prefix + '.label'] = unicode(
-                yaml_settings['tile']['label'])
-            registry[prefix + '.category'] = u'advanced'
-            registry[prefix + '.tile_type'] = u'app'
-            registry[prefix + '.default_value'] = None
-            registry[prefix + '.read_only'] = False
-            registry[prefix + '.settings'] = True
-            registry[prefix + '.favorite'] = False
-            registry[prefix + '.rich_text'] = False
-            registry[prefix + '.weight'] = 10
+        provideUtility(tile_type, name=id)
+        tile = RapidoDynamicTile
+        path = '/'.join(path[path.index('rapido') + 1:])
+        tile.path = path.rpartition('.')[0]
+        provideAdapter(RapidoDynamicTile, (Interface, Interface),
+                       IBasicTile, name=id)
+        prefix = 'plone.app.mosaic.app_tiles.rapido_dynamic_tile_' + id
+        registry = getUtility(IRegistry)
+        registry.registerInterface(ITile, prefix=prefix)
+        registry[prefix + '.name'] = unicode(id)
+        registry[prefix + '.label'] = unicode(
+            yaml_settings['tile']['label'])
+        registry[prefix + '.category'] = u'advanced'
+        registry[prefix + '.tile_type'] = u'app'
+        registry[prefix + '.default_value'] = None
+        registry[prefix + '.read_only'] = False
+        registry[prefix + '.settings'] = True
+        registry[prefix + '.favorite'] = False
+        registry[prefix + '.rich_text'] = False
+        registry[prefix + '.weight'] = 10
 
 
-def resource_created_or_modified(object, event):
-    if is_yaml(object):
-        process_yaml(object)
+def resource_created_or_modified(obj, event):
+    if is_yaml(obj):
+        process_yaml(
+            getPath(obj),
+            str(obj)
+        )
 
 
 def reload(event):
@@ -118,10 +127,12 @@ def reload(event):
                 if not app_folder.isDirectory('blocks'):
                     continue
                 for file_id in app_folder['blocks'].listDirectory():
-                    file = app_folder['blocks'][file_id]
-                    if is_yaml(file):
+                    if file_id.endswith('.yaml'):
                         try:
-                            process_yaml(file)
+                            process_yaml(
+                                getPath(app_folder['blocks'][file_id]),
+                                app_folder['blocks'].readFile(file_id)
+                            )
                         except:
                             # we do not want to break the rendering of all our
                             # pages if something is wrong in a rapido app

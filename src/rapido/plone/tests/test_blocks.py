@@ -211,3 +211,9 @@ class TestCase(unittest.TestCase):
         self.browser.open(
             self.portal.absolute_url() + '/@@rapido/testapp/blocks/otherapp')
         self.assertTrue('Records=2' in self.browser.contents)
+
+    def test_block_can_be_a_view(self):
+        self.browser.open(
+            self.portal.absolute_url() + '/my-view')
+        self.assertTrue("""And now for something completely different"""
+            in self.browser.contents)
