@@ -61,7 +61,7 @@ def process_yaml(object):
             tile_type = TileType(
                 id,
                 yaml_settings['tile']['label'],
-                'zope.View',
+                'zope.Public',
                 'zope.View',
                 description=u'',
                 schema=None)
