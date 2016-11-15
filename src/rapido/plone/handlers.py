@@ -2,6 +2,7 @@
 from pyaml import yaml
 from plone.registry.interfaces import IRegistry
 from plone.resource.file import FilesystemFile
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import provideAdapter, provideUtility, getUtility
 from zope.interface import Interface
 from zope.publisher.browser import BrowserView
@@ -33,13 +34,19 @@ def is_yaml(file):
     return False
 
 
-def get_block_view(path):
+def get_block_view(path, with_theme):
 
     class RapidoDynamicView(BrowserView):
 
+        template = ViewPageTemplateFile('browser/view.pt')
+
         def __call__(self):
             rapido = self.context.unrestrictedTraverse("@@rapido")
-            return rapido.content(path.split('/'))
+            self.content = rapido.content(path.split('/'))
+            if with_theme:
+                return self.template()
+            else:
+                return self.content
 
     return RapidoDynamicView
 
@@ -56,10 +63,16 @@ if HAS_MOSAIC:
 def process_yaml(path, yaml_content):
     yaml_settings = yaml.load(yaml_content)
     if 'view' in yaml_settings:
-        id = yaml_settings['view']
+        config = yaml_settings['view']
+        with_theme = False
+        if isinstance(config, dict):
+            id = config['id']
+            with_theme = config.get('with_theme', False)
+        else:
+            id = config
         path = '/'.join(path[-path[::-1].index('rapido'):])
         path = path.rpartition('.')[0]
-        view = get_block_view(path)
+        view = get_block_view(path, with_theme)
         provideAdapter(view, (Interface, IBrowserRequest),
             Interface, name=id)
 
