@@ -75,7 +75,7 @@ def process_yaml(path, yaml_content):
         registry[prefix + '.tile_type'] = u'app'
         registry[prefix + '.default_value'] = None
         registry[prefix + '.read_only'] = False
-        registry[prefix + '.settings'] = True
+        registry[prefix + '.settings'] = False
         registry[prefix + '.favorite'] = False
         registry[prefix + '.rich_text'] = False
         registry[prefix + '.weight'] = 10
