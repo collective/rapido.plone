@@ -4,6 +4,7 @@ import json
 from plone.protect import CheckAuthenticator
 from plone.protect.authenticator import createToken
 from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 import zExceptions
 from zope.interface import implements
 from zope.publisher.interfaces import IPublishTraverse
@@ -142,3 +143,20 @@ class RapidoView(BrowserView):
             return True
         else:
             return False
+
+
+def get_block_view(path, with_theme):
+
+    class RapidoDynamicView(BrowserView):
+
+        template = ViewPageTemplateFile('view.pt')
+
+        def __call__(self):
+            rapido = self.context.unrestrictedTraverse("@@rapido")
+            self.content = rapido.content(path.split('/'))
+            if with_theme:
+                return self.template()
+            else:
+                return self.content
+
+    return RapidoDynamicView

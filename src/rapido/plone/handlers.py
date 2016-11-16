@@ -2,18 +2,17 @@
 from pyaml import yaml
 from plone.registry.interfaces import IRegistry
 from plone.resource.file import FilesystemFile
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import provideAdapter, provideUtility, getUtility
 from zope.interface import Interface
-from zope.publisher.browser import BrowserView
 from zope.publisher.interfaces.browser import IBrowserRequest
 from .app import get_theme_directory
+from .browser.views import get_block_view
 
 try:
     from plone.app.mosaic.interfaces import ITile
-    from plone.tiles import Tile
     from plone.tiles.interfaces import IBasicTile
     from plone.tiles.type import TileType
+    from .tile.tile import RapidoDynamicTile
     HAS_MOSAIC = True
 except ImportError:
     HAS_MOSAIC = False
@@ -32,32 +31,6 @@ def is_yaml(file):
     if getPath(file)[-1].endswith('yaml'):
             return True
     return False
-
-
-def get_block_view(path, with_theme):
-
-    class RapidoDynamicView(BrowserView):
-
-        template = ViewPageTemplateFile('browser/view.pt')
-
-        def __call__(self):
-            rapido = self.context.unrestrictedTraverse("@@rapido")
-            self.content = rapido.content(path.split('/'))
-            if with_theme:
-                return self.template()
-            else:
-                return self.content
-
-    return RapidoDynamicView
-
-
-if HAS_MOSAIC:
-    class RapidoDynamicTile(Tile):
-        __name__ = 'rapido.dynamic.tile'  # dynamic replace
-
-        def __call__(self):
-            rapido = self.context.unrestrictedTraverse("@@rapido")
-            return rapido.content(self.path.split('/'))
 
 
 def process_yaml(path, yaml_content):

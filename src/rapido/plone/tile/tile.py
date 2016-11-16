@@ -17,11 +17,18 @@ class IRapidoTile(model.Schema):
 
 
 class RapidoTile(Tile):
-    """Rapido tile
-    """
+    """Rapido tile"""
 
     @property
     @memoize
     def content(self):
         rapido = self.context.unrestrictedTraverse("@@rapido")
         return rapido.content(self.data['path'].split('/'))
+
+
+class RapidoDynamicTile(Tile):
+    __name__ = 'rapido.dynamic.tile'  # dynamic replace
+
+    def __call__(self):
+        rapido = self.context.unrestrictedTraverse("@@rapido")
+        return rapido.content(self.path.split('/'))
