@@ -5,7 +5,8 @@ Changelog
 1.0.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Allow to locate a Rapido app outside the current theme
+  [ebrehault]
 
 
 1.0.3 (2016-09-19)
