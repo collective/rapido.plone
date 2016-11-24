@@ -35,6 +35,8 @@ def is_yaml(file):
 
 def process_yaml(path, yaml_content):
     yaml_settings = yaml.load(yaml_content)
+    if not yaml_settings:
+        return
     if 'view' in yaml_settings:
         config = yaml_settings['view']
         with_theme = False
