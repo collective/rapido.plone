@@ -14,7 +14,7 @@ try:
     from plone.tiles.type import TileType
     from .tile.tile import RapidoDynamicTile
     HAS_MOSAIC = True
-except ImportError:
+except ImportError:  # pragma: no cover
     HAS_MOSAIC = False
 
 RELOADED_SITES = []
@@ -103,7 +103,7 @@ def reload(event):
         theme_dir = None
         try:
             theme_dir = get_theme_directory()
-        except:
+        except:  # pragma: no cover
             # not a Plone site
             pass
 
@@ -112,7 +112,7 @@ def reload(event):
                 if not theme_dir['rapido'].isDirectory(entry):
                     continue
                 app_folder = theme_dir['rapido'][entry]
-                if not app_folder.isDirectory('blocks'):
+                if not app_folder.isDirectory('blocks'):  # pragma: no cover
                     continue
                 for file_id in app_folder['blocks'].listDirectory():
                     if file_id.endswith('.yaml'):
@@ -121,7 +121,7 @@ def reload(event):
                                 getPath(app_folder['blocks'][file_id]),
                                 app_folder['blocks'].readFile(file_id)
                             )
-                        except:
+                        except:  # pragma: no cover
                             # we do not want to break the rendering of all our
                             # pages if something is wrong in a rapido app
                             pass
