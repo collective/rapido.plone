@@ -47,7 +47,7 @@ def process_yaml(path, yaml_content):
         path = path.rpartition('.')[0]
         view = get_block_view(path, with_theme)
         provideAdapter(view, (Interface, IBrowserRequest),
-            Interface, name=id)
+                       Interface, name=id)
 
     if HAS_MOSAIC and 'tile' in yaml_settings:
         id = path[-1].rpartition('.')[0]
