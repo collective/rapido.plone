@@ -94,7 +94,7 @@ class RapidoApplication(object):
                 raise KeyError('%s.%s' % (block_id, ftype))
 
     def get_resource_directory(self, name=None):
-        directory = get_theme_directory()
+        directory = get_theme_directory(name)
         if not directory.isDirectory('rapido'):
             raise exceptions.NotFound(self.id)
         if directory['rapido'].isDirectory(self.id):

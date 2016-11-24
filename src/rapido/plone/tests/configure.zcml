@@ -6,5 +6,6 @@
     <include package="rapido.plone"/>
 
     <plone:static directory="resources" type="theme" />
+    <plone:static directory="other" name="other" type="theme" />
 
 </configure>
