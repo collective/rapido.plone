@@ -4,6 +4,7 @@
 *.pyc
 *.pyo
 *~
+.coverage
 .installed.cfg
 .mr.developer.cfg
 pip-selfcheck.json
@@ -12,6 +13,7 @@ coverage/
 develop-eggs/
 downloads/
 eggs/
+htmlcov/
 include/
 lib/
 lib64
