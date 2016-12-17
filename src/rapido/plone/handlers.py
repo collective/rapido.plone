@@ -1,21 +1,11 @@
 # -*- coding: utf-8 -*-
 from pyaml import yaml
-from plone.registry.interfaces import IRegistry
 from plone.resource.file import FilesystemFile
-from zope.component import provideAdapter, provideUtility, getUtility
+from zope.component import provideAdapter
 from zope.interface import Interface
 from zope.publisher.interfaces.browser import IBrowserRequest
 from .app import get_theme_directory
 from .browser.views import get_block_view
-
-try:
-    from plone.app.mosaic.interfaces import ITile
-    from plone.tiles.interfaces import IBasicTile, ITileType
-    from plone.tiles.type import TileType
-    from .tile.tile import IRapidoDynamicTile, get_dynamic_tile
-    HAS_MOSAIC = True
-except ImportError:  # pragma: no cover
-    HAS_MOSAIC = False
 
 RELOADED_SITES = []
 
@@ -50,36 +40,6 @@ def process_yaml(path, yaml_content):
         view = get_block_view(path, with_theme)
         provideAdapter(view, (Interface, IBrowserRequest),
                        Interface, name=id)
-
-    if HAS_MOSAIC and 'tile' in yaml_settings:
-        id = path[-1].rpartition('.')[0]
-        tile_type = TileType(
-            id,
-            yaml_settings['tile']['label'],
-            'zope.Public',
-            'zope.View',
-            description=u'',
-            schema=IRapidoDynamicTile)
-
-        provideUtility(tile_type, ITileType, name=id)
-        path = '/'.join(path[path.index('rapido') + 1:])
-        tile = get_dynamic_tile(path)
-        provideAdapter(tile, (Interface, IBrowserRequest),
-            IBasicTile, name=id)
-        prefix = 'plone.app.mosaic.app_tiles.rapido_dynamic_tile_' + id
-        registry = getUtility(IRegistry)
-        registry.registerInterface(ITile, prefix=prefix)
-        registry[prefix + '.name'] = unicode(id)
-        registry[prefix + '.label'] = unicode(
-            yaml_settings['tile']['label'])
-        registry[prefix + '.category'] = u'advanced'
-        registry[prefix + '.tile_type'] = u'basicapp'
-        registry[prefix + '.default_value'] = None
-        registry[prefix + '.read_only'] = True
-        registry[prefix + '.settings'] = True
-        registry[prefix + '.favorite'] = False
-        registry[prefix + '.rich_text'] = False
-        registry[prefix + '.weight'] = 10
 
 
 def resource_created_or_modified(obj, event):
