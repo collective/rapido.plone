@@ -6,7 +6,6 @@ from plone.resource.utils import queryResourceDirectory
 from zope.component import queryUtility
 from zope.interface import implements
 from zope.pagetemplate.pagetemplate import PageTemplate
-from zExceptions import NotFound
 
 from rapido.core import exceptions
 from rapido.core.app import Context
@@ -94,11 +93,16 @@ class RapidoApplication(object):
             else:
                 raise KeyError('%s.%s' % (block_id, ftype))
 
-    def get_resource_directory(self):
-        directory = get_theme_directory()
-        try:
+    def get_resource_directory(self, name=None):
+        directory = get_theme_directory(name)
+        if not directory.isDirectory('rapido'):
+            raise exceptions.NotFound(self.id)
+        if directory['rapido'].isDirectory(self.id):
             return directory['rapido'][self.id]
-        except NotFound:
+        elif directory['rapido'].isFile(self.id + '.lnk'):
+            directory_name = directory['rapido'].readFile(self.id + '.lnk')
+            return self.get_resource_directory(name=directory_name)
+        else:
             raise exceptions.NotFound(self.id)
 
     def get_resource(self, path):
@@ -155,6 +159,6 @@ def get_app(app_id, request, content=None):
     return IRapidoApplication(app)
 
 
-def get_theme_directory():
-    theme = getCurrentTheme()
-    return queryResourceDirectory(THEME_RESOURCE_NAME, theme)
+def get_theme_directory(name=None):
+    return queryResourceDirectory(
+        THEME_RESOURCE_NAME, name or getCurrentTheme())

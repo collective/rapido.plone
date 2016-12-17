@@ -217,3 +217,15 @@ class TestCase(unittest.TestCase):
             self.portal.absolute_url() + '/my-view')
         self.assertTrue("""And now for something completely different"""
             in self.browser.contents)
+
+    def test_block_view_with_theme(self):
+        self.browser.open(
+            self.portal.absolute_url() + '/my-view2')
+        self.assertTrue("""And now for something completely different"""
+                        in self.browser.contents)
+        self.assertTrue("""<div id="content-core">"""
+                        in self.browser.contents)
+        self.browser.open(
+            self.portal.absolute_url() + '/my-view')
+        self.assertFalse("""<div id="content-core">"""
+                         in self.browser.contents)
