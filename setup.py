@@ -42,7 +42,6 @@ setup(
     zip_safe=False,
     install_requires=[
         'plone.api',
-        'plone.tiles',
         'setuptools',
         'rapido.core',
         'rapido.souper',
