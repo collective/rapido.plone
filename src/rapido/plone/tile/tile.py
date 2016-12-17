@@ -2,6 +2,8 @@ from plone.memoize.view import memoize
 from plone.supermodel import model
 from plone.tiles import Tile
 from zope import schema
+from zope.interface import implements
+from plone.tiles.interfaces import ITile
 
 from rapido.plone import _
 
@@ -26,9 +28,16 @@ class RapidoTile(Tile):
         return rapido.content(self.data['path'].split('/'))
 
 
+class IRapidoDynamicTile(model.Schema):
+
+    pass
+
+
 class RapidoDynamicTile(Tile):
+    implements(ITile)
+
     __name__ = 'rapido.dynamic.tile'  # dynamic replace
 
     def __call__(self):
-        rapido = self.context.unrestrictedTraverse("@@rapido")
-        return rapido.content(self.path.split('/'))
+        # rapido = self.context.unrestrictedTraverse("@@rapido")
+        return 'hello'

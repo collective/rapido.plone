@@ -10,9 +10,9 @@ from .browser.views import get_block_view
 
 try:
     from plone.app.mosaic.interfaces import ITile
-    from plone.tiles.interfaces import IBasicTile
+    from plone.tiles.interfaces import IBasicTile, ITileType
     from plone.tiles.type import TileType
-    from .tile.tile import RapidoDynamicTile
+    from .tile.tile import IRapidoDynamicTile, RapidoDynamicTile
     HAS_MOSAIC = True
 except ImportError:
     HAS_MOSAIC = False
@@ -35,6 +35,8 @@ def is_yaml(file):
 
 def process_yaml(path, yaml_content):
     yaml_settings = yaml.load(yaml_content)
+    if not yaml_settings:
+        return
     if 'view' in yaml_settings:
         config = yaml_settings['view']
         with_theme = False
@@ -57,14 +59,14 @@ def process_yaml(path, yaml_content):
             'zope.Public',
             'zope.View',
             description=u'',
-            schema=None)
+            schema=IRapidoDynamicTile)
 
-        provideUtility(tile_type, name=id)
+        provideUtility(tile_type, ITileType, name=id)
         tile = RapidoDynamicTile
         path = '/'.join(path[path.index('rapido') + 1:])
-        tile.path = path.rpartition('.')[0]
-        provideAdapter(RapidoDynamicTile, (Interface, Interface),
-                       IBasicTile, name=id)
+        # tile.path = path.rpartition('.')[0]
+        provideAdapter(tile, (Interface, IBrowserRequest),
+            IBasicTile, name=id)
         prefix = 'plone.app.mosaic.app_tiles.rapido_dynamic_tile_' + id
         registry = getUtility(IRegistry)
         registry.registerInterface(ITile, prefix=prefix)
@@ -72,10 +74,10 @@ def process_yaml(path, yaml_content):
         registry[prefix + '.label'] = unicode(
             yaml_settings['tile']['label'])
         registry[prefix + '.category'] = u'advanced'
-        registry[prefix + '.tile_type'] = u'app'
+        registry[prefix + '.tile_type'] = u'basicapp'
         registry[prefix + '.default_value'] = None
-        registry[prefix + '.read_only'] = False
-        registry[prefix + '.settings'] = False
+        registry[prefix + '.read_only'] = True
+        registry[prefix + '.settings'] = True
         registry[prefix + '.favorite'] = False
         registry[prefix + '.rich_text'] = False
         registry[prefix + '.weight'] = 10
