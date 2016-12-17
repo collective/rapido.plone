@@ -12,7 +12,7 @@ try:
     from plone.app.mosaic.interfaces import ITile
     from plone.tiles.interfaces import IBasicTile, ITileType
     from plone.tiles.type import TileType
-    from .tile.tile import IRapidoDynamicTile, RapidoDynamicTile
+    from .tile.tile import IRapidoDynamicTile, get_dynamic_tile
     HAS_MOSAIC = True
 except ImportError:  # pragma: no cover
     HAS_MOSAIC = False
@@ -62,9 +62,8 @@ def process_yaml(path, yaml_content):
             schema=IRapidoDynamicTile)
 
         provideUtility(tile_type, ITileType, name=id)
-        tile = RapidoDynamicTile
         path = '/'.join(path[path.index('rapido') + 1:])
-        # tile.path = path.rpartition('.')[0]
+        tile = get_dynamic_tile(path)
         provideAdapter(tile, (Interface, IBrowserRequest),
             IBasicTile, name=id)
         prefix = 'plone.app.mosaic.app_tiles.rapido_dynamic_tile_' + id

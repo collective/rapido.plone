@@ -33,11 +33,15 @@ class IRapidoDynamicTile(model.Schema):
     pass
 
 
-class RapidoDynamicTile(Tile):
-    implements(ITile)
+def get_dynamic_tile(path):
 
-    __name__ = 'rapido.dynamic.tile'  # dynamic replace
+    class RapidoDynamicTile(Tile):
+        implements(ITile)
 
-    def __call__(self):
-        # rapido = self.context.unrestrictedTraverse("@@rapido")
-        return 'hello'
+        __name__ = 'rapido.dynamic.tile'
+
+        def __call__(self):
+            rapido = self.context.unrestrictedTraverse("@@rapido")
+            return rapido.content(path.split('/'))
+
+    return RapidoDynamicTile
