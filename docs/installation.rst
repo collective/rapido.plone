@@ -7,9 +7,8 @@ Install Plone, then modify ``buildout.cfg`` to add Rapido as a dependency::
         ...
         rapido.plone
 
-    # IF PLONE 5.0 (useless with >= 5.0.1)
     [versions]
-    diazo = 1.2.2
+    plone.resource = 1.2
 
 Then, run your buildout::
 

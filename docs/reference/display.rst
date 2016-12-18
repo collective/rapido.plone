@@ -31,6 +31,30 @@ Example:
 Extra views
 -----------
 
+.. warning:: Since rapido.plone 1.1, we can declare first-class Plone views from Rapido, but it requires plone.resources 1.2.
+
+If we do not want to just inject a small piece of HTML in existing pages,
+but use a Rapido block as the main part of the page, we can declare a block as a view in its YAML file::
+
+.. code-block:: yaml
+
+    view:
+        id: my-custom-view
+        with_theme: true
+
+And then we call ``@@my-custom-view`` on any content, like:
+
+    http://localhost:8080/Plone/news/@@my-custom-view
+
+and it displays our block as main page content.
+
+If the ``with_theme`` property is ``false``, the page is rendered without the Plone theme (we just get the block by itself).
+
+Extra views before 1.1
+----------------------
+
+**DEPRECATED since rapido.plone 1.1**
+
 If we do not want to just inject a small piece of HTML in existing pages,
 but create a new view for our contents, we can use the Rapido **neutral views**.
 

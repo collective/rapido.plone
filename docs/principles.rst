@@ -137,23 +137,19 @@ page.
 
 Instead of adding a block to an existing Plone view, we might need to provide a
 new rendering, mapped to a specific URL.
-We can do that by adding ``@@rapido/view`` to the content URL. It will just
-display the default view of our content, but it allows us to define a specific
-Diazo rule for this path:
+We can do that by declaring our block as a Plone view in its YAML file:
 
-.. code-block:: xml
+.. code-block :: yaml
 
-    <rules if-path="@@rapido/view">
-        <replace css:content="#content">
-            <include css:content="form" href="/@@rapido/myapp/blocks/simpleblock" />
-        </replace>      
-    </rules>
+    view:
+      id: my-custom-view
+      with_theme: true
 
-We might add an extra name to our path, which can be used to select
-a particular rapido block, allowing us to define different rules for different
-use cases (like ``path_to_content/@@rapido/view/subscribe``,
-``path_to_content/@@rapido/view/unsubscribe``,
-``path_to_content/@@rapido/view/stats``, ...).
+And then we call ``@@my-custom-view`` on any content, like:
+
+    http://localhost:8080/Plone/news/@@my-custom-view
+
+We can create as many views as we might need (like ``@@subscribe``, ``@@unsubscribe``, ``@@stats``, ...).
 
 .. note::
 

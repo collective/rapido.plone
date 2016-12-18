@@ -2,11 +2,20 @@ Changelog
 =========
 
 
-1.0.4 (unreleased)
-------------------
+1.1 (unreleased)
+----------------
+
+Breaking changes:
+
+- rapido.plone requires plone.resource 1.2
+
+New features:
 
 - Allow to locate a Rapido app outside the current theme
   [ebrehault]
+
+- Expose Rapido blocks as first-class Plone views
+  [jpgimenez, ebrehault]
 
 
 1.0.3 (2016-09-19)

@@ -36,19 +36,11 @@ Rules.xml
 
 .. code-block:: xml
 
-    <rules if-path="@@rapido/view/manage-glossary">
-      <replace css:content="#content">
-        <include css:content="form" href="/@@rapido/glossary/blocks/all" />
-      </replace>      
-    </rules>
     <after css:theme-children="body">
       <script src="/tutorial/++theme++test/rapido/glossary/glossary.js"></script>
     </after>
 
-The first rule declares a view named ``manage-glossary`` displaying the ``all``
-block.
-
-The second rule inserts in all our pages a javascript file in charge of replacing
+This rule inserts in all our pages a javascript file in charge of replacing
 matching words with ``<abbr>`` tags.
 
 The ``term`` block
@@ -121,11 +113,16 @@ and a button allows opening a blank ``term`` block to create a new term.
   .. code-block:: yaml
   
       target: ajax
+      view:
+          id: glossary
+          with_theme: true
       elements:
           list: BASIC
           new_term:
               type: ACTION
               label: Add term
+
+  The ``view`` setting allows to render the ``all`` block as Plone view named ``@@glossary``, so we can call http://localhost:8080/Plone/@@glossary to see it.
 
 - ``all.py``
 

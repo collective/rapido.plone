@@ -392,25 +392,21 @@ First, we need a block, ``report.html``:
     <h2>Rating report</h2>
     <div id="chart"></div>
 
-We want this block to be the main content of a new view.    
-We will do that with a **neutral view** (see :doc:`./reference/display`).
-By adding ``@@rapido/view/<any-name>`` to a content URL we get the content's
-default view, and using a Diazo rule, we will replace the default content with
-our block:
+We want this block to be the main content of a new view.
 
-.. code-block:: xml
+We need to declare it in its YAML file:
 
-    <rules if-path="@@rapido/view/show-report">
-        <replace css:content="#content">
-            <include css:content="form" href="/@@rapido/rating/blocks/report" />
-        </replace>      
-    </rules>
+.. code-block:: yaml
+
+    view:
+        id: show-report
+        with_theme: true
 
 Now if we visit for instance::
 
-    http://localhost:8080/tutorial/news/@@rapido/view/show-report
+    http://localhost:8080/tutorial/@@show-report
 
-we do see our block instead of the regular *News* page content.
+we do see our block as main page content.
 
 Now we need to implement our report content. We could do it with a Rapido element
 like we did in the Top 5 block.
@@ -498,16 +494,16 @@ We have 2 dependencies:
 ``mockup-utils`` allows us to get the authenticator token (with the ``getAuthenticator``
 method), we need it to use the Rapido REST API.
 
-Notes:
+.. note ::
 
-- RequireJS or ``mockup-utils`` are not mandatory to use the Rapido REST API,
-  if we were outside of Plone (using Rapido as a remote backend),
-  we would have made a call to ``/tutorial/@@rapido/rating`` which returns the
-  token in an HTTP header.
-  We just use them because they are provided by Plone by default, and they make our
-  work easier.
-- Instead of loading D3 directly form its CDN, we could have put the ``d3.v3.min.js``
-  in the ``/rapido/rating`` folder, and serve it locally.
+    - RequireJS or ``mockup-utils`` are not mandatory to use the Rapido REST API,
+      if we were outside of Plone (using Rapido as a remote backend),
+      we would have made a call to ``/tutorial/@@rapido/rating`` which returns the
+      token in an HTTP header.
+      We just use them because they are provided by Plone by default, and they make our
+      work easier.
+    - Instead of loading D3 directly form its CDN, we could have put the ``d3.v3.min.js``
+      in the ``/rapido/rating`` folder, and serve it locally.
 
 The second interesting part is the ``d3.json()`` call:
 
@@ -528,10 +524,34 @@ Now we just need to load this script from our block:
 
 And we can visit::
 
-    http://localhost:8080/tutorial/news/@@rapido/view/show-report
+    http://localhost:8080/tutorial/news/@@show-report
 
 to see a pie chart about votes on the *News* items!!
 
 .. image:: files/screen-7.png
 
 Download the :download:`source files of this tutorial <files/tutorial.zip>`.
+
+.. note::
+
+    This .zip file can be imported in the theming editor, but it cannot be activated as a regular theme as it just contains our Rapido app.
+    The app can be used from our main theme by adding a `rating.lnk` file in our current theme's ``rapido`` folder, containing::
+
+        tutorial
+
+    indicating the Rapido app named ``rating`` is stored in the theme named ``tutorial``.
+    And then we can activate our specific rules by adding:
+
+    .. code-block:: xml
+
+        <after css:content=".documentFirstHeading">
+            <include css:content="form" href="/@@rapido/rating/blocks/rate" />
+        </after>
+
+        <rules css:if-content=".section-front-page">
+            <before css:content=".documentFirstHeading">
+                <include css:content="form" href="/@@rapido/rating/blocks/top5" />
+            </before>
+        </rules>
+
+    in our main theme's ``rules.xml``.
