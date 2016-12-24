@@ -15,7 +15,12 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Make it work in an Archetypes free environment:
+  Bind event handlers directly on the OFS.Image.File class,
+  because there is no specific interface in OFS.
+  The additional set interface from plone.app.blob was Archetypes only.
+  It is no longer availabe if Archetypes and its dependencies is not available.
+  [jensens]
 
 
 1.1 (2016-12-18)
@@ -63,7 +68,7 @@ New features:
   [ebrehault]
 
 - API to access an external Rapido app
-  [ebrehault] 
+  [ebrehault]
 
 
 1.0.1 (2016-01-06)

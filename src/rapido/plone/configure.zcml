@@ -41,13 +41,13 @@
         />
 
     <subscriber
-        for="plone.app.blob.interfaces.IOFSFile
+        for="OFS.Image.File
              plone.resource.interfaces.IPloneResourceCreatedEvent"
         handler=".handlers.resource_created_or_modified"
         />
 
     <subscriber
-        for="plone.app.blob.interfaces.IOFSFile
+        for="OFS.Image.File
              plone.resource.interfaces.IPloneResourceModifiedEvent"
         handler=".handlers.resource_created_or_modified"
         />
