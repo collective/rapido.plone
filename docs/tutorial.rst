@@ -361,7 +361,7 @@ get the corresponding contents, and then obtain their URLs and titles.
 
 Our block works now::
 
-    http://localhost:8080/tutorial/@@rapido/rating/blocks/top5
+    http://localhost:8080/Plone/@@rapido/rating/blocks/top5
 
 Finally, we have to insert our block in the home page.
 That will be done in ``rules.xml``:
@@ -404,7 +404,7 @@ We need to declare it in its YAML file:
 
 Now if we visit for instance::
 
-    http://localhost:8080/tutorial/@@show-report
+    http://localhost:8080/Plone/@@show-report
 
 we do see our block as main page content.
 
@@ -498,7 +498,7 @@ method), we need it to use the Rapido REST API.
 
     - RequireJS or ``mockup-utils`` are not mandatory to use the Rapido REST API,
       if we were outside of Plone (using Rapido as a remote backend),
-      we would have made a call to ``/tutorial/@@rapido/rating`` which returns the
+      we would have made a call to ``/Plone/@@rapido/rating`` which returns the
       token in an HTTP header.
       We just use them because they are provided by Plone by default, and they make our
       work easier.
@@ -524,7 +524,7 @@ Now we just need to load this script from our block:
 
 And we can visit::
 
-    http://localhost:8080/tutorial/news/@@show-report
+    http://localhost:8080/Plone/news/@@show-report
 
 to see a pie chart about votes on the *News* items!!
 
