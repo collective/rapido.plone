@@ -218,7 +218,7 @@ And let's implement it in ``rate.py``:
         record = context.app.get_record(content_path)
         if not record:
             return ''
-        return "❤" * record.get('total', 0)
+        return "&#10084;" * record.get('total', 0)
 
 We get the record corresponding to the current content, and we return as many ❤
 as votes we have stored.
@@ -259,7 +259,7 @@ And now, let's change our ``display`` function:
         if not record:
             return ''
         context.app.log(record.items())
-        return "❤" * record.get('total', 0)
+        return "&#10084;" * record.get('total', 0)
 
 We will see the following in our browser's console:
 
@@ -275,7 +275,7 @@ Let's imagine now we made an error like forgetting the colon at the end of the
         record = context.app.get_record(content_path)
         if not record
             return ''
-        return "❤" * record.get('total', 0)
+        return "&#10084;" * record.get('total', 0)
 
 Then we get this:
 
@@ -348,7 +348,7 @@ We are now able to build a block to display the top 5 contents:
         html = "<ul>"
         for record in search:
             content = context.api.content.get(path=record["id"])
-            html += '<li><a href="%s">%s</a> %d ❤</li>' % (
+            html += '<li><a href="%s">%s</a> %d &#10084;</li>' % (
                 content.absolute_url(),
                 content.title,
                 record["total"]) 
