@@ -394,7 +394,7 @@ First, we need a block, ``report.html``:
 
 We want this block to be the main content of a new view.
 
-We need to declare it in its YAML file:
+We need to declare it in a new YAML file called ``report.yaml``:
 
 .. code-block:: yaml
 
