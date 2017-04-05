@@ -293,14 +293,14 @@ We declare its indexing mode in ``rate.yaml``:
 .. code-block:: yaml
 
     target: ajax
-        elements:
-            like:
-                type: ACTION
-                label: Like
-            display: BASIC
-            total:
-                type: NUMBER
-                index_type: field
+    elements:
+        like:
+            type: ACTION
+            label: Like
+        display: BASIC
+        total:
+            type: NUMBER
+            index_type: field
 
 To index the previously stored values,
 we have to refresh the storage index by calling the following URL::
