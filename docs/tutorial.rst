@@ -31,7 +31,7 @@ interface (i.e. there is no *"Modify theme"* button),
 we will first need to create an editable copy:
 
 - click on *"Copy"*,
-- enter a name,
+- enter a name, for example *"test"*.
 - check *"Immediately enable new theme"*.
 
 Else, we just click on the *"Modify theme"* button.
