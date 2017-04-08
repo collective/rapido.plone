@@ -440,7 +440,7 @@ folder:
             .append("g")
             .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-        d3.json("../../@@rapido/rating/search")
+        d3.json("../@@rapido/rating/search")
             .header("X-Csrf-Token", authenticator)
             .post(
                 JSON.stringify({"query": "total>0"}),
@@ -498,7 +498,7 @@ method), we need it to use the Rapido REST API.
 
     - RequireJS or ``mockup-utils`` are not mandatory to use the Rapido REST API,
       if we were outside of Plone (using Rapido as a remote backend),
-      we would have made a call to ``/Plone/@@rapido/rating`` which returns the
+      we would have made a call to ``../@@rapido/rating`` which returns the
       token in an HTTP header.
       We just use them because they are provided by Plone by default, and they make our
       work easier.
