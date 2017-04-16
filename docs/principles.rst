@@ -85,7 +85,7 @@ Here is a basic example:
       def do_something(context):
           context.app.log('Hello')
 
-We can see our block by visiting the following URL::
+We can see our block by visiting the following URL:
 
     http://localhost:8080/Plone/@@rapido/myapp/blocks/simpleblock
 

@@ -31,7 +31,7 @@ interface (i.e. there is no *"Modify theme"* button),
 we will first need to create an editable copy:
 
 - click on *"Copy"*,
-- enter a name, for example *"test"*.
+- enter a name, for example *"tutorial"*.
 - check *"Immediately enable new theme"*.
 
 Else, we just click on the *"Modify theme"* button.
@@ -41,7 +41,7 @@ rules.
 
 To initialize our Rapido app named "rating", we need to:
 
-- create a folder maned ``rapido`` in the theme root,
+- create a folder named ``rapido`` in the theme root,
 - in this ``rapido`` folder, create a folder named ``rating``.
 
 .. image:: files/screen-1.png
@@ -520,7 +520,7 @@ Now we just need to load this script from our block:
 
     <h2>Rating report</h2>
     <div id="chart"></div>
-    <script src="++theme++test/rapido/rating/report.js"></script>
+    <script src="++theme++tutorial/rapido/rating/report.js"></script>
 
 And we can visit:
 
