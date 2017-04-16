@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Rapido 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-16 08:32-0400\n"
+"POT-Creation-Date: 2017-04-16 16:22-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,7 +97,11 @@ msgid "``rapido/myapp/blocks/simpleblock.py``:"
 msgstr ""
 
 #: ../principles.rst:88
-msgid "We can see our block by visiting the following URL::"
+msgid "We can see our block by visiting the following URL:"
+msgstr ""
+
+#: ../principles.rst:90
+msgid "http://localhost:8080/Plone/@@rapido/myapp/blocks/simpleblock"
 msgstr ""
 
 #: ../principles.rst:92

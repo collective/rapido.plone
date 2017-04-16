@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Rapido 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-16 08:32-0400\n"
+"POT-Creation-Date: 2017-04-16 17:47-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,7 +65,7 @@ msgid "click on *\"Copy\"*,"
 msgstr ""
 
 #: ../tutorial.rst:34
-msgid "enter a name, for example *\"test\"*."
+msgid "enter a name, for example *\"tutorial\"*."
 msgstr ""
 
 #: ../tutorial.rst:35
@@ -85,7 +85,7 @@ msgid "To initialize our Rapido app named \"rating\", we need to:"
 msgstr ""
 
 #: ../tutorial.rst:44
-msgid "create a folder maned ``rapido`` in the theme root,"
+msgid "create a folder named ``rapido`` in the theme root,"
 msgstr ""
 
 #: ../tutorial.rst:45
