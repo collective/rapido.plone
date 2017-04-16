@@ -1,11 +1,11 @@
 Displaying Rapido in Plone
 ==========================
 
-We can see a block by visiting its URL::
+We can see a block by visiting its URL:
 
     http://localhost:8080/Plone/@@rapido/myapp/blocks/simpleblock
 
-Similarly for a record::
+Similarly for a record:
 
     http://localhost:8080/Plone/@@rapido/myapp/record/my-record-id
 
@@ -82,7 +82,7 @@ to create specific Diazo rules for it using the ``if-path`` attribute.
         </replace>      
     </rules>
 
-In this example, if we open::
+In this example, if we open:
 
     http://localhost:8080/Plone/@@rapido/view/show-report
 
@@ -119,7 +119,7 @@ Examples:
         </replace>
     </rules>
 
-if we open::
+if we open:
 
     http://localhost:8080/Plone/@@rapido/view/show-report/myapp/record/my-record-id
 
@@ -135,7 +135,7 @@ We could also do:
         </replace>
     </rules>
 
-if we open::
+if we open:
 
     http://localhost:8080/Plone/@@rapido/view/show-report/my-record-id
 
