@@ -1,0 +1,861 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2015, Makina Corpus
+# This file is distributed under the same license as the Rapido package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Rapido 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-16 08:32-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../reference/access.rst:2
+msgid "Access control"
+msgstr ""
+
+#: ../reference/access.rst:5
+msgid "Access control list"
+msgstr ""
+
+#: ../reference/access.rst:7
+msgid "The ACL defined in the app applies to records, not to blocks. Blocks are always accessible, if we do not want a block to render some information, we have to implement this in its Python file or use the ``view_permission`` setting."
+msgstr ""
+
+#: ../reference/access.rst:12
+msgid "Moreover, access control only impacts direct HTTP access to records (like opening a record URL, deleting a record via the JSON API, etc.), and it does **not** impact what happens in block Python files."
+msgstr ""
+
+#: ../reference/access.rst:16
+msgid "For instance in the :doc:`../tutorial`, if an anonymous visitor clicks on the *\"Like\"* button on a page nobody had voted for yet, the ``like`` function will create a record."
+msgstr ""
+
+#: ../reference/access.rst:20
+msgid "But an anonymous visitor would not be able to modify this record or to delete it using the JSON API."
+msgstr ""
+
+#: ../reference/access.rst:23
+msgid "The expected format is:"
+msgstr ""
+
+#: ../reference/access.rst:34
+msgid "In the list of users or groups, ``'*'`` means everyone."
+msgstr ""
+
+#: ../reference/access.rst:37
+msgid "Access levels"
+msgstr ""
+
+#: ../reference/access.rst:39
+msgid "The access levels are:"
+msgstr ""
+
+#: ../reference/access.rst:41
+msgid "``reader``: can read all the records,"
+msgstr ""
+
+#: ../reference/access.rst:42
+msgid "``author``: can read all the records, can create records, can modify/delete his own records,"
+msgstr ""
+
+#: ../reference/access.rst:44
+msgid "``editor``: can read/modify/delete any record, can create records."
+msgstr ""
+
+#: ../reference/access.rst:46
+msgid "The access control settings are managed in the ``settings.yaml`` file in the app root folder."
+msgstr ""
+
+#: ../reference/access.rst:50
+msgid "Roles"
+msgstr ""
+
+#: ../reference/access.rst:52
+msgid "Roles do not grant any specific rights on records, they can be defined freely. They are used in our Python functions to change the app behavior depending on the user."
+msgstr ""
+
+#: ../reference/access.rst:56
+msgid "For instance, we might have a role named 'PurchaseManager', and in our block we would display a \"Validate purchase\" button if the current user has the 'PurchaseManager' role."
+msgstr ""
+
+#: ../reference/access.rst:61
+msgid "Permissions on blocks"
+msgstr ""
+
+#: ../reference/access.rst:63
+msgid "By default, blocks are accessible by anyone (including anonymous visitors)."
+msgstr ""
+
+#: ../reference/access.rst:65
+msgid "By setting the ``view_permission`` attribute in a block's YAML file, we can control access to this block."
+msgstr ""
+
+#: ../reference/access.rst:67
+msgid "Its value is a list of users or groups."
+msgstr ""
+
+#: ../reference/access.rst:69
+#: ../reference/display.rst:23
+#: ../reference/external-call.rst:16
+msgid "Example:"
+msgstr ""
+
+#: ../reference/access.rst:79
+msgid "This block will be accessible only by the 'PurchaseDepartment' group members and Eric."
+msgstr ""
+
+#: ../reference/access.rst:81
+msgid "This restriction applies to direct block rendering and element calls, including REST calls."
+msgstr ""
+
+#: ../reference/application.rst:2
+msgid "Application"
+msgstr ""
+
+#: ../reference/application.rst:4
+msgid "A Rapido application is defined by a folder in the ``rapido`` folder in the current theme."
+msgstr ""
+
+#: ../reference/application.rst:7
+msgid "The application folder might contain a ``settings.yaml`` file in its root but that is not mandatory. It allows to define the access control settings (see :doc:`./access`), or to enable the ``debug`` mode."
+msgstr ""
+
+#: ../reference/application.rst:11
+msgid "It always contains a ``blocks`` folder containing its blocks (see :doc:`./blocks`)."
+msgstr ""
+
+#: ../reference/application.rst:13
+msgid "It might also contain regular theme items (``rules.xml``, CSS, Javascript, etc.)."
+msgstr ""
+
+#: ../reference/application.rst:16
+msgid "Locating a Rapido application outside the current theme"
+msgstr ""
+
+#: ../reference/application.rst:18
+msgid "If we use a lot of Rapido applications, or if the theme and the Rapido apps are managed by different persons, it might be preferable to locate the Rapido apps in a dedicated theme."
+msgstr ""
+
+#: ../reference/application.rst:20
+msgid "To do so, we just need to reference it using a ``.lnk`` text file in the current theme. The filename should be the app id, and its content must be the theme id."
+msgstr ""
+
+#: ../reference/application.rst:22
+msgid "For instance, our active theme would be structured like this::"
+msgstr ""
+
+#: ../reference/application.rst:28
+msgid "The ``myapp.lnk`` content would be just::"
+msgstr ""
+
+#: ../reference/application.rst:32
+msgid "The ``dev-theme`` theme would contain the full ``myapp`` Rapido app::"
+msgstr ""
+
+#: ../reference/application.rst:40
+msgid "And everything will work just like if the ``myapp`` folder was in our active theme."
+msgstr ""
+
+#: ../reference/blocks.rst:2
+msgid "Blocks"
+msgstr ""
+
+#: ../reference/blocks.rst:4
+msgid "A block is defined by 3 files stored in the ``blocks`` folder of the application. Those files have the same filename (which is the block id) with the extensions ``.html``, ``.py`` and ``.yaml``."
+msgstr ""
+
+#: ../reference/blocks.rst:10
+msgid "The HTML file"
+msgstr ""
+
+#: ../reference/blocks.rst:12
+msgid "The ``.html`` file contains the layout of the block. It is regular HTML. Dynamic elements are enclosed in curly brackets. Example:"
+msgstr ""
+
+#: ../reference/blocks.rst:19
+msgid "The curly brackets will be replaced by the corresponding element value."
+msgstr ""
+
+#: ../reference/blocks.rst:21
+msgid "If the element is a BASIC element and returns an object, we can access its properties. Example:"
+msgstr ""
+
+#: ../reference/blocks.rst:28
+msgid "Similarly, if a BASIC element returns a dictionnary, we can access its items. Example:"
+msgstr ""
+
+#: ../reference/blocks.rst:35
+msgid "When rendered, the block layout is wrapped in an HTML ``<form>`` element."
+msgstr ""
+
+#: ../reference/blocks.rst:37
+msgid "The layout can contain Mockup patterns markup, they will be rendered as expected."
+msgstr ""
+
+#: ../reference/blocks.rst:40
+msgid "Some Mockup patterns might need to render actual curly brackets in the output. Double them to escape them:"
+msgstr ""
+
+#: ../reference/blocks.rst:48
+msgid "Once rendered, if the block contains some links with an ``ajax`` target:"
+msgstr ""
+
+#: ../reference/blocks.rst:54
+msgid "the request will be loaded in AJAX mode and its content will replace the current block content."
+msgstr ""
+
+#: ../reference/blocks.rst:58
+msgid "TAL template"
+msgstr ""
+
+#: ../reference/blocks.rst:60
+msgid "The HTML template only offers element insertion. If we need more templating features, the ``.html`` file can be replaced by a ``.pt`` file, and we can use the `TAL commands <http://www.owlfish.com/software/simpleTAL/tal-guide.html>`_."
+msgstr ""
+
+#: ../reference/blocks.rst:64
+msgid "In the context of a Page Template, the block elements are available in the ``elements`` object:"
+msgstr ""
+
+#: ../reference/blocks.rst:76
+msgid "Elements can be used as conditions:"
+msgstr ""
+
+#: ../reference/blocks.rst:87
+msgid "If an element returns an iterable object (list, dictionary), we can make a loop:"
+msgstr ""
+
+#: ../reference/blocks.rst:106
+msgid "The current Rapido context is available in the ``context`` object:"
+msgstr ""
+
+#: ../reference/blocks.rst:113
+msgid "The YAML file"
+msgstr ""
+
+#: ../reference/blocks.rst:115
+msgid "The ``.yaml`` file contains: - the elements settings (see below),"
+msgstr ""
+
+#: ../reference/blocks.rst:118
+msgid "the ``target`` option: if set to ``ajax``, any action in the block resulting in a form submission will not redirect the current page, it will just refresh the block content through an AJAX call,"
+msgstr ""
+
+#: ../reference/blocks.rst:122
+msgid "the ``view_permission`` to manage who can see the block (see :doc:`./access`)."
+msgstr ""
+
+#: ../reference/blocks.rst:125
+msgid "The Python file"
+msgstr ""
+
+#: ../reference/blocks.rst:127
+msgid "The ``.py`` file contains the implementation of each element as a Python function which name is the element id, and taking ``context`` as parameter."
+msgstr ""
+
+#: ../reference/content-rules.rst:2
+msgid "Content rules"
+msgstr ""
+
+#: ../reference/content-rules.rst:4
+msgid "Content rules allows to trigger specific actions (for instance, send an email) when an given event (for instance, when new content is created in such and such a folder) happens in our Plone site."
+msgstr ""
+
+#: ../reference/content-rules.rst:8
+msgid "Rapido provides a content rule action, so we can execute a Rapido function when an given event happens."
+msgstr ""
+
+#: ../reference/content-rules.rst:11
+msgid "The action to take is defined in the Plone content rules editor (see the `Plone content rules documentation <http://docs.plone.org/working-with-content/managing-content/contentrules.html>`_), and requires the following parameters:"
+msgstr ""
+
+#: ../reference/content-rules.rst:15
+msgid "the app id,"
+msgstr ""
+
+#: ../reference/content-rules.rst:16
+msgid "the block id,"
+msgstr ""
+
+#: ../reference/content-rules.rst:17
+msgid "the function name."
+msgstr ""
+
+#: ../reference/content-rules.rst:19
+msgid "The ``context.content`` received by the function will be the content where the event happened."
+msgstr ""
+
+#: ../reference/display.rst:2
+msgid "Displaying Rapido in Plone"
+msgstr ""
+
+#: ../reference/display.rst:4
+msgid "We can see a block by visiting its URL:"
+msgstr ""
+
+#: ../reference/display.rst:6
+msgid "http://localhost:8080/Plone/@@rapido/myapp/blocks/simpleblock"
+msgstr ""
+
+#: ../reference/display.rst:8
+msgid "Similarly for a record:"
+msgstr ""
+
+#: ../reference/display.rst:10
+msgid "http://localhost:8080/Plone/@@rapido/myapp/record/my-record-id"
+msgstr ""
+
+#: ../reference/display.rst:12
+msgid "But it just returns the HTML generated by the block."
+msgstr ""
+
+#: ../reference/display.rst:14
+msgid "To show our blocks in our Plone site, there are 4 possibilities:"
+msgstr ""
+
+#: ../reference/display.rst:17
+msgid "Diazo rules"
+msgstr ""
+
+#: ../reference/display.rst:19
+msgid "We can use the `Diazo <http://docs.diazo.org/en/latest/>`_ ``include`` directive to get the Rapido block content and inject it in our pages with ``before``, ``after`` or ``replace`` directives."
+msgstr ""
+
+#: ../reference/display.rst:32
+msgid "Extra views"
+msgstr ""
+
+#: ../reference/display.rst:34
+msgid "Since rapido.plone 1.1, we can declare first-class Plone views from Rapido, but it requires plone.resources 1.2."
+msgstr ""
+
+#: ../reference/display.rst:36
+msgid "If we do not want to just inject a small piece of HTML in existing pages, but use a Rapido block as the main part of the page, we can declare a block as a view in its YAML file:"
+msgstr ""
+
+#: ../reference/display.rst:45
+msgid "And then we call ``@@my-custom-view`` on any content, like:"
+msgstr ""
+
+#: ../reference/display.rst:47
+msgid "http://localhost:8080/Plone/news/@@my-custom-view"
+msgstr ""
+
+#: ../reference/display.rst:49
+msgid "and it displays our block as main page content."
+msgstr ""
+
+#: ../reference/display.rst:51
+msgid "If the ``with_theme`` property is ``false``, the page is rendered without the Plone theme (we just get the block by itself)."
+msgstr ""
+
+#: ../reference/display.rst:54
+msgid "Extra views before 1.1"
+msgstr ""
+
+#: ../reference/display.rst:56
+msgid "**DEPRECATED since rapido.plone 1.1**"
+msgstr ""
+
+#: ../reference/display.rst:58
+msgid "If we do not want to just inject a small piece of HTML in existing pages, but create a new view for our contents, we can use the Rapido **neutral views**."
+msgstr ""
+
+#: ../reference/display.rst:61
+msgid "Neutral views are obtained by adding ``@@rapido/view/<any-name>`` to a content URL. It will just return the content's default view (that is why we call them neutral)."
+msgstr ""
+
+#: ../reference/display.rst:65
+msgid "For instance, all those URLs display the same thing::"
+msgstr ""
+
+#: ../reference/display.rst:72
+msgid "So we are able to call a content with a URL we control, and that allows us to create specific Diazo rules for it using the ``if-path`` attribute."
+msgstr ""
+
+#: ../reference/display.rst:75
+msgid "**Hard-coded injection**"
+msgstr ""
+
+#: ../reference/display.rst:85
+msgid "In this example, if we open:"
+msgstr ""
+
+#: ../reference/display.rst:87
+msgid "http://localhost:8080/Plone/@@rapido/view/show-report"
+msgstr ""
+
+#: ../reference/display.rst:89
+msgid "we will see our page main content replaced with our ``report`` block."
+msgstr ""
+
+#: ../reference/display.rst:91
+msgid "**Dynamic injection**"
+msgstr ""
+
+#: ../reference/display.rst:93
+msgid "We can also dynamically display a Rapido resource specified in the URL. Rapido provides an URL injection pattern which allows to refer to the parent request in our Diazo rule."
+msgstr ""
+
+#: ../reference/display.rst:96
+msgid "The pattern is: ``$<integer>``, where the integer specifies the starting position after ``@@rapido`` to get the path to inject."
+msgstr ""
+
+#: ../reference/display.rst:98
+msgid "For instance:"
+msgstr ""
+
+#: ../reference/display.rst:100
+msgid "with ``http://localhost:8080/Plone/@@rapido/view/show-report/5654654``, ``$3`` gets the part of the path starting at the 3rd element after ``@@rapido``, which is: ``5654654``,"
+msgstr ""
+
+#: ../reference/display.rst:103
+msgid "with ``http://localhost:8080/Plone/@@rapido/view/show-report/myapp/record/5654654``, ``$3`` gets the part of the path starting at the 3rd element after ``@@rapido``, which is: ``myapp/record/5654654``,"
+msgstr ""
+
+#: ../reference/display.rst:107
+msgid "with ``http://localhost:8080/Plone/@@rapido/view/show-report/myapp/record/5654654/edit``, ``$5`` gets the part of the path starting at the 5th element after ``@@rapido``, which is: ``5654654/edit``."
+msgstr ""
+
+#: ../reference/display.rst:112
+msgid "Examples:"
+msgstr ""
+
+#: ../reference/display.rst:122
+#: ../reference/display.rst:138
+msgid "if we open:"
+msgstr ""
+
+#: ../reference/display.rst:124
+msgid "http://localhost:8080/Plone/@@rapido/view/show-report/myapp/record/my-record-id"
+msgstr ""
+
+#: ../reference/display.rst:126
+msgid "we will render ``myapp/record/my-record-id`` in our page main content."
+msgstr ""
+
+#: ../reference/display.rst:128
+msgid "We could also do:"
+msgstr ""
+
+#: ../reference/display.rst:140
+msgid "http://localhost:8080/Plone/@@rapido/view/show-report/my-record-id"
+msgstr ""
+
+#: ../reference/display.rst:142
+msgid "we will get the very same rendering as in our previous example."
+msgstr ""
+
+#: ../reference/display.rst:145
+msgid "Mosaic"
+msgstr ""
+
+#: ../reference/display.rst:147
+msgid "`Mosaic <http://plone-app-mosaic.s3-website-us-east-1.amazonaws.com/latest/>`_ is a layout editor."
+msgstr ""
+
+#: ../reference/display.rst:150
+msgid "It allows to add and manipulate *tiles* in our content layouts."
+msgstr ""
+
+#: ../reference/display.rst:152
+msgid "Rapido provides a Mosaic tile, so any Rapido block can be added as a tile to our layouts."
+msgstr ""
+
+#: ../reference/display.rst:155
+msgid "To enable it, we need to install Mosaic and then to import a specific Rapido Generic Setup profile named \"rapido.plone mosaic tile\"."
+msgstr ""
+
+#: ../reference/display.rst:159
+msgid "Mockup patterns"
+msgstr ""
+
+#: ../reference/display.rst:161
+msgid "Some Mockup patterns can display contents provided by an URL. The two main use cases are:"
+msgstr ""
+
+#: ../reference/display.rst:164
+msgid "**Display a Rapido block in a modal**: we use the ``plone-modal`` pattern on a ``<a>`` element, the Rapido block URL will be provided in its ``href`` attribute, and we just need to specify ``form.rapido-block`` as content selector (because ``plone-modal`` default content selector is ``#content``, which is accurate for a Plone page but not for a Rapido block). Example:"
+msgstr ""
+
+#: ../reference/display.rst:171
+msgid "We create a block named ``my-content`` containing whatever we might need, and we create a block named ``menu`` containing the following HTML:"
+msgstr ""
+
+#: ../reference/display.rst:182
+msgid "And then we just need to insert ``menu`` in our Plone page (using a Diazo rule)."
+msgstr ""
+
+#: ../reference/display.rst:184
+msgid "See `Mockup modal documentation <http://plone.github.io/mockup/dev/#pattern/modal>`_ for more details about the options."
+msgstr ""
+
+#: ../reference/display.rst:186
+msgid "**Load a Rapido block dynamically in the current page**: we use the ``plone-contentloader`` to inject our Rapido block wherever we want. In our previous example, we would change the ``menu`` HTML to:"
+msgstr ""
+
+#: ../reference/display.rst:196
+msgid "It would replace the \"Load content\" link with our ``my-content`` block when we click on the link."
+msgstr ""
+
+#: ../reference/display.rst:198
+msgid "with ``plone-contentloader``, the content selector is passed directly as an hash at the end of the URL."
+msgstr ""
+
+#: ../reference/display.rst:200
+msgid "``plone-contentloader`` also allows us to target a specific element for the injection (instead of replacing the link):"
+msgstr ""
+
+#: ../reference/display.rst:209
+msgid "By default, the injection is triggered by a click, but we can choose any DOM event (``mouseover`` for instance), and we can even perform the injection immediately (using the ``immediate`` trigger):"
+msgstr ""
+
+#: ../reference/elements.rst:2
+msgid "Elements"
+msgstr ""
+
+#: ../reference/elements.rst:5
+msgid "Declaration"
+msgstr ""
+
+#: ../reference/elements.rst:7
+msgid "Elements must be declared in the YAML file under the ``elements`` entry. Every element is declared by its identifier, and its definition is:"
+msgstr ""
+
+#: ../reference/elements.rst:10
+msgid "either a list of parameters, e.g.:"
+msgstr ""
+
+#: ../reference/elements.rst:19
+msgid "or just a string, in which case Rapido will assume it is the ``type`` parameter, e.g.:"
+msgstr ""
+
+#: ../reference/elements.rst:26
+msgid "is equivalent to:"
+msgstr ""
+
+#: ../reference/elements.rst:35
+msgid "Types"
+msgstr ""
+
+#: ../reference/elements.rst:37
+msgid "There are different types of elements (defined by the ``type`` parameter):"
+msgstr ""
+
+#: ../reference/elements.rst:39
+msgid "``BASIC``: a piece of HTML returned by its implementation function."
+msgstr ""
+
+#: ../reference/elements.rst:40
+msgid "``ACTION``: a button that will execute the implementation function when clicked. Its label is provided by the ``label`` parameter."
+msgstr ""
+
+#: ../reference/elements.rst:42
+msgid "``TEXT``: a text input field."
+msgstr ""
+
+#: ../reference/elements.rst:43
+msgid "``NUMBER``: a number input field."
+msgstr ""
+
+#: ../reference/elements.rst:44
+msgid "``DATETIME``: a date/time input field."
+msgstr ""
+
+#: ../reference/elements.rst:47
+msgid "Input elements"
+msgstr ""
+
+#: ../reference/elements.rst:49
+msgid "Input elements (i.e. ``TEXT``, ``NUMBER``, or ``DATETIME``) can be indexed as ``field`` or ``text``. Indexing is indicated using the ``index_type`` parameter."
+msgstr ""
+
+#: ../reference/elements.rst:52
+msgid "By default, input elements are editable but they might also have a different ``mode``:"
+msgstr ""
+
+#: ../reference/elements.rst:55
+msgid "``COMPUTED_ON_SAVE``: the value is computed every time the record is saved,"
+msgstr ""
+
+#: ../reference/elements.rst:56
+msgid "``COMPUTED_ON_CREATION``: the value is computed when the record is created."
+msgstr ""
+
+#: ../reference/elements.rst:59
+msgid "Action elements"
+msgstr ""
+
+#: ../reference/elements.rst:61
+msgid "Action elements are rendered as submit buttons and allow to trigger a call to an associated Python function."
+msgstr ""
+
+#: ../reference/elements.rst:63
+msgid "If the function returns a value, it must be a string, and it will be used as a redirection URL for the current request."
+msgstr ""
+
+#: ../reference/elements.rst:65
+msgid "This is the way to redirect to another location once the action has been executed."
+msgstr ""
+
+#: ../reference/elements.rst:68
+msgid "Builtin actions"
+msgstr ""
+
+#: ../reference/elements.rst:70
+msgid "The following actions can be included in our block HTML layout, and do not require an associated Python function:"
+msgstr ""
+
+#: ../reference/elements.rst:72
+msgid "``_save``: creates a record based on the field elements' submitted values, and then redirects to the record display in read mode;"
+msgstr ""
+
+#: ../reference/elements.rst:73
+msgid "``_edit``: opens the current record in edit mode;"
+msgstr ""
+
+#: ../reference/elements.rst:74
+msgid "``_delete``: deletes the current record."
+msgstr ""
+
+#: ../reference/elements.rst:77
+msgid "Direct HTTP call to elements"
+msgstr ""
+
+#: ../reference/elements.rst:79
+msgid "We usually want to display blocks, but we can also call an element by its URL::"
+msgstr ""
+
+#: ../reference/elements.rst:83
+msgid "Both GET and POST requests are supported."
+msgstr ""
+
+#: ../reference/elements.rst:85
+msgid "If the element is an action, its Python function will be executed; the returned value is supposed to be a string and will be used as a redirection URL. When building an application, it allows us to create links that will redirect the user to the proper location depending on our business criteria (e.g. if the user belongs to group A, go to ``page1``, else go to ``page2``)."
+msgstr ""
+
+#: ../reference/elements.rst:91
+msgid "If the element is not an action, its Python function will be executed, and the result is returned as a response."
+msgstr ""
+
+#: ../reference/elements.rst:95
+msgid "We can change the response content type like this:"
+msgstr ""
+
+#: ../reference/external-call.rst:2
+msgid "External call to Rapido"
+msgstr ""
+
+#: ../reference/external-call.rst:4
+msgid "By traversing to ``@@rapido-call``, we can call a Rapido element as a Python function."
+msgstr ""
+
+#: ../reference/external-call.rst:6
+msgid "It might be very useful when we want to use Rapido from a PythonScript, a Plone page template, or any Plone mechanism offering to run a small script (Plone workflow, ``collective.easyform``, etc.)."
+msgstr ""
+
+#: ../reference/external-call.rst:10
+msgid "``@@rapido-call`` accepts the following parameters:"
+msgstr ""
+
+#: ../reference/external-call.rst:12
+msgid "``path`` (mandatory, string): Rapido path to the element to call (format: ``app/blocks/element``),"
+msgstr ""
+
+#: ../reference/external-call.rst:13
+msgid "``content`` (optional, object): the content to provide to the Rapido context,"
+msgstr ""
+
+#: ../reference/external-call.rst:14
+msgid "any other named parameters: those named parameters will be available to the Python implementation of the element in the ``context.params`` dictionary."
+msgstr ""
+
+#: ../reference/external-call.rst:18
+msgid "PythonScript:"
+msgstr ""
+
+#: ../reference/external-call.rst:28
+msgid "Rapido element in ``myapp/stats.py``:"
+msgstr ""
+
+#: ../reference/index.rst:2
+msgid "Reference"
+msgstr ""
+
+#: ../reference/indexing.rst:2
+msgid "Indexing and searching"
+msgstr ""
+
+#: ../reference/indexing.rst:4
+msgid "The Rapido storage system (`souper <https://github.com/bluedynamics/souper>`_) supports indexing."
+msgstr ""
+
+#: ../reference/indexing.rst:7
+msgid "Any block element can be indexed by adding a ``index_type`` setting in its YAML definition."
+msgstr ""
+
+#: ../reference/indexing.rst:10
+msgid "The ``index_type`` setting can have two possible values:"
+msgstr ""
+
+#: ../reference/indexing.rst:12
+msgid "``field``: such indexes match exact values, and support comparison queries, range queries, and sorting."
+msgstr ""
+
+#: ../reference/indexing.rst:14
+msgid "``text``: such index matches contained words (applicable for text values only)."
+msgstr ""
+
+#: ../reference/indexing.rst:16
+msgid "Queries use the (`CQE format <http://docs.repoze.org/catalog/usage.html#query-objects>`_."
+msgstr ""
+
+#: ../reference/indexing.rst:18
+msgid "Example (assuming ``author``, ``title`` and ``price`` are existing indexes):"
+msgstr ""
+
+#: ../reference/indexing.rst:26
+msgid "Records are indexed at the time they are saved. We can force reindexing using the Python API:"
+msgstr ""
+
+#: ../reference/indexing.rst:33
+msgid "We can also reindex all the records using the ``refresh`` URL command::"
+msgstr ""
+
+#: ../reference/indexing.rst:37
+msgid "or using the REST API (see :doc:`../rest`)."
+msgstr ""
+
+#: ../reference/javascript.rst:2
+msgid "Javascript"
+msgstr ""
+
+#: ../reference/javascript.rst:4
+msgid "We can add Javascript files to our theme that will interact with our Rapido blocks."
+msgstr ""
+
+#: ../reference/javascript.rst:6
+msgid "There are no specific constraints on these scripts. Nevertheless, it might be handy to use the Javascript dependencies already provided by Plone, such as ``jQuery`` and ``require``."
+msgstr ""
+
+#: ../reference/javascript.rst:9
+msgid "As Rapido allows to load block content dynamically (using the ``ajax`` mode), we might need to know when a Rapido block has been loaded dynamically."
+msgstr ""
+
+#: ../reference/javascript.rst:11
+msgid "To do that we can use the ``rapidoLoad`` event, which receives the block id as parameter. Example:"
+msgstr ""
+
+#: ../reference/python.rst:2
+msgid "Associated Python functions"
+msgstr ""
+
+#: ../reference/python.rst:4
+msgid "For a ``BASIC`` element, the associated Python function (having the same id) will return the content of the element."
+msgstr ""
+
+#: ../reference/python.rst:7
+msgid "For field elements (``TEXT``, ``NUMBER``, ``DATETIME``), the associated Python function will return its default value."
+msgstr ""
+
+#: ../reference/python.rst:10
+msgid "For an ``ACTION`` element, the associated Python function will be executed when the action is triggered."
+msgstr ""
+
+#: ../reference/python.rst:14
+msgid "Special Python functions"
+msgstr ""
+
+#: ../reference/python.rst:19
+msgid "``on_save``"
+msgstr ""
+
+#: ../reference/python.rst:17
+msgid "Executed when a record is saved with the block. If it returns a value, it must be a string, and it will be used as a redirection URL for the current request."
+msgstr ""
+
+#: ../reference/python.rst:24
+msgid "``on_display``"
+msgstr ""
+
+#: ../reference/python.rst:22
+msgid "Executed when a block is displayed. It will be executed before all the element functions. It can be used to do some computation and put the result in the ``context`` so it can be accessed by the different elements. It can also be used to redirect to another page (using ``context.request.response.redirect()``)."
+msgstr ""
+
+#: ../reference/python.rst:29
+msgid "``on_delete``"
+msgstr ""
+
+#: ../reference/python.rst:27
+msgid "Executed when a record is deleted. If it returns a value, it must be a string, and it will be used as a redirection URL for the current request."
+msgstr ""
+
+#: ../reference/python.rst:31
+msgid "``record_id``"
+msgstr ""
+
+#: ../reference/python.rst:32
+msgid "Executed at creation time to compute the record id."
+msgstr ""
+
+#: ../reference/records.rst:2
+msgid "Records"
+msgstr ""
+
+#: ../reference/records.rst:4
+msgid "Rapido records can be created by saving a block containing field elements. The value of each submitted element will be stored in a corresponding item."
+msgstr ""
+
+#: ../reference/records.rst:7
+msgid "In that case, the record has an associated block (the block id is stored in an item named ``block``). When the record is rendered for display (when we load its URL in our browser), it uses the layout of the named block."
+msgstr ""
+
+#: ../reference/records.rst:11
+msgid "Records can also be created manually (without any associated block) using the Python API or the REST API. Such records cannot be rendered automatically by calling their URL, but their item values can be used in a block if we know how to find the record (in the :doc:`../tutorial` for instance, our records are created manually from the ``like`` function, they are not associated with the ``rate`` block, but we use the stored items to produce our element contents)."
+msgstr ""
+
+#: ../reference/sources.rst:2
+msgid "Import/export and source management"
+msgstr ""
+
+#: ../reference/sources.rst:4
+msgid "Rapido applications are implemented in the `/rapido` folder of a Diazo theme. All the known development procedures for theming apply to Rapido development."
+msgstr ""
+
+#: ../reference/sources.rst:8
+msgid "ZIP import/export"
+msgstr ""
+
+#: ../reference/sources.rst:10
+msgid "The Plone theming editor allows to export a Diazo theme as a ZIP file, or to import a new theme from a ZIP file."
+msgstr ""
+
+#: ../reference/sources.rst:13
+msgid "That is the way we will import/export our Rapido applications between our sites."
+msgstr ""
+
+#: ../reference/sources.rst:16
+msgid "Direct source editing"
+msgstr ""
+
+#: ../reference/sources.rst:18
+msgid "We might also store our Diazo themes on our server in the Plone installation folder::"
+msgstr ""
+
+#: ../reference/sources.rst:23
+msgid "That way, we can develop our Rapido applications using our usual development tools (text editor or IDE, Git, etc.)."
+msgstr ""
+
+#: ../reference/sources.rst:27
+msgid "Plone add-on"
+msgstr ""
+
+#: ../reference/sources.rst:29
+msgid "We can also create our own Plone add-on (see `Plone documentation <http://docs.plone.org/develop/addons/index.html>`_, and `Plone training <http://training.plone.org/5/theming/theme-package.html>`_) and manage our Rapido applications in its theme folder."
+msgstr ""
+

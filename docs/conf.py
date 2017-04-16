@@ -27,6 +27,14 @@ import sys, os
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = []
 
+# Directories in which to search for additional message catalogs (see language),
+# relative to the source directory.
+locale_dirs = ["_locales"]
+
+# If true, a document’s text domain is its docname if it is a top-level project
+# file and its very base directory otherwise.
+# gettext_compact = False
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
@@ -127,7 +135,7 @@ html_favicon = "files/rapido.ico"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ['files']
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.

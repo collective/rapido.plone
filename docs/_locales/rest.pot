@@ -1,0 +1,185 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2015, Makina Corpus
+# This file is distributed under the same license as the Rapido package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Rapido 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-16 08:32-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../rest.rst:2
+msgid "REST API"
+msgstr ""
+
+#: ../rest.rst:5
+msgid "Get the application settings"
+msgstr ""
+
+#: ../rest.rst:7
+#: ../rest.rst:52
+#: ../rest.rst:76
+#: ../rest.rst:93
+#: ../rest.rst:114
+#: ../rest.rst:132
+#: ../rest.rst:150
+#: ../rest.rst:168
+#: ../rest.rst:185
+#: ../rest.rst:202
+#: ../rest.rst:227
+#: ../rest.rst:246
+msgid "**Request** ::"
+msgstr ""
+
+#: ../rest.rst:14
+#: ../rest.rst:65
+#: ../rest.rst:83
+#: ../rest.rst:100
+#: ../rest.rst:122
+#: ../rest.rst:140
+#: ../rest.rst:158
+#: ../rest.rst:175
+#: ../rest.rst:192
+#: ../rest.rst:217
+#: ../rest.rst:235
+#: ../rest.rst:253
+msgid "**Response** ::"
+msgstr ""
+
+#: ../rest.rst:19
+msgid "**HTTP Response Headers** ::"
+msgstr ""
+
+#: ../rest.rst:24
+msgid "Returns the Rapido application settings and sets a token in the ``X-CSRF-TOKEN`` HTTP header value."
+msgstr ""
+
+#: ../rest.rst:27
+msgid "This HTTP header will have to be reused in all the requests made to the API (except for GET requests)."
+msgstr ""
+
+#: ../rest.rst:31
+msgid "Authentication"
+msgstr ""
+
+#: ../rest.rst:32
+msgid "Some of the operations below require authentication before they will run successfully. You will need to generate an Authorization String (A Base64 encoded version of your username and password separated by a dot)."
+msgstr ""
+
+#: ../rest.rst:36
+msgid "Basic Authorization String"
+msgstr ""
+
+#: ../rest.rst:38
+msgid "If your username is \"john\" and your password is \"password\", you can quickly generate the basic authorization string on the python prompt as follows::"
+msgstr ""
+
+#: ../rest.rst:43
+msgid "Now you can use this header in all your requests::"
+msgstr ""
+
+#: ../rest.rst:47
+msgid "The expected X-CSRF-TOKEN will be change when you use a Basic Authorization header."
+msgstr ""
+
+#: ../rest.rst:50
+msgid "Compute an element"
+msgstr ""
+
+#: ../rest.rst:59
+#: ../rest.rst:210
+msgid "or::"
+msgstr ""
+
+#: ../rest.rst:70
+msgid "Returns the value returned by the element computation. The X-CSRF-TOKEN is not needed for a GET if the computation does not produce any change."
+msgstr ""
+
+#: ../rest.rst:74
+msgid "Get a record"
+msgstr ""
+
+#: ../rest.rst:88
+msgid "Returns the record items."
+msgstr ""
+
+#: ../rest.rst:91
+msgid "Get all the records"
+msgstr ""
+
+#: ../rest.rst:109
+msgid "Returns all the records."
+msgstr ""
+
+#: ../rest.rst:112
+msgid "Create a new record"
+msgstr ""
+
+#: ../rest.rst:127
+msgid "Creates a new record with the provided items."
+msgstr ""
+
+#: ../rest.rst:130
+msgid "Create many records"
+msgstr ""
+
+#: ../rest.rst:145
+msgid "Bulk creation of records."
+msgstr ""
+
+#: ../rest.rst:148
+msgid "Create a new record by id"
+msgstr ""
+
+#: ../rest.rst:163
+msgid "Creates a new record with the provided items and having the specified id."
+msgstr ""
+
+#: ../rest.rst:166
+msgid "Delete a record"
+msgstr ""
+
+#: ../rest.rst:180
+msgid "Deletes the record."
+msgstr ""
+
+#: ../rest.rst:183
+msgid "Remove all records"
+msgstr ""
+
+#: ../rest.rst:197
+msgid "Remove all the records and delete the indexes."
+msgstr ""
+
+#: ../rest.rst:200
+msgid "Update a record"
+msgstr ""
+
+#: ../rest.rst:222
+msgid "Updates the record with provided items."
+msgstr ""
+
+#: ../rest.rst:225
+msgid "Search for records"
+msgstr ""
+
+#: ../rest.rst:241
+msgid "Search for records."
+msgstr ""
+
+#: ../rest.rst:244
+msgid "Re-index"
+msgstr ""
+
+#: ../rest.rst:258
+msgid "Re-declare the indexes and re-index all the records."
+msgstr ""
+
