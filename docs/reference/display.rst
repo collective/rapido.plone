@@ -34,7 +34,7 @@ Extra views
 .. warning:: Since rapido.plone 1.1, we can declare first-class Plone views from Rapido, but it requires plone.resources 1.2.
 
 If we do not want to just inject a small piece of HTML in existing pages,
-but use a Rapido block as the main part of the page, we can declare a block as a view in its YAML file::
+but use a Rapido block as the main part of the page, we can declare a block as a view in its YAML file:
 
 .. code-block:: yaml
 
