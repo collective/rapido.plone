@@ -114,9 +114,11 @@ The YAML file
 
 The ``.yaml`` file contains:
 - the elements settings (see below),
+
 - the ``target`` option: if set to ``ajax``, any action in the block resulting in a
   form submission will not redirect the current page, it will just refresh the 
   block content through an AJAX call,
+
 - the ``view_permission`` to manage who can see the block (see :doc:`./access`).
 
 The Python file

@@ -96,9 +96,9 @@ This file contains all the needed settings for our block. Here we declare that
 our block contains one element named ``like``, which is an **action** (i.e. it
 will be rendered as a button), and its displayed label is *"Like"*.
 
-Now that our block is ready, we can see it using the following URL::
+Now that our block is ready, we can see it using the following URL:
 
-http://localhost:8080/Plone/@@rapido/rating/blocks/rate
+    http://localhost:8080/Plone/@@rapido/rating/blocks/rate
 
 .. image:: files/screen-3.png
 
@@ -303,9 +303,9 @@ We declare its indexing mode in ``rate.yaml``:
             index_type: field
 
 To index the previously stored values,
-we have to refresh the storage index by calling the following URL::
+we have to refresh the storage index by calling the following URL:
 
-http://localhost:8080/Plone/@@rapido/rating/refresh
+    http://localhost:8080/Plone/@@rapido/rating/refresh
 
 And to make sure future changes will be indexed,
 we need to fix the ``like`` function in the ``rate`` block:
@@ -359,9 +359,9 @@ The ``search`` method allows us to query our stored records. The record ids are
 the content paths, so using the Plone API (``context.api``), we can easily
 get the corresponding contents, and then obtain their URLs and titles.
 
-Our block works now::
+Our block works now:
 
-http://localhost:8080/Plone/@@rapido/rating/blocks/top5
+    http://localhost:8080/Plone/@@rapido/rating/blocks/top5
 
 Finally, we have to insert our block in the home page.
 That will be done in ``rules.xml``:
@@ -402,9 +402,9 @@ We need to declare it in a new YAML file called ``report.yaml``:
         id: show-report
         with_theme: true
 
-Now if we visit for instance::
+Now if we visit for instance:
 
-http://localhost:8080/Plone/@@show-report
+    http://localhost:8080/Plone/@@show-report
 
 we do see our block as main page content.
 
@@ -522,9 +522,9 @@ Now we just need to load this script from our block:
     <div id="chart"></div>
     <script src="++theme++test/rapido/rating/report.js"></script>
 
-And we can visit::
+And we can visit:
 
-http://localhost:8080/Plone/news/@@show-report
+    http://localhost:8080/Plone/news/@@show-report
 
 to see a pie chart about votes on the *News* items!!
 
