@@ -1,0 +1,528 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2015, Makina Corpus
+# This file is distributed under the same license as the Rapido package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: Rapido 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-16 16:22-0400\n"
+"PO-Revision-Date: 2017-04-16 16:26-0400\n"
+"Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
+"Language-Team: ES <LL@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
+"Generated-By: Babel 2.4.0\n"
+
+#: ../principles.rst:2
+msgid "Principles"
+msgstr "Principios"
+
+#: ../principles.rst:5
+msgid "Creating a Rapido app"
+msgstr "Creación de una aplicación Rapido"
+
+#: ../principles.rst:7
+msgid "Here are the basic steps to create a Rapido app:"
+msgstr "Estos son los pasos básicos para crear una aplicación Rapido:"
+
+#: ../principles.rst:9
+msgid ""
+"go to the theme folder (in Plone setup / Theme if we prefer to work "
+"inline, or, if your prefer to work in the filesystem, it might be either "
+"in the ``static`` folder in your theme package, or in the ``resources`` "
+"folder in your Plone install if you do not have a custom package),"
+msgstr ""
+"vaya a la carpeta de temas (en Configuración del sitio / Tema si preferimos "
+"trabajar en línea o, si prefiere trabajar en el sistema de archivos, eso "
+"puede estar en la carpeta ``static`` paquete de tema o en la carpeta de "
+"``resources`` de su instalación de Plone, si no tiene un paquete "
+"personalizado),"
+
+#: ../principles.rst:10
+msgid "add a new folder named ``rapido``,"
+msgstr "añadir una nueva carpeta llamada ``rapido``,"
+
+#: ../principles.rst:11
+msgid "in ``rapido``, add a new folder named ``myapp``."
+msgstr "en la carpeta ``rapido``, agregue una nueva carpeta llamada ``myapp``."
+
+#: ../principles.rst:13
+msgid "That's it."
+msgstr "Eso es todo."
+
+#: ../principles.rst:15
+msgid ""
+"Now, we can implement our application in this folder. Here is a typical "
+"layout for a rapido app::"
+msgstr ""
+"Ahora, podemos implementar nuestra aplicación en esta carpeta. Aquí está una "
+"estructura típica para una aplicación rapido::"
+
+#: ../principles.rst:31
+msgid ""
+"``settings.yaml`` is not mandatory, but it allows defining access rights "
+"if needed."
+msgstr ""
+"el archivo ``settings.yaml`` no es obligatorio, pero permite definir los "
+"derechos de acceso si es necesario."
+
+#: ../principles.rst:35
+msgid ""
+"A Rapido application can also be located in a non-active theme (see "
+":doc:`./reference/application`)"
+msgstr ""
+"Una aplicación Rapido también se puede ubicar en un tema no activo (ver "
+":doc:`./reference/application`)"
+
+#: ../principles.rst:37
+msgid ""
+"The app components are ``blocks``. A block is defined by a set of 3 files"
+" (HTML, Python, and YAML) located in the ``blocks`` folder."
+msgstr ""
+"Los componentes de la aplicación son ``blocks``. Un bloque se define por "
+"un conjunto de 3 archivos (HTML, Python y YAML) que se encuentran en la "
+"carpeta de ``blocks``."
+
+#: ../principles.rst:40
+msgid ""
+"The **YAML file** defines the elements. An element is any dynamically "
+"generated element in a block: it can be a form field (input, select, "
+"etc.), but also a button (``ACTION``), or even just a piece of generated "
+"HTML (``BASIC``)."
+msgstr ""
+"El **archivo YAML** define los elementos. Un elemento es cualquier "
+"elemento generado dinámicamente en un bloque: puede ser un campo de "
+"formulario (input, select, etc.), pero también un botón (``ACTION``), o "
+"incluso un fragmento de HTML generado (``BASIC``)."
+
+#: ../principles.rst:44
+msgid ""
+"The **HTML file** contains the layout of the block. The templating "
+"mechanism is super simple, elements are just enclosed in brackets, like "
+"this: ``{my_element}``."
+msgstr ""
+"El **archivo HTML** contiene el diseño del bloque. El mecanismo de "
+"plantilla es super simple, los elementos se adjuntan entre paréntesis, "
+"como esto: ``{my_element}``."
+
+#: ../principles.rst:48
+msgid ""
+"The **Python file** contains the application logic. It is a set of "
+"functions, each named for the element or the event it corresponds to."
+msgstr ""
+"El **archivo Python** contiene la lógica de la aplicación. Es un conjunto"
+" de funciones, cada una nombrada para el elemento o el evento al que "
+"corresponde."
+
+#: ../principles.rst:51
+msgid ""
+"For a ``BASIC`` element, for instance, we need to provide a function with"
+" the same name as the element; its return-value replaces the element in "
+"the block."
+msgstr ""
+"Para un elemento ``BASIC``, por ejemplo, necesitamos proporcionar una "
+"función con el mismo nombre que el elemento; Su valor de retorno "
+"reemplaza al elemento en el bloque."
+
+#: ../principles.rst:55
+msgid ""
+"For an ``ACTION``, we are supposed to provide a function with the same "
+"name as the element; in this case, it will be *executed* when a user "
+"clicks on the action button."
+msgstr ""
+"Para un elemento ``ACTION``, se supone que debemos proporcionar una "
+"función con el mismo nombre que el elemento; En este caso, se ejecutará "
+"cuando un usuario haga clic en el botón de acción."
+
+#: ../principles.rst:59
+msgid "Here is a basic example:"
+msgstr "Aquí está un ejemplo básico:"
+
+#: ../principles.rst:61
+msgid "``rapido/myapp/blocks/simpleblock.yaml``:"
+msgstr "``rapido/myapp/blocks/simpleblock.yaml``:"
+
+#: ../principles.rst:71
+msgid "``rapido/myapp/blocks/simpleblock.html``:"
+msgstr "``rapido/myapp/blocks/simpleblock.html``:"
+
+#: ../principles.rst:78
+msgid "``rapido/myapp/blocks/simpleblock.py``:"
+msgstr "``rapido/myapp/blocks/simpleblock.py``:"
+
+#: ../principles.rst:88
+msgid "We can see our block by visiting the following URL:"
+msgstr "Podemos ver nuestro bloque, visitando la siguiente URL:"
+
+#: ../principles.rst:90
+msgid "http://localhost:8080/Plone/@@rapido/myapp/blocks/simpleblock"
+msgstr "http://localhost:8080/Plone/@@rapido/myapp/blocks/simpleblock"
+
+#: ../principles.rst:92
+msgid "It works fine, but where is our Plone site now??"
+msgstr "Funciona bien, pero ¿dónde está nuestro sitio de Plone ahora?"
+
+#: ../principles.rst:95
+msgid "Inserting our block in a Plone page"
+msgstr "Insertando nuestro bloque en una página Plone"
+
+#: ../principles.rst:97
+msgid "To put our block somewhere in the Plone site, we use a Diazo rule:"
+msgstr ""
+"Para poner nuestro bloque en algún lugar del sitio de Plone, usamos una "
+"regla de Diazo:"
+
+#: ../principles.rst:105
+msgid "Now, if we visit any page of our site, we will see our block."
+msgstr ""
+"Ahora, si visitamos cualquier página de nuestro sitio, veremos nuestro "
+"bloque."
+
+#: ../principles.rst:109
+msgid ""
+"If we want to display it only in the _News_ folder, we would use ``css"
+":if-content``:"
+msgstr ""
+"Si queremos mostrarlo solo en la carpeta _News_, usaremos ``css:if-"
+"content``:"
+
+#: ../principles.rst:118
+msgid ""
+"See the `Diazo <http://docs.diazo.org/en/latest/>`_ documentation for "
+"more details."
+msgstr ""
+"Consulte la documentación de `Diazo <http://docs.diazo.org/en/latest/>`_ "
+"para obtener más detalles."
+
+#: ../principles.rst:120
+msgid ""
+"But unfortunately, when we click on our \"Do something\" button, we are "
+"redirected to the original bare block."
+msgstr ""
+"Pero desafortunadamente, cuando hacemos clic en nuestro botón \"Hacer "
+"algo\", estamos redirigidos al bloque original."
+
+#: ../principles.rst:123
+msgid ""
+"To remain in the Plone page, we need to activate the ``ajax`` target in "
+"``rapido/myapp/blocks/simpleblock.yaml``:"
+msgstr ""
+" Para permanecer en la página de Plone, debemos activar el ``ajax`` "
+"destino en el archivo ``rapido/myapp/blocks/simpleblock.yaml``:"
+
+#: ../principles.rst:135
+msgid ""
+"Now, when we click our button, the rapido block is reloaded inside the "
+"Plone page."
+msgstr ""
+"Ahora, cuando hacemos clic en nuestro botón, el bloque rapido se vuelve a"
+" cargar dentro de la página de Plone."
+
+#: ../principles.rst:138
+msgid ""
+"Instead of adding a block to an existing Plone view, we might need to "
+"provide a new rendering, mapped to a specific URL. We can do that by "
+"declaring our block as a Plone view in its YAML file:"
+msgstr ""
+"En lugar de agregar un bloque a una vista Plone existente, es posible que"
+" tengamos que proporcionar una nueva representación, asignada a una URL "
+"específica. Podemos hacerlo declarando nuestro bloque como una vista de "
+"Plone en su archivo YAML:"
+
+#: ../principles.rst:148
+msgid "And then we call ``@@my-custom-view`` on any content, like:"
+msgstr "Y luego llamamos a ``@@my-custom-view`` en cualquier contenido, como:"
+
+#: ../principles.rst:150
+msgid "http://localhost:8080/Plone/news/@@my-custom-view"
+msgstr "http://localhost:8080/Plone/news/@@my-custom-view"
+
+#: ../principles.rst:152
+msgid ""
+"We can create as many views as we might need (like ``@@subscribe``, "
+"``@@unsubscribe``, ``@@stats``, ...)."
+msgstr ""
+"Podemos crear tantas vistas como nosotros quizas necesitemos (como "
+"``@@subscribe``, ``@@unsubscribe``, ``@@stats``, ...)."
+
+#: ../principles.rst:156
+msgid "Adding a lot of rapido rules in our main ``rules.xml`` is not ideal."
+msgstr ""
+"Añadir un montón de reglas rapido en nuestro archivo ``rules.xml`` no es "
+"ideal."
+
+#: ../principles.rst:158
+msgid ""
+"We might prefer to create a ``rules.xml`` file in our ``rapido/myapp`` "
+"folder, and include it in our main ``rules.xml`` file like this:"
+msgstr ""
+"Nosotros podríamos preferir crear un archivo ``rules.xml`` en nuestra "
+"carpeta ``rapido/myapp`` e incluirlo en nuestro archivo ``rules.xml`` "
+"como este:"
+
+#: ../principles.rst:166
+msgid "Running Python code"
+msgstr "Ejecución de código Python"
+
+#: ../principles.rst:168
+msgid ""
+"Every function in our Python files takes a parameter named ``context``. "
+"The context gives access to useful objects:"
+msgstr ""
+"Cada función en nuestros archivos de Python toma un parámetro "
+"llamado``context``. El contexto da acceso a objetos útiles:"
+
+#: ../principles.rst:171
+msgid "``context.app``: the current rapido app,"
+msgstr "``context.app``: la actual aplicación rapido,"
+
+#: ../principles.rst:172
+msgid "``context.block``: (if executed in a block context) the current block,"
+msgstr ""
+"``context.block``: (si se ejecuta en un contexto de bloque) el bloque "
+"actual,"
+
+#: ../principles.rst:173
+msgid "``context.record``: (if executed in a record context) the current record,"
+msgstr ""
+"``context.record``: (si se ejecuta en un contexto de registro) el "
+"registro actual,"
+
+#: ../principles.rst:174
+msgid ""
+"``context.request``: the current request to rapido (the sub-request, if "
+"called from Diazo),"
+msgstr ""
+"``context.request``: la petición actual a rapido (la sub-petición, si se "
+"llama de Diazo),"
+
+#: ../principles.rst:176
+msgid ""
+"``context.parent_request``: the current page request (when called from "
+"Diazo),"
+msgstr ""
+"``context.parent_request``: el request de la página actual (cuando se "
+"llama desde Diazo),"
+
+#: ../principles.rst:177
+msgid "``context.portal``: the Plone portal object,"
+msgstr "``context.portal``: el objeto de portal Plone,"
+
+#: ../principles.rst:178
+msgid "``context.content``: the current Plone content object,"
+msgstr "``context.content``: el actual objeto de contenido Plone,"
+
+#: ../principles.rst:179
+msgid ""
+"``context.api``: the `Plone API "
+"<http://docs.plone.org/external/plone.api/docs/>`_."
+msgstr ""
+"``context.api``: la `API de Plone "
+"<http://docs.plone.org/external/plone.api/docs/>`_."
+
+#: ../principles.rst:184
+msgid ""
+"``context`` is not the usual ``context`` we know in Plone (like "
+"``context`` in a ZPT template or a PythonScript, or ``self.context`` in a"
+" BrowserView)."
+msgstr ""
+"``context`` no es el ``context`` habitual que conocemos en Plone (como "
+"``context`` en una plantilla ZPT o un PythonScript, o ``self.context`` en"
+" un BrowserView)."
+
+#: ../principles.rst:187
+msgid ""
+"The Plone ``context`` is usually the current content. In Rapido we can "
+"obtain it using ``context.content``."
+msgstr ""
+"El ``context`` Plone suele ser el contenido actual. En Rapido podemos "
+"obtenerlo usando ``context.content``."
+
+#: ../principles.rst:190
+msgid ""
+"This allows us to interact with Plone in many ways, for instance we can "
+"run catalog queries, create contents, change workflow status, etc."
+msgstr ""
+"Esto nos permite interactuar con Plone de muchas maneras, por ejemplo, "
+"podemos ejecutar consultas de catálogo, crear contenidos, cambiar el "
+"estado del flujo de trabajo, etc."
+
+#: ../principles.rst:193
+msgid "Nevertheless, it will behave as expected:"
+msgstr "Sin embargo, se comportará como se esperaba:"
+
+#: ../principles.rst:195
+msgid ""
+"the code will always be executed with the current user's access right, so"
+" the appropriate Plone access restrictions will be applied,"
+msgstr ""
+"el código siempre se ejecutará con el actual derecho de acceso del usuario, "
+"por lo que se aplicarán las restricciones de acceso correspondientes de "
+"Plone,"
+
+#: ../principles.rst:197
+msgid ""
+"the CSRF policy will also be applied (for instance, a Plone operation "
+"marked as ``PostOnly`` would fail if performed in a GET request)."
+msgstr ""
+"la política CSRF también se aplicará (por ejemplo, una operación Plone "
+"marcada como ``PostOnly`` fallaría si se realiza en una solicitud GET)."
+
+#: ../principles.rst:202
+msgid ""
+"The code we put in our Python files is compiled and executed in a "
+"sandboxed environment (provided by `zope.untrustedpython.interpreter "
+"<https://github.com/zopefoundation/zope.untrustedpython/blob/master/docs/narr.rst>`_)."
+msgstr ""
+"El código que ponemos en nuestros archivos de Python se compila y ejecuta"
+" en un entorno de espacio aislado (proporcionado por "
+"`zope.untrustedpython.interpreter "
+"<https://github.com/zopefoundation/zope.untrustedpython/blob/master/docs/narr.rst>`_)."
+
+#: ../principles.rst:206
+msgid "To help us debugging our code, we can add:"
+msgstr "Para ayudarnos a depurar nuestro código, podemos agregar:"
+
+#: ../principles.rst:212
+msgid ""
+"in our app ``settings.yaml`` file. Then we can add some log message in "
+"our code:"
+msgstr ""
+"en nuestro archivo ``settings.yaml`` de aplicación. Entonces podemos agregar "
+"algún mensaje de registro en nuestro código:"
+
+#: ../principles.rst:219
+msgid ""
+"and they will be display in both the server log and the browser's "
+"javascript console."
+msgstr ""
+"y se mostrarán tanto en el registro del servidor como en la consola "
+"javascript del navegador."
+
+#: ../principles.rst:223
+msgid "Storing and retrieving data"
+msgstr "Almacenando y recuperando datos"
+
+#: ../principles.rst:225
+msgid ""
+"A rapido app provides a builtin storage service, based on `Souper "
+"<https://pypi.python.org/pypi/souper>`_."
+msgstr ""
+"Una aplicación rapido proporciona un servicio de almacenamiento "
+"integrado, basado en `Souper <https://pypi.python.org/pypi/souper>`_."
+
+#: ../principles.rst:230
+msgid ""
+"Souper is designed to store (and index) huge amounts of small data (it "
+"can easily store survey results, comments, ratings, etc., but it will not"
+" be appropriate for attached files for instance)."
+msgstr ""
+"Souper está diseñado para almacenar (e indexar) enormes cantidades de "
+"datos pequeños (puede almacenar fácilmente los resultados de la encuesta,"
+" comentarios, clasificaciones, etc., pero no será apropiado para los "
+"archivos adjuntos, por ejemplo)."
+
+#: ../principles.rst:234
+msgid ""
+"The Rapido storage service stores **records**, and records contain "
+"**items**."
+msgstr ""
+"El servicio de almacenamiento Rapido almacena **registros** y los "
+"registros contienen **elementos**."
+
+#: ../principles.rst:236
+msgid "There are 3 ways to create records in Rapido:"
+msgstr "Hay 3 maneras de crear registros en Rapido:"
+
+#: ../principles.rst:238
+msgid ""
+"we can create records by submitting a block: if a block contain some "
+"fields elements (like ``TEXT`` or ``NUMBER`` elements for instance), and "
+"if the block contains a *save* button (by adding ``{_save}`` in its "
+"layout), every time the user enters values in the fields and clicks save,"
+" the submitted values will be saved in a new record,"
+msgstr ""
+"podemos crear registros enviando un bloque: si un bloque contiene algunos "
+"elementos de campos (como elementos ``TEXT`` o ``NUMBER`` por ejemplo), y si "
+"el bloque contiene un botón de guardar (agregando ``{_save}`` en su "
+"diseño), cada vez que el usuario ingrese valores en los campos y haga clic "
+"en guardar, los valores enviados se guardarán en un nuevo registro,"
+
+#: ../principles.rst:243
+msgid "we can create records by code::"
+msgstr "podemos crear registros por código::"
+
+#: ../principles.rst:247
+msgid "we can create records using the Rapido JSON REST API::"
+msgstr "podemos crear registros utilizando el API REST JSON de Rapido::"
+
+#: ../principles.rst:253
+msgid "or::"
+msgstr "o::"
+
+#: ../principles.rst:259
+msgid "The same goes for accessing data:"
+msgstr "Lo mismo ocurre con el acceso a los datos:"
+
+#: ../principles.rst:261
+msgid ""
+"we can display records by calling their URL, and they will be rendered "
+"using the block they were created with::"
+msgstr ""
+"podemos mostrar registros llamando a su dirección URL, y se renderizarán "
+"usando el bloque con el que fueron creados::"
+
+#: ../principles.rst:266
+msgid "we can get a record by code:"
+msgstr "podemos obtener un registro por código:"
+
+#: ../principles.rst:273
+msgid "we can get records using the Rapido JSON REST API::"
+msgstr "podemos obtener registros utilizando el API REST JSON de Rapido::"
+
+#: ../principles.rst:279
+msgid "Integration with Plone"
+msgstr "Integración con Plone"
+
+#: ../principles.rst:281
+msgid ""
+"In addition to the Diazo injection of Rapido blocks in our theme, we can "
+"also integrate our Rapido developments in Plone using:"
+msgstr ""
+"Además de la inserción de bloques Rapido usando Diazo en nuestro tema, "
+"también podemos integrar nuestros desarrollos Rapido en Plone utilizando:"
+
+#: ../principles.rst:284
+msgid ""
+"Mosaic: Rapido provides a Mosaic tile which enables us to insert a Rapido"
+" block in our page layout."
+msgstr ""
+"Mosaico: Rapido proporciona un tile para Mosaic que nos permite insertar "
+"un bloque Rapido en nuestro diseño de página."
+
+#: ../principles.rst:287
+msgid ""
+"Content Rules: Rapido provides a Plone *content rule action* allowing us "
+"to call a Python function from a block when a given Plone event happens."
+msgstr ""
+"Reglas de contenido: Rapido proporciona una acción de regla de contenido "
+"de Plone que nos permite llamar a una función de Python de un bloque "
+"cuando ocurre un evento de Plone dado."
+
+#: ../principles.rst:290
+msgid ""
+"`Mockup <http://plone.github.io/mockup/dev/>`_ patterns: the *modal* and "
+"the *content loader* patterns can load and display Rapido blocks."
+msgstr ""
+"Patrones de `Mockup <http://plone.github.io/mockup/dev/>`_: los patrones de "
+"*modal* y *loader de contenido* pueden cargar y mostrar bloques Rapido."
+
+#: ../principles.rst:293
+msgid "See :doc:`reference/display`."
+msgstr "Ver :doc:`reference/display`."

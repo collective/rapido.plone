@@ -1,0 +1,291 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2015, Makina Corpus
+# This file is distributed under the same license as the Rapido package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: Rapido 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-16 08:32-0400\n"
+"PO-Revision-Date: 2017-04-16 09:06-0400\n"
+"Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
+"Language-Team: ES <LL@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
+"Generated-By: Babel 2.4.0\n"
+
+#: ../easy-plone.rst:2
+msgid "Plone the easy way"
+msgstr "Plone la forma fácil"
+
+#: ../easy-plone.rst:4
+msgid ""
+"Creating a site with Plone is easy, but developing with Plone might seem "
+"daunting."
+msgstr ""
+"Crear un sitio con Plone es fácil, pero desarrollar con Plone puede parecer "
+"desalentador."
+
+#: ../easy-plone.rst:7
+msgid ""
+"In fact it can be easy, and it does not necessarily involve learning a "
+"lot about various complex frameworks."
+msgstr ""
+"De hecho, puede ser fácil, y no necesariamente implica aprender mucho sobre "
+"varios frameworks complejos."
+
+#: ../easy-plone.rst:10
+msgid "Here are the **basics of easy developing with Plone**."
+msgstr "Aquí están los **conceptos básicos de desarrollo fácil con Plone**."
+
+#: ../easy-plone.rst:13
+msgid "Install it"
+msgstr "Instalarlo"
+
+#: ../easy-plone.rst:15
+msgid ""
+"Installing Plone is very easy (see the `installation documentation "
+"<http://docs.plone.org/manage/installing/installation.html>`_)."
+msgstr ""
+"La instalación de Plone es muy sencilla (consulte la `documentación de "
+"instalación <http://docs.plone.org/manage/installing/installation.html>`_)."
+
+#: ../easy-plone.rst:19
+msgid "Theme it"
+msgstr "Aplicarle Temas"
+
+#: ../easy-plone.rst:21
+msgid ""
+"`Diazo <http://docs.diazo.org/en/latest/>`_ is the Plone theming engine. "
+"Diazo has a brilliant approach to theming: **it applies on top of Plone, "
+"not inside**."
+msgstr ""
+"`Diazo <http://docs.diazo.org/en/latest/>`_ es el motor de tematización de "
+"Plone. Diazo tiene un enfoque brillante para realizar temas: **se aplica en "
+"la parte superior de Plone, no dentro**."
+
+#: ../easy-plone.rst:24
+msgid ""
+"Indeed, Plone produces content pages and Diazo can apply any theme on-"
+"the-fly to those pages. So we do not need to know anything about Plone's "
+"internal mechanisms to theme it."
+msgstr ""
+"De hecho, Plone produce páginas de contenido y Diazo puede aplicar cualquier "
+"tema sobre la marcha a esas páginas. Así que no necesitamos saber nada "
+"acerca de los mecanismos internos de Plone para discutirlo."
+
+#: ../easy-plone.rst:28
+msgid ""
+"Diazo only requires a **regular static theme** (HTML files, CSS, JS, "
+"etc.) and **some mapping rules** (specified in ``rules.xml``) which "
+"allows to specify where each part of our Plone content pages must fit "
+"into our static design."
+msgstr ""
+"Diazo sólo requiere un **tema estático regular** (archivos HTML, CSS, JS, "
+"etc.) y **algunas reglas de mapeo** (especificadas en un archivo llamado "
+"``rules.xml``) que permite especificar donde cada parte de nuestro Las "
+"páginas de contenido de Plone deben encajar en nuestro diseño estático."
+
+#: ../easy-plone.rst:32
+msgid ""
+"The Diazo theme can be built directly from the Plone interface in the "
+"Theming editor. The Plone 5 default theme (named Barceloneta) can be "
+"copied and we can modify whatever we want in this copy."
+msgstr ""
+"El tema de Diazo se puede construir directamente desde la interfaz de Plone "
+"en el editor de Temas. El tema predeterminado de Plone 5 (llamado "
+"Barceloneta) se puede copiar y podemos modificar lo que queramos en esta "
+"copia."
+
+#: ../easy-plone.rst:36
+msgid ""
+"The copy can also be exported as a ``.zip`` file, and imported back into "
+"the same site (to restore a previous version), or on another site (for "
+"instance to deploy a new theme from development to production)."
+msgstr ""
+"La copia también se puede exportar como archivo ``.zip`` e importar de nuevo "
+"al mismo sitio (para restaurar una versión anterior) o en otro sitio (por "
+"ejemplo, para implementar un nuevo tema desde el sitio web de desarrollo "
+"hasta el sitio web de producción)."
+
+#: ../easy-plone.rst:40
+msgid ""
+"If we are not comfortable with managing our theme implementation in a "
+"web-based interface, we might also store it on our server in the Plone "
+"installation folder::"
+msgstr ""
+"Si no nos sentimos cómodos con la gestión de nuestra implementación de temas "
+"en una interfaz basada en web, también podemos almacenarlo en nuestro "
+"servidor en la carpeta de instalación de Plone:"
+
+#: ../easy-plone.rst:47
+msgid "Extend it"
+msgstr "Extiéndalo"
+
+#: ../easy-plone.rst:49
+msgid "Plone can be extended in two ways."
+msgstr "Plone se puede extender de dos maneras."
+
+#: ../easy-plone.rst:51
+msgid ""
+"We can `install add-ons <http://training.plone.org/5/add-ons.html>`_ "
+"developed by the Plone community."
+msgstr ""
+"Podemos `instalar complementos <http://training.plone.org/5/add-ons.html>`_ "
+"desarrollados por la comunidad Plone."
+
+#: ../easy-plone.rst:54
+msgid ""
+"And we can also create our own specific content types using `Dexterity "
+"<http://training.plone.org/5/dexterity.html>`_."
+msgstr ""
+"Y también podemos crear nuestros propios tipos de contenido específico "
+"usando `Dexterity <http://training.plone.org/5/dexterity.html>`_."
+
+#: ../easy-plone.rst:57
+msgid ""
+"Dexterity is the Plone **content-type framework** and it allows to create"
+" new content-types through the Plone web interface."
+msgstr ""
+"Dexterity es el framework de tipo de contenido para Plone y permite crear "
+"nuevos tipos de contenido a través de la interfaz web de Plone."
+
+#: ../easy-plone.rst:60
+msgid ""
+"Like with Diazo, we are able to export what has been created online, so "
+"we can import it again later or import it on another server."
+msgstr ""
+"Al igual que con Diazo, podemos exportar lo que se ha creado en línea, para "
+"poder importarlo de nuevo más tarde o importarlo en otro servidor."
+
+#: ../easy-plone.rst:64
+msgid "Customize it"
+msgstr "Personalizarlo"
+
+#: ../easy-plone.rst:66
+msgid ""
+"Once we have changed the design with Diazo, we might want to re-organize "
+"or enrich the content layout themselves."
+msgstr ""
+"Una vez que hayamos cambiado el diseño con Diazo, es posible que deseemos "
+"volver a organizar o enriquecer el diseño de contenido ellos mismos."
+
+#: ../easy-plone.rst:69
+msgid ""
+"`Mosaic <http://plone-app-mosaic.s3-website-us-"
+"east-1.amazonaws.com/latest/>`_ is the **perfect solution to manipulate "
+"the content layout**: we can move existing elements (like the title, "
+"description, etc.), but also add new ones."
+msgstr ""
+"`Mosaic <http://plone-app-mosaic.s3-website-us-"
+"east-1.amazonaws.com/latest/>`_ es la **solución perfecta para manipular el "
+"diseño del contenido**: podemos mover los elementos existentes (como el "
+"título, la descripción, etc.), pero también agregar nuevos."
+
+#: ../easy-plone.rst:73
+msgid ""
+"Once a layout is created, it can be exported and copied in our Diazo "
+"``manifest.cfg`` file so it can be available as a new layout for our "
+"users."
+msgstr ""
+"Una vez que se crea un diseño, se puede exportar y copiar en nuestro archivo "
+"Diazo ``manifest.cfg`` para que esté disponible como un nuevo diseño para "
+"nuestros usuarios."
+
+#: ../easy-plone.rst:76
+msgid ""
+"Diazo and Mosaic allows us to entirely control how information is "
+"displayed in our web site, but they do not allow changing the behavior of"
+" Plone, like adding new features, new dynamically computed information, "
+"etc."
+msgstr ""
+"Diazo y Mosaic nos permite controlar completamente cómo se muestra la "
+"información en nuestro sitio web, pero no permiten cambiar el comportamiento "
+"de Plone, como añadir nuevas características, nueva información calculada "
+"dinámicamente, etc."
+
+#: ../easy-plone.rst:80
+msgid ""
+"It can be achieved with **Rapido** (as explained in :doc:`./tutorial`), "
+"with a very basic knowledge of HTML and Python (so, still, no need to "
+"learn about the different Plone frameworks)."
+msgstr ""
+"Se puede lograr con **Rapido** (como se explica en :doc:`./tutorial`), con "
+"un conocimiento muy básico de HTML y Python (así, todavía, no hay necesidad "
+"de aprender sobre los diferentes frameworks de Plone)."
+
+#: ../easy-plone.rst:84
+msgid ""
+"Our Rapido developments are managed in our existing theme folder, so here"
+" again we can work online in the Plone theming editor, or in "
+"``/resources/theme`` folder."
+msgstr ""
+"Nuestros desarrollos de Rapido se gestionan en nuestra carpeta de temas "
+"existente, así que aquí nuevamente podemos trabajar en línea en el editor de "
+"temas de Plone, o en la carpeta ``/resources/theme``."
+
+#: ../easy-plone.rst:88
+msgid ""
+"Rapido provides easy access to the `Plone API "
+"<http://docs.plone.org/develop/plone.api/docs/>`_. The Plone API gathers "
+"in one unique module many different Plone tools allowing to search for "
+"contents, create contents, access user profiles information, etc. It "
+"makes Plone internal features much more approachable, and developing with"
+" Rapido might be a good opportunity to discover Plone through its API."
+msgstr ""
+"Rapido proporciona un fácil acceso a la `API de Plone "
+"<http://docs.plone.org/develop/plone.api/docs/>`_. La API de Plone reúne en "
+"un único módulo muchas herramientas diferentes de Plone que permiten buscar "
+"contenidos, crear contenidos, acceder a la información de perfiles de "
+"usuarios, etc. Hace que las características internas de Plone sean mucho más "
+"accesibles y desarrollar con Rapido podría ser una buena oportunidad para "
+"descubrir Plone a través de Su API."
+
+#: ../easy-plone.rst:96
+msgid "And if we want..."
+msgstr "Y si queremos..."
+
+#: ../easy-plone.rst:98
+msgid ""
+"It might be sufficient to cover almost anything we might need to "
+"implement in our Plone site."
+msgstr ""
+"Podría ser suficiente para cubrir casi todo lo que necesitemos implementar "
+"en nuestro sitio de Plone."
+
+#: ../easy-plone.rst:101
+msgid ""
+"But if at some point we feel comfortable enough with the Plone technical "
+"environment, and if we want to learn more, then we might consider "
+"creating our own Plone add-on."
+msgstr ""
+"Pero si en algún momento nos sentimos lo suficientemente cómodos con el "
+"entorno técnico de Plone, y si queremos aprender más, entonces podríamos "
+"considerar la posibilidad de crear nuestro propio complemento de Plone."
+
+#: ../easy-plone.rst:105
+msgid ""
+"Our add-on will handle our Diazo theme (including our Rapido "
+"developments), our Dexterity content-type definitions, and all our "
+"configuration settings."
+msgstr ""
+"Nuestro complemento manejará nuestro tema Diazo (incluyendo nuestros "
+"desarrollos Rapido), nuestras definiciones de tipo de contenido Dexterity y "
+"todas nuestras configuraciones."
+
+#: ../easy-plone.rst:108
+msgid ""
+"It is properly documented in the `Plone documentation "
+"<http://docs.plone.org/develop/addons/index.html>`_, and the `Plone "
+"training <http://training.plone.org/5/theming/theme-package.html>`_ might"
+" also be very helpful."
+msgstr ""
+"Está debidamente documentado en la `documentación de Plone "
+"<http://docs.plone.org/develop/addons/index.html>`_, y en el `entrenamiento "
+"de Plone <http://training.plone.org/5/theming/theme-package.html>`_ también "
+"podría ser muy útil."

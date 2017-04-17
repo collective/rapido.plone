@@ -1,0 +1,596 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2015, Makina Corpus
+# This file is distributed under the same license as the Rapido package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: Rapido 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-17 07:24-0400\n"
+"PO-Revision-Date: 2017-04-17 07:25-0400\n"
+"Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
+"Language-Team: ES <LL@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
+"Generated-By: Babel 2.4.0\n"
+
+#: ../python-api.rst:2
+msgid "Python API"
+msgstr "API de Python"
+
+#: ../python-api.rst:4
+msgid "Any Rapido Python function receives ``context`` as parameter."
+msgstr "Cualquier función Python de Rapido recibe el ``context`` como parámetro."
+
+#: ../python-api.rst:6
+msgid "The ``context`` provides the following properties:"
+msgstr "El ``context`` proporciona las siguientes propiedades:"
+
+#: ../python-api.rst:12
+msgid "``context.app``"
+msgstr "``context.app``"
+
+#: ../python-api.rst:14
+msgid "This property gives access to the Rapido application object."
+msgstr "Esta propiedad da acceso al objeto de aplicación Rapido."
+
+#: ../python-api.rst:16 ../python-api.rst:253
+msgid "*Properties*"
+msgstr "*Propiedades*"
+
+#: ../python-api.rst:19
+msgid "``acl``"
+msgstr "``acl``"
+
+#: ../python-api.rst:19
+msgid "Returns the Rapido application's access control list object (see below)."
+msgstr ""
+"Devuelve el objeto de la lista de control de acceso de la aplicación "
+"Rapido (ver abajo)."
+
+#: ../python-api.rst:22
+msgid "``blocks``"
+msgstr "``blocks``"
+
+#: ../python-api.rst:22
+msgid "Returns the existing block ids."
+msgstr "Devuelve los identificadores de bloque existentes."
+
+#: ../python-api.rst:25
+msgid "``indexes``"
+msgstr "``indexes``"
+
+#: ../python-api.rst:25
+msgid "Returns the existing index ids."
+msgstr "Devuelve los identificadores de índice existentes."
+
+#: ../python-api.rst:28 ../python-api.rst:256
+msgid "``url``"
+msgstr "``url``"
+
+#: ../python-api.rst:28
+msgid "Returns the application URL."
+msgstr "Devuelve la URL de la aplicación."
+
+#: ../python-api.rst:30 ../python-api.rst:261
+msgid "*Methods*"
+msgstr "*Métodos*"
+
+#: ../python-api.rst:36
+msgid "``create_record(self, id=None)``"
+msgstr "``create_record(self, id=None)``"
+
+#: ../python-api.rst:33
+msgid ""
+"Creates and return a new record. If ``id`` is not provided, a default one"
+" is generated. If ``id`` already exists, it is replaced with another one "
+"(like ``...-1``, ``...-2``)."
+msgstr ""
+"Crea y devuelve un nuevo registro. Si no se proporciona ``id``, se genera"
+" una predeterminada. Si ``id`` ya existe, se sustituye por otro (como "
+"``...-1``, ``...-2``)."
+
+#: ../python-api.rst:42
+msgid "``delete_record(self, id=None, record=None, ondelete=True)``"
+msgstr "``delete_record(self, id=None, record=None, ondelete=True)``"
+
+#: ../python-api.rst:39
+msgid ""
+"Delete the record (which can be passed as object or id). If ``ondelete`` "
+"is truthy, the ``on_delete`` function will be called (if it exists) "
+"before deleting the record."
+msgstr ""
+"Elimine el registro (que se puede pasar como objeto o como id). Si la "
+"``ondelete`` es verdad, la función ``on_delete`` será llamada (si existe)"
+" antes de borrar el registro."
+
+#: ../python-api.rst:45
+msgid "``get_block(self, block_id)``"
+msgstr "``get_block(self, block_id)``"
+
+#: ../python-api.rst:45
+msgid "Returns a block."
+msgstr "Devuelve un bloque."
+
+#: ../python-api.rst:49
+msgid "``get_record(self, id)``"
+msgstr "``get_record(self, id)``"
+
+#: ../python-api.rst:48
+msgid ""
+"Returns the record corresponding to the ``id``, or ``None`` if it does "
+"not exist."
+msgstr "Devuelve el registro correspondiente al ``id``, o ``None`` si no existe."
+
+#: ../python-api.rst:54
+msgid "``log(self, message)``"
+msgstr "``log(self, message)``"
+
+#: ../python-api.rst:52
+msgid ""
+"Logs a message in the server log. If the app is in *debug* mode, logs the"
+" same message in the browser's javascript console. Messages can be "
+"strings or any other serializable object."
+msgstr ""
+"Registra un mensaje en el registro del servidor. Si la aplicación está en"
+" modo de depuración, registra el mismo mensaje en la consola javascript "
+"del navegador. Los mensajes pueden ser cadenas o cualquier otro objeto "
+"serializable."
+
+#: ../python-api.rst:57
+msgid "``records(self)``"
+msgstr "``records(self)``"
+
+#: ../python-api.rst:57
+msgid "Returns all the records as a list."
+msgstr "Devuelve todos los registros como una lista."
+
+#: ../python-api.rst:60
+msgid "``_records(self)``"
+msgstr "``_records(self)``"
+
+#: ../python-api.rst:60
+msgid "Returns all the records as a Python generator."
+msgstr "Devuelve todos los registros como un generador de Python."
+
+#: ../python-api.rst:63
+msgid "``search(self, query, sort_index=None, reverse=False)``"
+msgstr "``search(self, query, sort_index=None, reverse=False)``"
+
+#: ../python-api.rst:63
+msgid "Performs a search and returns records as a list."
+msgstr "Realiza una búsqueda y devuelve registros como una lista."
+
+#: ../python-api.rst:66
+msgid "``_search(self, query, sort_index=None, reverse=False)``"
+msgstr "``_search(self, query, sort_index=None, reverse=False)``"
+
+#: ../python-api.rst:66
+msgid "Performs a search and returns records as a Python generator."
+msgstr "Realiza una búsqueda y devuelve registros como un generador de Python."
+
+#: ../python-api.rst:69
+msgid "``context.request`` and ``context.parent_request``"
+msgstr "``context.request`` and ``context.parent_request``"
+
+#: ../python-api.rst:71
+msgid "``context.request`` is the actual request to Rapido, like:"
+msgstr "``context.request`` es la actual request a Rapido, como:"
+
+#: ../python-api.rst:73
+msgid "http://localhost:8080/Plone/@@rapido/rating/blocks/rate"
+msgstr ""
+
+#: ../python-api.rst:75
+msgid ""
+"When a block is embedded in a Plone page, ``context.request`` was issued "
+"by the user's browser, it was issued by Diazo."
+msgstr ""
+"Cuando un bloque está embebido en una página de Plone, "
+"``context.request`` fue emitido por el navegador del usuario, fue emitido"
+" por Diazo."
+
+#: ../python-api.rst:79
+msgid ""
+"To get the request issued by the user's browser, we use "
+"``context.parent_request``."
+msgstr ""
+"Para obtener el request emitida por el navegador del usuario, nosotros "
+"usamos ``context.parent_request``."
+
+#: ../python-api.rst:82
+msgid ""
+"Both of them are HTTP requests objects, see the `reference documentation "
+"<http://docs.plone.org/develop/plone/serving/http_request_and_response.html>`_."
+msgstr ""
+"Ambos son objetos de solicitud HTTP, consulte la `documentación de "
+"referencia "
+"<http://docs.plone.org/develop/plone/serving/http_request_and_response.html>`_."
+
+#: ../python-api.rst:84
+msgid "Examples:"
+msgstr "Ejemplos:"
+
+#: ../python-api.rst:86
+msgid "Reading submitted values:"
+msgstr "Lectura de valores presentados:"
+
+#: ../python-api.rst:93
+msgid "Reading the ``BODY``:"
+msgstr "Lectura del ``BODY``:"
+
+#: ../python-api.rst:101
+msgid "``context.portal``"
+msgstr "``context.portal``"
+
+#: ../python-api.rst:103
+msgid "Return the Plone portal object."
+msgstr "Devolver el objeto de portal Plone."
+
+#: ../python-api.rst:105
+msgid "It is equivalent to:"
+msgstr "Es equivalente a:"
+
+#: ../python-api.rst:111
+msgid ""
+"The most common task we will perform through the portal object is to get "
+"its contents:"
+msgstr ""
+"La tarea más común que realizaremos a través del objeto de portal es "
+"obtener su contenido:"
+
+#: ../python-api.rst:118
+msgid "``context.content``"
+msgstr "``context.content``"
+
+#: ../python-api.rst:120
+msgid "It returns the current Plone content."
+msgstr "Devuelve el contenido actual de Plone."
+
+#: ../python-api.rst:122
+msgid "The most common tasks we will perform on the content are:"
+msgstr "Las tareas más comunes que realizaremos en el contenido son:"
+
+#: ../python-api.rst:124
+msgid "reading/writing its attributes (read/write):"
+msgstr "leer / escribir sus atributos (lectura / escritura):"
+
+#: ../python-api.rst:131
+msgid "getting its URL:"
+msgstr "obteniendo su URL:"
+
+#: ../python-api.rst:137
+msgid ""
+"To manipulate the content, refer to the `Plone API documentation about "
+"contents <http://docs.plone.org/develop/plone.api/docs/content.html>`_."
+msgstr ""
+"Para manipular el contenido, consulte la `documentación de la API de "
+"Plone sobre el contenido "
+"<http://docs.plone.org/develop/plone.api/docs/content.html>`_."
+
+#: ../python-api.rst:141
+msgid ""
+"Depending on its content type, the content object might have very "
+"different methods and properties."
+msgstr ""
+"Dependiendo de su tipo de contenido, el objeto de contenido puede tener "
+"métodos y propiedades muy diferentes."
+
+#: ../python-api.rst:144
+msgid "``context.record``"
+msgstr "``context.record``"
+
+#: ../python-api.rst:146
+msgid "It returns the current Rapido record if any."
+msgstr "Devuelve el registro Rapido actual si lo hay."
+
+#: ../python-api.rst:148
+msgid "See `Record`_ for more information."
+msgstr "Consulte `Registro`_ para obtener más información."
+
+#: ../python-api.rst:151
+msgid "``context.api``"
+msgstr "``context.api``"
+
+#: ../python-api.rst:153
+msgid ""
+"It gives access to the full `Plone API "
+"<http://docs.plone.org/develop/plone.api/docs/index.html>`_."
+msgstr ""
+"Da acceso completo a la `API de Plone "
+"<http://docs.plone.org/develop/plone.api/docs/index.html>`_."
+
+#: ../python-api.rst:157
+msgid ""
+"There is no need to import the API, as shown in all the Plone API "
+"examples:"
+msgstr ""
+"No es necesario importar la API, como se muestra en todos los ejemplos de"
+" API de Plone:"
+
+#: ../python-api.rst:163
+msgid "because the API is already available in the Rapido `context`:"
+msgstr "porque la API ya está disponible en el `context` de Rapido:"
+
+#: ../python-api.rst:169
+msgid "This API mainly allows:"
+msgstr "Esta API permite principalmente:"
+
+#: ../python-api.rst:171
+msgid "to search contents; for example:"
+msgstr "buscar contenidos; por ejemplo:"
+
+#: ../python-api.rst:183
+msgid "to manipulate contents (create / delete / move / publish / etc.), example:"
+msgstr ""
+"para manipular contenidos (create / delete / move / publish / etc), "
+"ejemplo:"
+
+#: ../python-api.rst:194
+msgid ""
+"to access or manage the users and groups information, and send emails. "
+"Example:"
+msgstr ""
+"para acceder o gestionar la información de usuarios y grupos y enviar "
+"correos electrónicos. Ejemplo:"
+
+#: ../python-api.rst:206
+msgid ""
+"For more detailed examples, refer to the `Plone API documentation "
+"<http://docs.plone.org/develop/plone.api/docs/index.html>`_."
+msgstr ""
+"Para ejemplos más detallados , consulte la `documentación de la API de "
+"Plone <http://docs.plone.org/develop/plone.api/docs/index.html>`_."
+
+#: ../python-api.rst:209
+msgid "``context.rapido``"
+msgstr "``context.rapido``"
+
+#: ../python-api.rst:211
+msgid ""
+"``context.rapido`` is a function able to obtain another Rapido "
+"application in our current script."
+msgstr ""
+"``context.rapido`` es una función capaz de obtener otra aplicación Rapido"
+" en nuestro script actual."
+
+#: ../python-api.rst:213
+msgid "It takes as mandatory parameter the id of the Rapido application. Example:"
+msgstr "Toma como parámetro obligatorio el id de la aplicación Rapido. Ejemplo:"
+
+#: ../python-api.rst:220
+msgid ""
+"It might also accept a ``content`` parameter to provide a specific "
+"content context to the app (if not provided, it will take the current "
+"content). Example:"
+msgstr ""
+"También puede aceptar un parámetro ``content`` para proporcionar un "
+"específico contexto contenido a la aplicación (si no se proporciona, se "
+"tomará el contenido actual). Ejemplo:"
+
+#: ../python-api.rst:229
+msgid "``context.modules``"
+msgstr "``context.modules``"
+
+#: ../python-api.rst:231
+msgid ""
+"For security reason, it is not allowed to import a Python module in a "
+"Rapido Python file."
+msgstr ""
+"Por razones de seguridad, no se permite importar un módulo Python en un "
+"archivo Rapido Python."
+
+#: ../python-api.rst:233
+msgid "Rapido provides some safe modules through ``context.modules``:"
+msgstr ""
+"Rapido proporciona algunos módulos seguros a través de "
+"``context.modules``:"
+
+#: ../python-api.rst:235
+msgid ""
+"``context.modules.datetime``: `Basic date and time types "
+"<https://docs.python.org/2/library/datetime.html>`_,"
+msgstr ""
+"``context.modules.datetime``: `Tipos básicos de fecha y hora "
+"<https://docs.python.org/2/library/datetime.html>`_,"
+
+#: ../python-api.rst:236
+msgid ""
+"``context.modules.random``: `Generate pseudo-random numbers "
+"<https://docs.python.org/2/library/random.html>`_,"
+msgstr ""
+"``context.modules.random``: `Genera números pseudo-aleatorios "
+"<https://docs.python.org/2/library/random.html>`_,"
+
+#: ../python-api.rst:237
+msgid ""
+"``context.modules.time``: `Time access and conversions "
+"<https://docs.python.org/2/library/time.html>`_."
+msgstr ""
+"``context.modules.time``: `Tiempo de acceso y conversiones "
+"<https://docs.python.org/2/library/time.html>`_."
+
+#: ../python-api.rst:239
+msgid ""
+"If we need to add extra modules to ``context.modules``, we can do it by "
+"adding in our own add-on something like:"
+msgstr ""
+"Si necesitamos agregar módulos a ``context.modules``, podemos hacerlo "
+"agregando en nuestro propio complemento de la siguiente forma:"
+
+#: ../python-api.rst:248
+msgid ""
+"In this example, we allow to access ``context.modules.re`` from our "
+"Rapido Python files."
+msgstr ""
+"En este ejemplo, permitimos acceder a ``context.modules.re`` desde "
+"nuestros archivos Python Rapido."
+
+#: ../python-api.rst:251
+msgid "Record"
+msgstr "Registro"
+
+#: ../python-api.rst:256
+msgid "Returns the record URL."
+msgstr "Devuelve la URL del registro."
+
+#: ../python-api.rst:259
+msgid "``id``"
+msgstr "``id``"
+
+#: ../python-api.rst:259
+msgid "Returns the record identifier."
+msgstr "Devuelve el identificador de registro."
+
+#: ../python-api.rst:264
+msgid "``display(self, edit=False)``"
+msgstr "``display(self, edit=False)``"
+
+#: ../python-api.rst:264
+msgid "Render the record using its associated block (if any)."
+msgstr "Representa el registro utilizando su bloque asociado (si existe)."
+
+#: ../python-api.rst:268
+msgid "``get(self, name, default=None)``"
+msgstr "``get(self, name, default=None)``"
+
+#: ../python-api.rst:267
+msgid ""
+"Returns the value of the item (and defaults to ``default`` if the item "
+"does not exist)."
+msgstr ""
+"Devuelve el valor del elemento (y el valor predeterminado es el "
+"``default`` si el elemento no existe)."
+
+#: ../python-api.rst:271
+msgid "``items(self)``"
+msgstr "``items(self)``"
+
+#: ../python-api.rst:271
+msgid "Returns all the stored items."
+msgstr "Devuelve todos los elementos almacenados."
+
+#: ../python-api.rst:274
+msgid "``reindex(self)``"
+msgstr "``reindex(self)``"
+
+#: ../python-api.rst:274
+msgid "Re-index the record."
+msgstr "Vuelva a indexar el registro."
+
+#: ../python-api.rst:284
+msgid "``save(self, request=None, block=None, block_id=None, creation=False)``"
+msgstr "``save(self, request=None, block=None, block_id=None, creation=False)``"
+
+#: ../python-api.rst:277
+msgid "Update the record with the provided items and index it."
+msgstr "Actualizar el registro con los elementos proporcionados e indexarlo."
+
+#: ../python-api.rst:279
+msgid "``request`` can be an actual HTTP request or a dictionnary."
+msgstr "``request`` puede ser una request actual HTTP o un diccionario."
+
+#: ../python-api.rst:281
+msgid ""
+"If a block is mentionned, formulas (``on_save``, computed elements, etc.)"
+" will be executed."
+msgstr ""
+"Si se menciona un bloque, se ejecutarán fórmulas (``on_save``, elementos "
+"calculados, etc.)."
+
+#: ../python-api.rst:284
+msgid "If no block (and ``request`` is a dict), we just save the items values."
+msgstr ""
+"Si no hay bloque (y ``request`` es un diccionario), solo salvamos los "
+"valores de los elementos."
+
+#: ../python-api.rst:288
+msgid "``set_block(self, block_id)``"
+msgstr "``set_block(self, block_id)``"
+
+#: ../python-api.rst:287
+msgid ""
+"Assign a block to the record. The block will be then used to render the "
+"record or to save it."
+msgstr ""
+"Asigne un bloque al registro. El bloque se utilizará entonces para "
+"representar el registro o para guardarlo."
+
+#: ../python-api.rst:290
+msgid "*Python dictionary-like interface*"
+msgstr "*Interfaz de diccionario de Python*"
+
+#: ../python-api.rst:292
+msgid "The record's items can be accessed and manipulated like dictionary items:"
+msgstr ""
+"Los elementos del registro se pueden acceder y manipular como elementos "
+"del diccionario:"
+
+#: ../python-api.rst:304
+msgid "When setting an item value, the record is not reindexed."
+msgstr "Cuando se establece un valor de elemento, el registro no se reindexa."
+
+#: ../python-api.rst:307
+msgid "Access control list"
+msgstr "Lista de control de acceso"
+
+#: ../python-api.rst:311
+msgid "The application access control list can be obtain by ``context.app.acl``."
+msgstr ""
+"La lista de control de acceso a la aplicación puede ser obtenida mediante"
+" ``context.app.acl``."
+
+#: ../python-api.rst:313
+msgid "**Methods**"
+msgstr "**Métodos**"
+
+#: ../python-api.rst:317
+msgid "``current_user(self)``"
+msgstr "``current_user(self)``"
+
+#: ../python-api.rst:316
+msgid "Returns the current user id. Equivalent to:"
+msgstr "Devuelve el ID de usuario actual. Equivalente a:"
+
+#: ../python-api.rst:325
+msgid "``current_user_groups(self)``"
+msgstr "``current_user_groups(self)``"
+
+#: ../python-api.rst:324
+msgid "Returns the groups the current user belongs to. Equivalent to:"
+msgstr "Devuelve los grupos al usuario actual al que pertenece. Equivalente a:"
+
+#: ../python-api.rst:333
+msgid "``has_access_right(self, access_right)``"
+msgstr "``has_access_right(self, access_right)``"
+
+#: ../python-api.rst:332
+msgid ""
+"Returns ``True`` if the current user has the specified access right "
+"(Rapido access rights are ``reader``, ``author``, ``editor``, "
+"``manager``)"
+msgstr ""
+"Devuelve ``True`` si el usuario actual tiene el derecho de acceso "
+"especificado (los derechos de acceso Rapido son ``reader``, ``author``, "
+"``editor``, ``manager``)"
+
+#: ../python-api.rst:336
+msgid "``has_role(self, role_id)``"
+msgstr "``has_role(self, role_id)``"
+
+#: ../python-api.rst:336
+msgid "Returns ``True`` if the current user has the specified role."
+msgstr "Devuelve ``True`` si el usuario actual tiene la función especificada."
+
+#: ../python-api.rst:338
+msgid "``roles(self)``"
+msgstr "``roles(self)``"
+
+#: ../python-api.rst:339
+msgid "Returns the existing roles."
+msgstr "Devuelve los roles existentes."

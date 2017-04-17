@@ -1,0 +1,763 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2015, Makina Corpus
+# This file is distributed under the same license as the Rapido package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: Rapido 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-16 17:47-0400\n"
+"PO-Revision-Date: 2017-04-16 17:54-0400\n"
+"Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
+"Language-Team: ES <LL@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
+"Generated-By: Babel 2.4.0\n"
+
+#: ../tutorial.rst:2
+msgid "Tutorial"
+msgstr "Tutorial"
+
+#: ../tutorial.rst:4
+msgid "How to build a content rating system in Plone in few minutes."
+msgstr ""
+"Como construir un sistema de calificaciones de contenidos en Plone en tan"
+" solo unos minutos."
+
+#: ../tutorial.rst:7
+msgid "Objective"
+msgstr "Objectivo"
+
+#: ../tutorial.rst:9
+msgid ""
+"We want to offer to our visitors the ability to click on a *\"Like\"* "
+"button on any Plone content, and the total of votes must be displayed "
+"next to the button."
+msgstr ""
+"Queremos ofrecer a nuestros visitantes la posibilidad de hacer clic en un"
+" botón *\"Me gusta\"* en cualquier contenido de Plone, y el total de "
+"votos debe mostrarse junto al botón."
+
+#: ../tutorial.rst:14
+msgid ""
+"There is a screencast covering the `first steps of the Rapido tutorial "
+"<https://www.youtube.com/watch?v=a7B-lX0caW0>`_."
+msgstr ""
+"Hay un screencast que cubre los `primeros pasos del tutorial de Rapido "
+"<https://www.youtube.com/watch?v=a7B-lX0caW0>`_."
+
+#: ../tutorial.rst:18
+msgid "Prerequisites"
+msgstr "Requisitos previos"
+
+#: ../tutorial.rst:20
+msgid ""
+"Run buildout to deploy Rapido and its dependencies (see "
+":doc:`./installation`)."
+msgstr ""
+"Ejecute buildout para implementar Rapido y sus dependencias (consulte "
+":doc:`./installation`)."
+
+#: ../tutorial.rst:22
+msgid "Install the ``rapido.plone`` add-on from Plone site setup."
+msgstr ""
+"Instale el complemento ``rapido.plone`` desde la Configuración del sitio "
+"de Plone."
+
+#: ../tutorial.rst:25
+msgid "Initializing the Rapido app"
+msgstr "Inicializando la aplicación Rapido"
+
+#: ../tutorial.rst:27
+msgid "We go to Plone *Site setup*, and then *Theming*."
+msgstr "Vamos a la *Configuración del sitio* de Plone, y luego *Temas*."
+
+#: ../tutorial.rst:29
+msgid ""
+"If our current active theme is not editable inline through the Plone web "
+"interface (i.e. there is no *\"Modify theme\"* button), we will first "
+"need to create an editable copy:"
+msgstr ""
+"Si nuestro tema activo actual no es editable en línea a través de la "
+"interfaz web de Plone (es decir, no hay botón *\"Modificar tema\"*), primero "
+"deberemos crear una copia editable del mismo:"
+
+#: ../tutorial.rst:33
+msgid "click on *\"Copy\"*,"
+msgstr "haga clic en *\"Copiar\"*,"
+
+#: ../tutorial.rst:34
+msgid "enter a name, for example *\"tutorial\"*."
+msgstr "introduzca un nombre, por ejemplo *\"tutorial\"*."
+
+#: ../tutorial.rst:35
+msgid "check *\"Immediately enable new theme\"*."
+msgstr "marque la casilla *\"Inmediatamente habilitar nuevo tema\"*."
+
+#: ../tutorial.rst:37
+msgid "Else, we just click on the *\"Modify theme\"* button."
+msgstr "De lo contrario, simplemente haga clic en el botón *\"Modificar tema\"*."
+
+#: ../tutorial.rst:39
+msgid ""
+"We can see our theme structure, containing CSS files, images, HTML, and "
+"Diazo rules."
+msgstr ""
+"Podemos ver nuestra estructura de tema, que contiene archivos CSS, "
+"imágenes, HTML y reglas de Diazo."
+
+#: ../tutorial.rst:42
+msgid "To initialize our Rapido app named \"rating\", we need to:"
+msgstr ""
+"Para inicializar nuestra aplicación Rapido llamada \"rating\", "
+"necesitamos:"
+
+#: ../tutorial.rst:44
+msgid "create a folder named ``rapido`` in the theme root,"
+msgstr "crear una carpeta llamada ``rapido`` en la raíz del tema,"
+
+#: ../tutorial.rst:45
+msgid "in this ``rapido`` folder, create a folder named ``rating``."
+msgstr "en esta carpeta ``rapido``, cree una carpeta llamada ``rating``."
+
+#: ../tutorial.rst:49
+msgid "The application is now ready."
+msgstr "La aplicación ya está lista."
+
+#: ../tutorial.rst:52
+msgid "Creating the \"Like\" button"
+msgstr "Creación del botón \"Me gusta\""
+
+#: ../tutorial.rst:54
+msgid ""
+"Rapido apps are composed of **blocks**. Let's create a block that will "
+"render our button:"
+msgstr ""
+"Las aplicaciones de Rapido están compuestas de **bloques**. Vamos a crear"
+" un bloque que hará que nuestro botón:"
+
+#: ../tutorial.rst:57
+msgid "go to the ``rating`` folder and create a new folder named ``blocks``,"
+msgstr ""
+"vaya a la carpeta ``rating`` y cree una nueva carpeta denominada ``blocks``,"
+
+#: ../tutorial.rst:58
+msgid ""
+"in this ``blocks`` folder, let's create a new block named ``rate``. To do"
+" this, we need to create 3 files:"
+msgstr ""
+"en esta carpeta de ``blocks``, vamos a crear un nuevo bloque llamado "
+"``rate``. Para ello, necesitamos crear 3 archivos:"
+
+#: ../tutorial.rst:63
+msgid "The ``rate.html`` file:"
+msgstr "El archivo ``rate.html``:"
+
+#: ../tutorial.rst:69
+msgid ""
+"This allows us to implement the block layout. It is a regular HTML file, "
+"but it may contain Rapido **elements**, enclosed in brackets. In our "
+"case, we have one element, namely ``{like}``, in charge of rendering the "
+"*\"Like\"* button."
+msgstr ""
+"Esto nos permite implementar el diseño del bloque. Es un archivo HTML "
+"normal, pero puede contener **elementos** Rapido, entre paréntesis. En "
+"nuestro caso, tenemos un elemento, a saber ``{like}``, encargado de "
+"representar el botón *\"Like\"*."
+
+#: ../tutorial.rst:73
+msgid "The ``rate.py`` file"
+msgstr "El archivo ``rate.py``"
+
+#: ../tutorial.rst:81
+msgid ""
+"It provides the element's implementation. Each element in the block has a"
+" corresponding Python function having the same id. In our case, that is "
+"the code that will be executed when a user clicks on *\"Like\"*. Right "
+"now, it does nothing, but we will change it later."
+msgstr ""
+"Proporciona la implementación del elemento. Cada elemento del bloque "
+"tiene una función Python correspondiente que tiene el mismo id. En "
+"nuestro caso, ese es el código que se ejecutará cuando un usuario haga "
+"clic en \"Like\". En este momento, no hace nada, pero lo cambiaremos más "
+"tarde."
+
+#: ../tutorial.rst:86
+msgid "The ``rate.yaml`` file:"
+msgstr "El archivo ``rate.yaml``:"
+
+#: ../tutorial.rst:95
+msgid ""
+"This file contains all the needed settings for our block. Here we declare"
+" that our block contains one element named ``like``, which is an "
+"**action** (i.e. it will be rendered as a button), and its displayed "
+"label is *\"Like\"*."
+msgstr ""
+"Este archivo contiene todos los ajustes necesarios para nuestro bloque. "
+"Aquí declaramos que nuestro bloque contiene un elemento denominado "
+"``like``, que es una **acción** (es decir, se renderizará como un botón),"
+" y su etiqueta mostrada es *\"Like\"*."
+
+#: ../tutorial.rst:99
+msgid "Now that our block is ready, we can see it using the following URL:"
+msgstr ""
+"Ahora que nuestro bloque está listo, podemos verlo usando la siguiente "
+"dirección URL:"
+
+#: ../tutorial.rst:101
+msgid "http://localhost:8080/Plone/@@rapido/rating/blocks/rate"
+msgstr "http://localhost:8080/Plone/@@rapido/rating/blocks/rate"
+
+#: ../tutorial.rst:105
+msgid "The next step is to embed our block in our Plone pages."
+msgstr ""
+"El siguiente paso es incrustar nuestro bloque en nuestras páginas de "
+"Plone."
+
+#: ../tutorial.rst:108
+msgid "Inserting the block in Plone pages"
+msgstr "Insertar el bloque en páginas Plone"
+
+#: ../tutorial.rst:110
+msgid ""
+"To include our block somewhere in Plone, we will use a Diazo rule. Let's "
+"open our ``rules.xml`` file in the root of our theme, and add the "
+"following lines:"
+msgstr ""
+"Para incluir nuestro bloque en algún lugar de Plone, usaremos una regla "
+"de Diazo. Abramos nuestro archivo ``rules.xml`` en la raíz de nuestro "
+"tema y agregue las siguientes líneas:"
+
+#: ../tutorial.rst:120
+msgid ""
+"The ``include`` directive allows us to retrieve a piece of content; in "
+"our case, the HTML form produced by our block. And the ``after`` "
+"directive inserts it after the main title in our page."
+msgstr ""
+"La directiva ``include`` nos permite recuperar una parte del contenido; "
+"En nuestro caso, la forma HTML producida por nuestro bloque. Y la "
+"directiva ``after`` inserta después del título principal en nuestra "
+"página."
+
+#: ../tutorial.rst:124
+msgid ""
+"So, now if we visit any page of our Plone site, we see our block "
+"displayed just under the title."
+msgstr ""
+"Por lo tanto, ahora si visitamos cualquier página de nuestro sitio de "
+"Plone, vemos nuestro bloque mostrado justo debajo del título."
+
+#: ../tutorial.rst:129
+msgid ""
+"That is nice, but there is a small problem: when we click on the "
+"*\"Like\"* button, we are redirected to the raw block content, and we "
+"lose our current Plone page."
+msgstr ""
+"Eso es bueno, pero hay un pequeño problema: cuando hacemos clic en el "
+"botón \"Like\", estamos redirigidos al contenido bruto del bloque, y "
+"perdemos nuestra página actual de Plone."
+
+#: ../tutorial.rst:132
+msgid "Let's fix that."
+msgstr "Vamos a arreglar eso."
+
+#: ../tutorial.rst:135
+msgid "Staying in our Plone page"
+msgstr "Estando en nuestra página Plone"
+
+#: ../tutorial.rst:137
+msgid ""
+"If we want to stay on our current page after submitting our block, we "
+"need to enable **AJAX** mode."
+msgstr ""
+"Si queremos permanecer en nuestra página actual después de enviar nuestro"
+" bloque, necesitamos habilitar el modo **AJAX**."
+
+#: ../tutorial.rst:140
+msgid "To do this, let's change our ``rate.yaml`` file like this:"
+msgstr "Para hacer esto, debe cambiar nuestro archivo ``rate.yaml`` así:"
+
+#: ../tutorial.rst:150
+msgid ""
+"Now, if we click on the *\"Like\"* button, the block is just reloaded "
+"dynamically, and we stay in our current page."
+msgstr ""
+"Ahora, si hacemos clic en el botón *\"Like\"*, el bloque se vuelve a "
+"cargar dinámicamente y nos quedamos en nuestra página actual."
+
+#: ../tutorial.rst:154
+msgid "Counting the votes"
+msgstr "Contando los votos"
+
+#: ../tutorial.rst:156
+msgid ""
+"Let's go back to ``rate.py``, and focus on the ``like`` function "
+"implementation."
+msgstr ""
+"Volvamos al archivo ``rate.py``, y nos enfocamos en la implementación de "
+"la función ``like``."
+
+#: ../tutorial.rst:158
+msgid ""
+"When a user clicks on the *\"Like\"* button, we need to get the current "
+"content the user voted for, check how many votes it already has, and add "
+"one new vote."
+msgstr ""
+"Cuando un usuario hace clic en el botón *\"Like\"*, necesitamos obtener "
+"el contenido actual que el usuario votó, comprobar cuántos votos ya tiene"
+" y agregar un nuevo voto."
+
+#: ../tutorial.rst:161
+msgid ""
+"Rapido allows to create **records**, so we will create a record for each "
+"content item, and we will use the content path as an id."
+msgstr ""
+"Rapido permite crear **registros**, por lo que crearemos un registro para"
+" cada elemento de contenido, y usaremos la ruta del contenido como un id."
+
+#: ../tutorial.rst:164
+msgid "So let's replace our current implementation with:"
+msgstr "Así que reemplacemos nuestra implementación actual por:"
+
+#: ../tutorial.rst:177
+msgid ""
+"``context.content`` returns the current Plone content, and "
+"``absolute_url_path`` is a Plone method returning the path of a Plone "
+"object."
+msgstr ""
+"``context.content`` devuelve el actual contenido de Plone y "
+"``absolute_url_path`` es un método Plone que devuelve la ruta de un "
+"objeto Plone."
+
+#: ../tutorial.rst:180
+msgid ""
+"``context.app`` allows to access to the current Rapido app, so we can "
+"easily use the Rapido API, like ``create_record`` or ``get_record``."
+msgstr ""
+"``context.app`` permite acceder a la actual aplicación Rapido, por lo que"
+" podemos fácilmente utilizar la API de Rapido, como ``create_record`` o "
+"``get_record``."
+
+#: ../tutorial.rst:183
+msgid ""
+"A Rapido record contains **items**. The ``get(item, default=none)`` "
+"method returns the value of the requested item or the default value if "
+"the item does not exist."
+msgstr ""
+"Un registro Rapido contiene **elementos**. El método ``get(item, "
+"default=none)`` devuelve el valor del elemento solicitado o el valor "
+"predeterminado si el elemento no existe."
+
+#: ../tutorial.rst:188
+msgid "Displaying the votes"
+msgstr "Mostrando los votos"
+
+#: ../tutorial.rst:190
+msgid ""
+"Now we are able to store votes, we also want to display the *total* of "
+"votes."
+msgstr ""
+"Ahora somos capaces de almacenar votos, también queremos mostrar el "
+"*total* de votos."
+
+#: ../tutorial.rst:192
+msgid "Fist, let's change the block layout in ``rate.html``:"
+msgstr "Primero, vamos a cambiar el diseño del bloque en el archivo ``rate.html``:"
+
+#: ../tutorial.rst:199
+msgid "So now we have a new ``display`` element in our block."
+msgstr "Así que ahora tenemos un nuevo elemento ``display`` en nuestro bloque."
+
+#: ../tutorial.rst:201
+msgid "We must declare it in ``rate.yaml``:"
+msgstr "Debemos declararlo en el archivo ``rate.yaml``:"
+
+#: ../tutorial.rst:212
+msgid "And let's implement it in ``rate.py``:"
+msgstr "Y vamos a implementarlo en el archivo ``rate.py``:"
+
+#: ../tutorial.rst:223
+msgid ""
+"We get the record corresponding to the current content, and we return as "
+"many ❤ as votes we have stored."
+msgstr ""
+"Obtenemos el registro correspondiente al contenido actual, y devolvemos "
+"tantos símbolos de ❤ como votos que hemos almacenado."
+
+#: ../tutorial.rst:228
+msgid "That's it! Our rating feature is ready to be used."
+msgstr "¡Eso es! Nuestra función de clasificación está lista para ser utilizada."
+
+#: ../tutorial.rst:231
+msgid "Debugging"
+msgstr "Depuración"
+
+#: ../tutorial.rst:233
+msgid ""
+"As we are writing code, we might (we will) make mistakes. In this case, ,"
+" it is always helpul to read the error messages returned by the system."
+msgstr ""
+"Como estamos escribiendo código, nosotros podríamos (vamos a) cometer "
+"errores. En este caso, siempre es útil leer los mensajes de error "
+"devueltos por el sistema."
+
+#: ../tutorial.rst:236
+msgid ""
+"It is also very helpful to be able to log messages from our code, so we "
+"understand what is going on exactly when it is executed."
+msgstr ""
+"También es muy útil poder registrar mensajes de nuestro código, asi "
+"entendemos lo que está sucediendo exactamente cuando se ejecuta."
+
+#: ../tutorial.rst:239
+msgid ""
+"Rapido provides the ``context.app.log()`` method which will log string "
+"messages or any serializable object (dictionnaries, arrays, etc.)."
+msgstr ""
+"Rapido provee el método ``context.app.log()`` que registrará mensajes de "
+"cadena o cualquier objeto serializable (diccionarios, arreglos, etc.)."
+
+#: ../tutorial.rst:242
+msgid ""
+"The log messages and the error messages are visible in the server log "
+"(but we might not be able to access it), but also in our browser's "
+"**javascript console**."
+msgstr ""
+"Los mensajes de registro y los mensajes de error están visibles en el "
+"registro del servidor (pero es posible que no podamos acceder a él), sino"
+" también en la **consola javascript** de nuestro navegador."
+
+#: ../tutorial.rst:245
+msgid ""
+"First thing to do is to enable the **debug mode** in our app. To do that,"
+" we need to create a ``settings.yaml`` file in ``/rapido/rating``:"
+msgstr ""
+"Lo primero que debemos hacer es activar el **modo de depuración** en "
+"nuestra aplicación. Para ello, necesitamos crear un archivo "
+"``settings.yaml`` dentro de la carpeta ``/rapido/rating``:"
+
+#: ../tutorial.rst:252
+msgid "And now, let's change our ``display`` function:"
+msgstr "Y ahora, cambiemos nuestra función ``display``:"
+
+#: ../tutorial.rst:264
+msgid "We will see the following in our browser's console:"
+msgstr "Veremos lo siguiente en la consola de nuestro navegador:"
+
+#: ../tutorial.rst:268
+msgid ""
+"Let's imagine now we made an error like forgetting the colon at the end "
+"of the ``if`` statement:"
+msgstr ""
+"Imaginemos ahora que cometimos un error como olvidar el carácter ``:`` al"
+" final de la sentencia ``if``:"
+
+#: ../tutorial.rst:280
+msgid "Then we get this:"
+msgstr "Entonces tenemos esto en la consola:"
+
+#: ../tutorial.rst:285
+msgid "Listing the top 5 items"
+msgstr "Listado de los 5 elementos mas votados"
+
+#: ../tutorial.rst:287
+msgid ""
+"We would also like to see the top 5 rated content items on the site home "
+"page."
+msgstr ""
+"También nos gustaría ver los 5 elementos de contenido más votados en la "
+"página principal del sitio."
+
+#: ../tutorial.rst:289
+msgid "The first thing we need is to index the ``total`` element."
+msgstr "Lo primero que necesitamos es indexar el elemento ``total``."
+
+#: ../tutorial.rst:291
+msgid "We declare its indexing mode in ``rate.yaml``:"
+msgstr "Declaramos ese modo índice en el archivo ``rate.yaml``:"
+
+#: ../tutorial.rst:305
+msgid ""
+"To index the previously stored values, we have to refresh the storage "
+"index by calling the following URL:"
+msgstr ""
+"Para indexar los valores almacenados previamente, debemos actualizar el "
+"índice de almacenamiento llamando a la siguiente dirección URL:"
+
+#: ../tutorial.rst:308
+msgid "http://localhost:8080/Plone/@@rapido/rating/refresh"
+msgstr "http://localhost:8080/Plone/@@rapido/rating/refresh"
+
+#: ../tutorial.rst:310
+msgid ""
+"And to make sure future changes will be indexed, we need to fix the "
+"``like`` function in the ``rate`` block: the indexing is triggered when "
+"we call the record's ``save`` method:"
+msgstr ""
+"Y para asegurarnos de que los cambios futuros serán indexados, "
+"necesitamos arreglar la función ``like`` en el bloque ``rate``: la "
+"indexación se dispara cuando llamamos al método ``save`` del registro:"
+
+#: ../tutorial.rst:326
+msgid "We are now able to build a block to display the top 5 contents:"
+msgstr "Ahora podemos crear un bloque para mostrar los 5 contenidos mas votados:"
+
+#: ../tutorial.rst:328
+msgid "``top5.html``:"
+msgstr "el archivo ``top5.html``:"
+
+#: ../tutorial.rst:335
+msgid "``top5.yaml``:"
+msgstr "el archivo ``top5.yaml``:"
+
+#: ../tutorial.rst:342
+msgid "``top5.py``:"
+msgstr "el archivo ``top5.py``:"
+
+#: ../tutorial.rst:358
+msgid ""
+"The ``search`` method allows us to query our stored records. The record "
+"ids are the content paths, so using the Plone API (``context.api``), we "
+"can easily get the corresponding contents, and then obtain their URLs and"
+" titles."
+msgstr ""
+"El método ``search`` nos permite consultar nuestros registros almacenados. "
+"Los identificadores de registro son las rutas de contenido, por lo que "
+"usando API de Plone (``context.api``), podemos obtener fácilmente el "
+"contenido correspondiente y luego obtener sus direcciones URL y títulos."
+
+#: ../tutorial.rst:362
+msgid "Our block works now:"
+msgstr "Nuestro bloque funciona ahora en la siguiente dirección URL:"
+
+#: ../tutorial.rst:364
+msgid "http://localhost:8080/Plone/@@rapido/rating/blocks/top5"
+msgstr "http://localhost:8080/Plone/@@rapido/rating/blocks/top5"
+
+#: ../tutorial.rst:366
+msgid ""
+"Finally, we have to insert our block in the home page. That will be done "
+"in ``rules.xml``:"
+msgstr ""
+"Finalmente, tenemos que insertar nuestro bloque en la página de inicio. "
+"Eso se hará en ``rules.xml``:"
+
+#: ../tutorial.rst:380
+msgid "Creating a new page for reports"
+msgstr "Creación de una nueva página para reportes"
+
+#: ../tutorial.rst:382
+msgid ""
+"For now, we have just added small chunks of HTML in existing pages. But "
+"Rapido also allows us to create a new page (a Plone developer would name "
+"it a new `view`)."
+msgstr ""
+"Por ahora, acabamos de añadir trozos pequeños de HTML en las páginas "
+"existentes. Pero Rapido también nos permite crear una nueva página (un "
+"desarrollador de Plone la nombraría una nueva `view` o vista)."
+
+#: ../tutorial.rst:385
+msgid ""
+"Let's pretend we want to create a report page about the votes on the "
+"content of a folder."
+msgstr ""
+"Supongamos que queremos crear una página de reportes sobre los votos "
+"sobre el contenido de una carpeta."
+
+#: ../tutorial.rst:388
+msgid "First, we need a block, ``report.html``:"
+msgstr "Primero, necesitamos un bloque, el archivo llamado ``report.html``:"
+
+#: ../tutorial.rst:395
+msgid "We want this block to be the main content of a new view."
+msgstr "Queremos que este bloque sea el contenido principal de una nueva vista."
+
+#: ../tutorial.rst:397
+msgid "We need to declare it in a new YAML file called ``report.yaml``:"
+msgstr "Necesitamos declarar en un nuevo archivo YAML llamado ``report.yaml``:"
+
+#: ../tutorial.rst:405
+msgid "Now if we visit for instance:"
+msgstr "Ahora si visitamos por ejemplo:"
+
+#: ../tutorial.rst:407
+msgid "http://localhost:8080/Plone/@@show-report"
+msgstr "http://localhost:8080/Plone/@@show-report"
+
+#: ../tutorial.rst:409
+msgid "we do see our block as main page content."
+msgstr "vemos nuestro bloque como contenido de la página principal."
+
+#: ../tutorial.rst:411
+msgid ""
+"Now we need to implement our report content. We could do it with a Rapido"
+" element like we did in the Top 5 block."
+msgstr ""
+"Ahora necesitamos implementar nuestro contenido de reporte. Podríamos "
+"hacerlo con un elemento Rapido como lo hicimos en el bloque Top 5."
+
+#: ../tutorial.rst:414
+msgid ""
+"Let's change our approach and implement a fancy pie chart using the "
+"`amazing D3js library <http://d3js.org/>`_ and the :doc:`Rapido REST API "
+"<./rest>`."
+msgstr ""
+"Vamos a cambiar nuestro enfoque e implementar una gráfico de pastel "
+"bonita utilizando la `increíble librería D3js <http://d3js.org/>`_ y la "
+":doc:`API REST de Rapido <./rest>`."
+
+#: ../tutorial.rst:417
+msgid ""
+"We need to create a Javascript file (``report.js``) in the "
+"``/rapido/rating`` folder:"
+msgstr ""
+"Necesitamos crear un archivo Javascript (``report.js``) en la carpeta "
+"``/rapido/rating``:"
+
+#: ../tutorial.rst:482
+msgid ""
+"That is quite a complex script, and we will not detail here the D3js-"
+"related aspects (it is just a typical example to draw a pie chart); we "
+"will focus on the way we obtain the data."
+msgstr ""
+"Ese es un script bastante complejo, y no detallaremos aquí los aspectos "
+"relacionados con D3js (es sólo un ejemplo típico para dibujar un gráfico "
+"circular tipo pastel); Nos centraremos en la forma en que obtenemos los "
+"datos."
+
+#: ../tutorial.rst:486
+msgid ""
+"The first thing to notice is the ``require`` function. It is a feature of"
+" the RequireJS library (provided with Plone by default) to load our "
+"dependencies."
+msgstr ""
+"Lo primero que debe notar es la función ``require``. Es una "
+"característica de la librería RequireJS (provista con Plone por defecto) "
+"para cargar nuestras dependencias."
+
+#: ../tutorial.rst:489
+msgid "We have 2 dependencies:"
+msgstr "Tenemos 2 dependencias:"
+
+#: ../tutorial.rst:491
+msgid "``mockup-utils``, which is a Plone internal resource,"
+msgstr "``mockup-utils``, que es un recurso interno de Plone,"
+
+#: ../tutorial.rst:492
+msgid "D3js (and we load it by passing its remote URL to RequireJS)."
+msgstr "La librería D3js (y lo cargamos pasando su URL remota a RequireJS)."
+
+#: ../tutorial.rst:494
+msgid ""
+"``mockup-utils`` allows us to get the authenticator token (with the "
+"``getAuthenticator`` method), we need it to use the Rapido REST API."
+msgstr ""
+"``mockup-utils`` nos permite obtener el token de autenticador (con el "
+"método ``getAuthenticator``), lo necesitamos para usar la API REST de "
+"Rapido."
+
+#: ../tutorial.rst:499
+msgid ""
+"RequireJS or ``mockup-utils`` are not mandatory to use the Rapido REST "
+"API, if we were outside of Plone (using Rapido as a remote backend), we "
+"would have made a call to ``../@@rapido/rating`` which returns the token "
+"in an HTTP header. We just use them because they are provided by Plone by"
+" default, and they make our work easier."
+msgstr ""
+"RequireJS o ``mockup-utils`` no son obligatorios para usar el API REST de"
+" Rapido, si estuviéramos fuera de Plone (utilizando Rapido como backend "
+"remoto), nosotros deberíamos hacer una llamada a ``../@@rapido/rating`` "
+"que devuelve el token en una cabecera HTTP. Solo los utilizamos porque "
+"son proporcionados por Plone por defecto, y facilitan nuestro trabajo."
+
+#: ../tutorial.rst:505
+msgid ""
+"Instead of loading D3 directly form its CDN, we could have put the "
+"``d3.v3.min.js`` in the ``/rapido/rating`` folder, and serve it locally."
+msgstr ""
+"En vez de la forma de cargar directamente D3 desde su CDN, podríamos haber "
+"puesto el archivo ``d3.v3.min.js`` en la carpeta ``/rapido/rating``, y "
+"servirlo localmente."
+
+#: ../tutorial.rst:508
+msgid "The second interesting part is the ``d3.json()`` call:"
+msgstr "La segunda parte interesante es la llamada al metodo ``d3.json()``:"
+
+#: ../tutorial.rst:510
+msgid "it calls the ``@@rapido/rating/search`` endpoint,"
+msgstr "ese llama al endpoint ``@@rapido/rating/search``,"
+
+#: ../tutorial.rst:511
+msgid "it puts the authenticator token in the ``X-Csrf-Token`` header,"
+msgstr "ese pone el token de autenticador en el encabezado ``X-Csrf-Token``,"
+
+#: ../tutorial.rst:512
+msgid "and it passes the search query in the request BODY."
+msgstr "y pasa la consulta de búsqueda en la solicitud BODY."
+
+#: ../tutorial.rst:514
+msgid ""
+"That is basically what we need to do whatever JS framework we use (here "
+"we use D3, but it could be a generalist framework like Angular, Backbone,"
+" Ember, etc.)."
+msgstr ""
+"Eso es básicamente lo que necesitamos hacer en cualquier framework JS que"
+" usamos (aquí usamos D3, pero podría ser un framework generalista como "
+"Angular, Backbone, Ember, etc.)."
+
+#: ../tutorial.rst:517
+msgid "Now we just need to load this script from our block:"
+msgstr "Ahora sólo necesitamos cargar este script desde nuestro bloque:"
+
+#: ../tutorial.rst:525
+msgid "And we can visit:"
+msgstr "Y podemos visitarlo en la siguiente dirección URL:"
+
+#: ../tutorial.rst:527
+msgid "http://localhost:8080/Plone/news/@@show-report"
+msgstr "http://localhost:8080/Plone/news/@@show-report"
+
+#: ../tutorial.rst:529
+msgid "to see a pie chart about votes on the *News* items!!"
+msgstr ""
+"para ver un gráfico circular de pastel de los votos en todos los tipos de "
+"contenido *Noticias* en la sección del sitio llamada *News*!!!"
+
+#: ../tutorial.rst:533
+msgid ""
+"Download the :download:`source files of this tutorial "
+"<files/tutorial.zip>`."
+msgstr ""
+"Descargue los :download:`códigos fuentes de este tutorial "
+"<files/tutorial.zip>`."
+
+#: ../tutorial.rst:537
+msgid ""
+"This .zip file can be imported in the theming editor, but it cannot be "
+"activated as a regular theme as it just contains our Rapido app. The app "
+"can be used from our main theme by adding a `rating.lnk` file in our "
+"current theme's ``rapido`` folder, containing::"
+msgstr ""
+"Este archivo .zip se puede importar en el editor de temas, pero no se puede "
+"activar como un tema regular, ya que sólo contiene nuestra aplicación "
+"Rapido. La aplicación puede utilizarse desde nuestro tema principal "
+"añadiendo un archivo `rating.lnk` en la carpeta ``rapido`` nuestro tema "
+"actual, que contiene::"
+
+#: ../tutorial.rst:542
+msgid ""
+"indicating the Rapido app named ``rating`` is stored in the theme named "
+"``tutorial``. And then we can activate our specific rules by adding:"
+msgstr ""
+"indicando que la aplicación Rapido denominada ``rating`` se almacena en el "
+"tema denominado ``tutorial``. Y luego podemos activar nuestras reglas "
+"específicas añadiendo:"
+
+#: ../tutorial.rst:557
+msgid "in our main theme's ``rules.xml``."
+msgstr "en nuestro principal archivo ``rules.xml`` del tema Diazo."
