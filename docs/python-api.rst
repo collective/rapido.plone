@@ -68,7 +68,7 @@ This property gives access to the Rapido application object.
 ``context.request`` and ``context.parent_request``
 --------------------------------------------------
 
-``context.request`` is the actual request to Rapido, like::
+``context.request`` is the actual request to Rapido, like:
 
     http://localhost:8080/Plone/@@rapido/rating/blocks/rate
 
@@ -81,7 +81,7 @@ To get the request issued by the user's browser, we use
 
 Both of them are HTTP requests objects, see the `reference documentation <http://docs.plone.org/develop/plone/serving/http_request_and_response.html>`_.
 
-Exemples:
+Examples:
 
 - Reading submitted values:
 
