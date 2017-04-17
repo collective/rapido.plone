@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Rapido 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-16 08:32-0400\n"
+"POT-Creation-Date: 2017-04-17 05:56-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -628,7 +628,11 @@ msgid "Direct HTTP call to elements"
 msgstr ""
 
 #: ../reference/elements.rst:79
-msgid "We usually want to display blocks, but we can also call an element by its URL::"
+msgid "We usually want to display blocks, but we can also call an element by its URL:"
+msgstr ""
+
+#: ../reference/elements.rst:81
+msgid "http://localhost:8080/Plone/@@rapido/myapp/blocks/block1/element1"
 msgstr ""
 
 #: ../reference/elements.rst:83
@@ -724,7 +728,11 @@ msgid "Records are indexed at the time they are saved. We can force reindexing u
 msgstr ""
 
 #: ../reference/indexing.rst:33
-msgid "We can also reindex all the records using the ``refresh`` URL command::"
+msgid "We can also reindex all the records using the ``refresh`` URL command:"
+msgstr ""
+
+#: ../reference/indexing.rst:35
+msgid "http://localhost:8080/Plone/@@rapido/<app-id>/refresh?_authenticator=<valid token>"
 msgstr ""
 
 #: ../reference/indexing.rst:37
