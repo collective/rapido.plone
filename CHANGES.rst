@@ -11,9 +11,19 @@ Breaking changes:
 
 New features:
 
-- *add item here*
+- Added Spanish translation for the rapido.plone documentation.
+  [macagua]
+
+- Added i18n support for the rapido.plone documentation.
+  [macagua]
 
 Bug fixes:
+
+- Updated the source code from the rapido.plone tutorial about the rating app.
+  [macagua]
+
+- Updated the rapido.plone tutorial documentation about the rating app.
+  [macagua]
 
 - Make it work in an Archetypes free environment:
   Bind event handlers directly on the OFS.Image.File class,
