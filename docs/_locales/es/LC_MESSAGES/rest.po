@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Rapido 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-16 08:32-0400\n"
-"PO-Revision-Date: 2017-04-17 09:00-0400\n"
+"PO-Revision-Date: 2017-04-17 19:46-0400\n"
 "Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
 "Language-Team: ES <LL@li.org>\n"
 "Language: es\n"
@@ -48,12 +48,16 @@ msgid ""
 "Returns the Rapido application settings and sets a token in the ``X-CSRF-"
 "TOKEN`` HTTP header value."
 msgstr ""
+"Devuelve la configuración de la aplicación Rapido y establece un token en el "
+"valor del encabezado HTTP ``X-CSRF-TOKEN``."
 
 #: ../rest.rst:27
 msgid ""
 "This HTTP header will have to be reused in all the requests made to the "
 "API (except for GET requests)."
 msgstr ""
+"Esta cabecera HTTP tendrá que ser reutilizada en todas las solicitudes "
+"hechas a la API (excepto para las solicitudes GET)."
 
 #: ../rest.rst:31
 msgid "Authentication"
@@ -65,6 +69,10 @@ msgid ""
 "successfully. You will need to generate an Authorization String (A Base64"
 " encoded version of your username and password separated by a dot)."
 msgstr ""
+"Algunas de las operaciones siguientes requieren autenticación antes de que "
+"se ejecuten correctamente. Tendrá que generar una cadena de autorización "
+"(una versión codificada Base64 de su nombre de usuario y contraseña "
+"separados por un punto)."
 
 #: ../rest.rst:36
 msgid "Basic Authorization String"
@@ -76,6 +84,9 @@ msgid ""
 "quickly generate the basic authorization string on the python prompt as "
 "follows::"
 msgstr ""
+"Si su nombre de usuario es \"john\" y su contraseña es \"password\", puede "
+"generar rápidamente la cadena de autorización básica en el indicador python "
+"de la siguiente manera::"
 
 #: ../rest.rst:43
 msgid "Now you can use this header in all your requests::"
@@ -86,6 +97,8 @@ msgid ""
 "The expected X-CSRF-TOKEN will be change when you use a Basic "
 "Authorization header."
 msgstr ""
+"El X-CSRF-TOKEN esperado cambiará cuando utilice un encabezado de "
+"autorización básica."
 
 #: ../rest.rst:50
 msgid "Compute an element"
@@ -100,6 +113,8 @@ msgid ""
 "Returns the value returned by the element computation. The X-CSRF-TOKEN "
 "is not needed for a GET if the computation does not produce any change."
 msgstr ""
+"Devuelve el valor devuelto por el cálculo del elemento. El X-CSRF-TOKEN no "
+"es necesario para un GET si el cálculo no produce ningún cambio."
 
 #: ../rest.rst:74
 msgid "Get a record"
@@ -131,7 +146,7 @@ msgstr "Crear muchos registros"
 
 #: ../rest.rst:145
 msgid "Bulk creation of records."
-msgstr ""
+msgstr "Creación masiva de registros."
 
 #: ../rest.rst:148
 msgid "Create a new record by id"
