@@ -1,0 +1,223 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2015, Makina Corpus
+# This file is distributed under the same license as the Rapido package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Rapido 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-16 08:32-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../use-cases/book.rst:2
+msgid "Use *Rapido* to create custom *SearchableText* field"
+msgstr ""
+
+#: ../use-cases/book.rst:5
+#: ../use-cases/glossary.rst:5
+msgid "Objective"
+msgstr ""
+
+#: ../use-cases/book.rst:7
+msgid "Create TTW (Through The Web) a *Book* content type where fields are indexed for a full-text search."
+msgstr ""
+
+#: ../use-cases/book.rst:10
+msgid "Content type"
+msgstr ""
+
+#: ../use-cases/book.rst:12
+msgid "Add a new content type *Book* on the *Dexterity Content Types* control panel (http://localhost:8080/Plone/@@dexterity-types)."
+msgstr ""
+
+#: ../use-cases/book.rst:17
+msgid "Edit the *Book* configuration (http://localhost:8080/Plone/dexterity-types/book). In the *Behaviors* tab, uncheck the *Dublin Core metadata* behavior and *Save*. In the *Fields* tab, click on the *Edit XML Field Model* button and replace the XML model by:"
+msgstr ""
+
+#: ../use-cases/book.rst:65
+msgid "You can now add *Book* content in your web site (http://localhost:8080/Plone/++add++book)."
+msgstr ""
+
+#: ../use-cases/book.rst:70
+msgid "Full text search field"
+msgstr ""
+
+#: ../use-cases/book.rst:72
+msgid "If you have a lot of books in your site, you would like to search on the author's name or the back cover content. To do this we have to provide a ``SearchableText`` method or field which give the content of the full-text index. We'll use a *rapido block* and a *rapido content rule action* to compute this ``SearchableText`` field."
+msgstr ""
+
+#: ../use-cases/book.rst:77
+msgid "Rapido block"
+msgstr ""
+
+#: ../use-cases/book.rst:79
+msgid "Go to the *Theming* control panel (http://localhost:8080/Plone/@@theming-controlpanel). Create a new theme *MyTheme* with this structure."
+msgstr ""
+
+#: ../use-cases/book.rst:92
+msgid "Look for example at the `Inheriting a new theme from Barceloneta <http://docs.plone.org/adapt-and-extend/theming/barceloneta.html#inheriting-a-new-theme-from-barceloneta>`_ section of the Plone documentation for the content of ``index.html``, ``manifest.cfg`` and ``rules.xml`` files."
+msgstr ""
+
+#: ../use-cases/book.rst:96
+msgid "Content of ``fields.py`` file:"
+msgstr ""
+
+#: ../use-cases/book.rst:115
+msgid "We use the ``portal_transforms`` tool to convert the ``back_cover`` HTML field to plain text. We also need to reindex the content."
+msgstr ""
+
+#: ../use-cases/book.rst:119
+msgid "Rapido content rule action"
+msgstr ""
+
+#: ../use-cases/book.rst:121
+msgid "The last thing we need is a *rapido content rule action* which is used on each book modification."
+msgstr ""
+
+#: ../use-cases/book.rst:123
+msgid "Go to the *Content Rules* (http://localhost:8080/Plone/@@rules-controlpanel) and add a rule which is triggered on *Object modified* event."
+msgstr ""
+
+#: ../use-cases/book.rst:127
+msgid "Add a *Content type* condition on *Book*. Add a *Rapido action*."
+msgstr ""
+
+#: ../use-cases/book.rst:132
+msgid "Assign the content rule on the whole site and *Save*."
+msgstr ""
+
+#: ../use-cases/book.rst:137
+msgid "Exercise"
+msgstr ""
+
+#: ../use-cases/book.rst:139
+msgid "Modify the code above to compute a *Description* field which will be used in Plone listings."
+msgstr ""
+
+#: ../use-cases/book.rst:142
+msgid "Custom book view"
+msgstr ""
+
+#: ../use-cases/book.rst:144
+msgid "To build a custom book view, the simplest solution is to use a *Diazo* rule."
+msgstr ""
+
+#: ../use-cases/book.rst:146
+msgid "For example, you can add in the ``rules.xml`` file of your theme the following ``diazo rule``:"
+msgstr ""
+
+#: ../use-cases/book.rst:171
+msgid "Our new custom book views:"
+msgstr ""
+
+#: ../use-cases/glossary.rst:2
+msgid "Glossary use case"
+msgstr ""
+
+#: ../use-cases/glossary.rst:7
+msgid "We want to provide a tool to manage a list of terms and their definitions:"
+msgstr ""
+
+#: ../use-cases/glossary.rst:11
+msgid "Every time one of these terms appears on a page of our site, it will be wrapped into a `<abbr>` tag, the title of which will be the definition, so when we hover a term, we get a small popup indicating its definition:"
+msgstr ""
+
+#: ../use-cases/glossary.rst:18
+msgid "Application structure"
+msgstr ""
+
+#: ../use-cases/glossary.rst:35
+msgid "Rules.xml"
+msgstr ""
+
+#: ../use-cases/glossary.rst:43
+msgid "This rule inserts in all our pages a javascript file in charge of replacing matching words with ``<abbr>`` tags."
+msgstr ""
+
+#: ../use-cases/glossary.rst:47
+msgid "The ``term`` block"
+msgstr ""
+
+#: ../use-cases/glossary.rst:49
+msgid "This block is a form allowing to create/edit/delete a glossary term. It contains two field elements and three actions."
+msgstr ""
+
+#: ../use-cases/glossary.rst:52
+msgid "``term.html``"
+msgstr ""
+
+#: ../use-cases/glossary.rst:60
+msgid "``term.yaml``"
+msgstr ""
+
+#: ../use-cases/glossary.rst:78
+msgid "``term.py``"
+msgstr ""
+
+#: ../use-cases/glossary.rst:91
+msgid "If we click on any action in this block, we want to be redirected to the main management page. We do that by returning the ``all`` block URL (when an action returns a string, it is used as a redirection URL)."
+msgstr ""
+
+#: ../use-cases/glossary.rst:96
+msgid "The ``all`` block"
+msgstr ""
+
+#: ../use-cases/glossary.rst:98
+msgid "This block lists all the existing terms in a table. When we click on a term, we open it in the ``term`` block in edit mode, and a button allows opening a blank ``term`` block to create a new term."
+msgstr ""
+
+#: ../use-cases/glossary.rst:102
+msgid "``all.html``"
+msgstr ""
+
+#: ../use-cases/glossary.rst:111
+msgid "``all.yaml``"
+msgstr ""
+
+#: ../use-cases/glossary.rst:125
+msgid "The ``view`` setting allows to render the ``all`` block as Plone view named ``@@glossary``, so we can call http://localhost:8080/Plone/@@glossary to see it."
+msgstr ""
+
+#: ../use-cases/glossary.rst:127
+msgid "``all.py``"
+msgstr ""
+
+#: ../use-cases/glossary.rst:144
+msgid "The ``list`` function builds a table row for each existing record, displaying the *term* value and the *definition* value. The link we put on the term targets the record URL (plus `/edit` to open it in edit mode) and we have added `target=\"ajax\"` so the resulting page is not displayed as a full page, it is just loaded into the current block in AJAX mode."
+msgstr ""
+
+#: ../use-cases/glossary.rst:151
+msgid "The Javascript"
+msgstr ""
+
+#: ../use-cases/glossary.rst:153
+msgid "``glossary.js``"
+msgstr ""
+
+#: ../use-cases/glossary.rst:193
+msgid "First thing we do is to check if we are in edit mode, and if we are, we stop, as we do not want to manipulate the HTML currently being edited in TinyMCE or in any input field."
+msgstr ""
+
+#: ../use-cases/glossary.rst:197
+msgid "Then we load the glossary terms with the following JSON call: ``/tutorial/@@rapido/glossary/records``"
+msgstr ""
+
+#: ../use-cases/glossary.rst:200
+msgid "Using the term values we have loaded, we build a regular expression able to match those terms in any text."
+msgstr ""
+
+#: ../use-cases/glossary.rst:203
+msgid "Then we iterate on the page main content (``#content-core``) elements, and every time we find a text node, we use our regular expression to replace the matching words with an ``<abbr>`` tag where the ``title`` attribute is the associated definition."
+msgstr ""
+
+#: ../use-cases/index.rst:2
+msgid "Use cases"
+msgstr ""
+

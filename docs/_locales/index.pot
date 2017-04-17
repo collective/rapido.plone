@@ -1,0 +1,62 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2015, Makina Corpus
+# This file is distributed under the same license as the Rapido package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Rapido 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-16 08:32-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../index.rst:7
+msgid "Rapido"
+msgstr ""
+
+#: ../index.rst:9
+msgid "**Happy hacking with Plone**"
+msgstr ""
+
+#: ../index.rst:15
+msgid "What for?"
+msgstr ""
+
+#: ../index.rst:17
+msgid "Creating a small form able to send an email, or to store some data, generating some extra information about a page and inserting it wherever we want: with Plone these kind of tasks are complex for experts, and almost impossible for beginners."
+msgstr ""
+
+#: ../index.rst:21
+msgid "**rapido.plone** allows any developer having a little knowledge of HTML and a little knowledge of Python to implement custom elements and insert them anywhere they want in their Plone site."
+msgstr ""
+
+#: ../index.rst:26
+msgid "How?"
+msgstr ""
+
+#: ../index.rst:28
+msgid "The unique interface to build applications with rapido.plone is the **Plone theming tool**."
+msgstr ""
+
+#: ../index.rst:31
+msgid "It implies it can be achieved in the **file system** or through the **inline theming editor**."
+msgstr ""
+
+#: ../index.rst:34
+msgid "A Rapido application is just a part of our current theme; it can be imported, exported, copied, modified, etc. like the rest of the theme."
+msgstr ""
+
+#: ../index.rst:37
+msgid "Moreover, we can use `Diazo <http://docs.diazo.org/en/latest/>`_ extensively to inject our application in the Plone layout easily."
+msgstr ""
+
+#: ../index.rst:40
+msgid "Contents:"
+msgstr ""
+

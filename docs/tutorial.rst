@@ -31,7 +31,7 @@ interface (i.e. there is no *"Modify theme"* button),
 we will first need to create an editable copy:
 
 - click on *"Copy"*,
-- enter a name,
+- enter a name, for example *"test"*.
 - check *"Immediately enable new theme"*.
 
 Else, we just click on the *"Modify theme"* button.
@@ -98,7 +98,7 @@ will be rendered as a button), and its displayed label is *"Like"*.
 
 Now that our block is ready, we can see it using the following URL:
 
-http://localhost:8080/Plone/@@rapido/rating/blocks/rate
+    http://localhost:8080/Plone/@@rapido/rating/blocks/rate
 
 .. image:: files/screen-3.png
 
@@ -218,7 +218,7 @@ And let's implement it in ``rate.py``:
         record = context.app.get_record(content_path)
         if not record:
             return ''
-        return "❤" * record.get('total', 0)
+        return "&#10084;" * record.get('total', 0)
 
 We get the record corresponding to the current content, and we return as many ❤
 as votes we have stored.
@@ -259,7 +259,7 @@ And now, let's change our ``display`` function:
         if not record:
             return ''
         context.app.log(record.items())
-        return "❤" * record.get('total', 0)
+        return "&#10084;" * record.get('total', 0)
 
 We will see the following in our browser's console:
 
@@ -275,7 +275,7 @@ Let's imagine now we made an error like forgetting the colon at the end of the
         record = context.app.get_record(content_path)
         if not record
             return ''
-        return "❤" * record.get('total', 0)
+        return "&#10084;" * record.get('total', 0)
 
 Then we get this:
 
@@ -293,17 +293,17 @@ We declare its indexing mode in ``rate.yaml``:
 .. code-block:: yaml
 
     target: ajax
-        elements:
-            like:
-                type: ACTION
-                label: Like
-            display: BASIC
-            total:
-                type: NUMBER
-                index_type: field
+    elements:
+        like:
+            type: ACTION
+            label: Like
+        display: BASIC
+        total:
+            type: NUMBER
+            index_type: field
 
 To index the previously stored values,
-we have to refresh the storage index by calling the following URL::
+we have to refresh the storage index by calling the following URL:
 
     http://localhost:8080/Plone/@@rapido/rating/refresh
 
@@ -348,7 +348,7 @@ We are now able to build a block to display the top 5 contents:
         html = "<ul>"
         for record in search:
             content = context.api.content.get(path=record["id"])
-            html += '<li><a href="%s">%s</a> %d ❤</li>' % (
+            html += '<li><a href="%s">%s</a> %d &#10084;</li>' % (
                 content.absolute_url(),
                 content.title,
                 record["total"]) 
@@ -359,9 +359,9 @@ The ``search`` method allows us to query our stored records. The record ids are
 the content paths, so using the Plone API (``context.api``), we can easily
 get the corresponding contents, and then obtain their URLs and titles.
 
-Our block works now::
+Our block works now:
 
-    http://localhost:8080/tutorial/@@rapido/rating/blocks/top5
+    http://localhost:8080/Plone/@@rapido/rating/blocks/top5
 
 Finally, we have to insert our block in the home page.
 That will be done in ``rules.xml``:
@@ -394,7 +394,7 @@ First, we need a block, ``report.html``:
 
 We want this block to be the main content of a new view.
 
-We need to declare it in its YAML file:
+We need to declare it in a new YAML file called ``report.yaml``:
 
 .. code-block:: yaml
 
@@ -402,9 +402,9 @@ We need to declare it in its YAML file:
         id: show-report
         with_theme: true
 
-Now if we visit for instance::
+Now if we visit for instance:
 
-    http://localhost:8080/tutorial/@@show-report
+    http://localhost:8080/Plone/@@show-report
 
 we do see our block as main page content.
 
@@ -495,7 +495,7 @@ method), we need it to use the Rapido REST API.
 
     - RequireJS or ``mockup-utils`` are not mandatory to use the Rapido REST API,
       if we were outside of Plone (using Rapido as a remote backend),
-      we would have made a call to ``/tutorial/@@rapido/rating`` which returns the
+      we would have made a call to ``../@@rapido/rating`` which returns the
       token in an HTTP header.
       We just use them because they are provided by Plone by default, and they make our
       work easier.
@@ -519,9 +519,9 @@ Now we just need to load this script from our block:
     <div id="chart"></div>
     <script src="++theme++test/rapido/rating/report.js"></script>
 
-And we can visit::
+And we can visit:
 
-    http://localhost:8080/tutorial/news/@@show-report
+    http://localhost:8080/Plone/news/@@show-report
 
 to see a pie chart about votes on the *News* items!!
 

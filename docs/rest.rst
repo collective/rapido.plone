@@ -56,8 +56,7 @@ Compute an element
     Accept: application/json
     X-CSRF-TOKEN: :token
 
-or
-::
+or::
 
     POST /:site_id/@@rapido/:app_id/blocks/:block_id/:element_id
     Accept: application/json
@@ -208,8 +207,7 @@ Update a record
     X-CSRF-TOKEN: :token
     {"item1": "newvalue1"}
 
-or
-::
+or::
 
     PATCH /:site_id/@@rapido/:app_id/record/:record_id
     Accept: application/json

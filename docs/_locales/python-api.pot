@@ -1,0 +1,465 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2015, Makina Corpus
+# This file is distributed under the same license as the Rapido package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Rapido 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-16 08:32-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../python-api.rst:2
+msgid "Python API"
+msgstr ""
+
+#: ../python-api.rst:4
+msgid "Any Rapido Python function receives ``context`` as parameter."
+msgstr ""
+
+#: ../python-api.rst:6
+msgid "The ``context`` provides the following properties:"
+msgstr ""
+
+#: ../python-api.rst:12
+msgid "``context.app``"
+msgstr ""
+
+#: ../python-api.rst:14
+msgid "This property gives access to the Rapido application object."
+msgstr ""
+
+#: ../python-api.rst:16
+#: ../python-api.rst:253
+msgid "*Properties*"
+msgstr ""
+
+#: ../python-api.rst:19
+msgid "``acl``"
+msgstr ""
+
+#: ../python-api.rst:19
+msgid "Returns the Rapido application's access control list object (see below)."
+msgstr ""
+
+#: ../python-api.rst:22
+msgid "``blocks``"
+msgstr ""
+
+#: ../python-api.rst:22
+msgid "Returns the existing block ids."
+msgstr ""
+
+#: ../python-api.rst:25
+msgid "``indexes``"
+msgstr ""
+
+#: ../python-api.rst:25
+msgid "Returns the existing index ids."
+msgstr ""
+
+#: ../python-api.rst:28
+#: ../python-api.rst:256
+msgid "``url``"
+msgstr ""
+
+#: ../python-api.rst:28
+msgid "Returns the application URL."
+msgstr ""
+
+#: ../python-api.rst:30
+#: ../python-api.rst:261
+msgid "*Methods*"
+msgstr ""
+
+#: ../python-api.rst:36
+msgid "``create_record(self, id=None)``"
+msgstr ""
+
+#: ../python-api.rst:33
+msgid "Creates and return a new record. If ``id`` is not provided, a default one is generated. If ``id`` already exists, it is replaced with another one (like ``...-1``, ``...-2``)."
+msgstr ""
+
+#: ../python-api.rst:42
+msgid "``delete_record(self, id=None, record=None, ondelete=True)``"
+msgstr ""
+
+#: ../python-api.rst:39
+msgid "Delete the record (which can be passed as object or id). If ``ondelete`` is truthy, the ``on_delete`` function will be called (if it exists) before deleting the record."
+msgstr ""
+
+#: ../python-api.rst:45
+msgid "``get_block(self, block_id)``"
+msgstr ""
+
+#: ../python-api.rst:45
+msgid "Returns a block."
+msgstr ""
+
+#: ../python-api.rst:49
+msgid "``get_record(self, id)``"
+msgstr ""
+
+#: ../python-api.rst:48
+msgid "Returns the record corresponding to the ``id``, or ``None`` if it does not exist."
+msgstr ""
+
+#: ../python-api.rst:54
+msgid "``log(self, message)``"
+msgstr ""
+
+#: ../python-api.rst:52
+msgid "Logs a message in the server log. If the app is in *debug* mode, logs the same message in the browser's javascript console. Messages can be strings or any other serializable object."
+msgstr ""
+
+#: ../python-api.rst:57
+msgid "``records(self)``"
+msgstr ""
+
+#: ../python-api.rst:57
+msgid "Returns all the records as a list."
+msgstr ""
+
+#: ../python-api.rst:60
+msgid "``_records(self)``"
+msgstr ""
+
+#: ../python-api.rst:60
+msgid "Returns all the records as a Python generator."
+msgstr ""
+
+#: ../python-api.rst:63
+msgid "``search(self, query, sort_index=None, reverse=False)``"
+msgstr ""
+
+#: ../python-api.rst:63
+msgid "Performs a search and returns records as a list."
+msgstr ""
+
+#: ../python-api.rst:66
+msgid "``_search(self, query, sort_index=None, reverse=False)``"
+msgstr ""
+
+#: ../python-api.rst:66
+msgid "Performs a search and returns records as a Python generator."
+msgstr ""
+
+#: ../python-api.rst:69
+msgid "``context.request`` and ``context.parent_request``"
+msgstr ""
+
+#: ../python-api.rst:71
+msgid "``context.request`` is the actual request to Rapido, like::"
+msgstr ""
+
+#: ../python-api.rst:75
+msgid "When a block is embedded in a Plone page, ``context.request`` was issued by the user's browser, it was issued by Diazo."
+msgstr ""
+
+#: ../python-api.rst:79
+msgid "To get the request issued by the user's browser, we use ``context.parent_request``."
+msgstr ""
+
+#: ../python-api.rst:82
+msgid "Both of them are HTTP requests objects, see the `reference documentation <http://docs.plone.org/develop/plone/serving/http_request_and_response.html>`_."
+msgstr ""
+
+#: ../python-api.rst:84
+msgid "Exemples:"
+msgstr ""
+
+#: ../python-api.rst:86
+msgid "Reading submitted values:"
+msgstr ""
+
+#: ../python-api.rst:93
+msgid "Reading the ``BODY``:"
+msgstr ""
+
+#: ../python-api.rst:101
+msgid "``context.portal``"
+msgstr ""
+
+#: ../python-api.rst:103
+msgid "Return the Plone portal object."
+msgstr ""
+
+#: ../python-api.rst:105
+msgid "It is equivalent to:"
+msgstr ""
+
+#: ../python-api.rst:111
+msgid "The most common task we will perform through the portal object is to get its contents:"
+msgstr ""
+
+#: ../python-api.rst:118
+msgid "``context.content``"
+msgstr ""
+
+#: ../python-api.rst:120
+msgid "It returns the current Plone content."
+msgstr ""
+
+#: ../python-api.rst:122
+msgid "The most common tasks we will perform on the content are:"
+msgstr ""
+
+#: ../python-api.rst:124
+msgid "reading/writing its attributes (read/write):"
+msgstr ""
+
+#: ../python-api.rst:131
+msgid "getting its URL:"
+msgstr ""
+
+#: ../python-api.rst:137
+msgid "To manipulate the content, refer to the `Plone API documentation about contents <http://docs.plone.org/develop/plone.api/docs/content.html>`_."
+msgstr ""
+
+#: ../python-api.rst:141
+msgid "Depending on its content type, the content object might have very different methods and properties."
+msgstr ""
+
+#: ../python-api.rst:144
+msgid "``context.record``"
+msgstr ""
+
+#: ../python-api.rst:146
+msgid "It returns the current Rapido record if any."
+msgstr ""
+
+#: ../python-api.rst:148
+msgid "See `Record`_ for more information."
+msgstr ""
+
+#: ../python-api.rst:151
+msgid "``context.api``"
+msgstr ""
+
+#: ../python-api.rst:153
+msgid "It gives access to the full `Plone API <http://docs.plone.org/develop/plone.api/docs/index.html>`_."
+msgstr ""
+
+#: ../python-api.rst:157
+msgid "There is no need to import the API, as shown in all the Plone API examples:"
+msgstr ""
+
+#: ../python-api.rst:163
+msgid "because the API is already available in the Rapido `context`:"
+msgstr ""
+
+#: ../python-api.rst:169
+msgid "This API mainly allows:"
+msgstr ""
+
+#: ../python-api.rst:171
+msgid "to search contents; for example:"
+msgstr ""
+
+#: ../python-api.rst:183
+msgid "to manipulate contents (create / delete / move / publish / etc.), example:"
+msgstr ""
+
+#: ../python-api.rst:194
+msgid "to access or manage the users and groups information, and send emails. Example:"
+msgstr ""
+
+#: ../python-api.rst:206
+msgid "For more detailed examples, refer to the `Plone API documentation <http://docs.plone.org/develop/plone.api/docs/index.html>`_."
+msgstr ""
+
+#: ../python-api.rst:209
+msgid "``context.rapido``"
+msgstr ""
+
+#: ../python-api.rst:211
+msgid "``context.rapido`` is a function able to obtain another Rapido application in our current script."
+msgstr ""
+
+#: ../python-api.rst:213
+msgid "It takes as mandatory parameter the id of the Rapido application. Example:"
+msgstr ""
+
+#: ../python-api.rst:220
+msgid "It might also accept a ``content`` parameter to provide a specific content context to the app (if not provided, it will take the current content). Example:"
+msgstr ""
+
+#: ../python-api.rst:229
+msgid "``context.modules``"
+msgstr ""
+
+#: ../python-api.rst:231
+msgid "For security reason, it is not allowed to import a Python module in a Rapido Python file."
+msgstr ""
+
+#: ../python-api.rst:233
+msgid "Rapido provides some safe modules through ``context.modules``:"
+msgstr ""
+
+#: ../python-api.rst:235
+msgid "``context.modules.datetime``: `Basic date and time types <https://docs.python.org/2/library/datetime.html>`_,"
+msgstr ""
+
+#: ../python-api.rst:236
+msgid "``context.modules.random``: `Generate pseudo-random numbers <https://docs.python.org/2/library/random.html>`_,"
+msgstr ""
+
+#: ../python-api.rst:237
+msgid "``context.modules.time``: `Time access and conversions <https://docs.python.org/2/library/time.html>`_."
+msgstr ""
+
+#: ../python-api.rst:239
+msgid "If we need to add extra modules to ``context.modules``, we can do it by adding in our own add-on something like:"
+msgstr ""
+
+#: ../python-api.rst:248
+msgid "In this example, we allow to access ``context.modules.re`` from our Rapido Python files."
+msgstr ""
+
+#: ../python-api.rst:251
+msgid "Record"
+msgstr ""
+
+#: ../python-api.rst:256
+msgid "Returns the record URL."
+msgstr ""
+
+#: ../python-api.rst:259
+msgid "``id``"
+msgstr ""
+
+#: ../python-api.rst:259
+msgid "Returns the record identifier."
+msgstr ""
+
+#: ../python-api.rst:264
+msgid "``display(self, edit=False)``"
+msgstr ""
+
+#: ../python-api.rst:264
+msgid "Render the record using its associated block (if any)."
+msgstr ""
+
+#: ../python-api.rst:268
+msgid "``get(self, name, default=None)``"
+msgstr ""
+
+#: ../python-api.rst:267
+msgid "Returns the value of the item (and defaults to ``default`` if the item does not exist)."
+msgstr ""
+
+#: ../python-api.rst:271
+msgid "``items(self)``"
+msgstr ""
+
+#: ../python-api.rst:271
+msgid "Returns all the stored items."
+msgstr ""
+
+#: ../python-api.rst:274
+msgid "``reindex(self)``"
+msgstr ""
+
+#: ../python-api.rst:274
+msgid "Re-index the record."
+msgstr ""
+
+#: ../python-api.rst:284
+msgid "``save(self, request=None, block=None, block_id=None, creation=False)``"
+msgstr ""
+
+#: ../python-api.rst:277
+msgid "Update the record with the provided items and index it."
+msgstr ""
+
+#: ../python-api.rst:279
+msgid "``request`` can be an actual HTTP request or a dictionnary."
+msgstr ""
+
+#: ../python-api.rst:281
+msgid "If a block is mentionned, formulas (``on_save``, computed elements, etc.) will be executed."
+msgstr ""
+
+#: ../python-api.rst:284
+msgid "If no block (and ``request`` is a dict), we just save the items values."
+msgstr ""
+
+#: ../python-api.rst:288
+msgid "``set_block(self, block_id)``"
+msgstr ""
+
+#: ../python-api.rst:287
+msgid "Assign a block to the record. The block will be then used to render the record or to save it."
+msgstr ""
+
+#: ../python-api.rst:290
+msgid "*Python dictionary-like interface*"
+msgstr ""
+
+#: ../python-api.rst:292
+msgid "The record's items can be accessed and manipulated like dictionary items:"
+msgstr ""
+
+#: ../python-api.rst:304
+msgid "When setting an item value, the record is not reindexed."
+msgstr ""
+
+#: ../python-api.rst:307
+msgid "Access control list"
+msgstr ""
+
+#: ../python-api.rst:311
+msgid "The application access control list can be obtain by ``context.app.acl``."
+msgstr ""
+
+#: ../python-api.rst:313
+msgid "**Methods**"
+msgstr ""
+
+#: ../python-api.rst:317
+msgid "``current_user(self)``"
+msgstr ""
+
+#: ../python-api.rst:316
+msgid "Returns the current user id. Equivalent to:"
+msgstr ""
+
+#: ../python-api.rst:325
+msgid "``current_user_groups(self)``"
+msgstr ""
+
+#: ../python-api.rst:324
+msgid "Returns the groups the current user belongs to. Equivalent to:"
+msgstr ""
+
+#: ../python-api.rst:333
+msgid "``has_access_right(self, access_right)``"
+msgstr ""
+
+#: ../python-api.rst:332
+msgid "Returns ``True`` if the current user has the specified access right (Rapido access rights are ``reader``, ``author``, ``editor``, ``manager``)"
+msgstr ""
+
+#: ../python-api.rst:336
+msgid "``has_role(self, role_id)``"
+msgstr ""
+
+#: ../python-api.rst:336
+msgid "Returns ``True`` if the current user has the specified role."
+msgstr ""
+
+#: ../python-api.rst:338
+msgid "``roles(self)``"
+msgstr ""
+
+#: ../python-api.rst:339
+msgid "Returns the existing roles."
+msgstr ""
+

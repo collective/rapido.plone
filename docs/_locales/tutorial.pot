@@ -1,0 +1,486 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2015, Makina Corpus
+# This file is distributed under the same license as the Rapido package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Rapido 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-16 08:32-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../tutorial.rst:2
+msgid "Tutorial"
+msgstr ""
+
+#: ../tutorial.rst:4
+msgid "How to build a content rating system in Plone in few minutes."
+msgstr ""
+
+#: ../tutorial.rst:7
+msgid "Objective"
+msgstr ""
+
+#: ../tutorial.rst:9
+msgid "We want to offer to our visitors the ability to click on a *\"Like\"* button on any Plone content, and the total of votes must be displayed next to the button."
+msgstr ""
+
+#: ../tutorial.rst:14
+msgid "There is a screencast covering the `first steps of the Rapido tutorial <https://www.youtube.com/watch?v=a7B-lX0caW0>`_."
+msgstr ""
+
+#: ../tutorial.rst:18
+msgid "Prerequisites"
+msgstr ""
+
+#: ../tutorial.rst:20
+msgid "Run buildout to deploy Rapido and its dependencies (see :doc:`./installation`)."
+msgstr ""
+
+#: ../tutorial.rst:22
+msgid "Install the ``rapido.plone`` add-on from Plone site setup."
+msgstr ""
+
+#: ../tutorial.rst:25
+msgid "Initializing the Rapido app"
+msgstr ""
+
+#: ../tutorial.rst:27
+msgid "We go to Plone *Site setup*, and then *Theming*."
+msgstr ""
+
+#: ../tutorial.rst:29
+msgid "If our current active theme is not editable inline through the Plone web interface (i.e. there is no *\"Modify theme\"* button), we will first need to create an editable copy:"
+msgstr ""
+
+#: ../tutorial.rst:33
+msgid "click on *\"Copy\"*,"
+msgstr ""
+
+#: ../tutorial.rst:34
+msgid "enter a name, for example *\"test\"*."
+msgstr ""
+
+#: ../tutorial.rst:35
+msgid "check *\"Immediately enable new theme\"*."
+msgstr ""
+
+#: ../tutorial.rst:37
+msgid "Else, we just click on the *\"Modify theme\"* button."
+msgstr ""
+
+#: ../tutorial.rst:39
+msgid "We can see our theme structure, containing CSS files, images, HTML, and Diazo rules."
+msgstr ""
+
+#: ../tutorial.rst:42
+msgid "To initialize our Rapido app named \"rating\", we need to:"
+msgstr ""
+
+#: ../tutorial.rst:44
+msgid "create a folder maned ``rapido`` in the theme root,"
+msgstr ""
+
+#: ../tutorial.rst:45
+msgid "in this ``rapido`` folder, create a folder named ``rating``."
+msgstr ""
+
+#: ../tutorial.rst:49
+msgid "The application is now ready."
+msgstr ""
+
+#: ../tutorial.rst:52
+msgid "Creating the \"Like\" button"
+msgstr ""
+
+#: ../tutorial.rst:54
+msgid "Rapido apps are composed of **blocks**. Let's create a block that will render our button:"
+msgstr ""
+
+#: ../tutorial.rst:57
+msgid "go to the ``rating`` folder and create a new folder named ``blocks``,"
+msgstr ""
+
+#: ../tutorial.rst:58
+msgid "in this ``blocks`` folder, let's create a new block named ``rate``. To do this, we need to create 3 files:"
+msgstr ""
+
+#: ../tutorial.rst:63
+msgid "The ``rate.html`` file:"
+msgstr ""
+
+#: ../tutorial.rst:69
+msgid "This allows us to implement the block layout. It is a regular HTML file, but it may contain Rapido **elements**, enclosed in brackets. In our case, we have one element, namely ``{like}``, in charge of rendering the *\"Like\"* button."
+msgstr ""
+
+#: ../tutorial.rst:73
+msgid "The ``rate.py`` file"
+msgstr ""
+
+#: ../tutorial.rst:81
+msgid "It provides the element's implementation. Each element in the block has a corresponding Python function having the same id. In our case, that is the code that will be executed when a user clicks on *\"Like\"*. Right now, it does nothing, but we will change it later."
+msgstr ""
+
+#: ../tutorial.rst:86
+msgid "The ``rate.yaml`` file:"
+msgstr ""
+
+#: ../tutorial.rst:95
+msgid "This file contains all the needed settings for our block. Here we declare that our block contains one element named ``like``, which is an **action** (i.e. it will be rendered as a button), and its displayed label is *\"Like\"*."
+msgstr ""
+
+#: ../tutorial.rst:99
+msgid "Now that our block is ready, we can see it using the following URL:"
+msgstr ""
+
+#: ../tutorial.rst:101
+msgid "http://localhost:8080/Plone/@@rapido/rating/blocks/rate"
+msgstr ""
+
+#: ../tutorial.rst:105
+msgid "The next step is to embed our block in our Plone pages."
+msgstr ""
+
+#: ../tutorial.rst:108
+msgid "Inserting the block in Plone pages"
+msgstr ""
+
+#: ../tutorial.rst:110
+msgid "To include our block somewhere in Plone, we will use a Diazo rule. Let's open our ``rules.xml`` file in the root of our theme, and add the following lines:"
+msgstr ""
+
+#: ../tutorial.rst:120
+msgid "The ``include`` directive allows us to retrieve a piece of content; in our case, the HTML form produced by our block. And the ``after`` directive inserts it after the main title in our page."
+msgstr ""
+
+#: ../tutorial.rst:124
+msgid "So, now if we visit any page of our Plone site, we see our block displayed just under the title."
+msgstr ""
+
+#: ../tutorial.rst:129
+msgid "That is nice, but there is a small problem: when we click on the *\"Like\"* button, we are redirected to the raw block content, and we lose our current Plone page."
+msgstr ""
+
+#: ../tutorial.rst:132
+msgid "Let's fix that."
+msgstr ""
+
+#: ../tutorial.rst:135
+msgid "Staying in our Plone page"
+msgstr ""
+
+#: ../tutorial.rst:137
+msgid "If we want to stay on our current page after submitting our block, we need to enable **AJAX** mode."
+msgstr ""
+
+#: ../tutorial.rst:140
+msgid "To do this, let's change our ``rate.yaml`` file like this:"
+msgstr ""
+
+#: ../tutorial.rst:150
+msgid "Now, if we click on the *\"Like\"* button, the block is just reloaded dynamically, and we stay in our current page."
+msgstr ""
+
+#: ../tutorial.rst:154
+msgid "Counting the votes"
+msgstr ""
+
+#: ../tutorial.rst:156
+msgid "Let's go back to ``rate.py``, and focus on the ``like`` function implementation."
+msgstr ""
+
+#: ../tutorial.rst:158
+msgid "When a user clicks on the *\"Like\"* button, we need to get the current content the user voted for, check how many votes it already has, and add one new vote."
+msgstr ""
+
+#: ../tutorial.rst:161
+msgid "Rapido allows to create **records**, so we will create a record for each content item, and we will use the content path as an id."
+msgstr ""
+
+#: ../tutorial.rst:164
+msgid "So let's replace our current implementation with:"
+msgstr ""
+
+#: ../tutorial.rst:177
+msgid "``context.content`` returns the current Plone content, and ``absolute_url_path`` is a Plone method returning the path of a Plone object."
+msgstr ""
+
+#: ../tutorial.rst:180
+msgid "``context.app`` allows to access to the current Rapido app, so we can easily use the Rapido API, like ``create_record`` or ``get_record``."
+msgstr ""
+
+#: ../tutorial.rst:183
+msgid "A Rapido record contains **items**. The ``get(item, default=none)`` method returns the value of the requested item or the default value if the item does not exist."
+msgstr ""
+
+#: ../tutorial.rst:188
+msgid "Displaying the votes"
+msgstr ""
+
+#: ../tutorial.rst:190
+msgid "Now we are able to store votes, we also want to display the *total* of votes."
+msgstr ""
+
+#: ../tutorial.rst:192
+msgid "Fist, let's change the block layout in ``rate.html``:"
+msgstr ""
+
+#: ../tutorial.rst:199
+msgid "So now we have a new ``display`` element in our block."
+msgstr ""
+
+#: ../tutorial.rst:201
+msgid "We must declare it in ``rate.yaml``:"
+msgstr ""
+
+#: ../tutorial.rst:212
+msgid "And let's implement it in ``rate.py``:"
+msgstr ""
+
+#: ../tutorial.rst:223
+msgid "We get the record corresponding to the current content, and we return as many ❤ as votes we have stored."
+msgstr ""
+
+#: ../tutorial.rst:228
+msgid "That's it! Our rating feature is ready to be used."
+msgstr ""
+
+#: ../tutorial.rst:231
+msgid "Debugging"
+msgstr ""
+
+#: ../tutorial.rst:233
+msgid "As we are writing code, we might (we will) make mistakes. In this case, , it is always helpul to read the error messages returned by the system."
+msgstr ""
+
+#: ../tutorial.rst:236
+msgid "It is also very helpful to be able to log messages from our code, so we understand what is going on exactly when it is executed."
+msgstr ""
+
+#: ../tutorial.rst:239
+msgid "Rapido provides the ``context.app.log()`` method which will log string messages or any serializable object (dictionnaries, arrays, etc.)."
+msgstr ""
+
+#: ../tutorial.rst:242
+msgid "The log messages and the error messages are visible in the server log (but we might not be able to access it), but also in our browser's **javascript console**."
+msgstr ""
+
+#: ../tutorial.rst:245
+msgid "First thing to do is to enable the **debug mode** in our app. To do that, we need to create a ``settings.yaml`` file in ``/rapido/rating``:"
+msgstr ""
+
+#: ../tutorial.rst:252
+msgid "And now, let's change our ``display`` function:"
+msgstr ""
+
+#: ../tutorial.rst:264
+msgid "We will see the following in our browser's console:"
+msgstr ""
+
+#: ../tutorial.rst:268
+msgid "Let's imagine now we made an error like forgetting the colon at the end of the ``if`` statement:"
+msgstr ""
+
+#: ../tutorial.rst:280
+msgid "Then we get this:"
+msgstr ""
+
+#: ../tutorial.rst:285
+msgid "Listing the top 5 items"
+msgstr ""
+
+#: ../tutorial.rst:287
+msgid "We would also like to see the top 5 rated content items on the site home page."
+msgstr ""
+
+#: ../tutorial.rst:289
+msgid "The first thing we need is to index the ``total`` element."
+msgstr ""
+
+#: ../tutorial.rst:291
+msgid "We declare its indexing mode in ``rate.yaml``:"
+msgstr ""
+
+#: ../tutorial.rst:305
+msgid "To index the previously stored values, we have to refresh the storage index by calling the following URL:"
+msgstr ""
+
+#: ../tutorial.rst:308
+msgid "http://localhost:8080/Plone/@@rapido/rating/refresh"
+msgstr ""
+
+#: ../tutorial.rst:310
+msgid "And to make sure future changes will be indexed, we need to fix the ``like`` function in the ``rate`` block: the indexing is triggered when we call the record's ``save`` method:"
+msgstr ""
+
+#: ../tutorial.rst:326
+msgid "We are now able to build a block to display the top 5 contents:"
+msgstr ""
+
+#: ../tutorial.rst:328
+msgid "``top5.html``:"
+msgstr ""
+
+#: ../tutorial.rst:335
+msgid "``top5.yaml``:"
+msgstr ""
+
+#: ../tutorial.rst:342
+msgid "``top5.py``:"
+msgstr ""
+
+#: ../tutorial.rst:358
+msgid "The ``search`` method allows us to query our stored records. The record ids are the content paths, so using the Plone API (``context.api``), we can easily get the corresponding contents, and then obtain their URLs and titles."
+msgstr ""
+
+#: ../tutorial.rst:362
+msgid "Our block works now:"
+msgstr ""
+
+#: ../tutorial.rst:364
+msgid "http://localhost:8080/Plone/@@rapido/rating/blocks/top5"
+msgstr ""
+
+#: ../tutorial.rst:366
+msgid "Finally, we have to insert our block in the home page. That will be done in ``rules.xml``:"
+msgstr ""
+
+#: ../tutorial.rst:380
+msgid "Creating a new page for reports"
+msgstr ""
+
+#: ../tutorial.rst:382
+msgid "For now, we have just added small chunks of HTML in existing pages. But Rapido also allows us to create a new page (a Plone developer would name it a new `view`)."
+msgstr ""
+
+#: ../tutorial.rst:385
+msgid "Let's pretend we want to create a report page about the votes on the content of a folder."
+msgstr ""
+
+#: ../tutorial.rst:388
+msgid "First, we need a block, ``report.html``:"
+msgstr ""
+
+#: ../tutorial.rst:395
+msgid "We want this block to be the main content of a new view."
+msgstr ""
+
+#: ../tutorial.rst:397
+msgid "We need to declare it in a new YAML file called ``report.yaml``:"
+msgstr ""
+
+#: ../tutorial.rst:405
+msgid "Now if we visit for instance:"
+msgstr ""
+
+#: ../tutorial.rst:407
+msgid "http://localhost:8080/Plone/@@show-report"
+msgstr ""
+
+#: ../tutorial.rst:409
+msgid "we do see our block as main page content."
+msgstr ""
+
+#: ../tutorial.rst:411
+msgid "Now we need to implement our report content. We could do it with a Rapido element like we did in the Top 5 block."
+msgstr ""
+
+#: ../tutorial.rst:414
+msgid "Let's change our approach and implement a fancy pie chart using the `amazing D3js library <http://d3js.org/>`_ and the :doc:`Rapido REST API <./rest>`."
+msgstr ""
+
+#: ../tutorial.rst:417
+msgid "We need to create a Javascript file (``report.js``) in the ``/rapido/rating`` folder:"
+msgstr ""
+
+#: ../tutorial.rst:482
+msgid "That is quite a complex script, and we will not detail here the D3js-related aspects (it is just a typical example to draw a pie chart); we will focus on the way we obtain the data."
+msgstr ""
+
+#: ../tutorial.rst:486
+msgid "The first thing to notice is the ``require`` function. It is a feature of the RequireJS library (provided with Plone by default) to load our dependencies."
+msgstr ""
+
+#: ../tutorial.rst:489
+msgid "We have 2 dependencies:"
+msgstr ""
+
+#: ../tutorial.rst:491
+msgid "``mockup-utils``, which is a Plone internal resource,"
+msgstr ""
+
+#: ../tutorial.rst:492
+msgid "D3js (and we load it by passing its remote URL to RequireJS)."
+msgstr ""
+
+#: ../tutorial.rst:494
+msgid "``mockup-utils`` allows us to get the authenticator token (with the ``getAuthenticator`` method), we need it to use the Rapido REST API."
+msgstr ""
+
+#: ../tutorial.rst:499
+msgid "RequireJS or ``mockup-utils`` are not mandatory to use the Rapido REST API, if we were outside of Plone (using Rapido as a remote backend), we would have made a call to ``../@@rapido/rating`` which returns the token in an HTTP header. We just use them because they are provided by Plone by default, and they make our work easier."
+msgstr ""
+
+#: ../tutorial.rst:505
+msgid "Instead of loading D3 directly form its CDN, we could have put the ``d3.v3.min.js`` in the ``/rapido/rating`` folder, and serve it locally."
+msgstr ""
+
+#: ../tutorial.rst:508
+msgid "The second interesting part is the ``d3.json()`` call:"
+msgstr ""
+
+#: ../tutorial.rst:510
+msgid "it calls the ``@@rapido/rating/search`` endpoint,"
+msgstr ""
+
+#: ../tutorial.rst:511
+msgid "it puts the authenticator token in the ``X-Csrf-Token`` header,"
+msgstr ""
+
+#: ../tutorial.rst:512
+msgid "and it passes the search query in the request BODY."
+msgstr ""
+
+#: ../tutorial.rst:514
+msgid "That is basically what we need to do whatever JS framework we use (here we use D3, but it could be a generalist framework like Angular, Backbone, Ember, etc.)."
+msgstr ""
+
+#: ../tutorial.rst:517
+msgid "Now we just need to load this script from our block:"
+msgstr ""
+
+#: ../tutorial.rst:525
+msgid "And we can visit:"
+msgstr ""
+
+#: ../tutorial.rst:527
+msgid "http://localhost:8080/Plone/news/@@show-report"
+msgstr ""
+
+#: ../tutorial.rst:529
+msgid "to see a pie chart about votes on the *News* items!!"
+msgstr ""
+
+#: ../tutorial.rst:533
+msgid "Download the :download:`source files of this tutorial <files/tutorial.zip>`."
+msgstr ""
+
+#: ../tutorial.rst:537
+msgid "This .zip file can be imported in the theming editor, but it cannot be activated as a regular theme as it just contains our Rapido app. The app can be used from our main theme by adding a `rating.lnk` file in our current theme's ``rapido`` folder, containing::"
+msgstr ""
+
+#: ../tutorial.rst:542
+msgid "indicating the Rapido app named ``rating`` is stored in the theme named ``tutorial``. And then we can activate our specific rules by adding:"
+msgstr ""
+
+#: ../tutorial.rst:557
+msgid "in our main theme's ``rules.xml``."
+msgstr ""
+
