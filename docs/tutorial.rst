@@ -440,25 +440,22 @@ folder:
             .append("g")
             .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-        d3.json("../../@@rapido/rating/search")
+        d3.json("@@rapido/rating/search")
             .header("X-Csrf-Token", authenticator)
             .post(
                 JSON.stringify({"query": "total>0"}),
                 function(err, results) {
-                    console.log(results);
                     var data = [];
                     var color = d3.scale.linear().domain([0,results.length]).range(["#005880","#9abdd6"]);
                     var index = 0;
                     results.forEach(function(d) {
-                        if(d.items.id.startsWith(local_folder_path)) {
-                            var label = d.items.id.split('/')[d.items.id.split('/').length - 1];
-                            data.push({
-                                'i': index,
-                                'value': d.items.total,
-                                'label': label
-                            });
-                            index += 1;
-                        }
+                        var label = d.items.id.split('/')[d.items.id.split('/').length - 1];
+                        data.push({
+                            'i': index,
+                            'value': d.items.total,
+                            'label': label
+                        });
+                        index += 1;
                     });
                     var g = svg.selectAll(".arc")
                         .data(pie(data))
