@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
-from pyaml import yaml
+from OFS.Folder import Folder
+from plone import api
 from plone.resource.file import FilesystemFile
+from Products.PythonScripts.PythonScript import manage_addPythonScript
+from pyaml import yaml
 from zope.component import provideAdapter
 from zope.interface import Interface
 from zope.publisher.interfaces.browser import IBrowserRequest
@@ -15,12 +18,6 @@ def getPath(file):
         return file.path.split('/')
     else:
         return file.getPhysicalPath()
-
-
-def is_yaml(file):
-    if getPath(file)[-1].endswith('yaml'):
-            return True
-    return False
 
 
 def process_yaml(path, yaml_content):
@@ -42,9 +39,30 @@ def process_yaml(path, yaml_content):
                        Interface, name=id)
 
 
+def process_py(path, code):
+    portal = api.portal.get()
+    if 'rapido_scripts' not in portal:
+        scripts = Folder('rapido_scripts')
+        scripts.title = 'rapido_scripts'
+        portal._setObject('rapido_scripts', scripts)
+    container = portal['rapido_scripts']
+    script_id = '-'.join(path)
+    if script_id in container:
+        portal.manage_delObjects(script_id)
+    manage_addPythonScript(container, script_id)
+    ps = container._getOb(script_id)
+    ps.write(code)
+
+
 def resource_created_or_modified(obj, event):
-    if is_yaml(obj):
+    extension = getPath(obj)[-1].split('.')[-1]
+    if extension == 'yaml':
         process_yaml(
+            getPath(obj),
+            str(obj)
+        )
+    if extension == 'py':
+        process_py(
             getPath(obj),
             str(obj)
         )
