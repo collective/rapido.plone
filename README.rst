@@ -46,8 +46,14 @@ Documentation and screencast
 ----------------------------
 
 - Full `Rapido documentation <http://rapidoplone.readthedocs.org/en/latest/>`_.
+  - `Rapido Spanish documentation <http://rapidoplone-spanish.readthedocs.io/es/latest/>`_.
+
 - How to implement a rating system in 3'33'' (`tutorial <http://rapidoplone.readthedocs.org/en/latest/tutorial.html>`_,
   `screencast <https://www.youtube.com/watch?v=a7B-lX0caW0>`_).
+
+- How to implement a glossary system as a tool to manage a list of terms (`tutorial <http://rapidoplone.readthedocs.io/en/latest/use-cases/glossary.html>`_.
+
+- How to use Rapido to create custom SearchableText field (`tutorial <http://rapidoplone.readthedocs.io/en/latest/use-cases/book.html>`_.
 
 Credits
 -------
