@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Rapido 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-16 17:47-0400\n"
+"POT-Creation-Date: 2017-04-19 11:11-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -400,87 +400,87 @@ msgstr ""
 msgid "We need to create a Javascript file (``report.js``) in the ``/rapido/rating`` folder:"
 msgstr ""
 
-#: ../tutorial.rst:482
+#: ../tutorial.rst:508
 msgid "That is quite a complex script, and we will not detail here the D3js-related aspects (it is just a typical example to draw a pie chart); we will focus on the way we obtain the data."
 msgstr ""
 
-#: ../tutorial.rst:486
+#: ../tutorial.rst:512
 msgid "The first thing to notice is the ``require`` function. It is a feature of the RequireJS library (provided with Plone by default) to load our dependencies."
 msgstr ""
 
-#: ../tutorial.rst:489
+#: ../tutorial.rst:515
 msgid "We have 2 dependencies:"
 msgstr ""
 
-#: ../tutorial.rst:491
+#: ../tutorial.rst:517
 msgid "``mockup-utils``, which is a Plone internal resource,"
 msgstr ""
 
-#: ../tutorial.rst:492
+#: ../tutorial.rst:518
 msgid "D3js (and we load it by passing its remote URL to RequireJS)."
 msgstr ""
 
-#: ../tutorial.rst:494
+#: ../tutorial.rst:520
 msgid "``mockup-utils`` allows us to get the authenticator token (with the ``getAuthenticator`` method), we need it to use the Rapido REST API."
 msgstr ""
 
-#: ../tutorial.rst:499
+#: ../tutorial.rst:525
 msgid "RequireJS or ``mockup-utils`` are not mandatory to use the Rapido REST API, if we were outside of Plone (using Rapido as a remote backend), we would have made a call to ``../@@rapido/rating`` which returns the token in an HTTP header. We just use them because they are provided by Plone by default, and they make our work easier."
 msgstr ""
 
-#: ../tutorial.rst:505
+#: ../tutorial.rst:531
 msgid "Instead of loading D3 directly form its CDN, we could have put the ``d3.v3.min.js`` in the ``/rapido/rating`` folder, and serve it locally."
 msgstr ""
 
-#: ../tutorial.rst:508
+#: ../tutorial.rst:534
 msgid "The second interesting part is the ``d3.json()`` call:"
 msgstr ""
 
-#: ../tutorial.rst:510
+#: ../tutorial.rst:536
 msgid "it calls the ``@@rapido/rating/search`` endpoint,"
 msgstr ""
 
-#: ../tutorial.rst:511
+#: ../tutorial.rst:537
 msgid "it puts the authenticator token in the ``X-Csrf-Token`` header,"
 msgstr ""
 
-#: ../tutorial.rst:512
+#: ../tutorial.rst:538
 msgid "and it passes the search query in the request BODY."
 msgstr ""
 
-#: ../tutorial.rst:514
+#: ../tutorial.rst:540
 msgid "That is basically what we need to do whatever JS framework we use (here we use D3, but it could be a generalist framework like Angular, Backbone, Ember, etc.)."
 msgstr ""
 
-#: ../tutorial.rst:517
+#: ../tutorial.rst:543
 msgid "Now we just need to load this script from our block:"
 msgstr ""
 
-#: ../tutorial.rst:525
+#: ../tutorial.rst:551
 msgid "And we can visit:"
 msgstr ""
 
-#: ../tutorial.rst:527
+#: ../tutorial.rst:553
 msgid "http://localhost:8080/Plone/news/@@show-report"
 msgstr ""
 
-#: ../tutorial.rst:529
+#: ../tutorial.rst:555
 msgid "to see a pie chart about votes on the *News* items!!"
 msgstr ""
 
-#: ../tutorial.rst:533
+#: ../tutorial.rst:559
 msgid "Download the :download:`source files of this tutorial <files/tutorial.zip>`."
 msgstr ""
 
-#: ../tutorial.rst:537
+#: ../tutorial.rst:563
 msgid "This .zip file can be imported in the theming editor, but it cannot be activated as a regular theme as it just contains our Rapido app. The app can be used from our main theme by adding a `rating.lnk` file in our current theme's ``rapido`` folder, containing::"
 msgstr ""
 
-#: ../tutorial.rst:542
+#: ../tutorial.rst:568
 msgid "indicating the Rapido app named ``rating`` is stored in the theme named ``tutorial``. And then we can activate our specific rules by adding:"
 msgstr ""
 
-#: ../tutorial.rst:557
+#: ../tutorial.rst:583
 msgid "in our main theme's ``rules.xml``."
 msgstr ""
 
