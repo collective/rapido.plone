@@ -2,12 +2,8 @@ Changelog
 =========
 
 
-1.1.1 (unreleased)
+1.1.1 (2017-04-22)
 ------------------
-
-Breaking changes:
-
-- *add item here*
 
 New features:
 
@@ -31,6 +27,9 @@ Bug fixes:
   The additional set interface from plone.app.blob was Archetypes only.
   It is no longer availabe if Archetypes and its dependencies is not available.
   [jensens]
+
+- Fix content rules Rapido app call
+  [ebrehault]
 
 
 1.1 (2016-12-18)
