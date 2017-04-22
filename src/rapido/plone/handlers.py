@@ -48,7 +48,7 @@ def process_py(path, code):
     container = portal['rapido_scripts']
     script_id = '-'.join(path)
     if script_id in container:
-        portal.manage_delObjects(script_id)
+        container.manage_delObjects([script_id])
     manage_addPythonScript(container, script_id)
     ps = container._getOb(script_id)
     ps.write(code)
