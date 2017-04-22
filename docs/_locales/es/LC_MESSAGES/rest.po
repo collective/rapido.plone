@@ -1,0 +1,199 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2015, Makina Corpus
+# This file is distributed under the same license as the Rapido package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: Rapido 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-16 08:32-0400\n"
+"PO-Revision-Date: 2017-04-17 19:46-0400\n"
+"Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
+"Language-Team: ES <LL@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
+"Generated-By: Babel 2.4.0\n"
+
+#: ../rest.rst:2
+msgid "REST API"
+msgstr "API REST"
+
+#: ../rest.rst:5
+msgid "Get the application settings"
+msgstr "Obtén las configuraciones de la aplicación"
+
+#: ../rest.rst:7 ../rest.rst:52 ../rest.rst:76 ../rest.rst:93 ../rest.rst:114
+#: ../rest.rst:132 ../rest.rst:150 ../rest.rst:168 ../rest.rst:185
+#: ../rest.rst:202 ../rest.rst:227 ../rest.rst:246
+msgid "**Request** ::"
+msgstr "**Request** ::"
+
+#: ../rest.rst:14 ../rest.rst:65 ../rest.rst:83 ../rest.rst:100 ../rest.rst:122
+#: ../rest.rst:140 ../rest.rst:158 ../rest.rst:175 ../rest.rst:192
+#: ../rest.rst:217 ../rest.rst:235 ../rest.rst:253
+msgid "**Response** ::"
+msgstr "**Response** ::"
+
+#: ../rest.rst:19
+msgid "**HTTP Response Headers** ::"
+msgstr "**Cabecera Response HTTP** ::"
+
+#: ../rest.rst:24
+msgid ""
+"Returns the Rapido application settings and sets a token in the ``X-CSRF-"
+"TOKEN`` HTTP header value."
+msgstr ""
+"Devuelve la configuración de la aplicación Rapido y establece un token en el "
+"valor del encabezado HTTP ``X-CSRF-TOKEN``."
+
+#: ../rest.rst:27
+msgid ""
+"This HTTP header will have to be reused in all the requests made to the "
+"API (except for GET requests)."
+msgstr ""
+"Esta cabecera HTTP tendrá que ser reutilizada en todas las solicitudes "
+"hechas a la API (excepto para las solicitudes GET)."
+
+#: ../rest.rst:31
+msgid "Authentication"
+msgstr "Autenticación"
+
+#: ../rest.rst:32
+msgid ""
+"Some of the operations below require authentication before they will run "
+"successfully. You will need to generate an Authorization String (A Base64"
+" encoded version of your username and password separated by a dot)."
+msgstr ""
+"Algunas de las operaciones siguientes requieren autenticación antes de que "
+"se ejecuten correctamente. Tendrá que generar una cadena de autorización "
+"(una versión codificada Base64 de su nombre de usuario y contraseña "
+"separados por un punto)."
+
+#: ../rest.rst:36
+msgid "Basic Authorization String"
+msgstr "Cadena Básica de Autenticación"
+
+#: ../rest.rst:38
+msgid ""
+"If your username is \"john\" and your password is \"password\", you can "
+"quickly generate the basic authorization string on the python prompt as "
+"follows::"
+msgstr ""
+"Si su nombre de usuario es \"john\" y su contraseña es \"password\", puede "
+"generar rápidamente la cadena de autorización básica en el indicador python "
+"de la siguiente manera::"
+
+#: ../rest.rst:43
+msgid "Now you can use this header in all your requests::"
+msgstr "Ahora usted usa esta cabecera en todos sus requests::"
+
+#: ../rest.rst:47
+msgid ""
+"The expected X-CSRF-TOKEN will be change when you use a Basic "
+"Authorization header."
+msgstr ""
+"El X-CSRF-TOKEN esperado cambiará cuando utilice un encabezado de "
+"autorización básica."
+
+#: ../rest.rst:50
+msgid "Compute an element"
+msgstr "Calcular un elemento"
+
+#: ../rest.rst:59 ../rest.rst:210
+msgid "or::"
+msgstr "o::"
+
+#: ../rest.rst:70
+msgid ""
+"Returns the value returned by the element computation. The X-CSRF-TOKEN "
+"is not needed for a GET if the computation does not produce any change."
+msgstr ""
+"Devuelve el valor devuelto por el cálculo del elemento. El X-CSRF-TOKEN no "
+"es necesario para un GET si el cálculo no produce ningún cambio."
+
+#: ../rest.rst:74
+msgid "Get a record"
+msgstr "Obtener un registro"
+
+#: ../rest.rst:88
+msgid "Returns the record items."
+msgstr "Devuelve los elementos registro."
+
+#: ../rest.rst:91
+msgid "Get all the records"
+msgstr "Obtiene todos los registros"
+
+#: ../rest.rst:109
+msgid "Returns all the records."
+msgstr "Devuelve todos los registros."
+
+#: ../rest.rst:112
+msgid "Create a new record"
+msgstr "Crear un nuevo registro"
+
+#: ../rest.rst:127
+msgid "Creates a new record with the provided items."
+msgstr "Crear un nuevo registro con los elementos proveídos."
+
+#: ../rest.rst:130
+msgid "Create many records"
+msgstr "Crear muchos registros"
+
+#: ../rest.rst:145
+msgid "Bulk creation of records."
+msgstr "Creación masiva de registros."
+
+#: ../rest.rst:148
+msgid "Create a new record by id"
+msgstr "Crear un nuevo registro por id"
+
+#: ../rest.rst:163
+msgid "Creates a new record with the provided items and having the specified id."
+msgstr ""
+"Crear un nuevo registro con los elementos proveídos y teniendo el id "
+"especifico."
+
+#: ../rest.rst:166
+msgid "Delete a record"
+msgstr "Elimina un registro"
+
+#: ../rest.rst:180
+msgid "Deletes the record."
+msgstr "Elimina el registro."
+
+#: ../rest.rst:183
+msgid "Remove all records"
+msgstr "Remueve todos los registros"
+
+#: ../rest.rst:197
+msgid "Remove all the records and delete the indexes."
+msgstr "Remueve todos los registros y elimina los índices."
+
+#: ../rest.rst:200
+msgid "Update a record"
+msgstr "Actualiza un registro"
+
+#: ../rest.rst:222
+msgid "Updates the record with provided items."
+msgstr "Actualiza el registro con los elementos proveídos."
+
+#: ../rest.rst:225
+msgid "Search for records"
+msgstr "Búsqueda de registros"
+
+#: ../rest.rst:241
+msgid "Search for records."
+msgstr "Búsqueda de registros."
+
+#: ../rest.rst:244
+msgid "Re-index"
+msgstr "Reíndice"
+
+#: ../rest.rst:258
+msgid "Re-declare the indexes and re-index all the records."
+msgstr "Vuelve a declarar los índices y vuelve a indexar todos los registros."

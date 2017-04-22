@@ -76,7 +76,7 @@ The following actions can be included in our block HTML layout, and do not requi
 Direct HTTP call to elements
 ----------------------------
 
-We usually want to display blocks, but we can also call an element by its URL::
+We usually want to display blocks, but we can also call an element by its URL:
 
     http://localhost:8080/Plone/@@rapido/myapp/blocks/block1/element1
 

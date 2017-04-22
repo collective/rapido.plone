@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Rapido 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-16 08:32-0400\n"
+"POT-Creation-Date: 2017-04-19 11:20-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -468,50 +468,58 @@ msgid "Rapido provides a Mosaic tile, so any Rapido block can be added as a tile
 msgstr ""
 
 #: ../reference/display.rst:155
-msgid "To enable it, we need to install Mosaic and then to import a specific Rapido Generic Setup profile named \"rapido.plone mosaic tile\"."
+msgid "To enable it, we need to install Mosaic and then to import a specific Rapido Generic Setup profile named **\"rapido.plone mosaic tile\"** from the *ZMI >>> portal_setup >>> Import* and click on **\"Import all steps\"** button."
 msgstr ""
 
 #: ../reference/display.rst:159
-msgid "Mockup patterns"
+msgid "Here the **\"Import\"** page link from **portal_setup** tool for run Generic Setup profile:"
 msgstr ""
 
 #: ../reference/display.rst:161
-msgid "Some Mockup patterns can display contents provided by an URL. The two main use cases are:"
+msgid "http://localhost:8080/Plone/portal_setup/manage_fullImport"
 msgstr ""
 
 #: ../reference/display.rst:164
+msgid "Mockup patterns"
+msgstr ""
+
+#: ../reference/display.rst:166
+msgid "Some Mockup patterns can display contents provided by an URL. The two main use cases are:"
+msgstr ""
+
+#: ../reference/display.rst:169
 msgid "**Display a Rapido block in a modal**: we use the ``plone-modal`` pattern on a ``<a>`` element, the Rapido block URL will be provided in its ``href`` attribute, and we just need to specify ``form.rapido-block`` as content selector (because ``plone-modal`` default content selector is ``#content``, which is accurate for a Plone page but not for a Rapido block). Example:"
 msgstr ""
 
-#: ../reference/display.rst:171
+#: ../reference/display.rst:176
 msgid "We create a block named ``my-content`` containing whatever we might need, and we create a block named ``menu`` containing the following HTML:"
 msgstr ""
 
-#: ../reference/display.rst:182
+#: ../reference/display.rst:187
 msgid "And then we just need to insert ``menu`` in our Plone page (using a Diazo rule)."
 msgstr ""
 
-#: ../reference/display.rst:184
+#: ../reference/display.rst:189
 msgid "See `Mockup modal documentation <http://plone.github.io/mockup/dev/#pattern/modal>`_ for more details about the options."
 msgstr ""
 
-#: ../reference/display.rst:186
+#: ../reference/display.rst:191
 msgid "**Load a Rapido block dynamically in the current page**: we use the ``plone-contentloader`` to inject our Rapido block wherever we want. In our previous example, we would change the ``menu`` HTML to:"
 msgstr ""
 
-#: ../reference/display.rst:196
+#: ../reference/display.rst:201
 msgid "It would replace the \"Load content\" link with our ``my-content`` block when we click on the link."
 msgstr ""
 
-#: ../reference/display.rst:198
+#: ../reference/display.rst:203
 msgid "with ``plone-contentloader``, the content selector is passed directly as an hash at the end of the URL."
 msgstr ""
 
-#: ../reference/display.rst:200
+#: ../reference/display.rst:205
 msgid "``plone-contentloader`` also allows us to target a specific element for the injection (instead of replacing the link):"
 msgstr ""
 
-#: ../reference/display.rst:209
+#: ../reference/display.rst:214
 msgid "By default, the injection is triggered by a click, but we can choose any DOM event (``mouseover`` for instance), and we can even perform the injection immediately (using the ``immediate`` trigger):"
 msgstr ""
 
@@ -628,7 +636,11 @@ msgid "Direct HTTP call to elements"
 msgstr ""
 
 #: ../reference/elements.rst:79
-msgid "We usually want to display blocks, but we can also call an element by its URL::"
+msgid "We usually want to display blocks, but we can also call an element by its URL:"
+msgstr ""
+
+#: ../reference/elements.rst:81
+msgid "http://localhost:8080/Plone/@@rapido/myapp/blocks/block1/element1"
 msgstr ""
 
 #: ../reference/elements.rst:83
@@ -724,7 +736,11 @@ msgid "Records are indexed at the time they are saved. We can force reindexing u
 msgstr ""
 
 #: ../reference/indexing.rst:33
-msgid "We can also reindex all the records using the ``refresh`` URL command::"
+msgid "We can also reindex all the records using the ``refresh`` URL command:"
+msgstr ""
+
+#: ../reference/indexing.rst:35
+msgid "http://localhost:8080/Plone/@@rapido/<app-id>/refresh?_authenticator=<valid token>"
 msgstr ""
 
 #: ../reference/indexing.rst:37

@@ -1,0 +1,370 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2015, Makina Corpus
+# This file is distributed under the same license as the Rapido package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: Rapido 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-16 08:32-0400\n"
+"PO-Revision-Date: 2017-04-17 08:32-0400\n"
+"Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
+"Language-Team: ES <LL@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
+"Generated-By: Babel 2.4.0\n"
+
+#: ../use-cases/book.rst:2
+msgid "Use *Rapido* to create custom *SearchableText* field"
+msgstr "Utilice *Rapido* para crear un campo personalizado de *SearchableText*"
+
+#: ../use-cases/book.rst:5 ../use-cases/glossary.rst:5
+msgid "Objective"
+msgstr "Objetivo"
+
+#: ../use-cases/book.rst:7
+msgid ""
+"Create TTW (Through The Web) a *Book* content type where fields are "
+"indexed for a full-text search."
+msgstr ""
+"Crear TTW (a través de la Web) a Tipo de contenido del *Book* donde los "
+"campos están indexados para una búsqueda de texto completo."
+
+#: ../use-cases/book.rst:10
+msgid "Content type"
+msgstr "Tipo de contenido"
+
+#: ../use-cases/book.rst:12
+msgid ""
+"Add a new content type *Book* on the *Dexterity Content Types* control "
+"panel (http://localhost:8080/Plone/@@dexterity-types)."
+msgstr ""
+"Agregue un nuevo tipo de contenido *Book* en el panel de control *Tipos de "
+"contenido Dexterity* (http://localhost:8080/Plone/@@dexterity-types)."
+
+#: ../use-cases/book.rst:17
+msgid ""
+"Edit the *Book* configuration (http://localhost:8080/Plone/dexterity-"
+"types/book). In the *Behaviors* tab, uncheck the *Dublin Core metadata* "
+"behavior and *Save*. In the *Fields* tab, click on the *Edit XML Field "
+"Model* button and replace the XML model by:"
+msgstr ""
+"Edite la configuración de *Book* (http://localhost:8080/Plone/dexterity-"
+"types/book). En la pestaña *Comportamientos*, desmarque el comportamiento de "
+"los *Metadatos de Dublin Core* y *Guardar*. En la ficha *Campos*, haga clic "
+"en el botón *Editar modelo de campo XML* y reemplace el modelo XML por el "
+"siguiente:"
+
+#: ../use-cases/book.rst:65
+msgid ""
+"You can now add *Book* content in your web site "
+"(http://localhost:8080/Plone/++add++book)."
+msgstr ""
+"Ahora puede agregar contenido de *Book* en su sitio web "
+"(http://localhost:8080/Plone/++add++book)."
+
+#: ../use-cases/book.rst:70
+msgid "Full text search field"
+msgstr "Campo de búsqueda de texto completo"
+
+#: ../use-cases/book.rst:72
+msgid ""
+"If you have a lot of books in your site, you would like to search on the "
+"author's name or the back cover content. To do this we have to provide a "
+"``SearchableText`` method or field which give the content of the full-"
+"text index. We'll use a *rapido block* and a *rapido content rule action*"
+" to compute this ``SearchableText`` field."
+msgstr ""
+"Si tiene un montón de libros en su sitio, le gustaría buscar en el nombre "
+"del autor o el contenido de la portada. Para ello, debemos proveer un método "
+"o campo ``SearchableText`` el cual le de el contenido del índice de texto "
+"completo. Nosotros usaremos un *bloque rapido* y una *acción de regla de "
+"contenido disponible en el paquete rapido* para calcular este campo "
+"``SearchableText``."
+
+#: ../use-cases/book.rst:77
+msgid "Rapido block"
+msgstr "Bloque Rapido"
+
+#: ../use-cases/book.rst:79
+msgid ""
+"Go to the *Theming* control panel (http://localhost:8080/Plone/@@theming-"
+"controlpanel). Create a new theme *MyTheme* with this structure."
+msgstr ""
+"Vaya al panel de control Tema (http://localhost:8080/Plone/@@theming-"
+"controlpanel). Crea un nuevo tema llamado *MyTheme* con esta estructura "
+"siguiente."
+
+#: ../use-cases/book.rst:92
+msgid ""
+"Look for example at the `Inheriting a new theme from Barceloneta "
+"<http://docs.plone.org/adapt-and-"
+"extend/theming/barceloneta.html#inheriting-a-new-theme-from-"
+"barceloneta>`_ section of the Plone documentation for the content of "
+"``index.html``, ``manifest.cfg`` and ``rules.xml`` files."
+msgstr ""
+"Busque, por ejemplo, en la sección `Inheriting a new theme from Barceloneta "
+"<http://docs.plone.org/adapt-and-"
+"extend/theming/barceloneta.html#inheriting-a-new-theme-from-barceloneta>`_ "
+"de la documentación de Plone para obtener contenido de archivos "
+"``index.html``, ``manifest.cfg`` y ``rules.xml``."
+
+#: ../use-cases/book.rst:96
+msgid "Content of ``fields.py`` file:"
+msgstr "Contenido del archivo ``fields.py``:"
+
+#: ../use-cases/book.rst:115
+msgid ""
+"We use the ``portal_transforms`` tool to convert the ``back_cover`` HTML "
+"field to plain text. We also need to reindex the content."
+msgstr ""
+"Usaremos la herramienta ``portal_transforms`` para convertir el campo HTML "
+"``back_cover`` en texto plano. También necesitamos reindexar el contenido."
+
+#: ../use-cases/book.rst:119
+msgid "Rapido content rule action"
+msgstr "Acción de regla de contenido Rapido"
+
+#: ../use-cases/book.rst:121
+msgid ""
+"The last thing we need is a *rapido content rule action* which is used on"
+" each book modification."
+msgstr ""
+"Lo último que necesitamos es una *acción de regla de contenido rapido* que "
+"se usa en cada modificación del libro."
+
+#: ../use-cases/book.rst:123
+msgid ""
+"Go to the *Content Rules* (http://localhost:8080/Plone/@@rules-"
+"controlpanel) and add a rule which is triggered on *Object modified* "
+"event."
+msgstr ""
+"Vaya a las *Reglas de contenido* (http://localhost:8080/Plone/@@rules-"
+"controlpanel) y agregue una regla que se activa en el evento *Objeto "
+"modificado*."
+
+#: ../use-cases/book.rst:127
+msgid "Add a *Content type* condition on *Book*. Add a *Rapido action*."
+msgstr ""
+"Agregue una condición de *Tipo de contenido* en *Book*. Añade una *acción "
+"de Rapido*."
+
+#: ../use-cases/book.rst:132
+msgid "Assign the content rule on the whole site and *Save*."
+msgstr "Asigne la regla de contenido en todo el sitio y *Guardar*."
+
+#: ../use-cases/book.rst:137
+msgid "Exercise"
+msgstr "Ejercicio"
+
+#: ../use-cases/book.rst:139
+msgid ""
+"Modify the code above to compute a *Description* field which will be used"
+" in Plone listings."
+msgstr ""
+"Modifique el código anterior para calcular un campo *Descripción* que se "
+"utilizará en los listados de Plone"
+
+#: ../use-cases/book.rst:142
+msgid "Custom book view"
+msgstr "Vista personalizada de Book"
+
+#: ../use-cases/book.rst:144
+msgid ""
+"To build a custom book view, the simplest solution is to use a *Diazo* "
+"rule."
+msgstr ""
+"Para crear una vista del tipo de contenido book personalizada, la solución "
+"más simple es utilizar una regla de *Diazo*."
+
+#: ../use-cases/book.rst:146
+msgid ""
+"For example, you can add in the ``rules.xml`` file of your theme the "
+"following ``diazo rule``:"
+msgstr ""
+"Por ejemplo, puede agregar en el archivo ``rules.xml`` de su tema la "
+"siguiente ``regla diazo``:"
+
+#: ../use-cases/book.rst:171
+msgid "Our new custom book views:"
+msgstr "Nuestras nuevas vistas de libros personalizadas:"
+
+#: ../use-cases/glossary.rst:2
+msgid "Glossary use case"
+msgstr "Caso de uso del glosario"
+
+#: ../use-cases/glossary.rst:7
+msgid "We want to provide a tool to manage a list of terms and their definitions:"
+msgstr ""
+"Queremos proporcionar una herramienta para administrar una lista de términos "
+"y sus definiciones:"
+
+#: ../use-cases/glossary.rst:11
+msgid ""
+"Every time one of these terms appears on a page of our site, it will be "
+"wrapped into a `<abbr>` tag, the title of which will be the definition, "
+"so when we hover a term, we get a small popup indicating its definition:"
+msgstr ""
+"Cada vez que uno de estos términos aparezca en una página de nuestro sitio, "
+"será envuelto en una etiqueta `<abbr>`, cuyo título será la definición, por "
+"lo que cuando pasamos un término, obtenemos un pequeña mensaje emergente que "
+"indica su definición:"
+
+#: ../use-cases/glossary.rst:18
+msgid "Application structure"
+msgstr "Estructura de la aplicación"
+
+#: ../use-cases/glossary.rst:35
+msgid "Rules.xml"
+msgstr "El archivo rules.xml"
+
+#: ../use-cases/glossary.rst:43
+msgid ""
+"This rule inserts in all our pages a javascript file in charge of "
+"replacing matching words with ``<abbr>`` tags."
+msgstr ""
+"Esta regla inserta en todas nuestras páginas un archivo javascript a cargo "
+"de reemplazar las palabras coincidentes con etiquetas ``<abbr>``."
+
+#: ../use-cases/glossary.rst:47
+msgid "The ``term`` block"
+msgstr "El bloque ``term``"
+
+#: ../use-cases/glossary.rst:49
+msgid ""
+"This block is a form allowing to create/edit/delete a glossary term. It "
+"contains two field elements and three actions."
+msgstr ""
+"Este bloque es un formulario que permite crear/editar/eliminar un término "
+"del glosario. Contiene dos elementos de campo y tres acciones."
+
+#: ../use-cases/glossary.rst:52
+msgid "``term.html``"
+msgstr "``term.html``"
+
+#: ../use-cases/glossary.rst:60
+msgid "``term.yaml``"
+msgstr "``term.yaml``"
+
+#: ../use-cases/glossary.rst:78
+msgid "``term.py``"
+msgstr "``term.py``"
+
+#: ../use-cases/glossary.rst:91
+msgid ""
+"If we click on any action in this block, we want to be redirected to the "
+"main management page. We do that by returning the ``all`` block URL (when"
+" an action returns a string, it is used as a redirection URL)."
+msgstr ""
+"Si hacemos clic en cualquier acción en este bloque, queremos ser redirigidos "
+"a la página de administración principal. Lo hacemos devolviendo la URL de "
+"``all`` bloques (cuando una acción devuelve una cadena, se utiliza como una "
+"dirección URL de redirección)."
+
+#: ../use-cases/glossary.rst:96
+msgid "The ``all`` block"
+msgstr "El bloque ``all``"
+
+#: ../use-cases/glossary.rst:98
+msgid ""
+"This block lists all the existing terms in a table. When we click on a "
+"term, we open it in the ``term`` block in edit mode, and a button allows "
+"opening a blank ``term`` block to create a new term."
+msgstr ""
+"Este bloque lista todos los términos existentes en una tabla. Cuando hacemos "
+"clic en un término, lo abrimos en el bloque ``term`` en modo de edición, y "
+"un botón permite abrir un bloque ``term`` en blanco para crear un nuevo "
+"término."
+
+#: ../use-cases/glossary.rst:102
+msgid "``all.html``"
+msgstr "``all.html``"
+
+#: ../use-cases/glossary.rst:111
+msgid "``all.yaml``"
+msgstr "``all.yaml``"
+
+#: ../use-cases/glossary.rst:125
+msgid ""
+"The ``view`` setting allows to render the ``all`` block as Plone view "
+"named ``@@glossary``, so we can call "
+"http://localhost:8080/Plone/@@glossary to see it."
+msgstr ""
+"La configuración ``view`` permite renderizar el bloque ``all`` como la vista "
+"de Plone llamada ``@@glossary``, por lo que podemos llamar a "
+"http://localhost:8080/Plone/@@glossary para verlo."
+
+#: ../use-cases/glossary.rst:127
+msgid "``all.py``"
+msgstr "``all.py``"
+
+#: ../use-cases/glossary.rst:144
+msgid ""
+"The ``list`` function builds a table row for each existing record, "
+"displaying the *term* value and the *definition* value. The link we put "
+"on the term targets the record URL (plus `/edit` to open it in edit mode)"
+" and we have added `target=\"ajax\"` so the resulting page is not "
+"displayed as a full page, it is just loaded into the current block in "
+"AJAX mode."
+msgstr ""
+"La función ``list`` crea una fila de tabla para cada registro existente, "
+"mostrando el valor del término y el valor de la *definición*. El enlace que "
+"ponemos en el término se dirige a la URL de registro (más `/edit` para "
+"abrirlo en modo de edición) y hemos añadido `target=\"ajax\"` por lo que la "
+"página resultante no se muestra como una página completa, se acaba de cargar "
+"en la actual bloque en modo AJAX."
+
+#: ../use-cases/glossary.rst:151
+msgid "The Javascript"
+msgstr "El Javascript"
+
+#: ../use-cases/glossary.rst:153
+msgid "``glossary.js``"
+msgstr "``glossary.js``"
+
+#: ../use-cases/glossary.rst:193
+msgid ""
+"First thing we do is to check if we are in edit mode, and if we are, we "
+"stop, as we do not want to manipulate the HTML currently being edited in "
+"TinyMCE or in any input field."
+msgstr ""
+"Lo primero que hacemos es comprobar si estamos en modo de edición, y si lo "
+"estamos, nos detendremos, ya que no queremos manipular el HTML que está "
+"siendo editado en TinyMCE o en cualquier campo de entrada."
+
+#: ../use-cases/glossary.rst:197
+msgid ""
+"Then we load the glossary terms with the following JSON call: "
+"``/tutorial/@@rapido/glossary/records``"
+msgstr ""
+"Luego cargamos los términos del glosario con la siguiente llamada JSON: "
+"``/tutorial/@@rapido/glossary/records``"
+
+#: ../use-cases/glossary.rst:200
+msgid ""
+"Using the term values we have loaded, we build a regular expression able "
+"to match those terms in any text."
+msgstr ""
+"Usando el término valores que hemos cargado, construimos una expresión "
+"regular capaz de emparejar esos términos en cualquier texto."
+
+#: ../use-cases/glossary.rst:203
+msgid ""
+"Then we iterate on the page main content (``#content-core``) elements, "
+"and every time we find a text node, we use our regular expression to "
+"replace the matching words with an ``<abbr>`` tag where the ``title`` "
+"attribute is the associated definition."
+msgstr ""
+"Luego iteramos en los elementos principales del contenido de la página "
+"(``#content-core``), y cada vez que encontramos un nodo de texto, usamos "
+"nuestra expresión regular para reemplazar las palabras coincidentes con una "
+"etiqueta ``<abbr>`` donde el atributo ``title`` es la definición asociada."
+
+#: ../use-cases/index.rst:2
+msgid "Use cases"
+msgstr "Casos de uso"

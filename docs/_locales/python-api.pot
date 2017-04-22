@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Rapido 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-16 08:32-0400\n"
+"POT-Creation-Date: 2017-04-17 07:24-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -156,7 +156,11 @@ msgid "``context.request`` and ``context.parent_request``"
 msgstr ""
 
 #: ../python-api.rst:71
-msgid "``context.request`` is the actual request to Rapido, like::"
+msgid "``context.request`` is the actual request to Rapido, like:"
+msgstr ""
+
+#: ../python-api.rst:73
+msgid "http://localhost:8080/Plone/@@rapido/rating/blocks/rate"
 msgstr ""
 
 #: ../python-api.rst:75
@@ -172,7 +176,7 @@ msgid "Both of them are HTTP requests objects, see the `reference documentation 
 msgstr ""
 
 #: ../python-api.rst:84
-msgid "Exemples:"
+msgid "Examples:"
 msgstr ""
 
 #: ../python-api.rst:86

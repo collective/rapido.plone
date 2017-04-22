@@ -1,0 +1,36 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2015, Makina Corpus
+# This file is distributed under the same license as the Rapido package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: Rapido 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-16 08:32-0400\n"
+"PO-Revision-Date: 2017-04-16 09:08-0400\n"
+"Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
+"Language-Team: ES <LL@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
+"Generated-By: Babel 2.4.0\n"
+
+#: ../installation.rst:2
+msgid "Installation"
+msgstr "Instalación"
+
+#: ../installation.rst:4
+msgid ""
+"Install Plone, then modify ``buildout.cfg`` to add Rapido as a "
+"dependency::"
+msgstr ""
+"Instalar Plone, entonces modifique el archivo ``buildout.cfg`` para agregar "
+"Rapido como una dependencia::"
+
+#: ../installation.rst:13
+msgid "Then, run your buildout::"
+msgstr "Entonces, ejecute su buildout::"

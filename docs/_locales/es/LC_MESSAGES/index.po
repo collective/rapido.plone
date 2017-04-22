@@ -1,0 +1,95 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2015, Makina Corpus
+# This file is distributed under the same license as the Rapido package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: Rapido 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-16 08:32-0400\n"
+"PO-Revision-Date: 2017-04-16 08:49-0400\n"
+"Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
+"Language-Team: ES <LL@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
+"Generated-By: Babel 2.4.0\n"
+
+#: ../index.rst:7
+msgid "Rapido"
+msgstr "Rapido"
+
+#: ../index.rst:9
+msgid "**Happy hacking with Plone**"
+msgstr "**Feliz hacking con Plone**"
+
+#: ../index.rst:15
+msgid "What for?"
+msgstr "¿Para qué?"
+
+#: ../index.rst:17
+msgid ""
+"Creating a small form able to send an email, or to store some data, "
+"generating some extra information about a page and inserting it wherever "
+"we want: with Plone these kind of tasks are complex for experts, and "
+"almost impossible for beginners."
+msgstr ""
+"Creación de un pequeño formulario capaz de enviar un correo electrónico, o "
+"para almacenar algunos datos, generando alguna información adicional sobre "
+"una página y la inserción donde quiera: con Plone este tipo de tareas son "
+"complejas para los expertos, y casi imposible para los principiantes."
+
+#: ../index.rst:21
+msgid ""
+"**rapido.plone** allows any developer having a little knowledge of HTML "
+"and a little knowledge of Python to implement custom elements and insert "
+"them anywhere they want in their Plone site."
+msgstr ""
+"**rapido.plone** permite a cualquier desarrollador tener un poco de "
+"conocimiento de HTML y un poco de conocimiento de Python para implementar "
+"elementos personalizados e insertarlos donde quieran en su sitio Plone."
+
+#: ../index.rst:26
+msgid "How?"
+msgstr "¿Cómo?"
+
+#: ../index.rst:28
+msgid ""
+"The unique interface to build applications with rapido.plone is the "
+"**Plone theming tool**."
+msgstr ""
+"La interfaz única para crear aplicaciones con rapido.plone es la herramienta "
+"**Plone theming**."
+
+#: ../index.rst:31
+msgid ""
+"It implies it can be achieved in the **file system** or through the "
+"**inline theming editor**."
+msgstr ""
+"Implica que se puede lograr en el **sistema de archivos** o mediante el "
+"**editor de temas en línea**."
+
+#: ../index.rst:34
+msgid ""
+"A Rapido application is just a part of our current theme; it can be "
+"imported, exported, copied, modified, etc. like the rest of the theme."
+msgstr ""
+"Una aplicación Rapido es sólo una parte de nuestro tema actual; Puede ser "
+"importado, exportado, copiado, modificado, etc. como el resto del tema."
+
+#: ../index.rst:37
+msgid ""
+"Moreover, we can use `Diazo <http://docs.diazo.org/en/latest/>`_ "
+"extensively to inject our application in the Plone layout easily."
+msgstr ""
+"Por otra parte, podemos utilizar `Diazo <http://docs.diazo.org/en/latest/>`_ "
+"extensivamente para incorporar nuestra aplicación en el diseño de Plone "
+"fácilmente."
+
+#: ../index.rst:40
+msgid "Contents:"
+msgstr "Contenidos:"
