@@ -111,6 +111,14 @@ class RapidoApplication(object):
         except:
             raise KeyError(path)
 
+    def get_script(self, block):
+        script_id = self.id + '-blocks-' + block
+        portal = api.portal.get()
+        if 'rapido_scripts' not in portal:
+            return None
+        script = portal['rapido_scripts'].get(script_id)
+        return script and script()
+
     def current_user(self):
         """ Returns the current user id
         """

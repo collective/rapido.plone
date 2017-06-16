@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import re
 from OFS.Folder import Folder
 from plone import api
 from plone.resource.file import FilesystemFile
@@ -46,12 +47,22 @@ def process_py(path, code):
         scripts.title = 'rapido_scripts'
         portal._setObject('rapido_scripts', scripts)
     container = portal['rapido_scripts']
-    script_id = '-'.join(path)
+    path = '-'.join(path[-path[::-1].index('rapido'):])
+    script_id = path.rpartition('.')[0]
     if script_id in container:
         container.manage_delObjects([script_id])
     manage_addPythonScript(container, script_id)
+    search_functions = re.compile(r'def\s(.+)\(')
+    functions = [match.groups()[0]
+        for match in search_functions.finditer(code)]
     ps = container._getOb(script_id)
-    ps.write(code)
+    script = code + '\n\nreturn {'
+    for function in functions:
+        script += "'%s': %s," % (function, function)
+    script += '}'
+    ps.write(script)
+    if len(ps.errors) > 0:
+        ps.write('return {"rapido_error" : """%s"""}' % ps.errors[0])
 
 
 def resource_created_or_modified(obj, event):
