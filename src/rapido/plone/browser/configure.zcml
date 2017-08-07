@@ -16,6 +16,13 @@
         permission="zope.Public"
         class=".call.RapidoCall"
         />
+        
+    <browser:page
+        name="rapido-store-api"
+        for="*"
+        permission="zope.Public"
+        class=".store.RapidoStoreAPI"
+        />
 
     <browser:resource
         name="rapido.js"

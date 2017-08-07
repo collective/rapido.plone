@@ -8,6 +8,8 @@ Changelog
 Breaking changes:
 
 - *add item here*
+- Add a store api for installing rapido apps across multiple themes.
+  [b4oshany]
 
 New features:
 
