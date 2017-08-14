@@ -89,6 +89,20 @@ class TestCase(unittest.TestCase):
         resp = json.loads(self.browser.contents)
         self.assertEquals(resp["error"], "rapido.tests theme not found")
         
+    def test_no_source_theme(self):
+        """ Test if an error will be thrown if no source theme is given."""
+        self.browser.open(
+            self.portal.absolute_url() + '/@@rapido-store-api?action=import&destination_id=rapidotest&app_id=testapp')
+        resp = json.loads(self.browser.contents)
+        self.assertEquals(resp["error"], "No theme id was given")
+        
+    def test_no_rapido_app_id(self):
+        """ Test if an error will be thrown if no rapido app id is given."""
+        self.browser.open(
+            self.portal.absolute_url() + '/@@rapido-store-api?action=import&source_id=rapido.tests&destination_id=rapidotest')
+        resp = json.loads(self.browser.contents)
+        self.assertEquals(resp["error"], "No app id was given")
+        
     def test_install_invalid_rapido_app_from_theme(self):
         """ Test if an error will be thrown when an invalid rapido app is given for the source theme."""
         self.browser.open(

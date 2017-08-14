@@ -66,11 +66,6 @@ class RapidoStoreAPI(BrowserView):
                 "error": e.message,
                 "code": 6
             })
-        except Exception as e:
-            return json.dumps({
-                "error": e.message,
-                "code": 7
-            })
         return json.dumps({
             "message": "{} has been imported in {} theme".format(app_id, destination_id),
             "error": False
