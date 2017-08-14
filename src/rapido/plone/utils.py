@@ -1,4 +1,5 @@
 
+import StringIO
 from plone.app.theming.utils import getAvailableThemes
 from plone.resource.utils import queryResourceDirectory, cloneResourceDirectory
 from zope.component import queryUtility
@@ -28,10 +29,15 @@ def getAvailableRapidoApps(exclude_theme=None):
     return apps
 
 
-def cloneLocalRapidoApp(src_theme, dest_theme, app_id):
+def cloneLocalRapidoApp(src_theme, dest_theme, app_id, make_link=False):
     src_theme_dir = get_theme_directory(src_theme)
     dest_theme_dir = get_theme_directory(dest_theme)
     
+    if not src_theme_dir:
+        raise ThemeNotFound("{} theme not found".format(src_theme))
+    if not dest_theme_dir:
+        raise ThemeNotFound("{} theme not found".format(dest_theme))
+
     if not dest_theme_dir.isDirectory("rapido"):
         dest_theme_dir.makeDirectory("rapido")
     if src_theme_dir.isDirectory("rapido"):
@@ -39,7 +45,15 @@ def cloneLocalRapidoApp(src_theme, dest_theme, app_id):
             if dest_theme_dir["rapido"].isDirectory(app_id):
                 raise RapidoAppAlreadyExists("A rapido app with {} id already exists in {}".format(app_id, dest_theme))
             dest_theme_dir["rapido"].makeDirectory(app_id)
-            cloneResourceDirectory(src_theme_dir["rapido"][app_id], dest_theme_dir["rapido"][app_id])
+            if not make_link:
+                cloneResourceDirectory(src_theme_dir["rapido"][app_id], dest_theme_dir["rapido"][app_id])
+            else:
+                f = StringIO.StringIO()
+                f.write(src_theme)
+                try:
+                    dest_theme_dir["rapido"].writeFile(app_id + '.lnk', f)
+                finally:
+                    f.close()
         elif src_theme_dir["rapido"].isFile(app_id + '.lnk'):
             f = src_theme_dir["rapido"].openFile(app_id + '.lnk')
             try:
@@ -51,8 +65,9 @@ def cloneLocalRapidoApp(src_theme, dest_theme, app_id):
                     app_id, src_theme
                 ))
     else:
-        raise ThemeNotFound("No rapido app found in {} theme".format(src_theme))
-    
+        raise RapidoAppNotFound("{} rapido app is not found in {} theme".format(
+                app_id, src_theme
+            ))
 
 
 class ThemeNotFound(Exception):
