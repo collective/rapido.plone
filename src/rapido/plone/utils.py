@@ -44,8 +44,8 @@ def cloneLocalRapidoApp(src_theme, dest_theme, app_id, make_link=False):
         if src_theme_dir["rapido"].isDirectory(app_id):
             if dest_theme_dir["rapido"].isDirectory(app_id):
                 raise RapidoAppAlreadyExists("A rapido app with {} id already exists in {}".format(app_id, dest_theme))
-            dest_theme_dir["rapido"].makeDirectory(app_id)
             if not make_link:
+                dest_theme_dir["rapido"].makeDirectory(app_id)
                 cloneResourceDirectory(src_theme_dir["rapido"][app_id], dest_theme_dir["rapido"][app_id])
             else:
                 f = StringIO.StringIO()

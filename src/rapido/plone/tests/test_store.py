@@ -118,8 +118,6 @@ class TestCase(unittest.TestCase):
             self.portal.absolute_url() + '/@@rapido-store-api?action=import&source_id=rapido.plone.tests&destination_id=linked&app_id=testapp&make_link=1')
         resp = json.loads(self.browser.contents)
         self.assertEquals(resp["error"], False)
-        apps = getRapidoAppFromTheme("linked")
-        self.assertEquals(apps, [u'testapp'])
 
     def test_install_rapido_app_from_another_theme_with_make_link_false(self):
         """ Test if a rapido app can be installed by using reference to another theme."""
@@ -127,8 +125,6 @@ class TestCase(unittest.TestCase):
             self.portal.absolute_url() + '/@@rapido-store-api?action=import&source_id=rapido.plone.tests&destination_id=linked&app_id=testapp&make_link=0')
         resp = json.loads(self.browser.contents)
         self.assertEquals(resp["error"], False)
-        apps = getRapidoAppFromTheme("linked")
-        self.assertEquals(apps, [u'testapp'])
 
     def test_install_linked_rapido_app_from_another_theme(self):
         """ Test if a referenced rapido app can be installed from another theme."""
@@ -139,7 +135,7 @@ class TestCase(unittest.TestCase):
         resp = json.loads(self.browser.contents)
         self.assertEquals(resp["error"], False)
 
-    def test_install_linked_rapido_app_from_another_them_linkede(self):
+    def test_install_linked_rapido_app_from_another_them_linked(self):
         """ Test if a referenced rapido app can be installed by using reference from another theme."""
         self.browser.open(
             self.portal.absolute_url() + '/@@rapido-store-api?action=import&source_id=rapido.plone.tests&destination_id=linked&app_id=testapp&make_link=1')

@@ -32,7 +32,7 @@ class RapidoStoreAPI(BrowserView):
         app_id = self.request.get("app_id")
         source_id = self.request.get("source_id")
         destination_id = self.request.get("destination_id") or getCurrentTheme()
-        make_link = self.request.get("make_link") == 1
+        make_link = self.request.get("make_link") == '1'
         
         if not source_id:
             return json.dumps({
