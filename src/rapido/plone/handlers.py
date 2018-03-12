@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from ZODB.POSException import ConflictError
 from pyaml import yaml
 from plone.resource.file import FilesystemFile
 from zope.component import provideAdapter
@@ -62,7 +63,9 @@ def reload(event):
         theme_dir = None
         try:
             theme_dir = get_theme_directory()
-        except:  # pragma: no cover
+        except ConflictError:
+            raise
+        except Exception:  # pragma: no cover
             # not a Plone site
             pass
 
@@ -80,7 +83,9 @@ def reload(event):
                                 getPath(app_folder['blocks'][file_id]),
                                 app_folder['blocks'].readFile(file_id)
                             )
-                        except:  # pragma: no cover
+                        except ConflictError:
+                            raise
+                        except Exception:  # pragma: no cover
                             # we do not want to break the rendering of all our
                             # pages if something is wrong in a rapido app
                             pass

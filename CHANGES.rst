@@ -24,6 +24,9 @@ Bug fixes:
 
 - *add item here*
 
+- Prevent catching of ConflictError and KeyboardInterrupt
+  [thomasdesvenain]
+
 
 1.1.1 (2017-04-22)
 ------------------
