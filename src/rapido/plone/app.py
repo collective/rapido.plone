@@ -1,3 +1,5 @@
+from ZODB.POSException import ConflictError
+
 from plone import api
 from plone.app.theming.interfaces import THEME_RESOURCE_NAME
 from plone.app.theming.utils import getCurrentTheme
@@ -108,7 +110,9 @@ class RapidoApplication(object):
     def get_resource(self, path):
         try:
             return self.resources.readFile(str(path))
-        except:
+        except ConflictError:
+            raise
+        except Exception:
             raise KeyError(path)
 
     def current_user(self):
@@ -148,7 +152,9 @@ def get_app(app_id, request, content=None):
     while not hasattr(context.content, 'portal_type'):
         try:
             context.content = portal.unrestrictedTraverse(path)
-        except:
+        except ConflictError:
+            raise
+        except Exception:
             pass
         path = '/'.join(path.split('/')[0:-1])
     context.portal = portal

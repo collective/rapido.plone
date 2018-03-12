@@ -8,8 +8,13 @@ Changelog
 Breaking changes:
 
 - *add item here*
+
+- We need at least View permission on context to access any rapido view.
+  [thomasdesvenain]
+
 - Add a store api for installing rapido apps across multiple themes.
   [b4oshany]
+
 
 New features:
 
@@ -18,6 +23,9 @@ New features:
 Bug fixes:
 
 - *add item here*
+
+- Prevent catching of ConflictError and KeyboardInterrupt
+  [thomasdesvenain]
 
 
 1.1.1 (2017-04-22)
