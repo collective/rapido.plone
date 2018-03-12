@@ -8,8 +8,13 @@ Changelog
 Breaking changes:
 
 - *add item here*
+
+- We need at least View permission on context to access any rapido view.
+  [thomasdesvenain]
+
 - Add a store api for installing rapido apps across multiple themes.
   [b4oshany]
+
 
 New features:
 

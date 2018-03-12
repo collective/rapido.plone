@@ -6,21 +6,21 @@
     <browser:page
         name="rapido"
         for="*"
-        permission="zope.Public"
+        permission="zope2.View"
         class=".views.RapidoView"
         />
 
     <browser:page
         name="rapido-call"
         for="*"
-        permission="zope.Public"
+        permission="zope2.View"
         class=".call.RapidoCall"
         />
-        
+
     <browser:page
         name="rapido-store-api"
         for="*"
-        permission="zope.Public"
+        permission="zope2.View"
         class=".store.RapidoStoreAPI"
         />
 
