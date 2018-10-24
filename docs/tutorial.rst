@@ -231,7 +231,7 @@ Debugging
 ---------
 
 As we are writing code, we might (we will) make mistakes. In this case, , it is
-always helpul to read the error messages returned by the system.
+always helpful to read the error messages returned by the system.
 
 It is also very helpful to be able to log messages from our code, so we
 understand what is going on exactly when it is executed.

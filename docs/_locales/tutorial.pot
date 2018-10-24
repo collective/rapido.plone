@@ -257,7 +257,7 @@ msgid "Debugging"
 msgstr ""
 
 #: ../tutorial.rst:233
-msgid "As we are writing code, we might (we will) make mistakes. In this case, , it is always helpul to read the error messages returned by the system."
+msgid "As we are writing code, we might (we will) make mistakes. In this case, , it is always helpful to read the error messages returned by the system."
 msgstr ""
 
 #: ../tutorial.rst:236

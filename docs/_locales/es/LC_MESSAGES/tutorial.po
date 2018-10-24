@@ -400,7 +400,7 @@ msgstr "Depuración"
 #: ../tutorial.rst:233
 msgid ""
 "As we are writing code, we might (we will) make mistakes. In this case, ,"
-" it is always helpul to read the error messages returned by the system."
+" it is always helpful to read the error messages returned by the system."
 msgstr ""
 "Como estamos escribiendo código, nosotros podríamos (vamos a) cometer "
 "errores. En este caso, siempre es útil leer los mensajes de error "
